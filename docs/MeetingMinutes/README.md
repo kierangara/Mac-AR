@@ -1,5 +1,5 @@
-# Development Plan
+# Meeting Minutes
 
 The folders and files for this folder are as follows:
 
-Describe ...
+Tex and pdf files for the meeting minutes
