@@ -1,0 +1,286 @@
+\documentclass{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+\title{Meeting 0 Minutes\\\progname}
+
+\author{\authname}
+
+\date{}
+
+\input{../Comments}
+\input{../Common}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+2023/09/12 & Matthew Collard & Creation of minutes\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\section{Team Meeting Zero}
+\subsection{Details}
+
+\begin{tabularx}{0.8\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\raggedleft\arraybackslash}X | }
+ \hline
+ Date & 2023/09/12  \\
+ \hline
+ Location  & Thode Study Room 9  \\
+\hline
+Time  & 3:30pm-5pm  \\
+\hline
+\end{tabularx}
+
+
+\subsection{Attendance:}
+\begin{itemize}
+    \item Matthew Collard
+    \item Sam Gorman
+    \item Ethan Kannampuzha
+    \item Kieran Gara
+\end{itemize}
+\subsection{Agenda:}
+\begin{itemize}
+    \item Choose Projects
+    \item Email Supervisors
+    \item Decide group member roles
+    \item Decide next meeting time
+\end{itemize}
+
+
+\section{Team Minutes}
+\begin{itemize}
+    \item Projects:
+    \begin{itemize}
+        \item \hyperref[subsec:chess]{Rhombichess}
+        \item \hyperref[subsec:fitness]{Fitness Tracker}
+        \item \hyperref[subsec:soccer]{Soccer App}
+        \item \hyperref[subsec:foodrescue]{Food rescue}
+        \item \hyperref[subsec:chemfast]{ChemFAST}
+        \item \hyperref[subsec:voicelab]{VoiceLab}
+        \item \hyperref[subsec:xray]{X-ray Ai}
+        \item \hyperref[subsec:xrgame]{XR Game}
+    \end{itemize}
+    \item \hyperref[sec:roles]{Group member Roles}
+    \item \hyperref[sec:meetingTime]{Next Meeting Time}
+\end{itemize}
+\section{Project List:}
+\subsection{Rhombichess:}
+\label{subsec:chess}
+\begin{itemize}
+    \item Description:
+    \begin{itemize}
+        \item Chess on a rhombus board instead of a 8x8 grid, new pieces new rules
+        \item competitive 2 player game, prefered to be playable online
+    \end{itemize}
+    \item Source:
+    \begin{itemize}
+        \item McMaster suggested list \#12
+        \item Supervisor: Dr. Paul Rapoport
+    \end{itemize}
+    \item Stakeholders:
+    \begin{itemize}
+        \item People that like chess
+        \item People that like board games
+    \end{itemize}
+\end{itemize}
+
+\subsection{Fitness App:}
+\label{subsec:fitness}
+\begin{itemize}
+    \item Description:
+    \begin{itemize}
+        \item Fitness app that tracks the progress of the user
+        \item can track diet, workout, etc.
+    \end{itemize}
+    \item Source:
+    \begin{itemize}
+        \item Suggested by Ethan
+        \item Supervisor: None
+    \end{itemize}
+    \item Stakeholders
+    \begin{itemize}
+        \item People that want to be healthy
+        \item People that want to workout
+    \end{itemize}
+\end{itemize}
+
+\subsection{Soccer app:}
+\label{subsec:soccer}
+\begin{itemize}
+    \item Description:
+    \begin{itemize}
+        \item Builds soccer teams for you
+        \item communication with other members
+    \end{itemize}
+    \item Source:
+    \begin{itemize}
+        \item Suggested by Ethan
+        \item Supervisor: None
+    \end{itemize}
+    \item Stakeholders
+    \begin{itemize}
+        \item People that like soccer
+    \end{itemize}
+\end{itemize}
+
+\subsection{Food Rescue:}
+\label{subsec:foodrescue}
+\begin{itemize}
+    \item Description:
+    \begin{itemize}
+        \item Connects non-profit food distributors to those who need food 
+        \item Mobile application
+    \end{itemize}
+    \item Source:
+    \begin{itemize}
+        \item McMaster suggested list \#11
+        \item Supervisor: Ahana Malhotra, Dr. Elkafi Hassini
+    \end{itemize}
+    \item Stakeholders
+    \begin{itemize}
+        \item Food Distributors
+        \item Families that need food
+    \end{itemize}
+\end{itemize}
+
+\subsection{CHEMFAST:}
+\label{subsec:chemfast}
+\begin{itemize}
+    \item Description:
+    \begin{itemize}
+        \item Study resource for students that custom tailors learning material based on their needs
+        \item Database with past questions from tests and assignments to pull from
+    \end{itemize}
+    \item Source:
+    \begin{itemize}
+        \item McMaster suggest list \#6
+        \item Supervisor: Dr. Sharonna Greenberg
+    \end{itemize}
+    \item Stakeholders
+    \begin{itemize}
+        \item Students taking chemistry
+        \item Professors
+    \end{itemize}
+\end{itemize}
+
+\subsection{Improving VoiceLab:}
+\label{subsec:voicelab}
+\begin{itemize}
+    \item Description:
+    \begin{itemize}
+        \item VoiceLab is a program that can measure and manipulate voices 
+        \item The goal is to improve voicelab by adding multi processing and APIs
+    \end{itemize}
+    \item Source:
+    \begin{itemize}
+        \item McMaster suggested List \#5
+        \item Supervisor: Dr. David Feinberg
+    \end{itemize}
+    \item Stakeholders
+    \begin{itemize}
+        \item Data Scientists
+    \end{itemize}
+\end{itemize}
+
+\subsection{AI for X-ray read:}
+\label{subsec:xray}
+\begin{itemize}
+    \item Description:
+    \begin{itemize}
+        \item Analyzes chest X-rays and gives a diagnosis based on AI 
+        \item Create radiology reports based on findings
+    \end{itemize}
+    \item Source:
+    \begin{itemize}
+        \item McMaster suggested list \#3
+        \item Supervisor: Dr. Mehdi Moradi
+    \end{itemize}
+    \item Stakeholders
+    \begin{itemize}
+        \item Doctors
+        \item Hospital workers
+        \item X-ray specialists 
+    \end{itemize}
+\end{itemize}
+
+\subsection{XR Game:}
+\label{subsec:xrgame}
+\begin{itemize}
+    \item Description:
+    \begin{itemize}
+        \item Alternate reality game
+        \item Communication with others is major
+    \end{itemize}
+    \item Source:
+    \begin{itemize}
+        \item McMaster suggested list \#17
+        \item Supervisor: Dr. Irene Ye Yuan
+    \end{itemize}
+    \item Stakeholders
+    \begin{itemize}
+        \item People that enjoy VR/AR/XR
+        \item Gamers
+        \item Isolated/lonely people
+    \end{itemize}
+\end{itemize}
+
+\section{Team Member Roles}
+\label{sec:roles}
+
+\begin{tabularx}{0.8\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\raggedleft\arraybackslash}X | }
+\hline
+  Role & Name & Responsibility\\
+\hline
+ GitHub Administrator & Sam & Merge and maintain Github Branches \\
+\hline
+ Final Revision Editor  & Kieran & Last editor of requirements documents, makes sure we adhere to writing guidelines  \\
+\hline
+Communication Director  & Matthew & Communicates with the Supervisor/Prof and any stakeholders \\
+\hline
+Meeting Minute Writer & Ethan & Keeps track and writes down the meeting minutes \\
+\hline
+Lead Developer & Kieran & Leads the development process, makes sure we are on the right track to complete our goals at the agreed upon due dates \\
+\hline
+Lead UI Designer & Matthew & Makes sure the user interface is clear to the user, and functioning. Implements UI based code such as buttons\\
+\hline
+Functional Requirement Lead & Ethan & Makes sure every function requirement is met during the coding process\\
+\hline
+Non-Functional Requirement Lead & Sam & Makes sure every NFR is met during the coding process\\
+\hline
+\end{tabularx}
+\section{Next Meeting Time:}
+\label{sec:meetingTime}
+\begin{tabularx}{0.8\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\raggedleft\arraybackslash}X | }
+ \hline
+ Date & 2023/09/20  \\
+ \hline
+ Location  &  Thode \\
+\hline
+Time  & 12:30pm-1:30pm  \\
+\hline
+\end{tabularx}
+
+
+
+\end{document}
