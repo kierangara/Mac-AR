@@ -22,7 +22,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-2023/09/15 & Matthew Collard & Team Member roles added\\
+2023/09/15 & All & Initial addition of all sections\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
@@ -33,7 +33,7 @@ Date2 & Name(s) & Description of changes\\
 
 \section{Team Meeting Plan}
 
-Our Plan is to have a meeting every capstone lecture that is not software eng, or is not running. When we are behind on a deliverable, we will schedule a meeting during our time between classes to meet and go over what we will need to accomplish before the due date.
+Our Plan is to have a meeting every capstone lecture that is not Software Eng, or is not running. When we are behind on a deliverable, we will schedule a meeting during our time between classes to meet and go over what we will need to accomplish before the due date.
 
 \section{Team Communication Plan}
 For most issues, we will communicate over Discord with each other. Matthew is in charge of communicating with the profs/supervisor. In addition, we will also have a meeting with Irene Yuan every week during Irene Yuan's Office hours. 
@@ -68,36 +68,47 @@ Non-Functional Requirement Lead & Sam & Makes sure every NFR is met during the c
 \section{Workflow Plan}
 
 \begin{itemize}
-	\item For Git, we will have a master branch that will always have a working codebase, and upto date documentation. We will have a second branch called develop, this is the development branch, and all our new changes get merged into this branch. It is meant to be unstable and most of our issues will pop up in this branch. Every time develop has a stable build, we will push the code into master. We will have branches off of develop that we are going to use as our feature branches, every new line of code gets written in these branches, and when the feature is done it will get merged into develop. This double buffer system ensures we always have working code easily accessible in master. Sam will be responsible for merging develop into master. 
-	\item How will you be managing issues, including template issues, issue
-	classificaiton, etc.?
+	\item For Git, we will have a master branch that will always have a working code base, and up-to date documentation. We will have a second branch called develop, this is the development branch, and all our new changes get merged into this branch. It is meant to be unstable and most of our issues will pop up in this branch. Every time develop has a stable build, we will push the code into master. We will have branches off of develop that we are going to use as our feature branches, every new line of code gets written in these branches, and when the feature is done it will get merged into develop. This double buffer system ensures we always have working code easily accessible in master. Sam will be responsible for merging develop into master. 
+ \item Document changes are the only changes that can be merged directly from branch to main. All source code changes go through the development branch first.
+    \item Changes into the dev and main branches will be done through formal pull requests. Reviewers will not be strictly necessary for these PRs, mainly being used as a way to track merges and make sure branches are up to date before merging in. Reviews from other team members are recommended when working on the same file/ directory. 
+	\item Issues will be created for each team meeting, lecture period, document revision, and feature change. Issues for meetings will be used to track who attended and a general overview of the agenda. Issues for document and dev work will be broken up by deliverable. 
 \end{itemize}
 
 \section{Proof of Concept Demonstration Plan}
 
-What is the main risk, or risks, for the success of your project?  What will you
-demonstrate during your proof of concept demonstration to convince yourself that
-you will be able to overcome this risk?
+Main Risks:
+\begin{itemize}
+    \item Some form of AR working
+    \item Networking with multiple devices
+\end{itemize}
+
+The plan for the proof of concept is to have a simple AR program working that can allow two users to interact in some way. This will be used as a trial run for the technology and the actual game will be built off of the POC afterwards. 
 
 \section{Technology}
 
 \begin{itemize}
-\item Specific programming language
-\item Specific linter tool (if appropriate)
-\item Specific unit testing framework
-\item Investigation of code coverage measuring tools
-\item Specific plans for Continuous Integration (CI), or an explanation that CI
-  is not being done
+\item C\# (Unity)
+\item Linter: Microsoft Code Analysis extension in VS
+\item Test Framework: NUnit
+\item Code Coverage measuring tool: dotCover
+\item Specific plans for Continuous Integration (CI), or an explanation that CI is not being done ** Wait until tutorial **
 \item Specific performance measuring tools (like Valgrind), if
   appropriate
-\item Libraries you will likely be using?
-\item Tools you will likely be using?
+\item Libraries: TBD based on project needs
+\item Tool/Framework: Unity
 \end{itemize}
 
 \section{Coding Standard}
+\begin{itemize}
+    \item Variable name syntax: camelCase
+    \item Function name syntax: PascalCase
+    \item Class name syntax: PascalCase
+    \item Brackets: Same line (Ex. If () \{)
+    \item Public/ Private: Use private when possible
+    \item Indent: Tab 
+\end{itemize}
 
 \section{Project Scheduling}
 
-\wss{How will the project be scheduled?}
-
+The team will use a Google Calendar to schedule goals for milestone progress and deliverable deadlines. As a general rule, the next deliverable will be started a minimum of one week before the previous deliverable is due for documentation. Code development will be ongoing throughout with deadlines set for various components.
 \end{document}
