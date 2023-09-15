@@ -22,7 +22,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
+2023/09/15 & Matthew Collard & Team Member roles added\\
 Date2 & Name(s) & Description of changes\\
 ... & ... & ...\\
 \bottomrule
@@ -33,14 +33,42 @@ Date2 & Name(s) & Description of changes\\
 
 \section{Team Meeting Plan}
 
-\section{Team Communication Plan}
+Our Plan is to have a meeting every capstone lecture that is not software eng, or is not running. When we are behind on a deliverable, we will schedule a meeting during our time between classes to meet and go over what we will need to accomplish before the due date.
 
+\section{Team Communication Plan}
+For most issues, we will communicate over Discord with each other. Matthew is in charge of communicating with the profs/supervisor. In addition, we will also have a meeting with Irene Yuan every week during Irene Yuan's Office hours. 
+\newpage
 \section{Team Member Roles}
+
+\begin{tabularx}{0.8\textwidth} { 
+  | >{\raggedright\arraybackslash}X 
+  | >{\centering\arraybackslash}X 
+  | >{\raggedleft\arraybackslash}X | }
+\hline
+  Role & Name & Responsibility\\
+\hline
+ GitHub Administrator & Sam & Merge and maintain Github Branches \\
+\hline
+ Final Revision Editor  & Kieran & Last editor of requirements documents, makes sure we adhere to writing guidelines  \\
+\hline
+Communication Director  & Matthew & Communicates with the Supervisor/Prof and any stakeholders \\
+\hline
+Meeting Minute Writer & Ethan & Keeps track and writes down the meeting minutes \\
+\hline
+Lead Developer & Kieran & Leads the development process, makes sure we are on the right track to complete our goals at the agreed upon due dates \\
+\hline
+Lead UI Designer & Matthew & Makes sure the user interface is clear to the user, and functioning. Implements UI based code such as buttons\\
+\hline
+Functional Requirement Lead & Ethan & Makes sure every function requirement is met during the coding process\\
+\hline
+Non-Functional Requirement Lead & Sam & Makes sure every NFR is met during the coding process\\
+\hline
+\end{tabularx}
 
 \section{Workflow Plan}
 
 \begin{itemize}
-	\item How will you be using git, including branches, pull request, etc.?
+	\item For Git, we will have a master branch that will always have a working codebase, and upto date documentation. We will have a second branch called develop, this is the development branch, and all our new changes get merged into this branch. It is meant to be unstable and most of our issues will pop up in this branch. Every time develop has a stable build, we will push the code into master. We will have branches off of develop that we are going to use as our feature branches, every new line of code gets written in these branches, and when the feature is done it will get merged into develop. This double buffer system ensures we always have working code easily accessible in master. Sam will be responsible for merging develop into master. 
 	\item How will you be managing issues, including template issues, issue
 	classificaiton, etc.?
 \end{itemize}
