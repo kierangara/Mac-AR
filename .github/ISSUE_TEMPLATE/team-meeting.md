@@ -1,9 +1,9 @@
 ---
-name: Team meeting template
+name: Team Meeting
 about: Issues to track team meetings
 title: Team Meeting <Number>
 labels: Team Meeting
-assignees: ''
+assignees: SammyG7
 
 ---
 
