@@ -2,7 +2,7 @@
 name: Document Revision
 about: Issues to track documentation additions and revisions
 title: ''
-labels: documentation
+labels: ''
 assignees: ''
 
 ---
