@@ -22,35 +22,94 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
+2023/09/15 & All & Initial addition of all sections of the deliverable\\
+2023/09/19 & All & In-depth review and edit of all the sections of the deliverable using more information we obtained from Dr. Yuan\\
+2023/09/23 & Ethan & Updated the following sections: Problem, Stakeholders, Environment, Goals\\
+2023/09/25 & All & Final revision before problem statement deliverable\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \section{Problem Statement}
+This section of the document describes the problem that is trying to be solved, the inputs and outputs of the project, and the stakeholders and environment for the software.
 
-\wss{You should check your problem statement with the
-\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
-{problem statement checklist}.}
-\wss{You can change the section headings, as long as you include the required information.}
+%\wss{You should check your problem statement with the
+%\href{https://github.com/smiths/capTemplate/blob/main/docs/Checklists/ProbState-Checklist.pdf}
+%{problem statement checklist}.}
+%\wss{You can change the section headings, as long as you include the required %information.}
 
 \subsection{Problem}
+%People are struggling to create valuable social connections, especially during and after the COVID-19 pandemic. Introverted and isolated people who are unwilling or unable to attend in-person events need a way to connect with others. Dr. Yuan will be performing a study to analyze how people interact with one another through a virtual game remotely. A game needs to be made to facilitate Dr. Yuan's study.
+
+%*****Not sure if we should phrase this in terms of Dr.Yuan's study, or if it would be better to just state in terms of the goals of creating social interaction.*****
+
+In today's day and age, people are often struggling to form social connections with others. Humans are social creatures and need some form of social interaction with others. Unfortunately, many people do not feel comfortable joining social events in person, and as a result they become even more isolated causing their mental health to suffer. These individuals need a way to have social interactions remotely.
+
+The purpose of this project is to create an augmented reality (AR) game that enables players to have meaningful social interactions from a remote/indoor environment. The game will allow individuals who cannot physically go to social events or are not comfortable doing so, to get the social fix that they need and form strong connections with others.
+
+
 
 \subsection{Inputs and Outputs}
-
-\wss{Characterize the problem in terms of ``high level'' inputs and outputs.  
-Use abstraction so that you can avoid details.}
-
+\begin{itemize}
+    \item Inputs:
+    \begin{itemize}
+        \item Time and processing power from a device
+        \item Human instructions input via the interface
+        \item Device sensor inputs
+        \item Text and Audio messages
+    \end{itemize}
+    \item Outputs:
+    \begin{itemize}
+        \item Interactive AR games and puzzles
+        \item Messages from other users
+        \item Audio and visual feedback for completing objectives
+        \item Progress indicator for each user
+        \item Available hints for active puzzles
+    \end{itemize}
+\end{itemize}
 \subsection{Stakeholders}
-
+\begin{itemize}
+    \item Individuals aged 15-35 who enjoy games, are comfortable with technology and want to become more social
+    \item Dr. Irene Yuan (project supervisor)
+\end{itemize}
 \subsection{Environment}
 
-\wss{Hardware and software}
+\begin{itemize}
+    \item Application will be built using the Unity platform
+    \item Application will be supported on both Apple and Android mobile devices
+    \item Application will require players to have internet access
+\end{itemize}
+%\wss{Hardware and software}
 
 \section{Goals}
+This section of the document will outline the goals for the project.
 
+%\subsection{AR game}
+%Create an augmented reality (AR) game that users can play using their mobile devices. 
+
+\subsection{Create an AR Game}
+The game will have AR elements associated with it using the phone camera, and other phone sensors such as the accelerometer and gyroscope. This will allow for more engaging activities that tie into reality, giving the remote game a more visceral feel.
+\subsection{Cooperative Gameplay}
+The game will have tasks/puzzles that users must work together to complete. This will encourage new types of interactions between players, challenging their cognitive and communicative skills to accomplish the tasks.
+\subsection{Multiplayer}
+The game will be playable with 2-6 users. This will enable larger groups of users to create unique connections they would not be able to create through individual games.
+\subsection{Remote Gameplay}
+The game will allow users to connect to a host device from remote locations. This allows players to play in a comfortable and safe environment.
+\subsection{Communication}
+The game will allow asynchronous texting and voice chat. Users can leave messages behind for others to listen/read. This will encourage users to have social interactions with other players.
+\subsection{Game Audio}
+The game will have in-game music as well as sound effects for when users perform in-game actions. The sound will provide the users with a dynamic atmosphere as if they were in a different location, and allow them to interact in a unique way. 
+\subsection{Save Game}
+The game will allow users to save their progress so that they can continue from where they have previously left off. Users can drop and pick up the game whenever it is convenient, on the go or at home. 
+\subsection{Hint System}
+If users are stuck on a particular puzzle, they can ask for a hint on how to solve the puzzle. 
 \section{Stretch Goals}
-
+\begin{itemize}
+    \item Make the game playable by a large group of people(10+) at the same time. This will allow for more users to group together and play a larger cooperative game together
+    \item Have the game run off a server, not just host-client connections. This will provide a stable infrastructure for users to connect to, and allow them to have a better experience
+    \item Allow the users to create their own puzzles within the app. This will increase the replayability of the game as you could have an infinite amount of puzzles, and users could design custom levels for other users to try.
+    \item Track gameplay statistics for each user. This will allow users to see the amount of progress that they have made in the game and give them something they can brag about.
+    \item Matchmaking systems to connect users with strangers from around the world. This would allow users who do not have a group to play with to still be able to play the game.
+\end{itemize}
 \end{document}
