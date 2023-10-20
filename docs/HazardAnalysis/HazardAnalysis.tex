@@ -3,6 +3,20 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{chngpage}
+\usepackage{array}
+\usepackage{amsfonts}
+\usepackage{pdflscape}
+\usepackage{placeins}
+\usepackage{longtable}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage[round]{natbib}
+
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -36,8 +50,9 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
+2023/10/16 & All & Initial Revision\\
+2023/10/17 & Matthew & Filled in multiple failure modes in the FMEA table \\
+2023/10/17 & Ethan & Worked on all sections of document \\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -51,35 +66,155 @@ Date2 & Name(s) & Description of changes\\
 
 \pagenumbering{arabic}
 
-\wss{You are free to modify this template.}
+%\wss{You are free to modify this template.}
 
 \section{Introduction}
 
-\wss{You can include your definition of what a hazard is here.}
+%\wss{You can include your definition of what a hazard is here.}
+
+In order to make an application that is usable and safe for users, common hazards need to be thought about beforehand and ways for mitigating them need to be developed. A hazard is anything that fails or modifies the intended functionalities of the Mac AR application, as well as anything that could pose a danger to the user or cause system failure.
 
 \section{Scope and Purpose of Hazard Analysis}
+The purpose of the hazard analysis is to document potential hazards that may arise when the application is being used and find ways to prevent or mitigate them. The scope of the hazard analysis will involve outlining the system boundaries and components, and potential hazards related to the system itself as well as user interaction with the system. Additionally, it will include the mitigation methods that will be implemented to prevent these potential hazards along with the safety and security requirements that relate to each hazard. Accounting for every single combination of user hardware should not be possible, so the analysis will be generalized for all mobile devices that are able to properly run our intended product.
+
+%The purpose of the hazard analysis is to think about all potential hazards within the bounds of the software and hardware used, how hazard mitigation is to be implemented, and the safety and security requirements associated with these hazards. The scope of the document will include but be not limited to: potential hazards with the environment for users, potential hazards with the application itself, and mitigation methods within the application to prevent potential hazards. Accounting for every single combination of user hardware should not be possible, so the analysis will be generalized for all mobile devices that are able to properly run our intended product. 
 
 \section{System Boundaries and Components}
 
-\section{Critical Assumptions}
+The system will be divided into the following components:
+\begin{itemize}
+    \item The frontend and backend parts of the system:
+    \begin{itemize}
+        \item Backend server
+        \item User interface
+    \end{itemize}
+    \item Physical Device:
+        \begin{itemize}
+            \item Smartphone
+        \end{itemize}
+\end{itemize}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+The backend server will be responsible for connecting users together in a room, and associating puzzles with the users. Additionally, the server will store the current game state of the user's puzzle. The user interface is responsible for providing the user with an interact-able game, and handling all the user's inputs. The physical device that the user will run the application on is a Smartphone.
+
+\section{Critical Assumptions}
+\begin{itemize}
+    \item Users will not intentionally try to injure themselves or others while using the application
+    \item Users will respect warning messages related to proper use of the application
+\end{itemize}
+
+%\wss{These assumptions that are made about the software or system.  You should
+%minimize the number of assumptions that remove potential hazards.  For instance,
+%you could assume a part will never fail, but it is generally better to include
+%this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here}
+\begin{table}[H]
+    \begin{adjustbox}{width=(\textwidth*6/5)}
+    \centering
+    
+
+    \begin{tabular}{|p{0.20\linewidth} | p{0.30\linewidth} | p{0.20\linewidth}|  p{0.20\linewidth}|  p{0.30\linewidth}|  p{0.07\linewidth}|  p{0.07\linewidth}|p{0.12\linewidth}| }
+    \hline
+         \textbf{Design Functions} & \textbf{Failure Modes} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{SR} & \textbf{Ref} & \textbf{Severity}\\
+         \hline
+        Internet connectivity      &      Loss of internet connection           &       The user is unable to send or receive data from the server                      &                The user's device has lost connection to the internet            &                  Notify the user that they have lost internet connection. &UH2&H1-1&Medium\\&&&& Prompt the user to play the game in an area with good internet connection, and if they get disconnected, prompt the user to reconnect before play can resume.           & UH4            &           &                  \\
+                                   &     Unstable Internet Connection     &  The user is not able to keep up-to date with the server and the other users &  The user's internet connection is poor/weak    &        Prompt the user when poor connection is detected to connect to a more stable internet network           &  UH5           &  H1-2           &    Medium              \\
+          \hline
+        General                    &      System Powerdown     &          The user's phone has shutdown                   &     Some failure from the user's phone/device caused the device to shutdown        &     The user should turn their phone back on and when they launch our app again, they should be allowed to rejoin the room and continue playing the game       & UH7            &   H2-1           &        High          \\
+                                   &       Application Crash     &      The application has crashed on the user's device         &     A bug in the code or an issue with the user's device     &     The user can relaunch the application and reconnect to their game room.    &  UH7           &   H2-2          &   High               \\
+          \hline
+          Backend Server                   &    Server cannot respond within a reasonable time         &     Possible loss of data from users, status of game rooms not clear    &    Too many user's sending and receiving data from the server at the same time    &     Limit the amount of users to ensure the server always has enough time to handle requests      &   PR1          &  H3-1            &      Low            \\
+                                   &                        &                             &                            &                             &             &              &                  \\
+          \hline
+    \end{tabular}
+    \end{adjustbox}
+    \caption{\bf FMEA Table}
+    \label{tab:FMEA1}
+\end{table}
+
+\begin{table}[H]
+    \begin{adjustbox}{width=(\textwidth*6/5)}
+    \centering
+    
+
+    \begin{tabular}{|p{0.20\linewidth} | p{0.30\linewidth} | p{0.20\linewidth}|  p{0.20\linewidth}|  p{0.30\linewidth}|  p{0.07\linewidth}|  p{0.07\linewidth}|p{0.12\linewidth}| }
+    \hline
+         \textbf{Design Functions} & \textbf{Failure Modes} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{SR} & \textbf{Ref} & \textbf{Severity}\\
+         \hline
+          User Interface                   &           User Exits the game room             &           The user is too far from the puzzles to complete them           &                The user leaves the pre-defined area set by calibration            &           Inform the user before they leave the area to not leave, and if they leave, inform the user to return.                  &   UH6          &   H4-1           &   Low               \\
+            &    User is injured     &    The user has sustained an injury during the use of our application      &  The user was not aware of their surrounding during the use of the application and injured themselves from their surroundings \newline                 &    Prompt the user before the game starts to be aware of their surroundings, and play in an open area with no visible hazards    &  SAR1           &   H4-2     & High\\&&& User was using application in dangerous conditions \newline & Warn the user about potentially dangerous weather and to exit the area if outside&   UH8   &  &                \\
+                                   &    User calibration setup fails   &   User is unable to start puzzle due to calibration setup not being able to map real life room into AR environment & Room is too bright resulting in camera not being able to accurately map environment, User exits room during calibration setup, User attempts to play game in unsuitable environment (ex. moving car) & Prompt the user before the game starts to let them know the suitable environments for playing the game. &UH6&H4-3& Medium\\&&&& Prompt user through pop up warning during calibration to let user know that their current environment is not suitable and they must change their environment before they can resume play   & UH6   & H4-4 & Medium   \\
+          \hline
+    \end{tabular}
+    \end{adjustbox}
+    \caption{\bf FMEA Table}
+    \label{tab:FMEA2}
+\end{table}
 
 \section{Safety and Security Requirements}
+%\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
+%rationale design process how and why to fake it.)}
 
-\wss{Newly discovered requirements.  These should also be added to the SRS.  (A
-rationale design process how and why to fake it.)}
+The following requirements include requirements in the Software Specification
+Document. It also lists new requirements which will be added to the Software
+Specification Document and have been written in \textbf{bold}.
 
+\subsection{Security Requirements}
+\begin{enumerate}[SR\arabic*.]
+    \item The system shall keep user data private\newline
+    \textit{Fit criterion: The system shall not make user passwords or IP addresses able to be publicly accessed}
+    \item The users will only be allowed to see limited data. Unnecessary data will not be displayed to the user\newline
+    \textit{Fit criterion: The system shall only show users any data required in order to play the game}
+
+\end{enumerate}
+
+\subsection{Safety Requirements}
+\begin{enumerate}[SAR\arabic*.]
+    \item \textbf{On startup, the system shall prompt the user to be aware of their surroundings}\newline
+    \textit{Fit criterion: The system during its loading sequence will have a warning message indicating that the user should be careful while using the app}
+\end{enumerate}
+
+\subsection{Usability and Humanity Requirements}
+\begin{enumerate}
+    \item[UH2] The system shall notify the user if there is no network, or they get disconnected\newline
+    \textit{Fit criterion: The system should produce a notification when network connection is lost}
+    \item[UH4] \textbf{The system shall prompt the user to re-enter an area with internet connection when it detects there is no network}\newline
+    \textit{Fit criterion: The system should produce a notification when network connection is lost}
+    \item[UH5] \textbf{The system shall prompt the user if it detects that the existing network connection is weak}\newline
+    \textit{Fit criterion: The system should produce a notification when network connection is weak}
+    \item[UH6] \textbf{The system shall prompt the user if their current environment is unsuitable to use the application}\newline
+    \textit{Fit criterion: The system will produce a pop up notification during calibration setup to let user know of issues with their environment}
+    \item[UH7] \textbf{The system shall allow users to reconnect to their game session if they become disconnected}\newline
+    \textit{Fit criterion: The system will prompt the user to reconnect to their game session through a reconnect button, which upon pressing will reconnect to the user's previous session}
+    \item[UH8] \textbf{The system shall alert users of potentially dangerous conditions} \newline
+    \textit{Fit criterion: The system will notify the user about incoming dangerous weather when it is detected}
+\end{enumerate}
+
+%\subsection{Access Requirements}
+%\begin{enumerate}[ACR\arabic*.]
+    %\item \textbf{Users will not have access to backend components of system}
+%\end{enumerate}
+\subsection{Performance Requirements}
+\begin{enumerate}
+    \item[PR1] The system shall respond to user interaction instantaneously as perceived by the user\newline
+    \textit{Fit criterion: The system shall respond within 100ms of user interaction}
+\end{enumerate}
+%\subsection{Integrity Requirements}
+%\begin{enumerate}
+    %\item The system will respond to 
+%\end{enumerate}
+%\subsection{Privacy Requirements}
+
+%\subsection{Audit Requirements}
+
+%\subsection{Immunity Requirements}
 \section{Roadmap}
 
-\wss{Which safety requirements will be implemented as part of the capstone timeline?
-Which requirements will be implemented in the future?}
+%\wss{Which safety requirements will be implemented as part of the capstone timeline?
+%Which requirements will be implemented in the future?}
+It is expected that all of the safety and security requirements listed above will be implemented before the Revision 0 demonstration (Feb 5 - 16). If there are any updates regarding scope, documentation will be updated to match current expectations.
+
+%dont think we need a table
 
 \end{document}
