@@ -1,5 +1,3 @@
-% THIS DOCUMENT IS TAILORED TO REQUIREMENTS FOR SCIENTIFIC COMPUTING.  IT SHOULDN'T
-% BE USED FOR NON-SCIENTIFIC COMPUTING PROJECTS
 \documentclass[12pt]{article}
 
 \usepackage{amsmath, mathtools}
@@ -18,14 +16,22 @@
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
+\usepackage{placeins}
+<<<<<<< HEAD
+\usepackage{amsthm,letltxmacro,changepage}
+=======
+>>>>>>> 8c0ee09dbf167771409ef793ed6ecd7b625b452d
+\usepackage[shortlabels]{enumitem}
 
 \usepackage[round]{natbib}
+\usepackage{multirow}
+\usepackage{float}
 
 %\usepackage{refcheck}
 
 \hypersetup{
     bookmarks=true,         % show bookmarks bar?
-      colorlinks=true,       % false: boxed links; true: colored links
+    colorlinks=true,        % false: boxed links; true: colored links
     linkcolor=red,          % color of internal links (change box color with linkbordercolor)
     citecolor=green,        % color of links to bibliography
     filecolor=magenta,      % color of file links
@@ -50,26 +56,26 @@
 \newcounter{defnum} %Definition Number
 \newcommand{\dthedefnum}{GD\thedefnum}
 \newcommand{\dref}[1]{GD\ref{#1}}
-\newcounter{datadefnum} %Datadefinition Number
+\newcounter{datadefnum} %Data definition Number
 \newcommand{\ddthedatadefnum}{DD\thedatadefnum}
 \newcommand{\ddref}[1]{DD\ref{#1}}
 \newcounter{theorynum} %Theory Number
-\newcommand{\tthetheorynum}{TM\thetheorynum}
-\newcommand{\tref}[1]{TM\ref{#1}}
+\newcommand{\tthetheorynum}{T\thetheorynum}
+\newcommand{\tref}[1]{T\ref{#1}}
 \newcounter{tablenum} %Table Number
-\newcommand{\tbthetablenum}{TB\thetablenum}
+\newcommand{\tbthetablenum}{T\thetablenum}
 \newcommand{\tbref}[1]{TB\ref{#1}}
 \newcounter{assumpnum} %Assumption Number
-\newcommand{\atheassumpnum}{A\theassumpnum}
+\newcommand{\atheassumpnum}{P\theassumpnum}
 \newcommand{\aref}[1]{A\ref{#1}}
 \newcounter{goalnum} %Goal Number
-\newcommand{\gthegoalnum}{GS\thegoalnum}
+\newcommand{\gthegoalnum}{P\thegoalnum}
 \newcommand{\gsref}[1]{GS\ref{#1}}
 \newcounter{instnum} %Instance Number
 \newcommand{\itheinstnum}{IM\theinstnum}
 \newcommand{\iref}[1]{IM\ref{#1}}
 \newcounter{reqnum} %Requirement Number
-\newcommand{\rthereqnum}{R\thereqnum}
+\newcommand{\rthereqnum}{P\thereqnum}
 \newcommand{\rref}[1]{R\ref{#1}}
 \newcounter{nfrnum} %NFR Number
 \newcommand{\rthenfrnum}{NFR\thenfrnum}
@@ -128,10 +134,10 @@
 
 \begin{document}
 
-\title{Software Requirements Specification for \progname: subtitle describing software} 
+\title{Software Requirements Specification for \progname: Mac AR}
 \author{\authname}
 \date{\today}
-	
+
 \maketitle
 
 ~\newpage
@@ -142,1205 +148,1323 @@
 
 ~\newpage
 
-\section*{Revision History}
+\begin{table}[hp]
+	\caption{Revision History} \label{TblRevisionHistory}
+	\begin{tabularx}{\textwidth}{llX}
+		\toprule
+		\textbf{Date}      & \textbf{Developer(s)} & \textbf{Change}                                                                    \\
+		\midrule
+		September 26, 2023 & Matthew and Sam               & Initial changes to the project                                                             \\
+            September 26, 2023 & Matthew & Initial NFR changes \\
+            September 28, 2023 & All & General format editing and addition of the Use Case Diagram\\
+            September 29, 2023 & Matthew & Addition of Use cases 1-5 and related functional requirements\\
+            September 29, 2023 & Kieran & Addition of Use cases 5-10 and related functional requirements\\
+            September 29, 2023 & Ethan & Added Read-Made Products section to Project Issues\\
+            September 30, 2023 & Ethan & Completed rest of sections in Project Issues\\
+            October 1, 2023 & Sam & Filled out sections 1, 6\\
+<<<<<<< HEAD
+            October 6, 2023 & All & Group worked on traceability matrix and finishing rest of SRS\\  
+=======
+>>>>>>> 8c0ee09dbf167771409ef793ed6ecd7b625b452d
+		\bottomrule
+	\end{tabularx}
+\end{table}
 
-\begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
-\toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
-\midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
-\bottomrule
-\end{tabularx}
+\newpage
 
-~\\
-\plt{This template is intended for use by CAS 741.  For CAS 741 the template
-should be used exactly as given, except the Reflection Appendix can be deleted.
-For the capstone course it is a source of ideas, but shouldn't be followed
-exactly.  The exception is the reflection appendix.  All capstone SRS documents
-should have a refelection appendix.}
+\pagenumbering{arabic}
 
-~\newpage
+This document describes the requirements for Mac-AR. The template for the Software Requirements
+Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012}. If you
+make further modifications to the template, you should explicitly state what modifications were
+made.
 
-\section{Reference Material}
+\section{Project Drivers}
 
-This section records information for easy reference.
+This section will give a general overview of the motivation behind creating Mac-AR, along with what constraints it needs to be created within. 
 
-\subsection{Table of Units}
+\subsection{The Purpose of the Project}
+In the modern world, it has become increasingly harder to meet new people and form connections with others. This has become especially true in recent years, with the pandemic isolating people even further. Mac-AR aims to solve this by providing a fun, interactive means to cooperate with others and form new connections. As a team, users will be able to work alongside people they already know and strangers around the world to solve interesting puzzles, either outside or from the comfort of their own home. 
 
-Throughout this document SI (Syst\`{e}me International d'Unit\'{e}s) is employed
-as the unit system.  In addition to the basic units, several derived units are
-used as described below.  For each unit, the symbol is given followed by a
-description of the unit and the SI name.
-~\newline
+\subsection{The Stakeholders}
+The following groups and individuals are the reason for the existence of Mac-AR. 
 
-\renewcommand{\arraystretch}{1.2}
-%\begin{table}[ht]
-  \noindent \begin{tabular}{l l l} 
-    \toprule		
-    \textbf{symbol} & \textbf{unit} & \textbf{SI}\\
-    \midrule 
-    \si{\metre} & length & metre\\
-    \si{\kilogram} & mass	& kilogram\\
-    \si{\second} & time & second\\
-    \si{\celsius} & temperature & centigrade\\
-    \si{\joule} & energy & joule\\
-    \si{\watt} & power & watt (W = \si{\joule\per\second})\\
-    \bottomrule
-  \end{tabular}
-  %	\caption{Provide a caption}
-%\end{table}
+\subsubsection{The Client}
+Dr Irene Yuan is the sole client for the project, requesting that the tool be made. She will act as the point of contact during development and ensure that the final result is in line with what was envisioned. 
 
-\plt{Only include the units that your SRS actually uses.}
+\subsubsection{The Users}
+The users are the ones who will be using the tool and building connections with others. The main user base is intended to be young adults, roughly ages 18-30, who enjoy games and are moderately comfortable using technology.
 
-\plt{Derived units, like newtons, pascal, etc, should show their derivation
-    (the units they are derived from) if their constituent units are in the
-    table of units (that is, if the units they are derived from are used in the
-    document).  For instance, the derivation of pascals as
-    $\si{\pascal}=\si{\newton\per\square\meter}$ is shown if newtons and m are
-    both in the table.  The derivations of newtons would not be shown if kg and
-    s are not both in the table.}
+\subsection{Mandated Constraints}
+The project will be developed and released within the following constraints. 
 
-\plt{The symbol for units named after people use capital letters, but the name
-  of the unit itself uses lower case.  For instance, pascals use the symbol Pa,
-  watts use the symbol W, teslas use the symbol T, newtons use the symbol N,
-  etc.  The one exception to this is degree Celsius.  Details on writing metric
-  units can be found on the 
-  \href{https://www.nist.gov/pml/weights-and-measures/writing-metric-units}
-  {NIST} web-page.}
+\subsubsection{Solution Constraints} \label{SolutionConstraints}
+\emph{Description:} The product shall be built as a mobile application.\\
+\emph{Rationale:} The supervisor wants the application to be a mobile application, as to ensure the largest freedom to the users for where and how the product will be used.\\
+\emph{Fit Criterion:} The product shall be written using Unity engine.\\
 
-\subsection{Table of Symbols}
+\noindent
+<<<<<<< HEAD
+\emph{Description:} The product shall be able to function on a variety of mobile devices, using both iOS and Android.\\
+\emph{Rationale:} To provide service to the widest array of users, the most popular phone brands, and by extension their operating systems, need to be supported.\\
+\emph{Fit Criterion:} The product shall be tested to function on popular mobile devices using iOS and Android, specifically 
+\begin{itemize}
+	\item Samsung S20 FE 5G
+    \item Motorolla G7 Power
+    \item Google Pixel 7
+    \item iPhone Special Edition 2020
+\end{itemize}
+=======
+\emph{Description:} The product shall be able to function on a variety of mobile devices, such as iPhones and Androids.\\
+\emph{Rationale:} To provide service to the widest array of users, the most popular phone brands, and by extension their operating systems, need to be supported.\\
+\emph{Fit Criterion:} The product shall be tested to function mobile applications, which includes the following devices:
+\begin{itemize}
+	\item iPhone SE
+	\item iPhone XR
+	\item iPhone 12 Pro
+	\item Pixel 5
+	\item Samsung Galaxy S8+
+	\item Samsung Galaxy S20 Ultra
+	\item iPad Air
+	\item iPad Mini
+	\item Surface Pro 7
+	\item Surface Duo
+	\item Galaxy Fold
+	\item Samsung Galaxy A51/71
+	\item Nest Hub
+	\item Nest Hub Max
+\end{itemize}
+However, due to timing constraints, testing will only be run on the most popular devices. This would consist of the iPhone, Pixel, and Samsung phones, as well as iPad and Galaxy tablets. For iPhone, which is much more restrictive with backwards compatibility, the most recent IOS versions will be tested, namely 15, 16, and 17.
+>>>>>>> 8c0ee09dbf167771409ef793ed6ecd7b625b452d
 
-The table that follows summarizes the symbols used in this document along with
-their units.  The choice of symbols was made to be consistent with the heat
-transfer literature and with existing documentation for solar water heating
-systems.  The symbols are listed in alphabetical order.
+\subsubsection{Implementation Environment of the Current System}
+As outlined in section \ref{SolutionConstraints}, the tool will need to be developed for execution on modern mobile devices. There are currently no constraints on the server side of the project, although that may need to be revised as the tool grows in scope. 
 
-\renewcommand{\arraystretch}{1.2}
-%\noindent \begin{tabularx}{1.0\textwidth}{l l X}
-\noindent \begin{longtable*}{l l p{12cm}} \toprule
-\textbf{symbol} & \textbf{unit} & \textbf{description}\\
-\midrule 
-$A_C$ & \si[per-mode=symbol] {\square\metre} & coil surface area
-\\
-$A_\text{in}$ & \si[per-mode=symbol] {\square\metre} & surface area over 
-which heat is transferred in
-\\ 
-\bottomrule
-\end{longtable*}
-\plt{Use your problems actual symbols.  The si package is a good idea to use for
-  units.}
+\subsubsection{Partner or Collaborative Applications}
+In the current design of the product, there are no partner or collaborative applications that will
+work along with the product. Therefore, there are no partner or collaborative constraints.
 
-\subsection{Abbreviations and Acronyms}
+\subsubsection{Off-the-Shelf Software}
+The following off-the-shelf software will be utilized:
+\begin{itemize}
+	\item Unity, along with its available libraries for AR app development and communication 
+        \item Visual Studio, for development
+\end{itemize}
+
+\subsubsection{Anticipated Workplace Environment}
+The anticipated workplace environment will be intentionally broad. The product can be used from anywhere the user has access to a mobile device and internet to run the application, with no limits on being indoors or outdoors. 
+
+\subsubsection{Schedule Constraints}
+The general document and development milestone constraints are as follows:
+\begin{table}[H]
+	\centering
+	\caption{Schedule Constraints}
+	\vspace{5pt}
+	\begin{tabular}{|p{0.3\textwidth}|p{0.6\textwidth}|}
+		\hline
+		\textbf{Date}   & \textbf{Deliverable}               \\
+		\hline
+		Sept 25, 2023    & Problem Statement \\
+        \hline
+		Sept 25, 2023    & Development Plan \\
+        \hline
+		Oct 5, 2023    & Requirements Document \\
+        \hline
+		Oct 20, 2023    & Hazard Analysis \\
+		\hline
+		Nov 3, 2023     & Verification and Validation Plan   \\
+		\hline
+		Nov 13-24, 2023 & Proof of Concept Demo              \\
+		\hline
+		Jan 17, 2024    & Design Document                    \\
+		\hline
+		Feb 5-16, 2024  & Revision 0 Demo                    \\
+		\hline
+		Mar 6, 2024     & Verification and Validation Report \\
+		\hline
+		Mar 18-29, 2024 & Final Demo (Rev 1)                 \\
+		\hline
+		Apr 4, 2024     & Final Documentation                \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\noindent
+As a general constraint applied on top of all of these, all work should be done a few days in advance to allow for time to review. 
+
+\subsubsection{Budget Constraints}
+The project has no monetary budget. If there are any necessary purchases for development, the cost
+shall be paid by the project members and reimbursed by the supervisor. Furthermore, these purchases
+may not exceed \$750.
+
+\subsubsection{Enterprise Constraints}
+The project currently has no enterprise constraints. 
+
+\subsection{Naming Conventions and Terminology}
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
   \toprule		
-  \textbf{symbol} & \textbf{description}\\
+  \textbf{Symbol} & \textbf{description}\\
   \midrule 
   A & Assumption\\
+  AR & Augmented Reality\\
   DD & Data Definition\\
   GD & General Definition\\
+  GPS & Global Positioning System\\
   GS & Goal Statement\\
   IM & Instance Model\\
   LC & Likely Change\\
   PS & Physical System Description\\
   R & Requirement\\
   SRS & Software Requirements Specification\\
-  \progname{} & \plt{put an expanded version of your program name here (as appropriate)}\\
+  RS & Required Skill\\
+  \progname{} & Software Engineering\\
   TM & Theoretical Model\\
+  VR & Virtual Reality\\
+  XR & Extended Reality\\
   \bottomrule
 \end{tabular}\\
 
-\plt{Add any other abbreviations or acronyms that you add}
+\subsection{Relevant Facts and Assumptions}
+The product will be developed under the following assumptions.
 
-\subsection{Mathematical Notation}
+\subsubsection{User Assumptions}
+\begin{itemize}
+    \item [A1] Users will have a connection to the internet for the duration of the time that they are actively using the app. 
+    \item [A2] The user will provide consent for the app to access the camera on the device which is running the app. 
+    \item [A3] The user will provide the app to access locations services and track where the user is while actively using the app. 
+\end{itemize}
 
-\plt{This section is optional, but should be included for projects that make use
-  of notation to convey mathematical information.  For instance, if typographic
-  conventions (like bold face font) are used to distinguish matrices, this
-  should be stated here.  If symbols are used to show mathematical operations,
-  these should be summarized here.  In some cases the easiest way to summarize
-  the notation is to point to a text or other source that explains the
-  notation.}
+\subsubsection{Device Assumptions}
+\begin{itemize}
+    \item [A4] Devices will only have a maximum of one instance of the app running at any given time. 
+    \item [A5] The device that the app is running on will have a functional camera. 
+    \item [A6] The device that the app is running on will have a functional gyroscope, or equivalent technology to measure device tilt. 
+    \item [A7] The device that the app is running on will have a functional GPS, or equivalent technology to measure device location. 
+\end{itemize}
+<<<<<<< HEAD
 
-\plt{This section was added to the template because some students use very
-  domain specific notation.  This notation will not be readily understandable to
-  people outside of your domain.  It should be explained.}
+\section{Functional Requirements}
+The following section will go over the necessary functional requirement information for the project, including use cases. 
+\subsection{The Scope of the Work and the Product}
+%Not sure where this would go but should have some note that the specific puzzles have not been chosen yet so specifications only given for general puzzle interaction
+\subsubsection{Context of the Work}
+The context diagram depicted below illustrates the interactions of the system with adjacent
+external systems and services.
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=1.05\textwidth]{Capstone/docs/SRS/UseCaseDiagram.png}}
+\label{UseCaseDiagram}
+\end{figure}
 
 \newpage
+\subsubsection{Individual Product Use Cases}
 
-\pagenumbering{arabic}
+\textbf{Use Case \#1:} User creates a game room\\
+\textbf{Trigger:} The user selects the create game room button\\
+\textbf{Pre-condition:} N/A\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system creates a room for users to join, and automatically makes the user join the room
+    \item The user can choose the length of the game and the settings
+	\item The server sends the data of the game room to all the users, to show that the room is available to join, and the capacity of the room, and the current users that have joined the room
+\end{enumerate}
+\textbf{Use Case \#2:} User Joins Game\\
+\textbf{Trigger:} The user selects a room to join that has available capacity\\
+\textbf{Pre-condition:} Another user has created a game room\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system links the user to the game room, and decreases the available capacity in the room
+    \item The server retrieves the data from the game room and updates the game room for all the users with the new user's name, and decreases the visible room capacity
+\end{enumerate}
+\textbf{Use Case \#3:} User edits the game room settings\\
+\textbf{Trigger:} The user of the game room clicks the edit game settings button\\
+\textbf{Pre-condition:} The user created the game room\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system opens the game room settings page
+    \item The settings are displayed for the user
+    \item The user chooses the settings they want to change
+    \item The system updates the game room settings
+    \item The server informs the other users of the settings changes
+    \item The user closes the settings page
+\end{enumerate}
+\textbf{Use Case \#4:} User exits the game room\\
+\textbf{Trigger:} The user clicks the exit game room button\\
+\textbf{Pre-condition:} The user is currently in a game room\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The user is removed from the game room
+    \item The system updates the information of the game room
+    \item The server sends the updated information to each user in the game room
+    \item The user is brought back to the main menu
+\end{enumerate}
+\textbf{Use Case \#5:} User starts the game\\
+\textbf{Trigger:} The users in a game room click the start game button\\
+\textbf{Pre-condition:} The game room has enough available players\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The server launches the game and synchronizes all the user data. 
+    \item The user performs a synchronization step to map the room and place the puzzles
+    \item The system shows the users the first puzzles
+    \item Each user is given a unique view on the puzzles they have available to them
+\end{enumerate}
+\textbf{Use Case \#6:} User saves game\\
+\textbf{Trigger:} The user selects the save game button\\
+\textbf{Pre-condition:} There is an active game they are playing in\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item A local copy of the progress in the game is saved on the user's side
+    \item All relevant data on the status of the puzzles is saved
+    \item This data can be used to load the game at a later date, and it is safe for users to leave the session
+\end{enumerate}
+\textbf{Use Case \#7:} User Loads game\\
+\textbf{Trigger:} The user hits the load game button and selects the game data they want to load\\
+\textbf{Pre-condition:} The user has created a game room, and the user has save data to load\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system reads the user's save data, and when the game is started, the state of the game is loaded
+    \item The location of the puzzles might change, but the progress of each puzzle and the total progress of the room is the same as when the game state was saved 
+\end{enumerate}
+\textbf{Use Case \#8:} User deletes save data\\
+\textbf{Trigger:} The user hits delete on their save data\\
+\textbf{Pre-condition:} The user has save data\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system deletes the save data from the user's device
+    \item The system updates the save data list, and removes that save data from it
+\end{enumerate}
 
-\plt{This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007,
-  SmithAndKoothoor2016}.  It will get you started.  You should not modify the
-  section headings, without first discussing the change with the course
-  instructor.  Modification means you are not following the template, which
-  loses some of the advantage of a template, especially standardization.
-  Although the bits shown below do not include type information, you may need to
-  add this information for your problem.  If you are unsure, please can ask the
-  instructor.}
 
-\plt{Feel free to change the appearance of the report by modifying the LaTeX
-  commands.}
+\textbf{Use Case \#9:} User interacts with a puzzle\\
+\textbf{Trigger:} The user selects a puzzle to attempt\\
+\textbf{Pre-condition:} The user has started a puzzle\\
+\textbf{Outcome:}
+\begin{enumerate} %Doesn't include info about puzzle's impact on other player. Not sure what our intentions are with that.
+	\item The system displays an enlarged and interactable version of the puzzle
+	\item The user performs an action on the puzzle
+	\item The system registers the action, performs any necessary puzzle state changes and displays the new puzzle state to the user    
+\end{enumerate}
+\textbf{Use Case \#10:} User requests a hint\\
+\textbf{Trigger:} The user presses the request hint button\\
+\textbf{Pre-condition:} The user has started a puzzle\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system displays the predetermined hint for the associated puzzle
+	\item The user reads the hint and presses the button to close the hint
+	\item The system closes the hint display.
+\end{enumerate}
+\textbf{Use Case \#11:} User skips a puzzle\\
+\textbf{Trigger:} The user hits the skip button\\
+\textbf{Pre-condition:} The user is interacting with a puzzle\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system saves the state of the puzzle and closes the puzzle display, returning to the main scene.
+\end{enumerate}
+\textbf{Use Case \#12:} User sends a message\\
+\textbf{Trigger:} The user presses a communication button\\
+\textbf{Pre-condition:} More than one user are in a game room\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system queries the server to determine the users in the room
+	\item The system displays the other users in the room to the user
+	\item The user selects the desired recipient
+        \item The system displays the interface for the user to create the message
+        \item The user creates the message and hits the send button
+        \item The system uses the server to send the message to the other user's device and to create a message notification on that device. It then notifies the sender that the message has been sent.
+\end{enumerate}
+\textbf{Use Case \#13:} User reads a message\\
+\textbf{Trigger:} The user clicks on a received message notification\\
+\textbf{Pre-condition:} The user has received a message\\
+\textbf{Outcome:}
+\begin{enumerate}
+        \item The system removes the message notification and displays the message to the user
+	\item The user reads the message, then closes the message display window
+	\item The system returns the user to the main game scene.
+\end{enumerate}
 
-\plt{This template document assumes that a single program is being documented.
-  If you are documenting a family of models, you should start with a commonality
-  analysis.  A separate template is provided for this.  For program
-  families you should look at \cite{Smith2006, SmithMcCutchanAndCarette2017}.
-  Single family member programs are often programs based on a single physical
-  model.  General purpose tools are usually documented as a family.  Families of
-  physical models also come up.}
+\subsection{Functional Requirements}
+\subsubsection{Create Game Room}
+\begin{enumerate}[label=CG\arabic*., series=CreateGame]
+    \item The system shall allow the user to create a game room \newline \textbf{Rationale:} The user must be able to group together with other users, creating the game room will allow the users to organize the group.
+    \item The system shall allow the user to enter a name for the game room \newline
+    \textbf{Rationale:} The users must be able to uniquely identify the game rooms to allow the other users to find the room they want to join in case they have a group they wanted to solve the puzzles with
+    \item The system shall allow the user to set the size of the game room \newline
+    \textbf{Rationale:} The user should be allowed to limit the size of the room in case they wanted a smaller game rather than a bigger game.
+    \item The system shall allow the user to put a password on the game room \newline
+    \textbf{Rationale:} The user should be able to allow or disallow any other user from joining except the ones they want in the case they are playing with friends.
+    \item The system shall redirect the user to a new screen when in a game room \newline
+    \textbf{Rationale: } The users in the room should have a display of the game room and the amount of players in the room etc. 
+\end{enumerate}
+\subsubsection{Join Game Room}
+\begin{enumerate}[label=JG\arabic*., series=JoinGame]
+	\item The system shall allow the user to join an existing game room with available capacity \newline 
+    \textbf{Rationale:} The user should be able to join a room to group up with other users 
+    \item The system shall allow the user to enter a password for the room if another user set a password for the room \newline 
+    \textbf{Rationale:} In the case of a game room having a password, the user should be able to have a space to enter the password.
+    \item The system shall update the game room information to add another member, and decrease the available capacity\newline 
+    \textbf{Rationale:} When a user joins a game room, that information should be updated to let the users users see the status of the room to inform them on which game room to join.
+    \item The system shall redirect the user to a new screen upon successfully connecting to a room\newline 
+    \textbf{Rationale:} When a user joins the room, they should get redirected to a new page where they can see the information on the current game room and wait for the host to start the game.
+\end{enumerate}
 
-\plt{The SRS is not generally written, or read, sequentially.  The SRS is a
-  reference document.  It is generally read in an ad hoc order, as the need
-  arises.  For writing an SRS, and for reading one for the first time, the
-  suggested order of sections is:
-\begin{itemize}
-\item Goal Statement
-\item Instance Models
-\item Requirements
-\item Introduction
-\item Specific System Description
-\end{itemize}
+\subsubsection{Edit Room Settings}
+\begin{enumerate}[label=RS\arabic*., series=EditRoom]
+	\item The system shall allow the user that created the game room to edit the settings of the game room\newline 
+    \textbf{Rationale:} If a user input the incorrect settings when making a room, the user will have the ability to edit the settings 
+    \item The system shall populate all the changeable settings on the user's screen\newline 
+    \textbf{Rationale:} The user should be able to see all the settings that are able to be changed
+    \item The system shall allow the user to change the password of the room\newline 
+    \textbf{Rationale:} The user should be able to change the password of the room to ensure security
+    \item The system shall allow the user to change the capacity of the room\newline 
+    \textbf{Rationale:} If the user was planning on having a set number of users and decides they want more or less users, they are able to change the capacity
+    \item The system shall allow the user to remove other users from the game room\newline 
+    \textbf{Rationale:} If the host user decides another user should not be in the game room, they can remove them instead of making a new room
+    \item The system shall display the updated settings to the other users in the game room\newline 
+    \textbf{Rationale:} When a setting changes the other users in the game room should be able to see the changes in case they will affect them
+\end{enumerate}
+
+\subsubsection{Exit Room}
+\begin{enumerate}[label=ER\arabic*., series=ExitRoom]
+    \item The system shall allow the user leave the existing game room\newline 
+    \textbf{Rationale:} If the user does not wish to stay in a game room, the user should be able to leave
+    \item The system shall update the game room and display the one less user\newline 
+    \textbf{Rationale:} The system should update based on the current number of users
+    \item The server shall update all user's screens to show the new amount of users and the updated capacity\newline 
+    \textbf{Rationale:} The server should update all the other users on the current capacity and number of users in the game room to inform them of any possible changes
+\end{enumerate}
+
+
+\subsubsection{Start Game}
+\begin{enumerate}[label=ST\arabic*., series=StartGame]
+	\item The system shall allow the user to start the game\newline 
+    \textbf{Rationale:} The users should be able to start the game to play the puzzles
+    \item The system shall load all the assets used to play the game\newline 
+    \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay
+    \item The system shall inform the user to complete a calibration step\newline 
+    \textbf{Rationale:} AR games require some calibration step to scan the surfaces in the room so objects can be placed with gravity
+    \item The system shall determine an order of the puzzles, and which users can see which parts of the puzzles\newline 
+    \textbf{Rationale:} In games with more than one puzzle, there needs to be an order to solve the questions. The system will determine a logical order, and assign which users can see which parts of the puzzles.
+    \item The system shall display a progress bar based on the current progress on the screen\newline 
+    \textbf{Rationale:} The users should have some indicator how close they are to finishing the game
+    \item The system shall reveal the available puzzles to the users and commence the game\newline 
+    \textbf{Rationale:} The users should be able to view the puzzles they have access to
+\end{enumerate}
+\subsubsection{Save Game}
+\begin{enumerate}[label=SG\arabic*., series=StartGame]
+	\item The system shall allow the user to save the game\newline 
+    \textbf{Rationale:} Saving the game will allow users to keep the progress on the game they are playing
+    \item The system shall take a snapshot of the data available upon hitting save, saving progress on all puzzles and the overall room progress \newline 
+    \textbf{Rationale:} If the user wants to load the game in the future they should have all the data required for continuing
+    \item The system shall pause the game during the save for the user saving it\newline 
+    \textbf{Rationale:} All the game data will be saved based on a point in time, so pausing the user's game to save will allow the game state to remain intact
+    \item The system shall allow other users to act during the saving process \newline 
+    \textbf{Rationale:} One user saving the game should not stop the other users from continuing playing
+    \item After saving, the system shall resume play for the saving user \newline 
+    \textbf{Rationale:} The user might want to return to playing after a save
+    \item The user shall be allowed to save as many times as they desire, as frequently as they desire aside from the pause during saving. \newline 
+    \textbf{Rationale:} There should be no limit on saves in case of any external factors that would effect the game
+    \item The system shall store the saved data on the user's device \newline 
+    \textbf{Rationale:} Storing the data on the user's device will reduce the stress on the database, the save files should be small in size and it likely won't inconvenience the user
+    \item The system shall encode the data such that it is not in its original format and the operation can be reversed \newline 
+    \textbf{Rationale:} Encoding the data can reduce the size and prevent users from manually changing the save data and potentially creating issues with the data. 
+\end{enumerate}
+
+\subsubsection{Load Game}
+\begin{enumerate}[label=LG\arabic*., series=LoadGame]
+	\item The system shall allow the user to load an existing save file \newline 
+    \textbf{Rationale:} Loading the save files is the purpose for having safe files in the first place
+    \item The system shall decode the save file and recall the progress on the saved room\newline 
+    \textbf{Rationale:} Decoding the save file makes the data readable by the system
+    \item The system shall display the saved data in the game room for all the users to see the progress\newline 
+    \textbf{Rationale:} This information will allow the users in the game room to be caught upto date with the progress on the save file
+\end{enumerate}
+
+\subsubsection{Delete Save}
+\begin{enumerate}[label=DS\arabic*., series=DeleteSave]
+	\item The system shall allow to delete the saved game data \newline 
+    \textbf{Rationale:} If the user wishes to never load the data, the user can remove it
+    \item The system shall remove the saved data from the user's device \newline 
+    \textbf{Rationale:} The user's device will no longer hold onto data it won't use
+    \item The system shall stop the user from loading the saved game in the future \newline 
+    \textbf{Rationale:} Since the saved game data is gone, it should no longer be able to be loaded
+\end{enumerate}
+
+\subsubsection{Puzzle Interaction}
+    \begin{enumerate}[label=PI\arabic*., series=PuzzleInteract]
+        \item The system shall allow users to select a puzzle to attempt from the main scene.\\
+        \textbf{Rationale}: The user is shown multiple puzzles on the main scene and must be able to select the one they would like to attempt.
+        \item The system shall present the user with an enlarged version of the puzzle once they've selected it.\\
+        \textbf{Rationale}: For full scale versions of all puzzles to visible on the main scene, too much of the scene would be obscured. This is resolved by forcing the user to select the puzzle to see the full size puzzle.
+        \item The system shall allow users to perform all necessary actions on the puzzle to complete the puzzle.\\
+        \textbf{Rationale}: The user must be able to complete the puzzles in order to progress in the game.
+        \item The system shall display the new puzzle state after a user performs an action on a puzzle\\
+        \textbf{Rationale}: The user must be able to see the results of their actions in order to decide how to proceed with the puzzle
+        \item The system shall update the puzzle state of group members cooperating on an updated puzzle\\
+        \textbf{Rationale}: When multiple users are cooperating on a puzzle they must be able to see updates caused by the actions of one another.
+        \item The system shall notify the user when they have completed a puzzle\\
+        \textbf{Rationale}: Users should know when they've completed a puzzle so they know they can move on. A notification at the end of a puzzle can also make completing it more satisfying for the user.
+        \item The system shall update the overall room progress when a puzzle is completed\\
+        \textbf{Rationale}: The overall room progress must be continuously updated as puzzles are completed so the game can detect when all the puzzles have been completed and the users have accomplished their goal.
+    \end{enumerate}
+\subsubsection{Hint Request}
+    \begin{enumerate}[label=HR\arabic*., series=HintRequest]
+        \item The system shall have at least one hint for each puzzle.\\
+        \textbf{Rationale}: If a user gets stuck on a puzzle they should have an alternative to giving up on the puzzle.
+        \item The system shall have a means of requesting a hint for the puzzle to be displayed.\\
+        \textbf{Rationale}: The player must be able to request the hint for the puzzle.
+        \item The system shall allow the user to close the hint display\\
+        \textbf{Rationale}: The user should not have to keep the hint on the screen, as it may obstruct other functions.
+    \end{enumerate}
+\subsubsection{Skip Puzzle}
+    \begin{enumerate}[label=SP\arabic*., series=SkipPuzzle]
+        \item The system shall allow the user to skip a puzzle and return to the main scene.\\
+        \textbf{Rationale}: The user should not have to complete a puzzle to attempt a different one. They should be able to leave a puzzle and return to it later.
+        \item The system shall save the users progress on a skipped puzzle.\\
+        \textbf{Rationale}: If a user skips a puzzle they should be able to return to it without having to start over.
+        \item The system shall notify any cooperators on the skipped puzzle that it has been skipped\\
+        \textbf{Rationale}: One users work on a puzzle will typically depend on another users work on the puzzle. They must be notified the puzzle has been skipped so they are not waiting on an action from the other user.
+    \end{enumerate}
+\subsubsection{Send Message}
+    \begin{enumerate}[label=SM\arabic*., series=Send Message]
+        \item The system shall allow the user to view all the users in the current game room.\\
+        \textbf{Rationale}: For the communication system the user must be able to see all the users in the game room to choose who to contact.
+        \item The system shall contain an interface that allows the user to compose a message\\
+        \textbf{Rationale}: The users must be able to create their own custom messages to allow for optimal communication in puzzles and to create the most realistic social experience.
+        \item The system shall allow the user to send a message to any other user in the game room\\
+        \textbf{Rationale}: The primary goal of the game is to allow users to have social interaction from a remote setting. All users in the game must be able to interact with one another to complete this goal.
+        \item The system shall allow the user to cancel a message before sending it.\\
+        \textbf{Rationale}: If a user decides they do not want to send a message they must be able to return to the game without having to send something.
+        \item The system shall notify the user once the message has been sent.\\
+        \textbf{Rationale}: It is important that the user receive feedback that the message has been sent so there is no uncertainty or confusion for the user.
+    \end{enumerate}
+\subsubsection{Read Message}
+    \begin{enumerate}[label=RM\arabic*., series=ReadMessage]
+        \item The system shall notify the user when a new message is received.\\
+        \textbf{Rationale}: Communication is core to the game. If a user doesn't know when they receive a message good communication will not be maintained.
+        \item The system shall allow the user to view messages.\\
+        \textbf{Rationale}: Users must be able to see what other users are trying to communicate to them for social purposes and to complete puzzles.
+        \item The system shall allow users to close a message.\\
+        \textbf{Rationale}: Users must be able to return to the mains scene after viewing a message to continue game play.
+    \end{enumerate}
+\subsection{Formal Specification}
+$(\forall r \in rooms  | (\sum\limits_{user \in r} 1)  \leq r.roomCapacity)$\\
+
+The users that exist in a room shall be within the capacity of the room
+
+$ (\forall a,b \in puzzles  |  (a \subset b) \implies (a \implies b))$
+ 
+For all the puzzles in the room, if puzzle b depends on a, b will come after a
+
+
+\section{Non-functional Requirements}
+The following section will describe the non-functional requirements of the application.
+\subsection{Look and Feel Requirements}
+\begin{enumerate}[LF\arabic*.]
+	\item The system shall adjust and scale to fit the physical screen size\newline
+    \textit{Fit criterion: The display should cover the entire screen and none of it should be cutoff}
+	\item The system shall have fonts and colours that will allow users to easily read the text\newline
+    \textit{Fit criterion: The system shall abide by the Web Content Accessibility Guidelines (WCAG) 2.1 AA standard~\citep{WCAG2.1}  for fonts and colours}
+\end{enumerate}
+
+\subsection{Usability and Humanity Requirements}
+\begin{enumerate}[UH\arabic*.]
+	\item The system shall be accessible by any supported mobile device\newline
+    \textit{Fit criterion: The system should run on the devices listed in solution constraint 1.3.1}
+    \item The system shall notify the user if there is no network, or they get disconnected\newline
+    \textit{Fit criterion: The system should produce a notification when network connection is lost}
+    \item The system shall be able to be navigated by any user\newline
+    \textit{Fit criterion: The system shall abide by the WCAG 2.1 AA standard~\citep{WCAG2.1}  for accessibility}
+\end{enumerate}
+\subsection{Performance Requirements}
+\begin{enumerate}[PR\arabic*.]
+	\item The system shall respond to user interaction instantaneously as perceived by the user\newline
+    \textit{Fit criterion: The system shall respond within 100ms of user interaction}
+    \item The system shall be available for users at any time\newline
+    \textit{Fit criterion: The system will be accessible 24 hours a day}
+\end{enumerate}
+\subsection{Operational and Environmental Requirements}
+\begin{enumerate}[OE\arabic*.]
+    \item The system shall be available on all android and iOS platforms\newline
+    \textit{Fit criterion: The system shall be able to be downloaded from the Google Play Store and Apple Store}
+\end{enumerate}
+\subsection{Maintainability and Support Requirements}
+\begin{enumerate}[MS\arabic*.]
+    \item The system shall be well documented and kept up to date, and have updated design documents\newline
+    \textit{Fit criterion: All changes in the system design are to be reflected in the documents in the GitHub}
+    \item The source code shall be well commented for future developers\newline
+    \textit{Fit criterion: The system will have author names and dates present in developer code, as well as descriptions of every system module}
+\end{enumerate}
+\subsection{Security Requirements}
+\begin{enumerate}[SR\arabic*.]
+    \item The system shall keep user data private\newline
+    \textit{Fit criterion: The system shall not make user passwords or IP addresses able to be publicly accessed}
+    \item The users will only be allowed to see limited data. Unnecessary data will not be displayed to the user\newline
+    \textit{Fit criterion: The system shall only show users any data required in order to play the game}
+\end{enumerate}
+\subsection{Cultural Requirements}
+\begin{enumerate}[CR\arabic*]
+    \item The system shall not use any offensive images, text, or sound that could offend any religious or culture groups
+    \item The system shall use Canadian English
+\end{enumerate}
+\subsection{Legal Requirements}
+\begin{enumerate}[LR\arabic*]
+    \item The system shall not infringe on the rights of any person(s), and shall not use any assets that infringe on copyright claims. When using open source resources, the developers shall give appropriate credit
+\end{enumerate}
+\subsection{Health and Safety Requirements}
+\begin{enumerate}[HS\arabic*]
+    \item The system shall give a warning to the user to be aware of their surroundings while using the system, and to not bump into any objects or obstacles in their path
+\end{enumerate}
+
+\section{Traceability Matrix}
+
+\begin{table}[H]
+\begin{adjustwidth}{-0.1in}{-1in}
+\scalebox{0.7}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-17}
+                                     & \textbf{LF1} & \textbf{LF2} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{PR1} & \textbf{PR2} & \textbf{OE1} & \textbf{MR1} & \textbf{MR2} & \textbf{SR1} & \textbf{SR2} & \textbf{CR1} & \textbf{CR2} & \textbf{LR1} & \textbf{HS1}  \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG1}}   &      X       &              &       X      &              &       X      &       X      &       X      &       X      &              &              &      X       &      X       &              &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG2}}   &      X       &      X       &       X      &              &       X      &       X      &       X      &       X      &              &              &              &      X       &      X       &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG3}}   &      X       &              &       X      &      X       &       X      &       X      &       X      &       X      &              &              &              &      X       &              &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG4}}   &      X       &      X       &       X      &              &       X      &              &       X      &       X      &              &              &      X       &      X       &              &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG5}}   &      X       &              &       X      &      X       &       X      &              &              &       X      &              &              &      X       &      X       &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{JG1}}   &              &              &              &      X       &              &       X      &       X      &       X      &              &              &              &      X       &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{JG2}}   &      X       &      X       &       X      &              &       X      &              &       X      &       X      &              &              &      X       &      X       &              &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{JG3}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &              &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{JG4}}   &      X       &              &       X      &      X       &       X      &              &              &       X      &              &              &      X       &      X       &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS1}}   &      X       &      X       &              &              &       x      &              &              &       X      &              &              &              &              &              &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS2}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &              &      X       &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS3}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &      X       &      X       &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS4}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &              &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS5}}   &      X       &      X       &       X      &      X       &       X      &      X       &              &       X      &              &              &      X       &              &      X       &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS6}}   &      X       &      X       &       X      &              &       X      &              &       X      &       X      &              &              &              &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{ER1}}   &      X       &      X       &       X      &      X       &       X      &              &       X      &       X      &              &              &      X       &              &              &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{ER2}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &      X       &              &              &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{ER3}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &      X       &              &              &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST1}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &              &              &              &              &              &       X       \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST2}}   &              &      X       &       X      &              &              &              &              &       X      &       X      &       X      &              &              &      X       &      X       &      X       &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST3}}   &      X       &      X       &       X      &              &              &              &              &       X      &              &              &              &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST4}}   &              &              &              &              &              &              &              &       X      &       X      &       X      &              &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST5}}   &      X       &              &       X      &              &              &              &       X      &       X      &              &              &              &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST6}}   &      X       &              &       X      &              &              &              &              &       X      &              &              &              &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{SG1}}   &      X       &      X       &       X      &       X      &       X      &      X       &       X      &       X      &              &              &      X       &      X       &              &      X       &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{SG2}}   &              &              &       X      &       X       &             &      X       &       X      &       X      &              &              &      X       &     X        &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{SG3}}   &      X       &      X       &       X      &              &              &      X       &       X      &       X      &              &              &              &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{SG4}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &              &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{SG5}}   &      X       &      X       &       X      &              &              &      X       &       X      &       X      &              &              &              &              &       X      &       X      &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{SG6}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &       X      &              &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{SG7}}   &              &              &              &              &              &      X       &       X      &       X      &              &              &       X      &       X      &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{SG8}}   &              &              &              &              &              &      X       &       X      &       X      &       X      &       X      &       X      &       X      &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{LG1}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &              &       X      &       X      &       X      &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{LG2}}   &              &              &              &              &              &      X       &       X      &       X      &       X      &       X      &       X      &       X      &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{LG3}}   &      X       &      X       &       X      &       X      &       X      &      X       &       X      &       X      &              &              &              &              &       X      &       X      &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{DS1}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &       X      &       X      &       X      &       X      &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{DS2}}   &              &              &       X      &              &              &      X       &              &       X      &       X      &       X      &       X      &       X      &              &              &              &               \\ \hline
+\multicolumn{1}{|l|}{\textbf{DS3}}   &              &              &       X      &              &       X      &      X       &              &       X      &              &              &       X      &       X      &       X      &       X      &              &               \\ \hline
+
+\end{tabular}
+
 }
+\caption{Traceability Matrix}
+    \label{tab:matrix1}
+\end{adjustwidth}
+\end{table}
 
-\plt{Guiding principles for the SRS document:
-\begin{itemize}
-\item Do not repeat the same information at the same abstraction level.  If
-  information is repeated, the repetition should be at a different abstraction
-  level.  For instance, there will be overlap between the scope section and the
-  assumptions, but the scope section will not go into as much detail as the
-  assumptions section.
-\end{itemize}
+
+\begin{table}[H]
+\begin{adjustwidth}{-0.1in}{-1in}
+\scalebox{0.7}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-17}
+                                     & \textbf{LF1} & \textbf{LF2} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{PR1} & \textbf{PR2} & \textbf{OE1} & \textbf{MR1} & \textbf{MR2} & \textbf{SR1} & \textbf{SR2} & \textbf{CR1} & \textbf{CR2} &\textbf{LR1} & \textbf{HS1} \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI1}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &              &       X      &       X      &       X      &             &      X       \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI2}}   &      X       &       X      &       X      &              &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &      X       \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI3}}   &      X       &       X      &       X      &              &       X      &       X      &       X      &       X      &              &              &              &       X      &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI4}}   &      X       &       X      &       X      &              &              &       X      &       X      &       X      &              &              &              &       X      &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI5}}   &      X       &       X      &       X      &       X      &              &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI6}}   &      X       &       X      &       X      &       X      &              &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI7}}   &      X       &       X      &       X      &       X      &              &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{HR1}}   &              &              &              &              &              &              &       X      &       X      &      X       &      X       &       X      &       X      &              &              &      X      &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{HR2}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{HR3}}   &      X       &       X      &              &       X      &       X      &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SP1}}   &      X       &       X      &              &       X      &       X      &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SP2}}   &              &              &              &              &              &       X      &       X      &       X      &      X       &      X       &       X      &       X      &              &              &      X      &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SP3}}   &      X       &       X      &              &       X      &       X      &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SM1}}   &      X       &       X      &       X      &       X      &       X      &              &       X      &       X      &              &              &              &       X      &              &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SM2}}   &      X       &       X      &       X      &       X      &       X      &              &       X      &       X      &              &              &              &       X      &              &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SM3}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &              &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SM4}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &              &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SM5}}   &      X       &       X      &       X      &       X      &              &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{RM1}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{RM2}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{RM3}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
+\end{tabular}
+
 }
+\caption{Traceability Matrix}
+    \label{tab:matrix2}
+\end{adjustwidth}
+\end{table}
 
-\plt{The template description comments should be disabled before submitting this
-  document for grading.}
 
-\plt{You can borrow any wording from the text given in the template.  It is part
-  of the template, and not considered an instance of academic integrity.  Of
-  course, you need to cite the source of the template.}
 
-\plt{When the documentation is done, it should be possible to trace back to the
-  source of every piece of information.  Some information will come from
-  external sources, like terminology.  Other information will be derived, like
-  General Definitions.}
 
-\plt{An SRS document should have the following qualities: unambiguous,
-  consistent, complete, validatable, abstract and traceable.}
 
-\plt{The overall goal of the SRS is that someone that meets the Characteristics
-  of the Intended Reader (Section~\ref{sec_IntendedReader}) can learn,
-  understand and verify the captured domain knowledge.  They should not have to
-  trust the authors of the SRS on any statements.  They should be able to
-  independently verify/derive every statement made.}
+=======
 
-\section{Introduction}
+\section{Functional Requirements}
 
-\plt{The introduction section is written to introduce the problem.  It starts
-  general and focuses on the problem domain. The general advice is to start with
-a paragraph or two that describes the problem, followed by a ``roadmap''
-paragraph.  A roadmap orients the reader by telling them what sub-sections to
-expect in the Introduction section.}
+\subsection{The Scope of the Work and the Product}
 
-\subsection{Purpose of Document}
-
-\plt{This section summarizes the purpose of the SRS document.  It does not focus
-  on the problem itself.  The problem is described in the ``Problem
-  Description'' section (Section~\ref{Sec_pd}).  The purpose is for the document
-  in the context of the project itself, not in the context of this course.
-  Although the ``purpose'' of the document is to get a grade, you should not
-  mention this.  Instead, ``fake it'' as if this is a real project.  The purpose
-  section will be similar between projects.  The purpose of the document is the
-  purpose of the SRS, including communication, planning for the design stage,
-  etc.}
-
-\subsection{Scope of Requirements} 
-
-\plt{Modelling the real world requires simplification.  The full complexity of
-  the actual physics, chemistry, biology is too much for existing models, and
-  for existing computational solution techniques.  Rather than say what is in
-  the scope, it is usually easier to say what is not.  You can think of it as
-  the scope is initially everything, and then it is constrained to create the
-  actual scope.  For instance, the problem can be restricted to 2 dimensions, or
-  it can ignore the effect of temperature (or pressure) on the material
-  properties, etc.}  
-
-\plt{The scope section is related to the assumptions section
-  (Section~\ref{sec_assumpt}).  However, the scope and the assumptions are not
-  at the same level of abstraction.  The scope is at a high level.  The focus is
-  on the ``big picture'' assumptions.  The assumptions section lists, and
-  describes, all of the assumptions.}
-
-\subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
-
-\plt{This section summarizes the skills and knowledge of the readers of the
-  SRS.  It does NOT have the same purpose as the ``User Characteristics''
-  section (Section~\ref{SecUserCharacteristics}).  The intended readers are the
-  people that will read, review and maintain the SRS.  They are the people that
-  will conceivably design the software that is intended to meet the
-  requirements.  The user, on the other hand, is the person that uses the
-  software that is built.  They may never read this SRS document.  Of course,
-  the same person could be a ``user'' and an ``intended reader.''}
-
-\plt{The intended reader characteristics should be written as unambiguously and
-  as specifically as possible.  Rather than say, the user should have an
-  understanding of physics, say what kind of physics and at what level.  For
-  instance, is high school physics adequate, or should the reader have had a
-  graduate course on advanced quantum mechanics?}
-
-\subsection{Organization of Document}
-
-\plt{This section provides a roadmap of the SRS document.  It will help the
-  reader orient themselves.  It will provide direction that will help them
-  select which sections they want to read, and in what order.  This section will
-  be similar between project.}
-
-\section{General System Description}
-
-This section provides general information about the system.  It identifies the
-interfaces between the system and its environment, describes the user
-characteristics and lists the system constraints.  \plt{This text can likely be
-  borrowed verbatim.}
-
-\plt{The purpose of this section is to provide general information about the
-  system so the specific requirements in the next section will be easier to
-  understand. The general system description section is designed to be
-  changeable independent of changes to the functional requirements documented in
-  the specific system description. The general system description provides a
-  context for a family of related models.  The general description can stay the
-  same, while specific details are changed between family members.}
-
-\subsection{System Context}
-
-\plt{Your system context will include a figure that shows the abstract view of
-  the software.  Often in a scientific context, the program can be viewed
-  abstractly following the design pattern of Inputs $\rightarrow$ Calculations
-  $\rightarrow$ Outputs.  The system context will therefore often follow this
-  pattern.  The user provides inputs, the system does the calculations, and then
-  provides the outputs to the user.  The figure should not show all of the
-  inputs, just an abstract view of the main categories of inputs (like material
-  properties, geometry, etc.).  Likewise, the outputs should be presented from
-  an abstract point of view.  In some cases the diagram will show other external
-  entities, besides the user.  For instance, when the software product is a
-  library, the user will be another software program, not an actual end user.
-  If there are system constraints that the software must work with external
-  libraries, these libraries can also be shown on the System Context diagram.
-  They should only be named with a specific library name if this is required by
-  the system constraint.}
-
-\begin{figure}[h!]
-\begin{center}
- \includegraphics[width=0.6\textwidth]{SystemContextFigure}
-\caption{System Context}
-\label{Fig_SystemContext} 
-\end{center}
+\subsubsection{The Current Situation}
+%Not sure where this would go but should have some note that the specific puzzles have not been chosen yet so specifications only given for general puzzle interaction
+\subsubsection{Context of the Work}
+The context diagram depicted below illustrates the interactions of the system with adjacent
+external systems and services.
+\begin{figure}[htbp]
+\centerline{\includegraphics[width=1.05\textwidth]{Capstone/docs/SRS/UseCaseDiagram.png}}
+\label{UseCaseDiagram}
 \end{figure}
 
-\plt{For each of the entities in the system context diagram its responsibilities
-  should be listed.  Whenever possible the system should check for data quality,
-  but for some cases the user will need to assume that responsibility.  The list
-  of responsibilites should be about the inputs and outputs only, and they
-  should be abstract.  Details should not be presented here.  However, the
-  information should not be so abstract as to just say ``inputs'' and
-  ``outputs''.  A summarizing phrase can be used to characterize the inputs.
-  For instance, saying ``material properties'' provides some information, but it
-  stays away from the detail of listing every required properties.}
-
-\begin{itemize}
-\item User Responsibilities:
-\begin{itemize}
-\item 
-\end{itemize}
-\item \progname{} Responsibilities:
-\begin{itemize}
-\item Detect data type mismatch, such as a string of characters instead of a
-  floating point number
-\item 
-\end{itemize}
-\end{itemize}
-
-\subsection{User Characteristics} \label{SecUserCharacteristics}
-
-\plt{This section summarizes the knowledge/skills expected of the user.
-  Measuring usability, which is often a required non-function requirement,
-  requires knowledge of a typical user.  As mentioned above, the user is a
-  different role from the ``intended reader,'' as given in
-  Section~\ref{sec_IntendedReader}.  As in Section~\ref{sec_IntendedReader}, the
-  user characteristics should be specific an unambiguous.  For instance, ``The
-  end user of \progname{} should have an understanding of undergraduate Level 1
-  Calculus and Physics.''}
-
-\subsection{System Constraints}
-
-\plt{System constraints differ from other type of requirements because they
-  limit the developers' options in the system design and they identify how the
-  eventual system must fit into the world. This is the only place in the SRS
-  where design decisions can be specified.  That is, the quality requirement for
-  abstraction is relaxed here.  However, system constraints should only be
-  included if they are truly required.}
-
-\section{Specific System Description}
-
-This section first presents the problem description, which gives a high-level
-view of the problem to be solved.  This is followed by the solution characteristics
-specification, which presents the assumptions, theories, definitions and finally
-the instance models.  \plt{Add any project specific details that are relevant
-  for the section overview.}
-
-\subsection{Problem Description} \label{Sec_pd}
-
-\progname{} is intended to solve ... \plt{What problem does your program solve?
-The description here should be in the problem space, not the solution space.}
-
-\subsubsection{Terminology and  Definitions}
-
-\plt{This section is expressed in words, not with equations.  It provide the
-  meaning of the different words and phrases used in the domain of the problem.
-The terminology is used to introduce concepts from the world outside of the
-mathematical model  The terminology provides a real world connection to give the
-mathematical model meaning.}
-
-This subsection provides a list of terms that are used in the subsequent
-sections and their meaning, with the purpose of reducing ambiguity and making it
-easier to correctly understand the requirements:
-
-\begin{itemize}
-
-\item 
-
-\end{itemize}
-
-\subsubsection{Physical System Description} \label{sec_phySystDescrip}
-
-\plt{The purpose of this section is to clearly and unambiguously state the
-  physical system that is to be modelled. Effective problem solving requires a
-  logical and organized approach. The statements on the physical system to be
-  studied should cover enough information to solve the problem. The physical
-  description involves element identification, where elements are defined as
-  independent and separable items of the physical system. Some example elements
-  include acceleration due to gravity, the mass of an object, and the size and
-  shape of an object. Each element should be identified and labelled, with their
-  interesting properties specified clearly. The physical description can also
-  include interactions of the elements, such as the following: i) the
-  interactions between the elements and their physical environment; ii) the
-  interactions between elements; and, iii) the initial or boundary conditions.}
-
-The physical system of \progname{}, as shown in Figure~?,
-includes the following elements:
-
-\begin{itemize}
-
-\item[PS1:] 
-
-\item[PS2:] ...
-
-\end{itemize}
-
-\plt{A figure here makes sense for most SRS documents}
-
-% \begin{figure}[h!]
-% \begin{center}
-% %\rotatebox{-90}
-% {
-%  \includegraphics[width=0.5\textwidth]{<FigureName>}
-% }
-% \caption{\label{<Label>} <Caption>}
-% \end{center}
-% \end{figure}
-
-\subsubsection{Goal Statements}
-
-\plt{The goal statements refine the ``Problem Description''
-  (Section~\ref{Sec_pd}).  A goal is a functional objective the system under
-  consideration should achieve. Goals provide criteria for sufficient
-  completeness of a requirements specification and for requirements
-  pertinence. Goals will be refined in Section “Instanced Models”
-  (Section~\ref{sec_instance}). Large and complex goals should be decomposed
-  into smaller sub-goals.  The goals are written abstractly, with a minimal
-  amount of technical language.  They should be understandable by non-domain
-  experts.}
-
-\noindent Given the \plt{inputs}, the goal statements are:
-
-\begin{itemize}
-
-\item[GS\refstepcounter{goalnum}\thegoalnum \label{G_meaningfulLabel}:] \plt{One
-    sentence description of the goal.  There may be more than one.  Each Goal
-    should have a meaningful label.}
-
-\end{itemize}
-
-\subsection{Solution Characteristics Specification}
-
-\plt{This section specifies the information in the solution domain of the system
-  to be developed. This section is intended to express what is required in
-  such a way that analysts and stakeholders get a clear picture, and the
-  latter will accept it. The purpose of this section is to reduce the problem
-  into one expressed in mathematical terms. Mathematical expertise is used to
-  extract the essentials from the underlying physical description of the
-  problem, and to collect and substantiate all physical data pertinent to the
-  problem.}
-
-\plt{This section presents the solution characteristics by successively refining
-  models.  It starts with the abstract/general Theoretical Models (TMs) and
-  refines them to the concrete/specific Instance Models (IMs).  If necessary
-  there are intermediate refinements to General Definitions (GDs).  All of these
-  refinements can potentially use Assumptions (A) and Data Definitions (DD).
-  TMs are refined to create new models, that are called GMs or IMs. DDs are not
-  refined; they are just used. GDs and IMs are derived, or refined, from other
-  models. DDs are not derived; they are just given. TMs are also just given, but
-  they are refined, not used.  If a potential DD includes a derivation, then
-  that means it is refining other models, which would make it a GD or an IM.}
-
-\plt{The above makes a distinction between ``refined'' and ``used.'' A model is
-  refined to another model if it is changed by the refinement. When we change a
-  general 3D equation to a 2D equation, we are making a refinement, by applying
-  the assumption that the third dimension does not matter. If we use a
-  definition, like the definition of density, we aren't refining, or changing
-  that definition, we are just using it.}
-
-\plt{The same information can be a TM in one problem and a DD in another.  It is
-  about how the information is used.  In one problem the definition of
-  acceleration can be a TM, in another it would be a DD.}
-
-\plt{There is repetition between the information given in the different chunks
-  (TM, GDs etc) with other information in the document.  For instance, the
-  meaning of the symbols, the units etc are repeated.  This is so that the
-  chunks can stand on their own when being read by a reviewer/user.  It also
-  facilitates reuse of the models in a different context.}
-
-\noindent \plt{The relationships between the parts of the document are show in
-  the following figure.  In this diagram ``may ref'' has the same role as
-  ``uses'' above.  The figure adds ``Likely Changes,'' which are able to
-  reference (use) Assumptions.}
-
-\begin{figure}[H]
-  \includegraphics[scale=0.9]{RelationsBetweenTM_GD_IM_DD_A.pdf}
-\end{figure}
-
-The instance models that govern \progname{} are presented in
-Subsection~\ref{sec_instance}.  The information to understand the meaning of the
-instance models and their derivation is also presented, so that the instance
-models can be verified.
-
-\subsubsection{Assumptions} \label{sec_assumpt}
-
-\plt{The assumptions are a refinement of the scope.  The scope is general, where
-  the assumptions are specific.  All assumptions should be listed, even those
-  that domain experts know so well that they are rarely (if ever) written down.}
-\plt{The document should not take for granted that the reader knows which
-  assumptions have been made. In the case of unusual assumptions, it is
-  recommended that the documentation either include, or point to, an explanation
-  and justification for the assumption.}
-
-This section simplifies the original problem and helps in developing the
-theoretical model by filling in the missing information for the physical system.
-The numbers given in the square brackets refer to the theoretical model [TM],
-general definition [GD], data definition [DD], instance model [IM], or likely
-change [LC], in which the respective assumption is used.
-
-\begin{itemize}
-
-\item[A\refstepcounter{assumpnum}\theassumpnum \label{A_meaningfulLabel}:]
-  \plt{Short description of each assumption.  Each assumption
-    should have a meaningful label.  Use cross-references to identify the
-    appropriate traceability to TM, GD, DD etc., using commands like dref, ddref
-    etc.  Each assumption should be atomic - that is, there should not be an
-    explicit (or implicit) ``and'' in the text of an assumption.}
-
-\end{itemize}
-
-\subsubsection{Theoretical Models}\label{sec_theoretical}
-
-\plt{Theoretical models are sets of abstract mathematical equations or axioms
-  for solving the problem described in Section ``Physical System Description''
-  (Section~\ref{sec_phySystDescrip}). Examples of theoretical models are
-  physical laws, constitutive equations, relevant conversion factors, etc.}
-
-This section focuses on the general equations and laws that \progname{} is based
-on.  \plt{Modify the examples below for your problem, and add additional models
-  as appropriate.}
-
-~\newline
-
-\noindent
-\deftheory
-% #2 refname of theory
-{TM:COE}
-% #3 label
-{Conservation of thermal energy}
-% #4 equation
-{
-  $-{\bf \nabla \cdot q} + g$ = $\rho C \frac{\partial T}{\partial t}$
-}
-% #5 description
-{
-  The above equation gives the conservation of energy for transient heat transfer in a material
-  of specific heat capacity $C$ (\si{\joule\per\kilogram\per\celsius}) and density $\rho$ 
-  (\si{\kilogram\per\cubic\metre}), where $\bf q$ is the thermal flux vector (\si{\watt\per\square\metre}),
-  $g$ is the volumetric heat generation
-  (\si{\watt\per\cubic\metre}), $T$ is the temperature
-  (\si{\celsius}),  $t$ is time (\si{\second}), and $\nabla$ is
-  the gradient operator.  For this equation to apply, other forms
-  of energy, such as mechanical energy, are assumed to be negligible in the
-  system (\aref{A_OnlyThermalEnergy}).  In general, the material properties ($\rho$ and $C$) depend on temperature.
-}
-% #6 Notes
-{
-None.
-}
-% #7 Source
-{
-  \url{http://www.efunda.com/formulae/heat_transfer/conduction/overview_cond.cfm}
-}
-% #8 Referenced by
-{
-  \dref{ROCT}
-}
-% #9 Preconditions
-{
-None
-}
-% #1 derivation - not applicable by default
-{}
-
-\plt{``Ref.\ By'' is used repeatedly with the different types of information.
-  This stands for Referenced By.  It means that the models, definitions and
-  assumptions listed reference the current model, definition or assumption.
-  This information is given for traceability.  Ref. By provides a pointer in the
-  opposite direction to what we commonly do.  You still need to have a reference
-  in the other direction pointing to the current model, definition or
-  assumption.  As an example, if TM1 is referenced by GD2, that means that GD2 will
-  explicitly include a reference to TM1.}
-
-~\newline
-
-\subsubsection{General Definitions}\label{sec_gendef}
-
-\plt{General Definitions (GDs) are a refinement of one or more TMs, and/or of
-  other GDs.  The GDs are less abstract than the TMs.  Generally the reduction
-  in abstraction is possible through invoking (using/referencing) Assumptions.
-  For instance, the TM could be Newton's Law of Cooling stated abstracting.  The
-  GD could take the general law and apply it to get a 1D equation.}
-
-This section collects the laws and equations that will be used in building the
-instance models.
-
-\plt{Some projects may not have any content for this section, but the section
-  heading should be kept.}  \plt{Modify the examples below for your problem, and
-  add additional definitions as appropriate.}
-
-~\newline
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& GD\refstepcounter{defnum}\thedefnum \label{NL}\\
-\hline
-Label &\bf Newton's law of cooling \\
-\hline
-% Units&$MLt^{-3}T^0$\\
-% \hline
-SI Units&\si{\watt\per\square\metre}\\
-\hline
-Equation&$ q(t) = h \Delta T(t)$  \\
-\hline
-Description &
-Newton's law of cooling describes convective cooling from a surface.  The law is
-stated as: the rate of heat loss from a body is proportional to the difference
-in temperatures between the body and its surroundings.
-\\
-& $q(t)$ is the thermal flux (\si{\watt\per\square\metre}).\\
-& $h$ is the heat transfer coefficient, assumed independent of $T$ (\aref{A_hcoeff})
-	(\si{\watt\per\square\metre\per\celsius}).\\
-&$\Delta T(t)$= $T(t) - T_{\text{env}}(t)$ is the time-dependent thermal gradient
-between the environment and the object (\si{\celsius}).
-\\
-\hline
-  Source & Citation here \\
-  \hline
-  Ref.\ By & \ddref{FluxCoil}, \ddref{FluxPCM}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
-
-\subsubsection*{Detailed derivation of simplified rate of change of temperature}
-
-\plt{This may be necessary when the necessary information does not fit in the
-  description field.}
-\plt{Derivations are important for justifying a given GD.  You want it to be
-  clear where the equation came from.}
-
-\subsubsection{Data Definitions}\label{sec_datadef}
-
-\plt{The Data Definitions are definitions of symbols and equations that are
-  given for the problem.  They are not derived; they are simply used by other
-  models.  For instance, if a problem depends on density, there may be a data
-  definition for the equation defining density.  The DDs are given information
-  that you can use in your other modules.}
-
-\plt{All Data Definitions should be used (referenced) by at least one other
-  model.}
-
-This section collects and defines all the data needed to build the instance
-models. The dimension of each quantity is also given.  \plt{Modify the examples
-  below for your problem, and add additional definitions as appropriate.}
-
-~\newline
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-\hline
-\rowcolor[gray]{0.9}
-Number& DD\refstepcounter{datadefnum}\thedatadefnum \label{FluxCoil}\\
-\hline
-Label& \bf Heat flux out of coil\\
-\hline
-Symbol &$q_C$\\
-\hline
-% Units& $Mt^{-3}$\\
-% \hline
-  SI Units & \si{\watt\per\square\metre}\\
-  \hline
-  Equation&$q_C(t) = h_C (T_C - T_W(t))$, over area $A_C$\\
-  \hline
-  Description & 
-                $T_C$ is the temperature of the coil (\si{\celsius}).  $T_W$ is the temperature of the water (\si{\celsius}).  
-                The heat flux out of the coil, $q_C$ (\si{\watt\per\square\metre}), is found by
-                assuming that Newton's Law 
-                of Cooling applies (\aref{A_Newt_coil}).  This law (\dref{NL}) is used on the surface of
-                the coil, which has area $A_C$ (\si{\square\metre}) and heat 
-                transfer coefficient $h_C$
-                (\si{\watt\per\square\metre\per\celsius}).  This equation
-                assumes that the temperature of the coil is constant over time (\aref{A_tcoil}) and that it does not vary along the length
-                of the coil (\aref{A_tlcoil}).
-  \\
-  \hline
-  Sources& Citation here \\
-  \hline
-  Ref.\ By & \iref{ewat}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
-
-\subsubsection{Data Types}\label{sec_datatypes}
-
-\plt{This section is optional.  In many scientific computing programs it isn't
-  necessary, since the inputs and outpus are straightforward types, like reals,
-  integers, and sequences of reals and integers.  However, for some problems it
-  is very helpful to capture the type information.}
-
-\plt{The data types are not derived; they are simply stated and used by other
-  models.}
-
-\plt{All data types must be used by at least one of the models.}
-
-\plt{For the mathematical notation for expressing types, the recommendation is
-  to use the notation of~\citet{HoffmanAndStrooper1995}.}
-
-This section collects and defines all the data types needed to document the
-models. \plt{Modify the examples below for your problem, and add additional
-  definitions as appropriate.}
-
-~\newline
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Type Name & Name for Type\\
-  \hline
-  Type Def & mathematical definition of the type\\
-  \hline
-  Description & description here
-  \\
-  \hline
-  Sources & Citation here, if the type is borrowed from another source\\
-  \hline
-\end{tabular}
-\end{minipage}\\
-
-\subsubsection{Instance Models} \label{sec_instance}    
-
-\plt{The motivation for this section is to reduce the problem defined in
-  ``Physical System Description'' (Section~\ref{sec_phySystDescrip}) to one
-  expressed in mathematical terms. The IMs are built by refining the TMs and/or
-  GDs.  This section should remain abstract.  The SRS should specify the
-  requirements without considering the implementation.}
-
-This section transforms the problem defined in Section~\ref{Sec_pd} into 
-one which is expressed in mathematical terms. It uses concrete symbols defined 
-in Section~\ref{sec_datadef} to replace the abstract symbols in the models 
-identified in Sections~\ref{sec_theoretical} and~\ref{sec_gendef}.
-
-The goals \plt{reference your goals} are solved by \plt{reference your instance
-  models}.  \plt{other details, with cross-references where appropriate.}
-\plt{Modify the examples below for your problem, and add additional models as
-  appropriate.}
-
-~\newline
-
-%Instance Model 1
-
-\noindent
-\begin{minipage}{\textwidth}
-\renewcommand*{\arraystretch}{1.5}
-\begin{tabular}{| p{\colAwidth} | p{\colBwidth}|}
-  \hline
-  \rowcolor[gray]{0.9}
-  Number& IM\refstepcounter{instnum}\theinstnum \label{ewat}\\
-  \hline
-  Label& \bf Energy balance on water to find $T_W$\\
-  \hline
-  Input&$m_W$, $C_W$, $h_C$, $A_C$, $h_P$, $A_P$, $t_\text{final}$, $T_C$, 
-  $T_\text{init}$, $T_P(t)$ from \iref{epcm}\\
-  & The input is constrained so that $T_\text{init} \leq T_C$ (\aref{A_charge})\\
-  \hline
-  Output&$T_W(t)$, $0\leq t \leq t_\text{final}$, such that\\
-  &$\frac{dT_W}{dt} = \frac{1}{\tau_W}[(T_C - T_W(t)) + {\eta}(T_P(t) - T_W(t))]$,\\
-  &$T_W(0) = T_P(0) = T_\text{init}$ (\aref{A_InitTemp}) and $T_P(t)$ from \iref{epcm} \\
-  \hline
-  Description&$T_W$ is the water temperature (\si{\celsius}).\\
-  &$T_P$ is the PCM temperature (\si{\celsius}).\\
-  &$T_C$ is the coil temperature (\si{\celsius}).\\
-  &$\tau_W = \frac{m_W C_W}{h_C A_C}$ is a constant (\si{\second}).\\
-  &$\eta = \frac{h_P A_P}{h_C A_C}$ is a constant (dimensionless).\\
-  & The above equation applies as long as the water is in liquid form,
-  $0<T_W<100^o\text{C}$, where $0^o\text{C}$ and $100^o\text{C}$ are the melting
-  and boiling points of water, respectively (\aref{A_OpRange}, \aref{A_Pressure}).
-  \\
-  \hline
-  Sources& Citation here \\
-  \hline
-  Ref.\ By & \iref{epcm}\\
-  \hline
-\end{tabular}
-\end{minipage}\\
-
-%~\newline
-
-\subsubsection*{Derivation of ...}
-
-\plt{The derivation shows how the IM is derived from the TMs/GDs.  In cases
-  where the derivation cannot be described under the Description field, it will
-  be necessary to include this subsection.}
-
-\subsubsection{Input Data Constraints} \label{sec_DataConstraints}    
-
-Table~\ref{TblInputVar} shows the data constraints on the input output
-variables.  The column for physical constraints gives the physical limitations
-on the range of values that can be taken by the variable.  The column for
-software constraints restricts the range of inputs to reasonable values.  The
-software constraints will be helpful in the design stage for picking suitable
-algorithms.  The constraints are conservative, to give the user of the model the
-flexibility to experiment with unusual situations.  The column of typical values
-is intended to provide a feel for a common scenario.  The uncertainty column
-provides an estimate of the confidence with which the physical quantities can be
-measured.  This information would be part of the input if one were performing an
-uncertainty quantification exercise.
-
-The specification parameters in Table~\ref{TblInputVar} are listed in
-Table~\ref{TblSpecParams}.
-
-\begin{table}[!h]
-  \caption{Input Variables} \label{TblInputVar}
-  \renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l l l c} 
-  \toprule
-  \textbf{Var} & \textbf{Physical Constraints} & \textbf{Software Constraints} &
-                             \textbf{Typical Value} & \textbf{Uncertainty}\\
-  \midrule 
-  $L$ & $L > 0$ & $L_{\text{min}} \leq L \leq L_{\text{max}}$ & 1.5 \si[per-mode=symbol] {\metre} & 10\%
-  \\
-  \bottomrule
-\end{longtable*}
-\end{table}
-
-\noindent 
-\begin{description}
-\item[(*)] \plt{you might need to add some notes or clarifications}
-\end{description}
-
-\begin{table}[!h]
-\caption{Specification Parameter Values} \label{TblSpecParams}
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l} 
-  \toprule
-  \textbf{Var} & \textbf{Value} \\
-  \midrule 
-  $L_\text{min}$ & 0.1 \si{\metre}\\
-  \bottomrule
-\end{longtable*}
-\end{table}
-
-\subsubsection{Properties of a Correct Solution} \label{sec_CorrectSolution}
-
-\noindent
-A correct solution must exhibit \plt{fill in the details}.  \plt{These
-  properties are in addition to the stated requirements.  There is no need to
-  repeat the requirements here.  These additional properties may not exist for
-  every problem.  Examples include conservation laws (like conservation of
-  energy or mass) and known constraints on outputs, which are usually summarized
-  in tabular form.  A sample table is shown in Table~\ref{TblOutputVar}}
-
-\begin{table}[!h]
-\caption{Output Variables} \label{TblOutputVar}
-\renewcommand{\arraystretch}{1.2}
-\noindent \begin{longtable*}{l l} 
-  \toprule
-  \textbf{Var} & \textbf{Physical Constraints} \\
-  \midrule 
-  $T_W$ & $T_\text{init} \leq T_W \leq T_C$ (by~\aref{A_charge})
-  \\
-  \bottomrule
-\end{longtable*}
-\end{table}
-
-\plt{This section is not for test cases or techniques for verification and
-  validation.  Those topics will be addressed in the Verification and Validation
-  plan.}
-
-\section{Requirements}
-
-\plt{The requirements refine the goal statement.  They will make heavy use of
-  references to the instance models.}
-
-This section provides the functional requirements, the business tasks that the
-software is expected to complete, and the nonfunctional requirements, the
-qualities that the software is expected to exhibit.
+\newpage
+\subsubsection{Individual Product Use Cases}
+
+\textbf{Use Case \#1:} User creates a game room\\
+\textbf{Trigger:} The user selects the create game room button\\
+\textbf{Pre-condition:} N/A\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system creates a room for users to join, and automatically makes the user join the room
+    \item The user can choose the length of the game and the settings
+	\item The server sends the data of the game room to all the users, to show that the room is available to join, and the capacity of the room, and the current users that have joined the room
+\end{enumerate}
+\textbf{Use Case \#2:} User Joins Game\\
+\textbf{Trigger:} The user selects a room to join that has available capacity\\
+\textbf{Pre-condition:} Another user has created a game room\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system links the user to the game room, and decreases the available capacity in the room
+    \item The server retrieves the data from the game room and updates the game room for all the users with the new user's name, and decreases the visible room capacity
+\end{enumerate}
+\textbf{Use Case \#3:} User edits the game room settings\\
+\textbf{Trigger:} The user of the game room clicks the edit game settings button\\
+\textbf{Pre-condition:} The user created the game room\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system opens the game room settings page
+    \item The settings are displayed for the user
+    \item The user chooses the settings they want to change
+    \item The system updates the game room settings
+    \item The server informs the other users of the settings changes
+    \item The user closes the settings page
+\end{enumerate}
+\textbf{Use Case \#4:} User exits the game room\\
+\textbf{Trigger:} The user clicks the exit game room button\\
+\textbf{Pre-condition:} The user is currently in a game room\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The user is removed from the game room
+    \item THe system updates the information of the game room
+    \item The server sends the updated information to each user in the game room
+    \item The user is brought back to the main menu
+\end{enumerate}
+\textbf{Use Case \#5:} User starts the game\\
+\textbf{Trigger:} The users in a game room click the start game button\\
+\textbf{Pre-condition:} The game room has enough available players\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The server launches the game and synchronizes all the user data. 
+    \item The user performs a synchronization step to map the room and place the puzzles
+    \item The system shows the users the first puzzles
+    \item Each user is given a unique view on the puzzles they have available to them
+\end{enumerate}
+\textbf{Use Case \#6:} User saves game\\
+\textbf{Trigger:} The user selects the save game button\\
+\textbf{Pre-condition:} There is an active game they are playing in\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item A local copy of the progress in the game is saved on the user's side
+    \item All relevant data on the status of the puzzles is saved
+    \item This data can be used to load the game at a later date, and it is safe for users to leave the session
+\end{enumerate}
+\textbf{Use Case \#7:} User Loads game\\
+\textbf{Trigger:} The user hits the load game button and selects the game data they want to load\\
+\textbf{Pre-condition:} The user has created a game room, and the user has save data to load\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system reads the user's save data, and when the game is started, the state of the game is loaded
+    \item The location of the puzzles might change, but the progress of each puzzle and the total progress of the room is the same as when the game state was saved 
+\end{enumerate}
+\textbf{Use Case \#8:} User deletes save data\\
+\textbf{Trigger:} The user hits delete on their save data\\
+\textbf{Pre-condition:} The user has save data\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system deletes the save data from the user's device
+    \item The system updates the save data list, and removes that save data from it
+\end{enumerate}
+
+
+\textbf{Use Case \#9:} User interacts with a puzzle\\
+\textbf{Trigger:} The user selects a puzzle to attempt\\
+\textbf{Pre-condition:} The user has started a puzzle\\
+\textbf{Outcome:}
+\begin{enumerate} %Doesn't include info about puzzle's impact on other player. Not sure what our intentions are with that.
+	\item The system displays an enlarged and interactable version of the puzzle
+	\item The user performs an action on the puzzle
+	\item The system registers the action, performs any necessary puzzle state changes and displays the new puzzle state to the user    
+\end{enumerate}
+\textbf{Use Case \#10:} User requests a hint\\
+\textbf{Trigger:} The user presses the request hint button\\
+\textbf{Pre-condition:} The user has started a puzzle\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system displays the predetermined hint for the associated puzzle
+	\item The user reads the hint and presses the button to close the hint
+	\item The system closes the hint display.
+\end{enumerate}
+\textbf{Use Case \#11:} User skips a puzzle\\
+\textbf{Trigger:} The user hits the skip button\\
+\textbf{Pre-condition:} The user is interacting with a puzzle\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system saves the state of the puzzle and closes the puzzle display, returning to the main scene.
+\end{enumerate}
+\textbf{Use Case \#12:} User sends a message\\
+\textbf{Trigger:} The user presses a communication button\\
+\textbf{Pre-condition:} More than one user are in a game room\\
+\textbf{Outcome:}
+\begin{enumerate}
+	\item The system queries the server to determine the users in the room
+	\item The system displays the other users in the room to the user
+	\item The user selects the desired recipient
+        \item The system displays the interface for the user to create the message
+        \item The user creates the message and hits the send button
+        \item The system uses the server to send the message to the other user's device and to create a message notification on that device. It then notifies the sender that the message has been sent.
+\end{enumerate}
+\textbf{Use Case \#13:} User reads a message\\
+\textbf{Trigger:} The user clicks on a received message notification\\
+\textbf{Pre-condition:} The user has received a message\\
+\textbf{Outcome:}
+\begin{enumerate}
+        \item The system removes the message notification and displays the message to the user
+	\item The user reads the message, then closes the message display window
+	\item The system returns the user to the main game scene.
+\end{enumerate}
 
 \subsection{Functional Requirements}
 
-\noindent \begin{itemize}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
-    for the inputs that are supplied by the user.  This information has to be
-    explicit.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] \plt{It isn't
-    always required, but often echoing the inputs as part of the output is a
-    good idea.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] \plt{Calculation
-    related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
-  \plt{Verification related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] \plt{Output related
-    requirements.}
-
-\end{itemize}
-
-\plt{Every IM should map to at least one requirement, but not every requirement
-  has to map to a corresponding IM.}
-
-\subsection{Nonfunctional Requirements}
-
-\plt{List your nonfunctional requirements.  You may consider using a fit
-  criterion to make them verifiable.}
-\plt{The goal is for the nonfunctional requirements to be unambiguous, abstract
-  and verifiable.  This isn't easy to show succinctly, so a good strategy may be
-to give a ``high level'' view of the requirement, but allow for the details to
-be covered in the Verification and Validation document.}
-\plt{An absolute requirement on a quality of the system is rarely needed.  For
-  instance, an accuracy of 0.0101 \% is likely fine, even if the requirement is
-  for 0.01 \% accuracy.  Therefore, the emphasis will often be more on
-  describing now well the quality is achieved, through experimentation, and
-  possibly theory, rather than meeting some bar that was defined a priori.}
-\plt{You do not need an entry for correctness in your NFRs.  The purpose of the
-  SRS is to record the requirements that need to be satisfied for correctness.
-  Any statement of correctness would just be redundant. Rather than discuss
-  correctness, you can characterize how far away from the correct (true)
-  solution you are allowed to be.  This is discussed under accuracy.}
-
-\noindent \begin{itemize}
-
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
-  \textbf{Accuracy} \plt{Characterize the accuracy by giving the context/use for
-    the software.  Maybe something like, ``The accuracy of the computed
-    solutions should meet the level needed for $<$engineering or scientific
-    application$>$.  The level of accuracy achieved by \progname{} shall be
-    described following the procedure given in Section~X of the Verification and
-    Validation Plan.''  A link to the VnV plan would be a nice extra.}
-
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-  \plt{Characterize the usability by giving the context/use for the software.
-    You should likely reference the user characteristics section.  The level of
-    usability achieved by the software shall be described following the
-    procedure given in Section~X of the Verification and Validation Plan.  A
-    link to the VnV plan would be a nice extra.}
-
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
-  \textbf{Maintainability} \plt{The effort required to make any of the likely
-    changes listed for \progname{} should be less than FRACTION of the original
-    development time.  FRACTION is then a symbolic constant that can be defined
-    at the end of the report.}
-
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
-  \textbf{Portability} \plt{This NFR is easier to write than the others.  The
-    systems that \progname{} should run on should be listed here.  When possible
-    the specific versions of the potential operating environments should be
-    given.  To make the NFR verifiable a statement could be made that the tests
-    from a given section of the VnV plan can be successfully run on all of the
-    possible operating environments.}
-
-\item Other NFRs that might be discussed include verifiability,
-  understandability and reusability.
-
-\end{itemize}
-
-\section{Likely Changes}    
-
-\noindent \begin{itemize}
-
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the likely changes, with a reference to the related assumption (aref), as appropriate.}
-
-\end{itemize}
-
-\section{Unlikely Changes}    
-
-\noindent \begin{itemize}
-
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the unlikely changes.  The design can assume that the changes listed will
-    not occur.}
-
-\end{itemize}
-
-\section{Traceability Matrices and Graphs}
-
-The purpose of the traceability matrices is to provide easy references on what
-has to be additionally modified if a certain component is changed.  Every time a
-component is changed, the items in the column of that component that are marked
-with an ``X'' may have to be modified as well.  Table~\ref{Table:trace} shows the
-dependencies of theoretical models, general definitions, data definitions, and
-instance models with each other. Table~\ref{Table:R_trace} shows the
-dependencies of instance models, requirements, and data constraints on each
-other. Table~\ref{Table:A_trace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, and likely changes on
-the assumptions.
-
-\plt{You will have to modify these tables for your problem.}
-
-\plt{The traceability matrix is not generally symmetric.  If GD1 uses A1, that
-  means that GD1's derivation or presentation requires invocation of A1.  A1
-  does not use GD1.  A1 is ``used by'' GD1.}
-
-\plt{The traceability matrix is challenging to maintain manually.  Please do
-  your best.  In the future tools (like Drasil) will make this much easier.}
-
-\afterpage{
-\begin{landscape}
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
-	& \aref{A_OnlyThermalEnergy}& \aref{A_hcoeff}& \aref{A_mixed}& \aref{A_tpcm}& \aref{A_const_density}& \aref{A_const_C}& \aref{A_Newt_coil}& \aref{A_tcoil}& \aref{A_tlcoil}& \aref{A_Newt_pcm}& \aref{A_charge}& \aref{A_InitTemp}& \aref{A_OpRangePCM}& \aref{A_OpRange}& \aref{A_htank}& \aref{A_int_heat}& \aref{A_vpcm}& \aref{A_PCM_state}& \aref{A_Pressure} \\
-\hline
-\tref{T_COE}        & X& & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\tref{T_LHE}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\dref{NL}           & & X& & & & & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}         & & & X& X& X& X& & & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil}    & & & & & & & X& X& X& & & & & & & & & & \\ \hline
-\ddref{FluxPCM}     & & & X& X& & & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}       & & & & & & & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}        & & & & & & & & & & & & & & & & & & & \\ \hline
-\iref{ewat}         & & & & & & & & & & & X& X& & X& X& X& & & X \\ \hline
-\iref{epcm}         & & & & & & & & & & & & X& X& & & X& X& X& \\ \hline
-\iref{I_HWAT}       & & & & & & & & & & & & & & X& & & & & X \\ \hline
-\iref{I_HPCM}       & & & & & & & & & & & & & X& & & & & X & \\ \hline
-\lcref{LC_tpcm}     & & & & X& & & & & & & & & & & & & & & \\ \hline
-\lcref{LC_tcoil}    & & & & & & & & X& & & & & & & & & & & \\ \hline
-\lcref{LC_tlcoil}   & & & & & & & & & X& & & & & & & & & & \\ \hline
-\lcref{LC_charge}   & & & & & & & & & & & X& & & & & & & & \\ \hline
-\lcref{LC_InitTemp} & & & & & & & & & & & & X& & & & & & & \\ \hline
-\lcref{LC_htank}    & & & & & & & & & & & & & & & X& & & & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Assumptions and Other Items}
-\label{Table:A_trace}
-\end{table}
-\end{landscape}
-}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline        
-	& \tref{T_COE}& \tref{T_SHE}& \tref{T_LHE}& \dref{NL}& \dref{ROCT} & \ddref{FluxCoil}& \ddref{FluxPCM} & \ddref{D_HOF}& \ddref{D_MF}& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM} \\
-\hline
-\tref{T_COE}     & & & & & & & & & & & & & \\ \hline
-\tref{T_SHE}     & & & X& & & & & & & & & & \\ \hline
-\tref{T_LHE}     & & & & & & & & & & & & & \\ \hline
-\dref{NL}        & & & & & & & & & & & & & \\ \hline
-\dref{ROCT}      & X& & & & & & & & & & & & \\ \hline
-\ddref{FluxCoil} & & & & X& & & & & & & & & \\ \hline
-\ddref{FluxPCM}  & & & & X& & & & & & & & & \\ \hline
-\ddref{D_HOF}    & & & & & & & & & & & & & \\ \hline
-\ddref{D_MF}     & & & & & & & & X& & & & & \\ \hline
-\iref{ewat}      & & & & & X& X& X& & & & X& & \\ \hline
-\iref{epcm}      & & & & & X& & X& & X& X& & & X \\ \hline
-\iref{I_HWAT}    & & X& & & & & & & & & & & \\ \hline
-\iref{I_HPCM}    & & X& X& & & & X& X& X& & X& & \\
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Items of Different Sections}
-\label{Table:trace}
-\end{table}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|}
-\hline
-	& \iref{ewat}& \iref{epcm}& \iref{I_HWAT}& \iref{I_HPCM}& \ref{sec_DataConstraints}& \rref{R_RawInputs}& \rref{R_MassInputs} \\
-\hline
-\iref{ewat}            & & X& & & & X& X \\ \hline
-\iref{epcm}            & X& & & X& & X& X \\ \hline
-\iref{I_HWAT}          & & & & & & X& X \\ \hline
-\iref{I_HPCM}          & & X& & & & X& X \\ \hline
-\rref{R_RawInputs}     & & & & & & & \\ \hline
-\rref{R_MassInputs}    & & & & & & X& \\ \hline
-\rref{R_CheckInputs}   & & & & & X& & \\ \hline
-\rref{R_OutputInputs}  & X& X& & & & X& X \\ \hline
-\rref{R_TempWater}     & X& & & & & & \\ \hline 
-\rref{R_TempPCM}       & & X& & & & & \\ \hline
-\rref{R_EnergyWater}   & & & X& & & & \\ \hline
-\rref{R_EnergyPCM}     & & & & X& & & \\ \hline
-\rref{R_VerifyOutput}  & & & X& X& & & \\ \hline
-\rref{R_timeMeltBegin} & & X& & & & & \\ \hline
-\rref{R_timeMeltEnd}   & & X& & & & & \\ 
-\hline
-\end{tabular}
-\caption{Traceability Matrix Showing the Connections Between Requirements and Instance Models}
-\label{Table:R_trace}
-\end{table}
-
-The purpose of the traceability graphs is also to provide easy references on
-what has to be additionally modified if a certain component is changed.  The
-arrows in the graphs represent dependencies. The component at the tail of an
-arrow is depended on by the component at the head of that arrow. Therefore, if a
-component is changed, the components that it points to should also be
-changed. Figure~\ref{Fig_ATrace} shows the dependencies of theoretical models,
-general definitions, data definitions, instance models, likely changes, and
-assumptions on each other. Figure~\ref{Fig_RTrace} shows the dependencies of
-instance models, requirements, and data constraints on each other.
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=\textwidth]{ATrace.png}
-% 		}
-% 		\caption{\label{Fig_ATrace} Traceability Matrix Showing the Connections Between Items of Different Sections}
-% 	\end{center}
-% \end{figure}
-
-
-% \begin{figure}[h!]
-% 	\begin{center}
-% 		%\rotatebox{-90}
-% 		{
-% 			\includegraphics[width=0.7\textwidth]{RTrace.png}
-% 		}
-% 		\caption{\label{Fig_RTrace} Traceability Matrix Showing the Connections Between Requirements, Instance Models, and Data Constraints}
-% 	\end{center}
-% \end{figure}
-
-\section{Development Plan}
-
-\plt{This section is optional.  It is used to explain the plan for developing
-  the software.  In particular, this section gives a list of the order in which
-  the requirements will be implemented.  In the context of a course  this is
-  where you can indicate which requirements will be implemented as part of the
-  course, and which will be ``faked'' as future work.  This section can be
-  organized as a prioritized list of requirements, or it could should the
-  requirements that will be implemented for ``phase 1'', ``phase 2'', etc.}
-
-\section{Values of Auxiliary Constants}
-
-\plt{Show the values of the symbolic parameters introduced in the report.}
-
-\plt{The definition of the requirements will likely call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.}
-
-\plt{The value of FRACTION, for the Maintainability NFR would be given here.}
-
-\newpage
-
-\bibliographystyle {plainnat}
-\bibliography {../../refs/References}
-
-\newpage
-
-\noindent \plt{The following is not part of the template, just some things to consider
-  when filing in the template.}
-
-\noindent \plt{Grammar, flow and \LaTeX advice:
-\begin{itemize}
-\item For Mac users \texttt{*.DS\_Store} should be in \texttt{.gitignore}
-\item \LaTeX{} and formatting rules
-\begin{itemize}
-\item Variables are italic, everything else not, includes subscripts (link to
-  document)
-\begin{itemize}
-\item \href{https://physics.nist.gov/cuu/pdf/typefaces.pdf}{Conventions}
-\item Watch out for implied multiplication
-\end{itemize}
-\item Use BibTeX
-\item Use cross-referencing
-\end{itemize}
-\item Grammar and writing rules
-\begin{itemize}
-\item Acronyms expanded on first usage (not just in table of acronyms)
-\item ``In order to'' should be ``to''
-\end{itemize}
-\end{itemize}}
-
-\noindent \plt{Advice on using the template:
-\begin{itemize}
-\item Difference between physical and software constraints
-\item Properties of a correct solution means \emph{additional} properties, not
-  a restating of the requirements (may be ``not applicable'' for your problem).
-  If you have a table of output constraints, then these are properties of a
-  correct solution.
-\item Assumptions have to be invoked somewhere
-\item ``Referenced by'' implies that there is an explicit reference
-\item Think of traceability matrix, list of assumption invocations and list of
-  reference by fields as automatically generatable
-\item If you say the format of the output (plot, table etc), then your
-  requirement could be more abstract
-\end{itemize}
-}
-
-\newpage{}
-\section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.  Please answer the following questions:
-
-\begin{enumerate}
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete this capstone project?  Examples of possible knowledge
-  to acquire include domain specific knowledge from the domain of your
-  application, or software engineering knowledge, mechatronics knowledge or
-  computer science knowledge.  Skills may be related to technology, or writing,
-  or presentation, or team management, etc.  You should look to identify at
-  least one item for each team member.
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
+\subsubsection{Create Game Room}
+\begin{enumerate}[label=CG\arabic*., series=CreateGame]
+    \item The system shall allow the user to create a game room \newline \textbf{Rationale:} The user must be able to group together with other users, creating the game room will allow the users to organize the group.
+    \item The system shall allow the user to enter a name for the room \newline
+    \textbf{Rationale:} The users must be able to uniquely identify the game rooms to allow the other users to find the room they want to join in case they have a group they wanted to solve the puzzles with
+    \item The system shall allow the user to set the size of the room \newline
+    \textbf{Rationale:} The user should be allowed to limit the size of the room in case they wanted a smaller game rather than a bigger game.
+    \item The system shall allow the user to put a password on the room \newline
+    \textbf{Rationale:} The user should be able to allow or disallow any other user from joining except the ones they want in the case they are playing with friends.
+    \item The system shall redirect the user to a new screen when in a room \newline
+    \textbf{Rationale: } The users in the room should have a display of the game room and the amount of players in the room etc. 
 \end{enumerate}
+\subsubsection{Join Game Room}
+\begin{enumerate}[label=JG\arabic*., series=JoinGame]
+	\item The system shall allow the user to join an existing game room with available capacity \newline 
+    \textbf{Rationale:} The user should be able to join a room to group up with other users 
+    \item The system shall allow the user to enter a password for the room if another user set a password for the room \newline 
+    \textbf{Rationale:} In the case of a game room having a password, the user should be able to have a space to enter the password.
+    \item The system shall update the game room information to add another member, and decrease the available capacity\newline 
+    \textbf{Rationale:} When a user joins a game room, that information should be updated to let the users users see the status of the room to inform them on which game room to join.
+    \item The system shall redirect the user to a new screen upon successfully connecting to a room\newline 
+    \textbf{Rationale:} When a user joins the room, they should get redirected to a new page where they can see the information on the current game room and wait for the host to start the game.
+\end{enumerate}
+
+\subsubsection{Edit Room Settings}
+\begin{enumerate}[label=RS\arabic*., series=EditRoom]
+	\item The system shall allow the user that created the game room to edit the settings of the game room\newline 
+    \textbf{Rationale:} If a user input the incorrect settings when making a room, the user will have the ability to edit the settings 
+    \item The system shall populate all the changeable settings on the user's screen\newline 
+    \textbf{Rationale:} The user should be able to see all the settings that are able to be changed
+    \item The system shall allow the user to change the password of the room\newline 
+    \textbf{Rationale:} The user should be able to change the password of the room to ensure security
+    \item The system shall allow the user to change the capacity of the room\newline 
+    \textbf{Rationale:} If the user was planning on having a set number of users and decides they want more or less users, they are able to change the capacity
+    \item The system shall allow the user to remove other users from the game room\newline 
+    \textbf{Rationale:} If the host user decides another user should not be in the game room, they can remove them instead of making a new room
+    \item The system shall display the updated settings to the other users in the game room\newline 
+    \textbf{Rationale:} When a setting changes the other users in the game room should be able to see the changes in case they will affect them
+\end{enumerate}
+
+\subsubsection{Exit Room}
+\begin{enumerate}[label=ER\arabic*., series=ExitRoom]
+    \item The system shall allow the user leave the existing game room\newline 
+    \textbf{Rationale:} If the user does not wish to stay in a game room, the user should be able to leave
+    \item The system shall update the game room and display the one less user\newline 
+    \textbf{Rationale:} The system should update based on the current number of users
+    \item The server shall update all user's screen to show the new amount of users and the updated capacity\newline 
+    \textbf{Rationale:} The server should update all the other users on the current capacity and number of users in the game room to inform them of any possible changes
+\end{enumerate}
+
+
+\subsubsection{Start Game}
+\begin{enumerate}[label=ST\arabic*., series=StartGame]
+	\item The system shall allow the user to start the game\newline 
+    \textbf{Rationale:} The users should be able to start the game to play the puzzles
+    \item The system shall load all the assets used to play the game\newline 
+    \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay
+    \item The system shall inform the user to complete a calibration step\newline 
+    \textbf{Rationale:} AR games require some calibration step to scan the surfaces in the room so objects can be placed with gravity
+    \item The system shall determine an order of the puzzles, and which users can see which parts of the puzzles\newline 
+    \textbf{Rationale:} In games with more than one puzzle, there needs to be an order to solve the questions. The system will determine a logical order, and assign which users can see which parts of the puzzles.
+    \item The system shall display a progress bar based on the current progress on the screen\newline 
+    \textbf{Rationale:} The users should have some indicator how close they are to finishing the game
+    \item The system shall reveal the available puzzles to the users and commence the game\newline 
+    \textbf{Rationale:} The users should be able to view the puzzles they have access to
+\end{enumerate}
+\subsubsection{Save Game}
+\begin{enumerate}[label=SG\arabic*., series=StartGame]
+	\item The system shall allow the user to save the game\newline 
+    \textbf{Rationale:} Saving the game will allow users to keep the progress on the game they are playing
+    \item The system shall save all the relevant data needed for reloading the game \newline 
+    \textbf{Rationale:} If the user wants to load the game in the future they should have all the data required for continuing
+    \item The system will pause the game during the save for the user saving it, and take a screenshot of the data available upon hitting save \newline 
+    \textbf{Rationale:} All the game data will be saved based on a point in time, so pausing the user's game to save will allow the game state to remain intact
+    \item The system shall allow other users to act during the saving process \newline 
+    \textbf{Rationale:} One user saving the game should not stop the other users from continuing playing
+    \item After saving, the system shall resume play for the saving user \newline 
+    \textbf{Rationale:} The user might want to return to playing after a save
+    \item The user shall be allowed to save as many times as they desire, as frequently as they desire. \newline 
+    \textbf{Rationale:} There should be no limit on saves in case of any external factors that would effect the game
+    \item The system shall put the saved data on the user's device \newline 
+    \textbf{Rationale:} Storing the data on the user's device will reduce the stress on the database, the save files should be small in size and it likely won't inconvenience the user
+    \item The system shall encode the data \newline 
+    \textbf{Rationale:} Encoding the data can reduce the size and prevent users from manually changing the save data and potentially creating issues with the data. 
+\end{enumerate}
+
+\subsubsection{Load Game}
+\begin{enumerate}[label=LG\arabic*., series=LoadGame]
+	\item The system shall allow the user to load an existing save file \newline 
+    \textbf{Rationale:} Loading the save files is the purpose for having safe files in the first place
+    \item The system shall decode the save file and recall the progress on the saved room\newline 
+    \textbf{Rationale:} Decoding the save file makes the data readable by the system
+    \item The system shall display the saved data in the game room for all the users to see the progress\newline 
+    \textbf{Rationale:} This information will allow the users in the game room to be caught upto date with the progress on the save file
+\end{enumerate}
+
+\subsubsection{Delete Save}
+\begin{enumerate}[label=DS\arabic*., series=DeleteSave]
+	\item The system shall allow to delete the saved game data \newline 
+    \textbf{Rationale:} If the user wishes to never load the data, the user can remove it
+    \item The system shall remove the saved data from the user's device \newline 
+    \textbf{Rationale:} The user's device will no longer hold onto data it won't use
+    \item The system shall stop the user from loading the saved game in the future \newline 
+    \textbf{Rationale:} Since the saved game data is gone, it should no longer be able to be loaded
+\end{enumerate}
+
+\subsubsection{Puzzle Interaction}
+    \begin{enumerate}[label=PI\arabic*., series=PuzzleInteract]
+        \item The system shall allow users to select a puzzle to attempt from the main scene.\\
+        \textbf{Rationale}: The user is shown multiple puzzles on the main scene and must be able to select the one they would like to attempt.
+        \item The system shall present the user with an enlarged version of the puzzle once they've selected it.\\
+        \textbf{Rationale}: For full scale versions of all puzzles to visible on the main scene, too much of the scene would be obscured. This is resolved by forcing the user to select the puzzle to see the full size puzzle.
+        \item The system shall allow users to perform all necessary actions on the puzzle to complete the puzzle.\\
+        \textbf{Rationale}: The user must be able to complete the puzzles in order to progress in the game.
+        \item The system shall display the new puzzle state after a user performs an action on a puzzle\\
+        \textbf{Rationale}: The user must be able to see the results of their actions in order to decide how to proceed with the puzzle
+        \item The system shall update the puzzle state of group members cooperating on an updated puzzle\\
+        \textbf{Rationale}: When multiple users are cooperating on a puzzle they must be able to see updates caused by the actions of one another.
+        \item The system shall notify the user when they have completed a puzzle\\
+        \textbf{Rationale}: Users should know when they've completed a puzzle so they know they can move on. A notification at the end of a puzzle can also make completing it more satisfying for the user.
+        \item The system shall update the overall room progress when a puzzle is completed\\
+        \textbf{Rationale}: The overall room progress must be continuously updated as puzzles are completed so the game can detect when all the puzzles have been completed and the users have accomplished their goal.
+    \end{enumerate}
+\subsubsection{Hint Request}
+    \begin{enumerate}[label=HR\arabic*., series=HintRequest]
+        \item The system shall have at least one hint for each puzzle.\\
+        \textbf{Rationale}: If a user gets stuck on a puzzle they should have an alternative to giving up on the puzzle.
+        \item The system shall have a means of requesting a hint for the puzzle to be displayed.\\
+        \textbf{Rationale}: The player must be able to request the hint for the puzzle.
+        \item The system shall allow the user to close the hint display\\
+        \textbf{Rationale}: The user should not have to keep the hint on the screen, as it may obstruct other functions.
+    \end{enumerate}
+\subsubsection{Skip Puzzle}
+    \begin{enumerate}[label=SP\arabic*., series=SkipPuzzle]
+        \item The system shall allow the user to skip a puzzle and return to the main scene.\\
+        \textbf{Rationale}: The user should not have to complete a puzzle to attempt a different one. They should be able to leave a puzzle and return to it later.
+        \item The system shall save the users progress on a skipped puzzle.\\
+        \textbf{Rationale}: If a user skips a puzzle they should be able to return to it without having to start over.
+        \item The system shall notify any cooperators on the skipped puzzle that it has been skipped\\
+        \textbf{Rationale}: One users work on a puzzle will typically depend on another users work on the puzzle. They must be notified the puzzle has been skipped so they are not waiting on an action from the other user.
+    \end{enumerate}
+\subsubsection{Send Message}
+    \begin{enumerate}[label=SM\arabic*., series=Send Message]
+        \item The system shall allow the user to view all the users in the current game room.\\
+        \textbf{Rationale}: For the communication system the user must be able to see all the users in the game room to choose who to contact.
+        \item The system shall contain an interface that allows the user to compose a message\\
+        \textbf{Rationale}: The users must be able to create their own custom messages to allow for optimal communication in puzzles and to create the most realistic social experience.
+        \item The system shall allow the user to send a message to any other user in the game room\\
+        \textbf{Rationale}: The primary goal of the game is to allow users to have social interaction from a remote setting. All users in the game must be able to interact with one another to complete this goal.
+        \item The system shall allow the user to cancel a message before sending it.\\
+        \textbf{Rationale}: If a user decides they do not want to send a message they must be able to return to the game without having to send something.
+        \item The system shall notify the user once the message has been sent.\\
+        \textbf{Rationale}: It is important that the user receive feedback that the message has been sent so there is no uncertainty or confusion for the user.
+    \end{enumerate}
+\subsubsection{Read Message}
+    \begin{enumerate}[label=RM\arabic*., series=ReadMessage]
+        \item The system shall notify the user when a new message is received.\\
+        \textbf{Rationale}: Communication is core to the game. If a user doesn't know when they receive a message good communication will not be maintained.
+        \item The system shall allow the user to view messages.\\
+        \textbf{Rationale}: Users must be able to see what other users are trying to communicate to them for social purposes and to complete puzzles.
+        \item The system shall allow users to close a message.\\
+        \textbf{Rationale}: Users must be able to return to the mains scene after viewing a message to continue game play.
+    \end{enumerate}
+\subsection{Formal Specification}
+$(\exists a \in \text{users} \And \exists r \in \text{room} \And c=r.capacity | \sum a \in r \leq c ) \Rightarrow
+	true)$\\
+The users that exist in a room shall be within the capacity of the room
+
+
+\section{Non-functional Requirements}
+
+\subsection{Look and Feel Requirements}
+\begin{enumerate}[LF\arabic*.]
+	\item The system shall adjust and scale to fit the physical screen size
+	\item The system shall have fonts and colours that will allow users to easily read the text
+\end{enumerate}
+
+\subsection{Usability and Humanity Requirements}
+\begin{enumerate}[UH\arabic*.]
+	\item The system shall be accessible by any supported mobile device
+        \item The system shall notify the user if there is no network, or they get disconnected
+        \item The system shall be able to be navigated by any user
+\end{enumerate}
+\subsection{Performance Requirements}
+\begin{enumerate}[PR\arabic*.]
+	\item The system shall respond to user interaction within 100ms
+        \item The system shall be available for users at any time
+\end{enumerate}
+\subsection{Operational and Environmental Requirements}
+\begin{enumerate}[OE\arabic*.]
+    \item The system shall be available on all android and iOS platforms
+\end{enumerate}
+\subsection{Maintainability and Support Requirements}
+\begin{enumerate}[MS\arabic*.]
+    \item The system shall be well documented and kept up to date, and have updated design documents.
+    \item The source code shall be well commented for future developers, including author, edit dates documented.
+\end{enumerate}
+\subsection{Security Requirements}
+\begin{enumerate}[SR\arabic*.]
+    \item The system shall keep user data private
+    \item The users will only be allowed to see limited data. Unnecessary data will not be displayed to the user. 
+\end{enumerate}
+\subsection{Cultural Requirements}
+\begin{enumerate}[CR\arabic*]
+    \item The system shall not use any offensive images, text, or sound that could offend any religious or culture groups.
+    \item Any user that leaves an offensive message will have their account banned from the system
+    \item The system will use Canadian English
+\end{enumerate}
+\subsection{Legal Requirements}
+\begin{enumerate}[LR\arabic*]
+    \item The system shall not infringe on the rights of any person(s), and shall not use any assets that infringe on copyright claims. When using open source resources, the developers shall give appropriate credit.
+\end{enumerate}
+\subsection{Health and Safety Requirements}
+\begin{enumerate}[HS\arabic*]
+    \item The system shall give a warning to the user to be aware of their surroundings while using the system, and to not bump into any objects or obstacles in their path
+\end{enumerate}
+
+\section{Traceability Matrix}
+>>>>>>> 8c0ee09dbf167771409ef793ed6ecd7b625b452d
+\section{Project Issues}
+The following section will go over the current issues for the project. It will describe open issues, current off-the-shelf solutions, new problems, and tasks that need to be worked on.
+
+\subsection{Open Issues}
+There are no open issues for this project.
+
+\subsection{Off-the-Shelf Solutions}
+<<<<<<< HEAD
+The following section will go over existing off-the-shelf solutions and reusable components from these solutions.
+=======
+>>>>>>> 8c0ee09dbf167771409ef793ed6ecd7b625b452d
+
+\subsubsection{Ready-Made Products}
+There are several already made products that have similar aspects to the project however they are missing some key aspects. Examples include ARctic Escape and We Were Here. Similarly to this project, ARctic Escape is an AR game that encourages social interaction. Users must work together to solve puzzles and complete the game. The main difference between this project and ARctic Escape is that in ARctic Escape, users must be in the same area/room to play the game, however, Mac-AR is based around users being able to interact and play the game remotely. Continuing on, We Were Here is a two player game in which users must work together to solve difficult puzzles. The game can be played remotely between the two players and there is an in-game communication system that allows the users to talk to each other. We Were Here, however, does not have any AR component to it, which is one of the main aspects of this project.
+
+\subsubsection{Reusable Components}
+Plenty of libraries and other frameworks that already exist can be used in the project. AR Foundation is one such framework that can be used through Unity. It supports features such as device tracking and 2D image tracking which can be used for tracking the movement of users phones while playing the game. Additionally, there are the Zed-Rig plugins that Unity supports. These can help provide functionality for AR object placement as well as spatial mapping. Continuing on, ARctic Escape which was mentioned in the Ready-Made Products, was able to have spatial mapping through a Snapchat Lens. This allowed for users to record their surroundings and have the room they were in mapped and able to be used in the AR environment.
+
+\subsubsection{Products That Can Be Copied}
+Currently, the only known product that is similar to this project and can be copied without copyright issues is ARctic Escape, however, this game is implemented much differently than the plan for this project. ARctic Escape was implemented as a Snapchat Lens, however, the goal for this project is to create a standalone application through the Unity framework.
+
+\subsection{New Problems}
+The following section will describe potential problems of the application's creation. It will go over the effects on the current environment and installed system, as well as user problems and other follow-up problems.
+
+\subsubsection{Effects on the Current Environment}
+<<<<<<< HEAD
+The application will affect the way people who are isolated/remote are able to connect with others.
+=======
+(not sure)
+>>>>>>> 8c0ee09dbf167771409ef793ed6ecd7b625b452d
+
+\subsubsection{Effects on the Installed Systems}
+The application will not have any effect on the mobile devices it is installed on. It will act as a standalone application on the device and should not affect any other parts of the device.
+
+\subsubsection{Potential User Problems}
+A potential user problem may be the difficulty in solving in-game puzzles/tasks. If tasks are too difficult to complete, it may result in users wanting to quit the game, and therefore resulting in a decreased level of social interaction. Additionally, if the tasks are too easy to solve, this may also reduce the level of social interaction as users will not need to communicate as much. This may also result in users not enjoying the gameplay.
+
+\subsubsection{Limitations in the Anticipated Implementation Environment That May Inhibit the New Product}
+It is assumed that users will be able to use the application in an area with internet connection, however, it is not unusual that people may have Internet issues, which may cause them to lose connection to the Internet. This results in a problem as without Internet connection users will disconnect from the host server, causing them to not be able to play the game or interact with their partner.
+
+\subsubsection{Follow-Up Problems}
+Other problems include if libraries used in the creation of the application get updated while the project is ongoing. This may result in certain in-game functionality not behaving as intended. Another problem that may arise is if users are able to find ways to solve tasks by themselves, without the need for interaction with others. The main purpose of the application is to have social interaction between users, and this would result in users not needing to communicate with each other.
+
+\subsection{Tasks}
+The following section will go over the planning of the project.
+
+\subsubsection{Project Planning}
+The project schedule will follow the deadline for the deliverables outlined in the SFWRENG 4G06
+course outline.
+
+\begin{table}[H]
+\begin{tabular}{|l|l|l|}
+\hline
+Revision \#                 & Deliverable         & Due Date             \\ \hline
+\multirow{6}{*}{Revision 0} & Hazard Analysis     & October 20, 2023     \\ \cline{2-3} 
+                            & V\&V Plan           & November 3, 2023     \\ \cline{2-3} 
+                            & PoC Demo            & November 13-24, 2023 \\ \cline{2-3} 
+                            & Design Document     & January 17, 2024     \\ \cline{2-3} 
+                            & Revision 0 Demo     & February 5-16, 2024  \\ \cline{2-3} 
+                            & V\&V Demo           & March 6, 2024        \\ \hline
+\multirow{3}{*}{Revision 1} & Final Demo          & March 18-29, 2024    \\ \cline{2-3} 
+                            & EXPO Demo           & April, 2024          \\ \cline{2-3} 
+                            & Final Documentation & April 4, 2024        \\ \hline
+\end{tabular}
+\end{table}
+% \begin{table}[H]
+% 	\centering
+% 	\caption{Project Tasks}
+% 	\vspace{5pt}
+% 	\begin{tabular}{|p{0.2\textwidth}|p{0.4\textwidth}|p{0.3\textwidth}|}
+% 		\hline
+% 		\textbf{Phase} & \textbf{Task}                      & \textbf{Due Date}                 \\
+% 		\hline
+% 		Phase 1        & Hazard Analysis                    & October 19, 2022                  \\
+% 		\cline{2-3}    & Verification and Validation Plan   & November 2, 2022                  \\
+% 		\cline{2-3}    & Proof of Concept Demonstration     & November 14, 2022                 \\
+% 		\cline{2-3}    & Design Documentation               & January 18, 2023                  \\
+% 		\cline{2-3}    & Revision 0 Demonstration           & February 6 \textemdash{} 17, 2023 \\
+% 		\hline
+% 		Phase 2        & Verification and Validation Report & March 8, 2023                     \\
+% 		\cline{2-3}    & Final Demonstration                & March 20 \textemdash{} 31, 2023   \\
+% 		\cline{2-3}    & Final Documentation                & April 5, 2023                     \\
+% 		\hline
+% 	\end{tabular}
+
+% 	\label{project_tasks}
+% \end{table}
+
+\subsubsection{Planning of the Development Phases}
+The development of the project will be split into three phases:
+\begin{itemize}
+    \item Creation of a proof of concept and documentation
+    \item Initial development of the application with consideration to PoC
+    \item Refinement of application and documentation after user feedback
+\end{itemize}
+The creation of the proof of concept demonstration will aid in overcoming the main challenges of the system. It will demonstrate the ability for multiple users to interact in AR, and provide the documentation for the future application to be developed.
+
+The initial development of the application will take the design of the PoC and improve on the concepts. All the components of the application will be working in this version, and the stakeholders will be able to see the implementation and provide feedback. 
+<<<<<<< HEAD
+
+The refinement will take all the user feedback and improve on the initial design. There is no expectation for major features to be developed at this stage, just improvements on the existing system and the addition of potential stretch goals. 
+
+\subsection{Migration to the New Product}
+The following section will go everything required for migration to the application.
+
+\subsubsection{Requirements for Migration to the New Product}
+There are no requirements for migration for the application.
+
+\subsubsection{Data That Has to Be Modified or Translated for the New System}
+No data needs to be modified or translated for the application.
+
+\subsection{Risks}
+The main risks of the project are:
+\begin{itemize}
+    \item Users losing awareness of their surroundings and potentially getting injured
+    \item Server overload could cause lag in gameplay, resulting in an unpleasant user experience
+    \item Failure to meet deadlines will cause setbacks for the project. In the event of this, some requirements might not be met, and documents will have to be modified to reflect this. 
+\end{itemize}
+
+\subsection{Costs}
+There is no financial costs associated with the development of the application, and there is no cost for users downloading and using the application. Furthermore, the time to development time is estimated to be six months, with work being divided amongst four developers.
+
+\subsection{User Documentation and Training}
+The following section will go over any training and documentation that is needed for users, as well as waiting room ideas and ideas for implementation
+\subsubsection{User Documentation Requirements}
+The users will have a user help document available to them within the application in the form of a gameplay menu. It will contain information on how to use the application, as well as any instructions regarding interacting with puzzles/tasks.
+
+\subsubsection{Training Requirements}
+The users will have a "tutorial" when they first start the game that will teach them how to use the application. It will show the users how to use AR technology, and give them a simple puzzle to solve.
+
+\subsection{Waiting Room}
+There are currently no requirements or functionalities that are not being included in the initial release. Future ones may be added later on.
+
+\subsection{Ideas for Solutions}
+During the requirements and idea generation phases, additional ideas were generated on how to implement the solution.
+\begin{itemize}
+    \item Form
+    \begin{itemize}
+        \item Since the application will be developed using Unity framework, the idea of using Unity based libraries and plugins for AR framework such as AR Foundation and Zed-Rig.
+    \end{itemize}
+\end{itemize}
+=======
+
+The refinement will take all the user feedback and improve on the initial design. There is no expectation for major features to be developed at this stage, just improvements on the existing system and the addition of potential stretch goals. 
+
+\subsection{Migration to the New Product}
+The following section will go everything required for migration to the application.
+
+\subsubsection{Requirements for Migration to the New Product}
+There are no requirements for migration for the application.
+
+\subsubsection{Data That Has to Be Modified or Translated for the New System}
+No data needs to be modified or translated for the application.
+
+\subsection{Risks}
+The main risks of the project are:
+\begin{itemize}
+    \item Users losing awareness of their surroundings and potentially getting injured
+    \item Server overload could cause lag in gameplay, resulting in an unpleasant user experience
+    \item Failure to meet deadlines will cause setbacks for the project. In the event of this, some requirements might not be met, and documents will have to be modified to reflect this. 
+\end{itemize}
+
+\subsection{Costs}
+There is no financial costs associated with the development of the application, and there is no cost for users downloading and using the application. Furthermore, the time to development time is estimated to be six months, with work being divided amongst four developers.
+
+\subsection{User Documentation and Training}
+The following section will go over any training and documentation that is needed for users, as well as waiting room ideas and ideas for implementation
+\subsubsection{User Documentation Requirements}
+The users will have a user help document available to them within the application in the form of a gameplay menu. It will contain information on how to use the application, as well as any instructions regarding interacting with puzzles/tasks.
+
+\subsubsection{Training Requirements}
+The users will have a "tutorial" when they first start the game that will teach them how to use the application. It will show the users how to use AR technology, and give them a simple puzzle to solve.
+
+\subsection{Waiting Room}
+There are currently no requirements or functionalities that are not being included in the initial release. Future ones may be added later on.
+
+\subsection{Ideas for Solutions}
+During the requirements and idea generation phases, additional ideas were generated on how to implement the solution.
+\begin{itemize}
+    \item Form
+    \begin{itemize}
+        \item Since the application will be developed using Unity framework, the idea of using Unity based libraries and plugins for AR framework such as AR Foundation and Zed-Rig.
+    \end{itemize}
+\end{itemize}
+
+\newpage
+>>>>>>> 8c0ee09dbf167771409ef793ed6ecd7b625b452d
+
+% \noindent \plt{The following is not part of the template, just some things to consider
+% 	when filing in the template.}
+
+% \noindent \plt{Grammar, flow and \LaTeX advice:
+% 	\begin{itemize}
+% 		\item For Mac users \texttt{*.DS\_Store} should be in \texttt{.gitignore}
+% 		\item \LaTeX{} and formatting rules
+% 		      \begin{itemize}
+% 			      \item Variables are italic, everything else not, includes subscripts (link to document)
+% 			            \begin{itemize}
+% 				            \item \href{https://physics.nist.gov/cuu/pdf/typefaces.pdf}{Conventions}
+% 				            \item Watch out for implied multiplication
+% 			            \end{itemize}
+% 			      \item Use BibTeX
+% 			      \item Use cross-referencing
+% 		      \end{itemize}
+% 		\item Grammar and writing rules
+% 		      \begin{itemize}
+% 			      \item Acronyms expanded on first usage (not just in table of acronyms)
+% 			      \item ``In order to'' should be ``to''
+% 		      \end{itemize}
+% 	\end{itemize}}
+
+% \noindent \plt{Advice on using the template:
+% 	\begin{itemize}
+% 		\item Difference between physical and software constraints
+% 		\item Properties of a correct solution means \emph{additional} properties, not a restating of the
+% 		      requirements (may be ``not applicable'' for your problem). If you have a table of output
+% 		      constraints, then these are properties of a correct solution.
+% 		\item Assumptions have to be invoked somewhere
+% 		\item ``Referenced by'' implies that there is an explicit reference
+% 		\item Think of traceability matrix, list of assumption invocations and list of reference by fields as
+% 		      automatically generatable
+% 		\item If you say the format of the output (plot, table etc), then your requirement could be more abstract
+% 	\end{itemize}
+% }
+\section{Appendix}
+This section will be used to capture miscellaneous information that couldn't easily be fit into the rest of the document.  
+
+\subsection{Reflection}
+
+% \plt{The information in this section will be used to evaluate the team members on the graduate attribute
+% of Lifelong Learning. Please answer the following questions:}
+
+% \begin{enumerate}
+% 	\item \plt{What knowledge and skills will the team collectively need to acquire to successfully complete this
+% 	      capstone project? Examples of possible knowledge to acquire include domain specific knowledge from
+% 	      the domain of your application, or software engineering knowledge, mechatronics knowledge or
+% 	      computer science knowledge. Skills may be related to technology, or writing, or presentation, or
+% 	      team management, etc. You should look to identify at least one item for each team member.}
+
+% 	\item \plt{For each of the knowledge areas and skills identified in the previous question, what are at least
+% 	      two approaches to acquiring the knowledge or mastering the skill? Of the identified approaches,
+% 	      which will each team member pursue, and why did they make this choice?}
+
+% \end{enumerate}
+
+A new and unique set of skills will be required for the completion of this project. It is hoped that the entire team will have an exposure to everything listed below, but the team members in charge of fostering the skill and development of the sections that require it are also listed.
+
+\begin{itemize}
+    \item [RS1]\textbf{Mobile App Development}: Developing a mobile application presents unique challenges that aren't present when developing a standard computer application. Dealing with limited memory and processing power, navigating the licensing and system requirements for different devices, and fully utilizing the tools embedded in phones are all skills that will need to be developed over the course of the project. 
+    \begin{itemize}
+        \item \textbf{Main Team Members}: Sam, Matthew
+    \end{itemize}
+    \item [RS2]\textbf{Augmented Reality}: Integrating AR into an application requires an understanding of how to get a piece of software to integrate with the real world. Team members will need to learn how to make the tool process the readings from various video and location instruments, calculate how to place objects into a 3D space, and give the user the tools to manipulate the world through their augmented view. 
+    \begin{itemize}
+        \item \textbf{Main Team Members}: Kieran, Ethan, Sam, Matthew
+    \end{itemize}
+    \item [RS3]\textbf{Communication Services}: Allowing different devices, running on different types of software to communicate with each other over long distances is a vital part of capturing the collaborative aspect of the project. The team will need to investigate how to accomplish this networking. 
+    \begin{itemize}
+        \item \textbf{Main Team Members}: Kieran, Matthew
+    \end{itemize}
+    \item [RS4]\textbf{Location Services}: Tracking the location of the user and integrating nearby landmarks in real time adds additional depth to the tool. A vital skill will be getting the tool to interface with existing location services. 
+    \begin{itemize}
+        \item \textbf{Main Team Members}: Ethan, Sam
+    \end{itemize}
+    \item [RS5]\textbf{Game Design}: Getting a large and diverse user base is essential for the collaborative aspect of the tool. Researching what makes a game fun to play and striking a balance between the difficulty and complexity of the puzzles is what will drive this engagement. 
+    \begin{itemize}
+        \item \textbf{Main Team Members}: Kieran, Ethan
+    \end{itemize}
+\end{itemize}
+
+\subsection{Symbolic Parameters}
+
+There are currently no symbolic parameters that need to be recorded for this document. Any future symbols will be recorded in the following table: 
+
+\begin{table}[h]
+\begin{tabular}{|c|c|l|}
+\hline
+\textbf{Symbol} & \textbf{Value} & \textbf{Description} \\ \hline
+                &                &                      \\ \hline
+\end{tabular}
+\end{table}
+
+\newpage
+
+\bibliographystyle{plainnat}
+
+% TODO Switch back to path to refs folder
+<<<<<<< HEAD
+\bibliography {../../refs/References}
+=======
+\bibliography {References}
+>>>>>>> 8c0ee09dbf167771409ef793ed6ecd7b625b452d
 
 \end{document}
