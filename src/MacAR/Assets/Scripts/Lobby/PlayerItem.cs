@@ -10,17 +10,21 @@ public class PlayerItem : MonoBehaviour
     [SerializeField] private TMP_Text readyText;
     [SerializeField] private TMP_Text playerNameText;
     [SerializeField] private Image readyImage;
-
-    private PlayerList playerList;
-    private Player player;
-    public void Initialise(PlayerList playerList, Player player)
+    private PlayerData player;
+    public void Initialise(PlayerData player)
     {
-        this.playerList = playerList;
         this.player = player;
 
-        playerNameText.text = player.Id;
-        readyText.text = "In Lobby";
-        
+        playerNameText.text = player.ClientId.ToString();
+        if(player.ReadyState){
+            readyText.text="Ready";
+            readyImage.color=Color.green;
+        }
+        else{
+            readyText.text="Not Ready";
+            readyImage.color=Color.red;
+        }
     }
+
 
 }

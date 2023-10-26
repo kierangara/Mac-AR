@@ -147,14 +147,6 @@ public class HostManager : MonoBehaviour
         }
     }
 
-    public void SetCharacter(ulong clientId, int characterId)
-    {
-        if (ClientData.TryGetValue(clientId, out ClientData data))
-        {
-            data.characterId = characterId;
-        }
-    }
-
     public void StartGame()
     {
         gameHasStarted = true;
