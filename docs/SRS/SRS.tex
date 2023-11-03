@@ -161,6 +161,7 @@
             October 1, 2023 & Sam & Filled out sections 1, 6\\
             October 6, 2023 & All & Group worked on traceability matrix and finishing rest of SRS\\  
             October 27, 2023 & Ethan & Updated SRS based on feedback from Team 2 and Team 18\\
+            November 3, 2023 & Ethan & Updated SRS to include Hazard Analysis requirements\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -272,7 +273,7 @@ may not exceed \$750.
 The project currently has no enterprise constraints. 
 
 \subsection{Naming Conventions and Terminology}
-
+\label{Naming_Convention_Table}
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
   \toprule		
@@ -284,8 +285,11 @@ The project currently has no enterprise constraints.
   GD & General Definition\\
   GPS & Global Positioning System\\
   GS & Goal Statement\\
+  HA & Hazard Analysis\\
   IM & Instance Model\\
   LC & Likely Change\\
+  MG & Module Guide\\
+  MIS & Module Interface Specification\\
   PoC & Proof of Concept \\ 
   PS & Physical System Description\\
   R & Requirement\\
@@ -293,9 +297,11 @@ The project currently has no enterprise constraints.
   RS & Required Skill\\
   SRS & Software Requirements Specification\\
   \progname{} & Software Engineering\\
+  TA & Teaching Assistant\\
   TM & Theoretical Model\\
+  UI & User Interface\\
   VR & Virtual Reality\\
-  V\&V & Verification and Validation \\
+  VnV & Verification and Validation \\
   WCAG & Web Content Accessibility Guidelines \\
   XR & Extended Reality\\
   \bottomrule
@@ -480,6 +486,8 @@ external systems and services.
     \textbf{Rationale:} When a user joins a game room, that information should be updated to let the users users see the status of the room to inform them on which game room to join.
     \item The system shall redirect the user to a new screen upon successfully connecting to a room\newline 
     \textbf{Rationale:} When a user joins the room, they should get redirected to a new page where they can see the information on the current game room and wait for the host to start the game.
+    \item The system shall not allow a user to join a game room that is at max capacity\newline
+    \textbf{Rationale:} If the game room is full, the room should not be able to take in more users because it is at max capacity.
 \end{enumerate}
 
 \subsubsection{Edit Room Settings}
@@ -560,8 +568,8 @@ external systems and services.
     \textbf{Rationale:} If the user wishes to never load the data, the user can remove it
     \item The system shall remove the saved data from the user's device \newline 
     \textbf{Rationale:} The user's device will no longer hold onto data it won't use
-    \item The system shall stop the user from loading the saved game in the future \newline 
-    \textbf{Rationale:} Since the saved game data is gone, it should no longer be able to be loaded
+    %\item The system shall stop the user from loading the saved game in the future \newline 
+    %\textbf{Rationale:} Since the saved game data is gone, it should no longer be able to be loaded
 \end{enumerate}
 
 \subsubsection{Puzzle Interaction}
@@ -649,6 +657,16 @@ The following section will describe the non-functional requirements of the appli
     \textit{Fit criterion: The system should produce a notification when network connection is lost}
     \item The system shall be able to be navigated by any user\newline
     \textit{Fit criterion: The system shall abide by the WCAG 2.1 AA standard~\citep{WCAG2.1}  for accessibility}
+    \item The system shall prompt the user to re-enter an area with internet connection when it detects there is no network\newline
+    \textit{Fit criterion: The system should produce a notification when network connection is lost}
+    \item The system shall prompt the user if it detects that the existing network connection is weak\newline
+    \textit{Fit criterion: The system should produce a notification when network connection is weak}
+    \item The system shall prompt the user if their current environment is unsuitable to use the application\newline
+    \textit{Fit criterion: The system will produce a pop up notification during calibration setup to let user know of issues with their environment}
+    \item The system shall allow users to reconnect to their game session if they become disconnected\newline
+    \textit{Fit criterion: The system will prompt the user to reconnect to their game session through a reconnect button, which upon pressing will reconnect to the user's previous session}
+    \item The system shall alert users of potentially dangerous conditions \newline
+    \textit{Fit criterion: The system will notify the user about incoming dangerous weather when it is detected}
 \end{enumerate}
 \subsection{Performance Requirements}
 \begin{enumerate}[PR\arabic*.]
@@ -1019,7 +1037,7 @@ There are currently no symbolic parameters that need to be recorded for this doc
 \bibliographystyle{plainnat}
 
 % TODO Switch back to path to refs folder
-\bibliography {../../refs/References}
-%\bibliography {References}
+%\bibliography {../../refs/References}
+\bibliography {References}
 
 \end{document}

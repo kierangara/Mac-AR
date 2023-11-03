@@ -53,6 +53,7 @@
 2023/10/16 & All & Initial Revision\\
 2023/10/17 & Matthew & Filled in multiple failure modes in the FMEA table \\
 2023/10/17 & Ethan & Worked on all sections of document \\
+2023/11/03 & Ethan & Removed SAR and added HS requirement \\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -143,7 +144,7 @@ The backend server will be responsible for connecting users together in a room, 
          \textbf{Design Functions} & \textbf{Failure Modes} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{SR} & \textbf{Ref} & \textbf{Severity}\\
          \hline
           User Interface                   &           User Exits the game room             &           The user is too far from the puzzles to complete them           &                The user leaves the pre-defined area set by calibration            &           Inform the user before they leave the area to not leave, and if they leave, inform the user to return.                  &   UH6          &   H4-1           &   Low               \\
-            &    User is injured     &    The user has sustained an injury during the use of our application      &  The user was not aware of their surrounding during the use of the application and injured themselves from their surroundings \newline                 &    Prompt the user before the game starts to be aware of their surroundings, and play in an open area with no visible hazards    &  SAR1           &   H4-2     & High\\&&& User was using application in dangerous conditions \newline & Warn the user about potentially dangerous weather and to exit the area if outside&   UH8   &  &                \\
+            &    User is injured     &    The user has sustained an injury during the use of our application      &  The user was not aware of their surrounding during the use of the application and injured themselves from their surroundings \newline                 &    Prompt the user before the game starts to be aware of their surroundings, and play in an open area with no visible hazards    &  HS1           &   H4-2     & High\\&&& User was using application in dangerous conditions \newline & Warn the user about potentially dangerous weather and to exit the area if outside&   UH8   &  &                \\
                                    &    User calibration setup fails   &   User is unable to start puzzle due to calibration setup not being able to map real life room into AR environment & Room is too bright resulting in camera not being able to accurately map environment, User exits room during calibration setup, User attempts to play game in unsuitable environment (ex. moving car) & Prompt the user before the game starts to let them know the suitable environments for playing the game. &UH6&H4-3& Medium\\&&&& Prompt user through pop up warning during calibration to let user know that their current environment is not suitable and they must change their environment before they can resume play   & UH6   & H4-4 & Medium   \\
           \hline
     \end{tabular}
@@ -169,10 +170,10 @@ Specification Document and have been written in \textbf{bold}.
 
 \end{enumerate}
 
-\subsection{Safety Requirements}
-\begin{enumerate}[SAR\arabic*.]
-    \item \textbf{On startup, the system shall prompt the user to be aware of their surroundings}\newline
-    \textit{Fit criterion: The system during its loading sequence will have a warning message indicating that the user should be careful while using the app}
+\subsection{Health and Safety Requirements}
+\begin{enumerate}[HS\arabic*.]
+    \item The system shall give a warning to the user to be aware of their surroundings while using the system, and to not bump into any objects or obstacles in their path\newline
+    \textit{Fit criterion: The system shall produce a notification at the start of the game to let users know to be careful and aware of their surroundings}
 \end{enumerate}
 
 \subsection{Usability and Humanity Requirements}
