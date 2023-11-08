@@ -11,6 +11,7 @@ using TMPro;
 public class PlayerList : NetworkBehaviour
 {
     [SerializeField] Button readyButton;
+    [SerializeField] private Toggle VoiceToggle;
     [SerializeField] private Transform playerItemParent;
     [SerializeField] private PlayerItem playerItemPrefab;
     [SerializeField] private TMP_Text joinCodeText;
@@ -25,6 +26,13 @@ public class PlayerList : NetworkBehaviour
     private void Awake()
     {
         players = new NetworkList<PlayerData>();
+        VoiceToggle.onValueChanged.AddListener(delegate 
+            { VivoxToggle(VoiceToggle); });
+    }
+
+    void VivoxToggle(Toggle voiceToggle)
+    {
+        Debug.Log("Voice " + voiceToggle.isOn);
     }
 
      public override void OnNetworkSpawn()
@@ -48,6 +56,15 @@ public class PlayerList : NetworkBehaviour
         if(IsHost)
         {
             joinCodeText.text = HostManager.Instance.JoinCode;
+        }
+
+        //Added Code
+        var vTog = GameObject.Find("Toggle").GetComponent<Toggle>();
+        Debug.Log("Getting before if statement " + vTog.isOn);
+        if (vTog.isOn)
+        {
+            Debug.Log("Getting after if statement " + vTog.isOn);
+            GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().SignIntoVivox();
         }
     }
 
