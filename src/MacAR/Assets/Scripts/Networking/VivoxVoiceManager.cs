@@ -9,6 +9,7 @@ using UnityEngine;
 using VivoxUnity;
 using Unity.Services.Core;
 using Unity.Services.Vivox;
+using JetBrains.Annotations;
 #if AUTH_PACKAGE_PRESENT
 using Unity.Services.Authentication;
 #endif
@@ -117,6 +118,7 @@ public class VivoxVoiceManager : MonoBehaviour
     public VivoxUnity.IReadOnlyDictionary<ChannelId, IChannelSession> ActiveChannels => LoginSession?.ChannelSessions;
     public IAudioDevices AudioInputDevices => _client.AudioInputDevices;
     public IAudioDevices AudioOutputDevices => _client.AudioOutputDevices;
+    
 
 #endregion
 
@@ -263,6 +265,20 @@ public class VivoxVoiceManager : MonoBehaviour
             try
             {
                 channelSession.EndSendText(ar);
+            }
+            catch (Exception e)
+            {
+                VivoxLog($"SendTextMessage failed with exception {e.Message}");
+            }
+        });
+    }
+
+    public void Send_Group_Message(string message){
+        TransmittingSession.BeginSendText(message, ar =>
+        {
+            try
+            {
+                TransmittingSession.EndSendText(ar);
             }
             catch (Exception e)
             {

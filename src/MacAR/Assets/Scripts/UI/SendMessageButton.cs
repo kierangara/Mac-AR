@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using Unity.Services.Vivox;
 
 
 
@@ -11,6 +12,8 @@ public class SendMessageButton : MonoBehaviour
     public InputField chatBox;
     
     public VivoxTextManager textMan;
+
+    public VivoxVoiceManager voiceMan;
 /*     public int maxMessages = 25;
 
     public GameObject chatPanel, textObject;
@@ -22,6 +25,9 @@ public class SendMessageButton : MonoBehaviour
 	{
         Debug.Log("Button");
         if(chatBox.text != ""){
+            //VivoxService.Instance.Initialize();
+            //voiceMan.Login();
+            //voiceMan.SendTextMessage(chatBox.text, voiceMan.TransmittingSession.Channel);
             textMan.SendMessageToChat(chatBox.text);
             chatBox.text = "";
         }
