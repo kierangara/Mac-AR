@@ -891,6 +891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519ac4ecf8e3f6a46a5cc705c2b16a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chatBox: {fileID: 1314508715}
+  textMan: {fileID: 254687188}
 --- !u!4 &511779838
 Transform:
   m_ObjectHideFlags: 0
@@ -1439,7 +1441,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 214537936}
   m_HandleRect: {fileID: 214537935}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

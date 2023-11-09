@@ -20,13 +20,22 @@ public class VivoxTextManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+/*     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(chatBox.text != ""){
+            if(Input.GetKeyDown(KeyCode.Return)){
+                SendMessageToChat(chatBox.text);
+                chatBox.text="";
+            }
+        }
+        if(!chatBox.isFocused){
+            if(Input.GetKeyDown(KeyCode.Space)){
             Debug.Log("hello");
             SendMessageToChat("You pressed space!");
+            }
         }
-    }
+        
+    } */
 
     public void SendMessageToChat(string text){
         if(messageList.Count >= maxMessages){

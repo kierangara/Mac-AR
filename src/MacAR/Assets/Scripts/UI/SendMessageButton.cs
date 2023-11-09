@@ -4,8 +4,13 @@ using UnityEngine;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 
+
+
 public class SendMessageButton : MonoBehaviour
 {
+    public InputField chatBox;
+    
+    public VivoxTextManager textMan;
 /*     public int maxMessages = 25;
 
     public GameObject chatPanel, textObject;
@@ -16,9 +21,13 @@ public class SendMessageButton : MonoBehaviour
 	public void OnButtonPress()
 	{
         Debug.Log("Button");
+        if(chatBox.text != ""){
+            textMan.SendMessageToChat(chatBox.text);
+            chatBox.text = "";
+        }
 		//VivoxVoiceManager.SendTextMessage();
 	}
-/*        public void SendMessageToChat(string text){
+/*         public void SendMessageToChat(string text){
         if(messageList.Count >= maxMessages){
             Destroy(messageList[0].textObject.gameObject);
             messageList.Remove(messageList[0]);
@@ -33,7 +42,8 @@ public class SendMessageButton : MonoBehaviour
         newMessage.textObject.text = newMessage.text;
 
         messageList.Add(newMessage);
-    }
+    } */
+    /*
     [System.Serializable]
     public class Message{
         public string text;
