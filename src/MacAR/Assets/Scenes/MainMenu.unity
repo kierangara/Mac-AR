@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -938,13 +938,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1956823610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ccec6cc900e83f41aade135fe997e45, type: 3}
+  m_Script: {fileID: 11500000, guid: 73d993db98f820d4993580628eade1dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key: gjB3LDmdvCJwUsIeCBTZdqXZGUrcUa2s
-  _issuer: 35738-macar-43879-udash
-  _domain: mtu1xp.vivox.com
-  _server: https://unity.vivox.com/appconfig/35738-macar-43879-udash
+  _key: 
+  _issuer: 
+  _domain: 
+  _server: 
 --- !u!4 &1956823612
 Transform:
   m_ObjectHideFlags: 0
