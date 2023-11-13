@@ -10,10 +10,9 @@ public class TestPuzzleBehaviour : NetworkBehaviour
     [SerializeField] private Color lastKnownColor = Color.white;
 
     //Executed On Click
-    public void OnClick()
+    public void OnClick(Color newColor)
     {
         var cubeRenderer = cube.GetComponent<Renderer>();
-        Color newColor = Color.red;
         
         if(cubeRenderer.material.GetColor("_Color") == newColor)
         {
