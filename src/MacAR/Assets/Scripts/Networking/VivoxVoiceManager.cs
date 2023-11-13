@@ -186,7 +186,7 @@ public class VivoxVoiceManager : MonoBehaviour
         }
     }
 
-    public void Login(string displayName = null)
+    public void Login(string displayName = "Kieran")
     {
         m_Account = new Account(displayName);
 
@@ -274,11 +274,13 @@ public class VivoxVoiceManager : MonoBehaviour
     }
 
     public void Send_Group_Message(string message){
+        Debug.Log("Starting message send");
         TransmittingSession.BeginSendText(message, ar =>
         {
             try
             {
                 TransmittingSession.EndSendText(ar);
+                Debug.Log($"Sent{message}");
             }
             catch (Exception e)
             {
@@ -312,6 +314,7 @@ public class VivoxVoiceManager : MonoBehaviour
         IChannelTextMessage channelTextMessage = textMessage.Value;
         VivoxLog(channelTextMessage.Message);
         OnTextMessageLogReceivedEvent?.Invoke(channelTextMessage.Sender.DisplayName, channelTextMessage);
+        //Debug.Log(channelTextMessage.Sender.DisplayName + ": " + channelTextMessage);
     }
 
     private void OnLoginSessionPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)

@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using VivoxUnity;
+using Unity.Services.Core;
+using Unity.Services.Authentication;
+using System;
+
+
 
 public class VivoxTextManager : MonoBehaviour
 {
@@ -11,13 +17,34 @@ public class VivoxTextManager : MonoBehaviour
     public GameObject chatPanel, textObject;
     public InputField chatBox;
 
-    [SerializeField]
+    //[SerializeField] VivoxVoiceManager voiceMan;
+    //public VivoxVoiceManager voiceMan= Instantiate(VivoxVoiceManager.Instance);
+
+    [SerializeField] VivoxVoiceManager voiceMan;
     List<Message> messageList = new List<Message>();
     // Start is called before the first frame update
-    void Start()
+    private async void Start()
     {
+        try
+        {
+            Debug.Log("Logging in");
+            await UnityServices.InitializeAsync();
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            Debug.Log($"Player Id: {AuthenticationService.Instance.PlayerId}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+            return;
+        }
+        voiceMan= Instantiate(VivoxVoiceManager.Instance);
         Debug.Log("Hi");
+        
+        //voiceMan.Login("Kieran");
+        //voiceMan.JoinChannel("Text Channel", 0, VivoxVoiceManager.ChatCapability.TextOnly);    
     }
+
+    
 
     // Update is called once per frame
 /*     void Update()
@@ -38,6 +65,7 @@ public class VivoxTextManager : MonoBehaviour
     } */
 
     public void SendMessageToChat(string text){
+        voiceMan.Send_Group_Message(text);
         if(messageList.Count >= maxMessages){
             Destroy(messageList[0].textObject.gameObject);
             messageList.Remove(messageList[0]);

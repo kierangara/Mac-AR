@@ -9,11 +9,11 @@ using Unity.Services.Vivox;
 
 public class SendMessageButton : MonoBehaviour
 {
-    public InputField chatBox;
+    [SerializeField] InputField chatBox;
     
-    public VivoxTextManager textMan;
+    [SerializeField] VivoxTextManager textMan;
 
-    public VivoxVoiceManager voiceMan;
+    //[SerializeField] VivoxVoiceManager voiceMan;
 /*     public int maxMessages = 25;
 
     public GameObject chatPanel, textObject;
@@ -25,9 +25,9 @@ public class SendMessageButton : MonoBehaviour
 	{
         Debug.Log("Button");
         if(chatBox.text != ""){
+            Debug.Log("Text entered");
             //VivoxService.Instance.Initialize();
             //voiceMan.Login();
-            //voiceMan.SendTextMessage(chatBox.text, voiceMan.TransmittingSession.Channel);
             textMan.SendMessageToChat(chatBox.text);
             chatBox.text = "";
         }
