@@ -843,8 +843,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 8279171412096052343}
-  commonData: {fileID: 0}
-  lastKnownColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &8196755113101015426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1033,7 @@ GameObject:
   - component: {fileID: 1061995355504205010}
   - component: {fileID: 3918298636119702513}
   - component: {fileID: 1198861478603779875}
-  - component: {fileID: 432196337801956218}
+  - component: {fileID: 928801747131255451}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1135,7 +1133,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &432196337801956218
+--- !u!114 &928801747131255451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1148,7 +1146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PCRotationSpeed: 10
-  MobileRotationSpeed: 0.4
+  MobileRotationSpeed: 0.1
   cam: {fileID: 0}
 --- !u!1 &8559306478595190463
 GameObject:

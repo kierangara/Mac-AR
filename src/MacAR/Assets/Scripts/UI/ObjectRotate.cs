@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ObjectRotate : MonoBehaviour
 {
     public float PCRotationSpeed = 10f;
-    public float MobileRotationSpeed = 0.4f;
+    public float MobileRotationSpeed = 0.1f;
     public Camera cam;  
 
     void OnMouseDrag()
