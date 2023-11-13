@@ -12,16 +12,26 @@ public class TestPuzzleBehaviour : NetworkBehaviour
     //Executed On Click
     public void OnClick()
     {
-        Debug.Log("Click0");
-        UpdateColourServerRpc(Color.red);
-        Debug.Log("Click");
+        var cubeRenderer = cube.GetComponent<Renderer>();
+        Color newColor = Color.red;
+        
+        if(cubeRenderer.material.GetColor("_Color") == newColor)
+        {
+            newColor = Color.white;
+        }
+
+        // Update Local First
+        cubeRenderer.material.SetColor("_Color", newColor);
+
+        // Update Other Clients on Network
+        UpdateColourServerRpc(newColor);
     }
 
     //Send new colour to server
     [ServerRpc(RequireOwnership = false)]
     public void UpdateColourServerRpc(Color newColor)
     {
-        //May need to specifically loop through and send to only playerlist
+        // Original client gets updated twice, can optimize
         UpdateColourClientRpc(newColor);
     }
 
@@ -34,33 +44,4 @@ public class TestPuzzleBehaviour : NetworkBehaviour
         // Call SetColor using the shader property name "_Color" and setting the color to red
         cubeRenderer.material.SetColor("_Color", newColor);
     }
-
-    // public override void OnNetworkSpawn()
-    // {
-
-    // }
-
-    // public override void OnNetworkDespawn()
-    // {
-
-    // }
-
-    // void Update()
-    // {
-    //     // var cubeRenderer = cube.GetComponent<Renderer>();
-
-    //     // if(cubeRenderer.material.GetColor("_Color") != lastKnownColor)
-    //     // {
-    //     //     for (int i = 0; i < commonData.players.Count; i++)
-    //     //     {
-    //     //         commonData.players[i].CubeColor = cubeRenderer.material.GetColor("_Color");
-    //     //     }
-    //     // }
-
-    //     // if(commonData.players[0].CubeColor != lastKnownColor)
-    //     // {
-    //     //     cubeRenderer.material.SetColor("_Color", commonData.players[0].CubeColor);
-    //     //     lastKnownColor = commonData.players[0].CubeColor;
-    //     // }
-    // }
 }
