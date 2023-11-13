@@ -6,8 +6,6 @@ using Unity.Netcode;
 public class TestPuzzleBehaviour : NetworkBehaviour
 {
     [SerializeField] private GameObject cube;
-    [SerializeField] private CommonData commonData;
-    [SerializeField] private Color lastKnownColor = Color.white;
 
     //Executed On Click
     public void OnClick(Color newColor)
