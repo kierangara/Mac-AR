@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -343,6 +343,7 @@ MonoBehaviour:
   maxConnections: 6
   characterSelectSceneName: Lobby
   gameplaySceneName: BlankAR
+  commonData: {fileID: 11400000, guid: 215e41800690c1f4e8a2e89d423b2ef1, type: 2}
 --- !u!1 &1481294553
 GameObject:
   m_ObjectHideFlags: 0

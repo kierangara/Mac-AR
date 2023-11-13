@@ -16,7 +16,8 @@ public class HostManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int maxConnections = 4;
     [SerializeField] private string characterSelectSceneName = "CharacterSelect";
-    [SerializeField] private string gameplaySceneName = "Gameplay";
+    [SerializeField] private string gameplaySceneName = "Test Scene";
+    [SerializeField] private CommonData commonData;
 
     public static HostManager Instance { get; private set; }
 
@@ -147,10 +148,11 @@ public class HostManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame(NetworkList<PlayerData> players)
     {
         gameHasStarted = true;
 
+        commonData.players = players;
         NetworkManager.Singleton.SceneManager.LoadScene(gameplaySceneName, LoadSceneMode.Single);
     }
 }
