@@ -16,7 +16,7 @@ public class HostManager : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int maxConnections = 4;
     [SerializeField] private string characterSelectSceneName = "CharacterSelect";
-    [SerializeField] private string gameplaySceneName = "gameplay";
+    [SerializeField] private string gameplaySceneName = "Gameplay";
 
     public static HostManager Instance { get; private set; }
 
@@ -147,7 +147,7 @@ public class HostManager : MonoBehaviour
         }
     }
 
-    public void StartGame(NetworkList<PlayerData> players)
+    public void StartGame()
     {
         gameHasStarted = true;
 

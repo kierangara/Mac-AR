@@ -134,7 +134,7 @@ public class PlayerList : NetworkBehaviour
         {
             if (!player.ReadyState) { return; }
         }
-        HostManager.Instance.StartGame(players);
+        HostManager.Instance.StartGame();
     }
 private void HandlePlayersStateChanged(NetworkListEvent<PlayerData> changeEvent)
     {
