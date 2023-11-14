@@ -314,7 +314,7 @@ public class VivoxVoiceManager : MonoBehaviour
         IChannelTextMessage channelTextMessage = textMessage.Value;
         VivoxLog(channelTextMessage.Message);
         OnTextMessageLogReceivedEvent?.Invoke(channelTextMessage.Sender.DisplayName, channelTextMessage);
-        //Debug.Log(channelTextMessage.Sender.DisplayName + ": " + channelTextMessage);
+        Debug.Log(channelTextMessage.Sender.DisplayName + ": " + channelTextMessage);
     }
 
     private void OnLoginSessionPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)

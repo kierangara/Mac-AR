@@ -10,8 +10,9 @@ using Unity.Services.Vivox;
 public class SendMessageButton : MonoBehaviour
 {
     [SerializeField] InputField chatBox;
-    
-    [SerializeField] VivoxPlayer vivMan;
+
+    //[SerializeField] VivoxPlayer vivMan;
+    VivoxPlayer vivMan;
 
     //[SerializeField] VivoxVoiceManager voiceMan;
 /*     public int maxMessages = 25;
@@ -28,6 +29,7 @@ public class SendMessageButton : MonoBehaviour
             Debug.Log("Text entered");
             //VivoxService.Instance.Initialize();
             //voiceMan.Login();
+            vivMan =GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>();
             Debug.Log(VivoxPlayer.Instance.VoiceChannelName);
             Debug.Log(vivMan);
             if(VivoxPlayer.Instance != null){

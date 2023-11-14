@@ -13,7 +13,7 @@ using Unity.XR.CoreUtils;
 
 public class VivoxTextManager : MonoBehaviour
 {
-    public int maxMessages = 25;
+    /*public int maxMessages = 25;
 
     public Canvas textChat;
     private GameObject textObject;
