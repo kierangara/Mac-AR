@@ -7,6 +7,7 @@ using VivoxUnity;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using System;
+using Unity.XR.CoreUtils;
 
 
 
@@ -14,13 +15,16 @@ public class VivoxTextManager : MonoBehaviour
 {
     public int maxMessages = 25;
 
-    public GameObject chatPanel, textObject;
-    public InputField chatBox;
+    public Canvas textChat;
+    private GameObject textObject;
+    private GameObject chatPanel;
+    //public GameObject chatPanel, textObject;
+    //public InputField chatBox;
 
-    //[SerializeField] VivoxVoiceManager voiceMan;
+    //[SerializeField] VivoxPlayer voiceMan;
     //public VivoxVoiceManager voiceMan= Instantiate(VivoxVoiceManager.Instance);
 
-    [SerializeField] VivoxVoiceManager voiceMan;
+    //[SerializeField] VivoxVoiceManager voiceMan;
     List<Message> messageList = new List<Message>();
     // Start is called before the first frame update
     private async void Start()
@@ -28,8 +32,8 @@ public class VivoxTextManager : MonoBehaviour
         try
         {
             Debug.Log("Logging in");
-            await UnityServices.InitializeAsync();
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            //await UnityServices.InitializeAsync();
+            //await AuthenticationService.Instance.SignInAnonymouslyAsync();
             Debug.Log($"Player Id: {AuthenticationService.Instance.PlayerId}");
         }
         catch (Exception e)
@@ -37,7 +41,7 @@ public class VivoxTextManager : MonoBehaviour
             Debug.LogError(e);
             return;
         }
-        voiceMan= Instantiate(VivoxVoiceManager.Instance);
+        //voiceMan= Instantiate(VivoxVoiceManager.Instance);
         Debug.Log("Hi");
         
         //voiceMan.Login("Kieran");
@@ -65,8 +69,8 @@ public class VivoxTextManager : MonoBehaviour
     } */
 
     public void SendMessageToChat(string text){
-        voiceMan.Send_Group_Message(text);
-        if(messageList.Count >= maxMessages){
+        //voiceMan.Send_Group_Message(text);
+        /* if(messageList.Count >= maxMessages){
             Destroy(messageList[0].textObject.gameObject);
             messageList.Remove(messageList[0]);
         }
@@ -74,12 +78,22 @@ public class VivoxTextManager : MonoBehaviour
         Message newMessage = new Message();
         newMessage.text = text;
 
+        GameObject[] uiElem = textChat.GetComponents<GameObject>();
+        foreach (GameObject i in uiElem){
+            Debug.Log($"i={i.name}");
+            if(i.name == "Content"){
+                textObject = i;
+            }
+            else if(i.name == "Text"){
+                chatPanel = i;
+            }
+        }
         GameObject newText = Instantiate(textObject, chatPanel.transform);
 
         newMessage.textObject = newText.GetComponent<Text>();
         newMessage.textObject.text = newMessage.text;
 
-        messageList.Add(newMessage);
+        messageList.Add(newMessage); */
     }
     [System.Serializable]
     public class Message{

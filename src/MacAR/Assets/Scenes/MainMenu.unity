@@ -641,6 +641,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7584400067592960383, guid: f548fa2bab401774eac6ed03b223d6e6,
+        type: 3}
+      propertyPath: textChat
+      value: 
+      objectReference: {fileID: 1826627219363869540, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+    - target: {fileID: 7584400067592960383, guid: f548fa2bab401774eac6ed03b223d6e6,
+        type: 3}
+      propertyPath: voiceMan
+      value: 
+      objectReference: {fileID: 4812499240078128999, guid: f548fa2bab401774eac6ed03b223d6e6,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

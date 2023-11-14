@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Services.Vivox;
 using VivoxUnity;
 using UnityEngine.Android;
+using System;
 
 
 
@@ -18,12 +19,39 @@ public class VivoxPlayer : MonoBehaviour
     private int PermissionAskedCount;
     [SerializeField]
     public string VoiceChannelName = "TestChannel";
+
+    private VivoxTextManager textMan;
     
+    private static object m_Lock = new object();
+    private static VivoxPlayer m_Instance;
 
+    public static VivoxPlayer Instance
+    {
+        get
+        {
+            lock (m_Lock)
+            {
+                if (m_Instance == null)
+                {
+                    // Search for existing instance.
+                    m_Instance = (VivoxPlayer)FindObjectOfType(typeof(VivoxPlayer));
 
+                    // Create new instance if one doesn't already exist.
+                    if (m_Instance == null)
+                    {
+                        // Need to create a new GameObject to attach the singleton to.
+                        var singletonObject = new GameObject();
+                        m_Instance = singletonObject.AddComponent<VivoxPlayer>();
+                        singletonObject.name = typeof(VivoxPlayer).ToString() + " (Singleton)";
+                    }
+                }
+                // Make instance persistent even if its already in the scene
+                DontDestroyOnLoad(m_Instance.gameObject);
+                return m_Instance;
+            }
+        }
+    }
 
-   
-    
 
     void Start()
     {
@@ -32,6 +60,17 @@ public class VivoxPlayer : MonoBehaviour
         _vvm.OnUserLoggedOutEvent += OnUserLoggedOut;
         
     }
+
+    private void Awake()
+    {
+        
+        if (m_Instance != this && m_Instance != null)
+        {
+            Debug.LogWarning("Multiple VivoxPlayers detected in the scene. Only one VivoxPlayer can exist at a time. The duplicate VivoxPlayer will be destroyed.");
+            Destroy(this);
+            return;
+        }
+	}
 
     public void SignIntoVivox()
     {
@@ -118,13 +157,35 @@ public class VivoxPlayer : MonoBehaviour
             }
         }
     }
+
+    public void Send_Group_Message(string message){
+        Debug.Log("Starting message send");
+        Debug.Log(message);
+        //Debug.Log(_chan.ChannelState);
+        Debug.Log("Here");
+        Debug.Log(_vvm);
+        _vvm.SendTextMessage(message,_chan.Channel);
+        textMan.SendMessageToChat(message);
+/*         _chan.BeginSendText(message, ar =>
+        {
+            try
+            {
+                _chan.EndSendText(ar);
+                Debug.Log($"Sent{message}");
+            }
+            catch (Exception e)
+            {
+                Debug.Log($"SendTextMessage failed with exception {e.Message}");
+            }
+        }); */
+    }
     void OnUserLoggedIn ()
     {
         if (_vvm.LoginState == VivoxUnity.LoginState.LoggedIn)
         {
             Debug.Log("Successfully connected to Vivox");
             Debug.Log("Joining voice channel: " + VoiceChannelName);
-            _vvm.JoinChannel(VoiceChannelName, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.AudioOnly);
+            _vvm.JoinChannel(VoiceChannelName, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.TextAndAudio);
         }
         else
         {

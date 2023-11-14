@@ -11,7 +11,7 @@ public class SendMessageButton : MonoBehaviour
 {
     [SerializeField] InputField chatBox;
     
-    [SerializeField] VivoxTextManager textMan;
+    [SerializeField] VivoxPlayer vivMan;
 
     //[SerializeField] VivoxVoiceManager voiceMan;
 /*     public int maxMessages = 25;
@@ -28,7 +28,14 @@ public class SendMessageButton : MonoBehaviour
             Debug.Log("Text entered");
             //VivoxService.Instance.Initialize();
             //voiceMan.Login();
-            textMan.SendMessageToChat(chatBox.text);
+            Debug.Log(VivoxPlayer.Instance.VoiceChannelName);
+            Debug.Log(vivMan);
+            if(VivoxPlayer.Instance != null){
+                vivMan.Send_Group_Message(chatBox.text);
+            }
+            else{
+                Debug.LogWarning("VivoxPlayer instance is not available");
+            }
             chatBox.text = "";
         }
 		//VivoxVoiceManager.SendTextMessage();
