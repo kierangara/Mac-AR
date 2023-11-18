@@ -328,7 +328,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to set a password to their game room to prevent random users from joining.
 
-\textbf{How test will be performed:} Tester will manually input game room password and verify that the game room is present in the database.
+\textbf{How test will be performed:} Tester will manually input game room password on one instance, and in another instance check if the game room exists and that they need to correctly enter the password to enter the game room. 
 
 \textbf{Requirements being verified: }CG1 CG4
 
@@ -346,7 +346,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to create a game room without a password if they would like to (allows for random people to join).
 
-\textbf{How test will be performed:} Tester will manually input nothing for game room password and verify that the game room is present in the database.
+\textbf{How test will be performed:} Tester will manually input nothing for game room password on one instance, and in another instance attempt to join, and check if it requires them to enter a password.
 
 \textbf{Requirements being verified: }CG1 CG4
 
