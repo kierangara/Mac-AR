@@ -204,7 +204,7 @@ Similarly to the previous plans, the plan for verification and validation plan v
 
 To verify the implementation, we will run through only our automated test cases in 4.1, and 4.2 with every version of the code to verify that everything is working as intended. We only run automated to preserve resources and time. For major version updates, all the manual and automated test cases in 4.1 and 4.2 will be performed. This full test suite will cover all of our requirements and verify that our program is working as intended by documentation. 
 
-For every major version update, the developers and Dr. Irene Yuan will perform a code walk-through and go into detail with what the documentation intentions are versus what is written in the code, and what the stakeholders want. At the same time the other static tests mentioned in test-MS1 and test-LR1 will be performed.
+For every major version update, the developers and Dr. Irene Yuan will perform a code walk-through and go into detail with what the documentation intentions are versus what is written in the code, and what the stakeholders want. At the same time the other static tests mentioned in Test-MS1 and Test-LR1 will be performed.
 % \wss{You should at least point to the tests listed in this document and the unit
 %   testing plan.}
 
@@ -1466,7 +1466,7 @@ Tests for look and feel requirements.
 
 \item{\textbf{Name:} App is readable in poor conditions}
 
-\textbf{Id:} test-LF4
+\textbf{Id:} Test-LF4
 
 \textbf{Type:} Non-Functional, Manual
 					
@@ -1601,7 +1601,7 @@ Tests for usability and humanity requirements.
 
 \item{\textbf{Name:} Environment Prompt }
 
-\textbf{Id:} test-UH8
+\textbf{Id:} Test-UH8
 
 \textbf{Type:} Non-Functional, Dynamic, Manual
 					
@@ -1617,7 +1617,7 @@ Tests for usability and humanity requirements.
 
 \item{\textbf{Name: }Internet Disconnect }
 
-\textbf{Id:} test-UH9
+\textbf{Id:} Test-UH9
 
 \textbf{Type:} Functional, Dynamic, Manual
 					
@@ -1633,7 +1633,7 @@ Tests for usability and humanity requirements.
 
 \item{\textbf{Name: }Dangerous Conditions Warning }
 
-\textbf{Id:} test-UH10
+\textbf{Id:} Test-UH10
 
 \textbf{Type:} Functional, Dynamic, Manual
 					
@@ -1714,7 +1714,7 @@ N/A
 
 \item{\textbf{Name:} Documentation Verification}
 
-\textbf{Id:} test-MS1
+\textbf{Id:} Test-MS1
 
 \textbf{Type:} Non-Functional, Static, Document Review Walk through
 			
@@ -1724,7 +1724,7 @@ N/A
 
 \item{\textbf{Name:} Comments Code Analysis}
 
-\textbf{Id:} test-MS2
+\textbf{Id:} Test-MS2
 
 \textbf{Type:} Non-Functional, Static
 					
@@ -1740,7 +1740,7 @@ N/A
 
 \item{\textbf{Name:} External Database Query}
 
-\textbf{Id:} test-SR1
+\textbf{Id:} Test-SR1
 
 \textbf{Type:} Non-Functional, Dynamic, Manual
 					
@@ -1756,7 +1756,7 @@ N/A
 					
 \item{\textbf{Name:} Hidden Data}
 
-\textbf{Id:} test-SR2
+\textbf{Id:} Test-SR2
 
 \textbf{Type:} Non-functional, Manual, Dynamic
 					
@@ -1778,7 +1778,7 @@ N/A
 
 \item{\textbf{Name:} Offensive Assets}
 
-\textbf{Id:} test-CR1
+\textbf{Id:} Test-CU1
 
 \textbf{Type:} Non-Functional, Dynamic, Manual
 					
@@ -1794,7 +1794,7 @@ N/A
 					
 \item{\textbf{Name:} Canadian English}
 
-\textbf{Id:} test-CR2
+\textbf{Id:} Test-CU2
 
 \textbf{Type:} Non-Functional, Dynamic, Manual
 					
@@ -1810,7 +1810,7 @@ N/A
 
 \item{\textbf{Name:} Canadian English Walkthrough}
 
-\textbf{Id:} test-CR3
+\textbf{Id:} Test-CU3
 
 \textbf{Type:} Non-Functional, Static, Code Inspection
 									
@@ -1826,7 +1826,7 @@ N/A
 
 \item{\textbf{Name:} Asset Code Walk-through}
 
-\textbf{Id:} test-LR1
+\textbf{Id:} Test-LR1
 
 \textbf{Type:} Non-Functional, Static, Code Walk through
 					
@@ -1974,32 +1974,32 @@ Tests for health and safety requirements.
                                      \textbf{UH7} &
                                      \textbf{UH8} &
                                      \textbf{PR1} & \textbf{PR2} & \textbf{OE1} & \textbf{MS1} & \textbf{MS2} & \textbf{SR1} & \textbf{SR2} & \textbf{CR1} & \textbf{CR2} &\textbf{LR1} & \textbf{HS1} \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LF1}}   &    X         &             &             &             &             &             &             &             &              &              &              &             &             &             &             &    &&&&&         \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LF2}}   &   X          &  X           &    X         &              &             &             &             &             &              &              &             &             &  X           &             &             &    & &&&&        \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LF3}}   &    X         & X            &    X         &              &             &             &             &             &              &              &              &             & X            &             &             &        &&&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LF4}}   &             &   X          &             &              &    X          &             &             &             &              &              &              &             &             &             &             &       & &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH1}}   &             &             &             &    X         &              &             &             &             &              &              &             &             &             &             &             &         & &&&&    \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH2}}   &             &             &            &      X       &              &      X       &             &             &              &              &              &              &             &             &             &          &&&&&    \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH3}}   &             &             &             &     X        &              &     X        &             &             &              &              &              &              &             &             &             &       &  &&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH4}}   &              &              &              &              &    X          &              &             &             &             &             &             &             &              &              &            &     &  &&&&       \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH5}}   &             &             &             &             &      X       &             &             &             &              &              &              &              &             &             &             &      &   &&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH6}}   &             &             &              &             &      X       &             &             &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH7}}   &             &             &              &             &             &           &     X        &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH8}}   &             &             &              &             &             &           &             & X            &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH9}}   &             &             &              &             &             &           &             &             &      X        &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH10}}   &             &             &              &             &             &           &             &             &              &        X      &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-PR1}}   &             &             &              &             &             &             &             &             &              &              &      X        &              &             &             &             &       & &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-PR2}}   &              &              &              &              &              &             &             &             &             &             &             &    X         &              &              &            &      &   &&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-PR3}}   &             &             &              &             &             &             &            &             &              &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-MS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &      X       &      X      &         &&&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-MS2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &       X      &       X      &         &&&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-SR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &    X     &&&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-SR2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &X&&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-CR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-CR2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&X&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-CR3}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&X&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&X&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-HS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&& X    \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LF1}}   &    X         &             &             &             &             &             &             &             &              &              &              &             &             &             &             &    &&&&&         \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LF2}}   &   X          &  X           &    X         &              &             &             &             &             &              &              &             &             &  X           &             &             &    & &&&&        \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LF3}}   &    X         & X            &    X         &              &             &             &             &             &              &              &              &             & X            &             &             &        &&&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LF4}}   &             &   X          &             &              &    X          &             &             &             &              &              &              &             &             &             &             &       & &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH1}}   &             &             &             &    X         &              &             &             &             &              &              &             &             &             &             &             &         & &&&&    \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH2}}   &             &             &            &      X       &              &      X       &             &             &              &              &              &              &             &             &             &          &&&&&    \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH3}}   &             &             &             &     X        &              &     X        &             &             &              &              &              &              &             &             &             &       &  &&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH4}}   &              &              &              &              &    X          &              &             &             &             &             &             &             &              &              &            &     &  &&&&       \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH5}}   &             &             &             &             &      X       &             &             &             &              &              &              &              &             &             &             &      &   &&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH6}}   &             &             &              &             &      X       &             &             &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH7}}   &             &             &              &             &             &           &     X        &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH8}}   &             &             &              &             &             &           &             & X            &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH9}}   &             &             &              &             &             &           &             &             &      X        &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH10}}   &             &             &              &             &             &           &             &             &              &        X      &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PR1}}   &             &             &              &             &             &             &             &             &              &              &      X        &              &             &             &             &       & &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PR2}}   &              &              &              &              &              &             &             &             &             &             &             &    X         &              &              &            &      &   &&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PR3}}   &             &             &              &             &             &             &            &             &              &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &      X       &      X      &         &&&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &       X      &       X      &         &&&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-SR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &    X     &&&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-SR2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &X&&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CU1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CU2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&X&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CU3}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&X&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&X&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-HS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&& X    \\ \hline
 
 
 \end{tabular}
@@ -2052,7 +2052,7 @@ TBD
 
 % \begin{enumerate}
 
-% \item{test-id1\\}
+% \item{Test-id1\\}
 
 % Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
 %   be automatic}
@@ -2067,7 +2067,7 @@ TBD
 
 % How test will be performed: 
 					
-% \item{test-id2\\}
+% \item{Test-id2\\}
 
 % Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
 %   be automatic}
@@ -2103,7 +2103,7 @@ TBD
 		
 % \begin{enumerate}
 
-% \item{test-id1\\}
+% \item{Test-id1\\}
 
 % Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
 %   be automatic}
@@ -2116,7 +2116,7 @@ TBD
 					
 % How test will be performed: 
 					
-% \item{test-id2\\}
+% \item{Test-id2\\}
 
 % Type: Functional, Dynamic, Manual, Static etc.
 					
