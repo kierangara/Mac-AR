@@ -204,7 +204,7 @@ Similarly to the previous plans, the plan for verification and validation plan v
 
 To verify the implementation, we will run through only our automated test cases in 4.1, and 4.2 with every version of the code to verify that everything is working as intended. We only run automated to preserve resources and time. For major version updates, all the manual and automated test cases in 4.1 and 4.2 will be performed. This full test suite will cover all of our requirements and verify that our program is working as intended by documentation. 
 
-For every major version update, the developers and Dr. Irene Yuan will perform a code walk-through and go into detail with what the documentation intentions are versus what is written in the code, and what the stakeholders want. At the same time the other static tests mentioned in test-MS1 and test-LR1 will be performed.
+For every major version update, the developers and Dr. Irene Yuan will perform a code walk-through and go into detail with what the documentation intentions are versus what is written in the code, and what the stakeholders want. At the same time the other static tests mentioned in Test-MS1 and Test-LR1 will be performed.
 % \wss{You should at least point to the tests listed in this document and the unit
 %   testing plan.}
 
@@ -244,9 +244,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Create game room menu present} 
 
-\textbf{Id:} Test-CR1\\
+\textbf{Id:} Test-CR1
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has application open.
 
@@ -262,9 +262,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Successful creation of game room with name}
 
-\textbf{Id:} Test-CR2\\
+\textbf{Id:} Test-CR2
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} Create game menu open.
 
@@ -280,13 +280,13 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Unsuccessful creation of game room without name}
 
-\textbf{Id:} Test-CR3\\
+\textbf{Id:} Test-CR3
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
-\textbf{Initial State:} Create game menu open.
+\textbf{Initial State:} Game room creation screen open, nothing input for the game room name.
 
-\textbf{Input:} Nothing inputted for game room name.
+\textbf{Input:} User tries to create a new game room.
 
 \textbf{Output:} Game room is not created and error message tells user that game room name is not valid.
 
@@ -298,9 +298,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Creation of game room with certain capacity}
 
-\textbf{Id:} Test-CR4\\
+\textbf{Id:} Test-CR4
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Create game menu open.
 
@@ -308,17 +308,17 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Output:} Game room with specified capacity is created in database.
 
-\textbf{Test Case Derivation:} System should allow users to create a game room with a certain capacity to allow .
+\textbf{Test Case Derivation:} System should allow users to create a game room with a certain capacity to allow users to set the amount of users in their game room.
 
-\textbf{How test will be performed:} Tester will manually select a capacity for the game room and verify that the game room is present in the database.
+\textbf{How test will be performed:} Tester will manually select a capacity for the game room in one instance, and in another instance check to see if the game room exists and the capacity matches the set capacity.
 
 \textbf{Requirements being verified: }CG1 CG3
 
 \item{\textbf{Name:} Creation of game room with password}
 
-\textbf{Id:} Test-CR5\\
+\textbf{Id:} Test-CR5
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Create game menu open
 
@@ -328,15 +328,15 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to set a password to their game room to prevent random users from joining.
 
-\textbf{How test will be performed:} Tester will manually input game room password and verify that the game room is present in the database.
+\textbf{How test will be performed:} Tester will manually input game room password on one instance, and in another instance check if the game room exists and that they need to correctly enter the password to enter the game room. 
 
 \textbf{Requirements being verified: }CG1 CG4
 
 \item{\textbf{Name:} Creation of game room with empty password}
 
-\textbf{Id:} Test-CR6\\
+\textbf{Id:} Test-CR6
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Create game menu open
 
@@ -346,15 +346,15 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to create a game room without a password if they would like to (allows for random people to join).
 
-\textbf{How test will be performed:} Tester will manually input nothing for game room password and verify that the game room is present in the database.
+\textbf{How test will be performed:} Tester will manually input nothing for game room password on one instance, and in another instance attempt to join, and check if it requires them to enter a password.
 
 \textbf{Requirements being verified: }CG1 CG4
 
 \item{\textbf{Name:} Game room menu present after creating game room}
 
-\textbf{Id:} Test-CR7\\
+\textbf{Id:} Test-CR7
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 					
 \textbf{Initial State:} Create game menu open and all valid settings set.
 					
@@ -370,9 +370,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Join game room menu present }
 
-\textbf{Id:} Test-JR1\\
+\textbf{Id:} Test-JR1
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has application open.
 
@@ -388,9 +388,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Join game room requiring no password}
 
-\textbf{Id:} Test-JR2\\
+\textbf{Id:} Test-JR2
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Join game menu open.
 
@@ -406,9 +406,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Join game room requiring password}
 
-\textbf{Id:} Test-JR3\\
+\textbf{Id:} Test-JR3
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Join game menu open.
 
@@ -424,9 +424,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Game room info updated when user joins}
 
-\textbf{Id:} Test-JR4\\
+\textbf{Id:} Test-JR4
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} Join game menu open. 
 
@@ -442,9 +442,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Game room menu present after joining game}
 
-\textbf{Id:} Test-JR5\\
+\textbf{Id:} Test-JR5
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Join game menu open.
 
@@ -460,9 +460,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Edit game room settings menu present}
 
-\textbf{Id:} Test-RS1\\
+\textbf{Id:} Test-RS1
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Game room menu is present.
 
@@ -478,9 +478,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Edit game room password}
 
-\textbf{Id:} Test-RS2\\
+\textbf{Id:} Test-RS2
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Edit game room settings menu present.
 
@@ -496,9 +496,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Edit game room capacity}
 
-\textbf{Id:} Test-RS3\\
+\textbf{Id:} Test-RS3
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Edit game room settings menu present.
 
@@ -514,9 +514,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Remove user from game room}
 
-\textbf{Id:} Test-RS4\\
+\textbf{Id:} Test-RS4
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Host user (creator of game room) is in game room menu with one or more other users, and edit game room settings menu is present.
 
@@ -532,9 +532,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Display updated game settings}
 
-\textbf{Id:} Test-RS5\\
+\textbf{Id:} Test-RS5
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Edit game room settings menu present.
 
@@ -550,9 +550,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Able to exit game room}
 
-\textbf{Id:} Test-ER1\\
+\textbf{Id:} Test-ER1
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User creates/joins a game room.
 
@@ -568,9 +568,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Game room menu updated when user exits room}
 
-\textbf{Id:} Test-ER2\\
+\textbf{Id:} Test-ER2
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Multiple users present in game room.
 
@@ -586,9 +586,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Current number of users in game room decreases when user exits}
 
-\textbf{Id:} Test-ER3\\
+\textbf{Id:} Test-ER3
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} Multiple users present in game room.
 
@@ -611,9 +611,9 @@ The following section goes over tests related to starting a game, loading game a
 
 \item{\textbf{Name:} Able to start game}
 
-\textbf{Id:} Test-ST1\\
+\textbf{Id:} Test-ST1
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Game room menu open.
 
@@ -629,9 +629,9 @@ The following section goes over tests related to starting a game, loading game a
 
 \item{\textbf{Name:} Load all assets when starting game}
 
-\textbf{Id:} Test-ST2\\
+\textbf{Id:} Test-ST2
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} Game room menu open.
 
@@ -647,9 +647,9 @@ The following section goes over tests related to starting a game, loading game a
 
 \item{\textbf{Name:} Inform user to complete calibration setup when starting game}
 
-\textbf{Id:} Test-ST3\\
+\textbf{Id:} Test-ST3
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Game room menu open.
 
@@ -665,9 +665,9 @@ The following section goes over tests related to starting a game, loading game a
 
 \item{\textbf{Name:} Order of puzzles determined upon start}
 
-\textbf{Id:} Test-ST4\\
+\textbf{Id:} Test-ST4
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} Game room menu open.
 
@@ -683,9 +683,9 @@ The following section goes over tests related to starting a game, loading game a
 
 \item{\textbf{Name:} Display progress bar based on current progress}
 
-\textbf{Id:} Test-ST5\\
+\textbf{Id:} Test-ST5
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Game room menu open.
 
@@ -701,9 +701,9 @@ The following section goes over tests related to starting a game, loading game a
 
 \item{\textbf{Name:} Display puzzle to user}
 
-\textbf{Id:} Test-ST6\\
+\textbf{Id:} Test-ST6
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Game room menu open.
 
@@ -726,9 +726,9 @@ The following section will go over tests related to saving game progress and loa
 
 \item{\textbf{Name:} Able to save game}
 
-\textbf{Id:} Test-SG1\\
+\textbf{Id:} Test-SG1
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} User has started game.
 
@@ -744,9 +744,9 @@ The following section will go over tests related to saving game progress and loa
 
 \item{\textbf{Name:} Continue actions during save}
 
-\textbf{Id:} Test-SG2\\
+\textbf{Id:} Test-SG2
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has started game.
 
@@ -762,9 +762,9 @@ The following section will go over tests related to saving game progress and loa
 
 \item{\textbf{Name:} Return to play after saving back-end}
 
-\textbf{Id:} Test-SG3\\
+\textbf{Id:} Test-SG3
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} User has started game.
 
@@ -782,9 +782,9 @@ Create an automated test that triggers the save game functionality. Once the dat
 
 \item{\textbf{Name:} Return to play after saving front-end}
 
-\textbf{Id:} Test-SG4\\
+\textbf{Id:} Test-SG4
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has started game.
 
@@ -802,9 +802,9 @@ Tester will trigger the save game action. They will turn 180 degrees to point th
 
 \item{\textbf{Name:} Repeated saves}
 
-\textbf{Id:} Test-SG5\\
+\textbf{Id:} Test-SG5
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} User has started game.
 
@@ -822,9 +822,9 @@ Create an automated test that triggers the save game action 10 times in a loop. 
 
 \item{\textbf{Name:} Data saved to device}
 
-\textbf{Id:} Test-SG6\\
+\textbf{Id:} Test-SG6
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has started game.
 
@@ -842,9 +842,9 @@ Tester will press the save game button. They will then exit the app, locate the 
 
 \item{\textbf{Name:} Saved data encoded}
 
-\textbf{Id:} Test-SG7\\
+\textbf{Id:} Test-SG7
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} User has started game and triggered save game action at least once.
 
@@ -862,9 +862,9 @@ Create an automated test that loads the saved game data from the device without 
 
 \item{\textbf{Name:} Saved data decoded}
 
-\textbf{Id:} Test-SG8\\
+\textbf{Id:} Test-SG8
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} User has started game and triggered save game action at least once.
 
@@ -882,9 +882,9 @@ Create an automated test that loads the saved game data from the device with dec
 
 \item{\textbf{Name:} Load saved game}
 
-\textbf{Id:} Test-SG9\\
+\textbf{Id:} Test-SG9
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has started game and pressed the save game button at least once. They have then closed the game and are in the create/load game scene. 
 
@@ -902,9 +902,9 @@ Tester will save an existing game and record all relevant information on the gam
 
 \item{\textbf{Name:} Load saved game}
 
-\textbf{Id:} Test-SG10\\
+\textbf{Id:} Test-SG10
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has started game and pressed the save game button at least once. They have then closed the game and are in the create/load game scene. 
 
@@ -922,9 +922,9 @@ Tester will save an existing game and record all relevant information on the gam
 
 \item{\textbf{Name:} Delete saved game UI}
 
-\textbf{Id:} Test-SG11\\
+\textbf{Id:} Test-SG11
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has started game and pressed the save game button at least once. They have then closed the game and are in the create/load game scene. 
 
@@ -942,9 +942,9 @@ Tester will delete a saved game from the list of loadable games. The test is suc
 
 \item{\textbf{Name:} Deleted game not available in new session}
 
-\textbf{Id:} Test-SG12\\
+\textbf{Id:} Test-SG12]
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has started game and pressed the save game button at least once. They have then closed the game and are in the create/load game scene. 
 
@@ -962,9 +962,9 @@ Tester will delete a saved game from the list of loadable games. They will then 
 
 \item{\textbf{Name:} Deleted game removed from device}
 
-\textbf{Id:} Test-SG13\\
+\textbf{Id:} Test-SG13
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} There is an existing game save file.
 
@@ -990,9 +990,9 @@ The following section will go over tests related to interacting with puzzles.
 
 \item{\textbf{Name:} Puzzle selection}
 
-\textbf{Id:} Test-PI1\\
+\textbf{Id:} Test-PI1
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User is in a game room with unfinished puzzles.
 
@@ -1010,9 +1010,9 @@ Tester shall select a puzzle. The test is successful if the puzzle selected grow
 
 \item{\textbf{Name:} Puzzle actions UI}
 
-\textbf{Id:} Test-PI2\\
+\textbf{Id:} Test-PI2
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has selected a puzzle.
 
@@ -1030,9 +1030,9 @@ Tester shall interact with one of the interactable components of the puzzle. The
 
 \item{\textbf{Name:} Puzzle actions back-end}
 
-\textbf{Id:} Test-PI3\\
+\textbf{Id:} Test-PI3
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} Puzzle has been selected.
 
@@ -1050,9 +1050,9 @@ Create an automated test that shall simulate an interaction with one of the inte
 
 \item{\textbf{Name:} Puzzle actions showing for other users UI}
 
-\textbf{Id:} Test-PI4\\
+\textbf{Id:} Test-PI4
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has selected a puzzle.
 
@@ -1070,9 +1070,9 @@ Tester shall interact with one of the interactable components of the puzzle. The
 
 \item{\textbf{Name:} Puzzle completion UI}
 
-\textbf{Id:} Test-PI5\\
+\textbf{Id:} Test-PI5
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} At least two users are have selected the same puzzle.
 
@@ -1090,9 +1090,9 @@ Testers shall perform the entire required sequence of tasks to complete the puzz
 
 \item{\textbf{Name:} Room progress update upon puzzle completion}
 
-\textbf{Id:} Test-PI6\\
+\textbf{Id:} Test-PI6
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} At least two users have selected the same puzzle and one user has not selected the puzzle.
 
@@ -1110,9 +1110,9 @@ Testers shall perform the entire required sequence of tasks to complete the puzz
 
 \item{\textbf{Name:} Hint for each puzzle}
 
-\textbf{Id:} Test-PI7\\
+\textbf{Id:} Test-PI7
 
-\textbf{Control}: Automated
+\textbf{Type}: Automated
 
 \textbf{Initial State:} A puzzle has been selected.
 
@@ -1130,9 +1130,9 @@ Create an automated test that triggers the request hint functionality. The test 
 
 \item{\textbf{Name:} Puzzle hint request}
 
-\textbf{Id:} Test-PI8\\
+\textbf{Id:} Test-PI8
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} A puzzle has been selected.
 
@@ -1150,9 +1150,9 @@ Tester presses the hint button. Test is successful if a hint for the current puz
 
 \item{\textbf{Name:} Close hint display}
 
-\textbf{Id:} Test-PI9\\
+\textbf{Id:} Test-PI9
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} A puzzle hint is being displayed.
 
@@ -1170,9 +1170,9 @@ Tester presses the close button on the hint display. Test is successful if the h
 
 \item{\textbf{Name:} Skip puzzle}
 
-\textbf{Id:} Test-PI10\\
+\textbf{Id:} Test-PI10
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has selected a puzzle.
 
@@ -1190,9 +1190,9 @@ Tester presses the skip button. Test is successful if the puzzle returns to its 
 
 \item{\textbf{Name:} Save skipped puzzle progress}
 
-\textbf{Id:} Test-PI11\\
+\textbf{Id:} Test-PI11
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has skipped a puzzle.
 
@@ -1210,9 +1210,9 @@ Tester selects the puzzle they have skipped. The test is successful if the state
 
 \item{\textbf{Name:} Skipped puzzle progress maintained for other users}
 
-\textbf{Id:} Test-PI12\\
+\textbf{Id:} Test-PI12
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has skipped a puzzle.
 
@@ -1230,9 +1230,9 @@ Tester selects a puzzle that was started and then skipped by another tester. The
 
 \item{\textbf{Name:} Notify puzzle collaborators of puzzle skip}
 
-\textbf{Id:} Test-PI13\\
+\textbf{Id:} Test-PI13
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Multiple users have the same puzzle selected at the same time.
 
@@ -1257,9 +1257,9 @@ The following section will go over tests related to sending and receiving messag
 
 \item{\textbf{Name:} View users available for messaging}
 
-\textbf{Id:} Test-MS1\\
+\textbf{Id:} Test-MS1
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User is in a game room with at least one other user.
 
@@ -1277,9 +1277,9 @@ Three testers are in a game room. The first tester clicks the messaging button. 
 
 \item{\textbf{Name:} Select user for messaging}
 
-\textbf{Id:} Test-MS2\\
+\textbf{Id:} Test-MS2
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} List of all other users in the game room is displayed within messaging interface.
 
@@ -1297,9 +1297,9 @@ Tester selects another tester from the list of users in the game room. The test 
 
 \item{\textbf{Name:} Cancel message}
 
-\textbf{Id:} Test-MS3\\
+\textbf{Id:} Test-MS3
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Message composition interface composed of interactable keyboard and text-box is displayed.
 
@@ -1317,9 +1317,9 @@ Tester uses the keyboard to type a message, and then presses the cancel button t
 
 \item{\textbf{Name:} Send message}
 
-\textbf{Id:} Test-MS4\\
+\textbf{Id:} Test-MS4
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Message composition interface composed of interactable keyboard and text-box is displayed.
 
@@ -1337,9 +1337,9 @@ Tester uses the keyboard to type a message, and then presses the send button to 
 
 \item{\textbf{Name:} Receive message}
 
-\textbf{Id:} Test-MS5\\
+\textbf{Id:} Test-MS5
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has selected a recipient and typed a message.
 
@@ -1357,9 +1357,9 @@ Tester sends a message to the selected recipient. The test is successful if a no
 
 \item{\textbf{Name:} Read message}
 
-\textbf{Id:} Test-MS6\\
+\textbf{Id:} Test-MS6
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has a notification that they've received a message.
 
@@ -1377,9 +1377,9 @@ Tester presses the notification for the received message. The test is successful
 
 \item{\textbf{Name:} Close read message}
 
-\textbf{Id:} Test-MS7\\
+\textbf{Id:} Test-MS7
 
-\textbf{Control}: Manual
+\textbf{Type}: Manual
 
 \textbf{Initial State:} User has pressed the notification for a message they received.
 
@@ -1416,7 +1416,7 @@ Tests for look and feel requirements.
 
 \begin{enumerate}
 
-\item{\textbf{Name:} Elements visible on screen\\}
+\item{\textbf{Name:} Elements visible on screen}
 
 \textbf{Id:} Test-LF1
 
@@ -1424,56 +1424,57 @@ Tests for look and feel requirements.
 					
 \textbf{Initial State:} Program is run with simulated screen dimensions h (height) and w (width).
 					
-\textbf{Input/Condition:} Title screen is launched.
+\textbf{Input:} Title screen is launched.
 					
-\textbf{Output/Result:} Menu elements are positioned with x and y coordinates within the h and w bounds. 
+\textbf{Output:} Menu elements are positioned with x and y coordinates within the h and w bounds. 
 					
 \textbf{How test will be performed:} Test will generate random h and w dimensions, run the program title screen scripts, then check the x and y coordinates of the elements that need to be accessed by the user to ensure they have been scaled to fit within the bounds. 
 
 \textbf{Requirements being verified:} LF1
 
-\item{\textbf{Name:} App is visible on iPhone\\}
+\item{\textbf{Name:} App is visible on iPhone}
+
 \textbf{Id:} Test-LF2
 
 \textbf{Type:} Non-Functional, Manual
 					
-\textbf{Initial State:} iPhone SE is loaded with the app.
+\textbf{Initial State:} iPhone SE with minimum iOS version 16 is loaded with the app.
 					
-\textbf{Input/Condition:} The program is run. 
+\textbf{Input:} The program is run. 
 					
-\textbf{Output/Result:} Elements are scaled and positioned in a way that the user finds readable. 
+\textbf{Output:} Elements are scaled and positioned in a way that the user finds readable. 
 					
 \textbf{How test will be performed:} The tester will manually run the app on their phone, going through the startup sequence of entering a game. The test will be considered passed if the user feels that all elements interacted with in this process are in reasonable locations and easy to interact with.
 
 \textbf{Requirements being verified:} LF1, LF2, UH1, OE1
 
-\item{\textbf{Name:} App is visible on Android\\}
+\item{\textbf{Name:} App is visible on Android}
 
 \textbf{Id:} Test-LF3
 
 \textbf{Type:} Non-Functional, Manual
 					
-\textbf{Initial State:} Android phone is loaded with the app.
+\textbf{Initial State:} Android phone with minimum Android version 11 is loaded with the app.
 					
-\textbf{Input/Condition:} The program is run. 
+\textbf{Input:} The program is run. 
 					
-\textbf{Output/Result:} Elements are scaled and positioned in a way that the user finds readable. 
+\textbf{Output:} Elements are scaled and positioned in a way that the user finds readable. 
 					
 \textbf{How test will be performed:} The tester will manually run the app on their phone, going through the startup sequence of entering a game. The test will be considered passed if the user feels that all elements interacted with in this process are in reasonable locations and easy to interact with.
 
 \textbf{Requirements being verified:} LF1, LF2, UH1, OE1
 
-\item{\textbf{Name:} App is readable in poor conditions\\}
+\item{\textbf{Name:} App is readable in poor conditions}
 
-\textbf{Id:} test-LF4
+\textbf{Id:} Test-LF4
 
 \textbf{Type:} Non-Functional, Manual
 					
 \textbf{Initial State:} App is launched in bright location.  
 					
-\textbf{Input/Condition:} The program is run.  
+\textbf{Input:} The program is run.  
 					
-\textbf{Output/Result:} All text is able to be read with minimal effort. 
+\textbf{Output:} All text is able to be read with minimal effort. 
 					
 \textbf{How test will be performed:} The test will be performed in a bright room/ outside during the day to test readability in poor conditions. The tester will manually run the app on their phone, going through the startup sequence of entering a game. The test will be considered passed if the user feels that all text elements are able to be read without much effort or changing location. 
 
@@ -1486,7 +1487,7 @@ Tests for usability and humanity requirements.
 
 \begin{enumerate} 
 
-\item{\textbf{Name:} User is not connected to internet\\}
+\item{\textbf{Name:} User is not connected to internet}
 
 \textbf{Id:} Test-UH1
 
@@ -1502,7 +1503,7 @@ Tests for usability and humanity requirements.
 
 \textbf{Requirements being verified:} UH2
 
-\item{\textbf{Name:} User disconnects while in lobby\\}
+\item{\textbf{Name:} User disconnects while in lobby}
 
 \textbf{Id:} Test-UH2
 
@@ -1518,7 +1519,7 @@ Tests for usability and humanity requirements.
 
 \textbf{Requirements being verified:} UH2, UH4
 
-\item{\textbf{Name:} User disconnects while in game\\}
+\item{\textbf{Name:} User disconnects while in game}
 
 \textbf{Id:} Test-UH3
 
@@ -1534,55 +1535,61 @@ Tests for usability and humanity requirements.
 
 \textbf{Requirements being verified:} UH2, UH4
 
-\item{\textbf{Name:} App usable for users below the age of 20\\}
+\item{\textbf{Name:} App usable for users below the age of 20}
 
 \textbf{Id:} Test-UH4
 
 \textbf{Type:} Non-Functional, Manual
 					
-\textbf{Initial State:} A user below the age of 20 will install the app.
+\textbf{Initial State:} Multiple users below the age of 20 will install the app.
 					
 \textbf{Input:} The program is run.
 					
 \textbf{Output:} The user determines that the app is able to be navigated and used.
+
+\textbf{Test Case Derivation:} Users between the age of 20 and 30 are the target demographic, so testing in a larger range for under the target demographic is efficient given the limited resources.  
 					
-\textbf{How test will be performed:} A user in the demographic of below the age of 20 will go through the startup sequence and initial section of the app. The test will be considered passed if they determine that they are able to operate the app without major issues. 
+\textbf{How test will be performed:} Multiple users selected at random in the demographic of below the age of 20 will go through the startup sequence and initial section of the app. The test will be considered passed if they determine that they are able to operate the app without major issues. 
 
 \textbf{Requirements being verified:} UH3
 
-\item{\textbf{Name:} App usable for users between ages of 20 and 30\\}
+\item{\textbf{Name:} App usable for users between ages of 20 and 30}
 
 \textbf{Id:} Test-UH5
 
 \textbf{Type:} Non-Functional, Manual
 					
-\textbf{Initial State:} A user between the ages of 20-30 will install the app.
+\textbf{Initial State:} Multiple users between the ages of 20-30 will install the app.
 					
 \textbf{Input:} The program is run.
 					
 \textbf{Output:} The user determines that the app is able to be navigated and used.
+
+\textbf{Test Case Derivation:} Users between the age of 20 and 30 are the target demographic, so testing the target demographic range independently of the other tests will give us important data on how to improve our system for our target 
 					
-\textbf{How test will be performed:} A user in the demographic of between the ages of 20-30 will go through the startup sequence and initial section of the app. The test will be considered passed if they determine that they are able to operate the app without major issues. 
+\textbf{How test will be performed:} Multiple users selected at random in the demographic of between the ages of 20-30 will go through the startup sequence and initial section of the app. The test will be considered passed if they determine that they are able to operate the app without major issues. 
 
 \textbf{Requirements being verified:} UH3
 
-\item{\textbf{Name:} App usable for users above the age of 30\\}
+\item{\textbf{Name:} App usable for users above the age of 30}
 
 \textbf{Id:} Test-UH6
 
 \textbf{Type:} Non-Functional, Manual
 					
-\textbf{Initial State:} A user above the age of 30 will install the app.
+\textbf{Initial State:} Multiple users above the age of 30 will install the app.
 					
 \textbf{Input:} The program is run.
 					
 \textbf{Output:} The user determines that the app is able to be navigated and used.
+
+\textbf{Test Case Derivation:} Users between the age of 20 and 30 are the target demographic, so testing in a larger range of ages above the target demographic is more efficient given the limited amount of resources and time.
 					
-\textbf{How test will be performed:} A user in the demographic of above the age of 30 will go through the startup sequence and initial section of the app. The test will be considered passed if they determine that they are able to operate the app without major issues. 
+\textbf{How test will be performed:} Multiple users selected at random in the demographic of above the age of 30 will go through the startup sequence and initial section of the app. The test will be considered passed if they determine that they are able to operate the app without major issues. 
 
 \textbf{Requirements being verified:} UH3
 
-\item{\textbf{Name:} Internet connection becomes weak\\}
+\item{\textbf{Name:} Internet connection becomes weak}
 
 \textbf{Id:} Test-UH7
 
@@ -1600,7 +1607,7 @@ Tests for usability and humanity requirements.
 
 \item{\textbf{Name:} Environment Prompt }
 
-\textbf{ID:} test-UH8
+\textbf{Id:} Test-UH8
 
 \textbf{Type:} Non-Functional, Dynamic, Manual
 					
@@ -1616,7 +1623,7 @@ Tests for usability and humanity requirements.
 
 \item{\textbf{Name: }Internet Disconnect }
 
-\textbf{ID:} test-UH9
+\textbf{Id:} Test-UH9
 
 \textbf{Type:} Functional, Dynamic, Manual
 					
@@ -1630,9 +1637,9 @@ Tests for usability and humanity requirements.
 
 \textbf{Requirements being tested:} UH7
 
-\item{\textbf{Name: }Dangerous Conditions Warning \\}
+\item{\textbf{Name: }Dangerous Conditions Warning }
 
-\textbf{ID:} test-UH10
+\textbf{Id:} Test-UH10
 
 \textbf{Type:} Functional, Dynamic, Manual
 					
@@ -1653,7 +1660,7 @@ Tests for performance requirements.
 
 \begin{enumerate}
 
-\item{\textbf{Name:} Program responds in a reasonable amount of time\\}
+\item{\textbf{Name:} Program responds in a reasonable amount of time}
 
 \textbf{Id:} Test-PR1
 
@@ -1661,15 +1668,15 @@ Tests for performance requirements.
 					
 \textbf{Initial State:} The app is connected to the internet. 
 					
-\textbf{Input/Condition:} A request is made to join a lobby.  
+\textbf{Input:} A request is made to join a lobby.  
 					
-\textbf{Output/Result:} The system responds within 100ms.
+\textbf{Output:} The system responds within 100ms.
 					
-\textbf{How test will be performed:} The script to call a lobby a lobby will be called, and the response will be times. The test will pass if the response happens within 100ms.
+\textbf{How test will be performed:}A script will be run to create a lobby, and the server response time will be measured. The test will pass if the response happens within 100ms.
 
 \textbf{Requirements being tested:} PR1
 
-\item{\textbf{Name:} App is available during the day\\}
+\item{\textbf{Name:} App is available during the day}
 
 \textbf{Id:} Test-PR2
 
@@ -1677,25 +1684,29 @@ Tests for performance requirements.
 					
 \textbf{Initial State:} The time is between 6am and 6pm. 
 					
-\textbf{Input/Condition:} A request is made to join a lobby.  
+\textbf{Input:} A request is made to join a lobby.  
 					
-\textbf{Output/Result:} The functionality is available. 
+\textbf{Output:} The functionality is available. 
+
+\textbf{Test Case Derivation:} 6am - 6pm EST would be the slack time, as most potential users in the main region of North America would be going to work or school instead of using the app.
 					
 \textbf{How test will be performed:} A user will attempt to use the app during the day and ensure that functionality isn't hindered. 
 
 \textbf{Requirements being tested:} PR2
 
-\item{\textbf{Name:} App is available during the night\\}
+\item{\textbf{Name:} App is available during the night}
 
 \textbf{Id:} Test-PR3
 
 \textbf{Type:} Non-Functional, Manual
 					
-\textbf{Initial State:} The time is between 6pm and 6am. 
+\textbf{Initial State:} The time is between 6pm and 6am EST. 
 					
-\textbf{Input/Condition:} A request is made to join a lobby.  
+\textbf{Input:} A request is made to join a lobby.  
 					
-\textbf{Output/Result:} The functionality is available. 
+\textbf{Output:} The functionality is available. 
+
+\textbf{Test Case Derivation:} 6pm - 6am EST would be the peak hours for users in the main region of North America as it is right after they get home from work/school. 
 					
 \textbf{How test will be performed:} A user will attempt to use the app during the night and ensure that functionality isn't hindered. 
 
@@ -1711,9 +1722,9 @@ N/A
 
 \begin{enumerate}
 
-\item{\textbf{Name:} Documentation Verification\\}
+\item{\textbf{Name:} Documentation Verification}
 
-\textbf{ID:} test-MS1
+\textbf{Id:} Test-MS1
 
 \textbf{Type:} Non-Functional, Static, Document Review Walk through
 			
@@ -1721,9 +1732,9 @@ N/A
 
 \textbf{Requirements being verified:} MS1, MS2
 
-\item{\textbf{Name:} Comments Code Analysis\\}
+\item{\textbf{Name:} Comments Code Analysis}
 
-\textbf{ID:} test-MS2
+\textbf{Id:} Test-MS2
 
 \textbf{Type:} Non-Functional, Static
 					
@@ -1737,25 +1748,25 @@ N/A
 
 \begin{enumerate}
 
-\item{\textbf{Name:} External Database Query\\}
+\item{\textbf{Name:} External Database Query}
 
-\textbf{ID:} test-SR1
+\textbf{Id:} Test-SR1
 
 \textbf{Type:} Non-Functional, Dynamic, Manual
 					
 \textbf{Initial State:} One User's IP address is on the server's database.
 					
-\textbf{Input/Condition:} External request for user's IP address.
+\textbf{Input:} External request for user's IP address.
 					
-\textbf{Output/Result:} No IP address returned.
+\textbf{Output:} No IP address returned.
 					
 \textbf{How test will be performed:} Externally querying the database through code injection attacks to see if they can obtain another user's IP address.
 
 \textbf{Requirements being verified:} SR1
 					
-\item{\textbf{Name:} Hidden Data\\}
+\item{\textbf{Name:} Hidden Data}
 
-\textbf{ID:} test-SR2
+\textbf{Id:} Test-SR2
 
 \textbf{Type:} Non-functional, Manual, Dynamic
 					
@@ -1775,27 +1786,27 @@ N/A
 
 \begin{enumerate}
 
-\item{\textbf{Name:} Offensive Assets\\}
+\item{\textbf{Name:} Offensive Assets}
 
-\textbf{ID:} test-CR1
+\textbf{Id:} Test-CU1
 
 \textbf{Type:} Non-Functional, Dynamic, Manual
 					
 \textbf{Initial State:} N/A
 					
-\textbf{Input/Condition:} N/A
+\textbf{Input:} N/A
 					
-\textbf{Output/Result:} No offensive images, text, or sound are displayed or heard during playing the game.
+\textbf{Output:} No offensive images, text, or sound are displayed or heard during playing the game.
 					
 \textbf{How test will be performed:} A group of testers of various ethnicity, religion, and culture will be selected to play-test the game, and to report any potentially miss-leading, offensive, or sensitive subject matter during the game play.  
 
 \textbf{Requirements being verified:} CR1
 					
-\item{\textbf{Name:} Canadian English\\}
+\item{\textbf{Name:} Canadian English}
 
-\textbf{ID:} test-CR2
+\textbf{Id:} Test-CU2
 
-\textbf{Type:} Non-Functional, Dynamic, Manual
+\textbf{Type:} Functional, Dynamic, Manual
 					
 \textbf{Initial State:} N/A
 					
@@ -1807,9 +1818,9 @@ N/A
 
 \textbf{Requirements being verified:} CR1, CR2
 
-\item{\textbf{Name:} Canadian English Walkthrough\\}
+\item{\textbf{Name:} Canadian English Walkthrough}
 
-\textbf{ID:} test-CR3
+\textbf{Id:} Test-CU3
 
 \textbf{Type:} Non-Functional, Static, Code Inspection
 									
@@ -1823,17 +1834,17 @@ N/A
 
 \begin{enumerate}
 
-\item{\textbf{Name:} Asset Code Walk-through\\}
+\item{\textbf{Name:} Asset Code Walk-through}
 
-\textbf{ID:} test-LR1
+\textbf{Id:} Test-LR1
 
 \textbf{Type:} Non-Functional, Static, Code Walk through
 					
 \textbf{Initial State:} Project is updated on GitHub
 					
-\textbf{Input/Condition:} N/A
+\textbf{Input:} N/A
 					
-\textbf{Output/Result:} All the assets in the game are either created by MacAR developers or are open source resources that are properly attributed to. 
+\textbf{Output:} All the assets in the game are either created by MacAR developers or are open source resources that are properly attributed to. 
 					
 \textbf{How test will be performed:} All the members will run through a code coverage session and analyze all the code and assets we are using and verify if they are either our assets or assets that have been properly attributed to their creators
 
@@ -1846,7 +1857,7 @@ Tests for health and safety requirements.
 
 \begin{enumerate}
 
-\item{\textbf{Name:} App warms user to be aware of their environment\\}
+\item{\textbf{Name:} App warms user to be aware of their environment}
 
 \textbf{Id:} Test-HS1
 
@@ -1973,32 +1984,32 @@ Tests for health and safety requirements.
                                      \textbf{UH7} &
                                      \textbf{UH8} &
                                      \textbf{PR1} & \textbf{PR2} & \textbf{OE1} & \textbf{MS1} & \textbf{MS2} & \textbf{SR1} & \textbf{SR2} & \textbf{CR1} & \textbf{CR2} &\textbf{LR1} & \textbf{HS1} \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LF1}}   &    X         &             &             &             &             &             &             &             &              &              &              &             &             &             &             &    &&&&&         \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LF2}}   &   X          &  X           &    X         &              &             &             &             &             &              &              &             &             &  X           &             &             &    & &&&&        \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LF3}}   &    X         & X            &    X         &              &             &             &             &             &              &              &              &             & X            &             &             &        &&&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LF4}}   &             &   X          &             &              &    X          &             &             &             &              &              &              &             &             &             &             &       & &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH1}}   &             &             &             &    X         &              &             &             &             &              &              &             &             &             &             &             &         & &&&&    \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH2}}   &             &             &            &      X       &              &      X       &             &             &              &              &              &              &             &             &             &          &&&&&    \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH3}}   &             &             &             &     X        &              &     X        &             &             &              &              &              &              &             &             &             &       &  &&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH4}}   &              &              &              &              &    X          &              &             &             &             &             &             &             &              &              &            &     &  &&&&       \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH5}}   &             &             &             &             &      X       &             &             &             &              &              &              &              &             &             &             &      &   &&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH6}}   &             &             &              &             &      X       &             &             &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH7}}   &             &             &              &             &             &           &     X        &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH8}}   &             &             &              &             &             &           &             & X            &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH9}}   &             &             &              &             &             &           &             &             &      X        &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-UH10}}   &             &             &              &             &             &           &             &             &              &        X      &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-PR1}}   &             &             &              &             &             &             &             &             &              &              &      X        &              &             &             &             &       & &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-PR2}}   &              &              &              &              &              &             &             &             &             &             &             &    X         &              &              &            &      &   &&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-PR3}}   &             &             &              &             &             &             &            &             &              &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-MS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &      X       &      X      &         &&&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-MS2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &       X      &       X      &         &&&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-SR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &    X     &&&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-SR2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &X&&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-CR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-CR2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&X&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-CR3}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&X&&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-LR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&X&     \\ \hline
-\multicolumn{1}{|l|}{\textbf{test-HS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&& X    \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LF1}}   &    X         &             &             &             &             &             &             &             &              &              &              &             &             &             &             &    &&&&&         \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LF2}}   &   X          &  X           &    X         &              &             &             &             &             &              &              &             &             &  X           &             &             &    & &&&&        \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LF3}}   &    X         & X            &    X         &              &             &             &             &             &              &              &              &             & X            &             &             &        &&&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LF4}}   &             &   X          &             &              &    X          &             &             &             &              &              &              &             &             &             &             &       & &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH1}}   &             &             &             &    X         &              &             &             &             &              &              &             &             &             &             &             &         & &&&&    \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH2}}   &             &             &            &      X       &              &      X       &             &             &              &              &              &              &             &             &             &          &&&&&    \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH3}}   &             &             &             &     X        &              &     X        &             &             &              &              &              &              &             &             &             &       &  &&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH4}}   &              &              &              &              &    X          &              &             &             &             &             &             &             &              &              &            &     &  &&&&       \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH5}}   &             &             &             &             &      X       &             &             &             &              &              &              &              &             &             &             &      &   &&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH6}}   &             &             &              &             &      X       &             &             &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH7}}   &             &             &              &             &             &           &     X        &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH8}}   &             &             &              &             &             &           &             & X            &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH9}}   &             &             &              &             &             &           &             &             &      X        &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-UH10}}   &             &             &              &             &             &           &             &             &              &        X      &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PR1}}   &             &             &              &             &             &             &             &             &              &              &      X        &              &             &             &             &       & &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PR2}}   &              &              &              &              &              &             &             &             &             &             &             &    X         &              &              &            &      &   &&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PR3}}   &             &             &              &             &             &             &            &             &              &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &      X       &      X      &         &&&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &       X      &       X      &         &&&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-SR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &    X     &&&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-SR2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &X&&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CU1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CU2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&X&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CU3}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&X&&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-LR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&X&     \\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-HS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&& X    \\ \hline
 
 
 \end{tabular}
@@ -2051,7 +2062,7 @@ TBD
 
 % \begin{enumerate}
 
-% \item{test-id1\\}
+% \item{Test-id1\\}
 
 % Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
 %   be automatic}
@@ -2066,7 +2077,7 @@ TBD
 
 % How test will be performed: 
 					
-% \item{test-id2\\}
+% \item{Test-id2\\}
 
 % Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
 %   be automatic}
@@ -2102,20 +2113,20 @@ TBD
 		
 % \begin{enumerate}
 
-% \item{test-id1\\}
+% \item{Test-id1\\}
 
 % Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
 %   be automatic}
 					
 % Initial State: 
 					
-% Input/Condition: 
+% Input: 
 					
-% Output/Result: 
+% Output: 
 					
 % How test will be performed: 
 					
-% \item{test-id2\\}
+% \item{Test-id2\\}
 
 % Type: Functional, Dynamic, Manual, Static etc.
 					
