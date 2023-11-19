@@ -2,7 +2,7 @@
 name: Development Work
 about: Issues to track dev work/ implementation
 title: ''
-labels: implementation
+labels: ''
 assignees: ''
 
 ---
