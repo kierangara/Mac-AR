@@ -93,7 +93,7 @@ public class VivoxVoiceManager : MonoBehaviour
                 if (m_Instance == null)
                 {
                     // Search for existing instance.
-                    m_Instance = (VivoxVoiceManager)FindObjectOfType(typeof(VivoxVoiceManager));
+                    m_Instance = (VivoxVoiceManager)FindFirstObjectByType(typeof(VivoxVoiceManager));
 
                     // Create new instance if one doesn't already exist.
                     if (m_Instance == null)
