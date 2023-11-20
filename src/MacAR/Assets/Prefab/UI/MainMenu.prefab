@@ -402,7 +402,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8274128055174229309}
-  - component: {fileID: 8684130712794674480}
   m_Layer: 5
   m_Name: Create Room
   m_TagString: Untagged
@@ -434,18 +433,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 41.257}
   m_SizeDelta: {x: 400, y: 985.91}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8684130712794674480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 952204606410994771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 026c95d8d8fdaed459112d0c5f9e8ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1140411192565202429
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +554,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8684130712794674480}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
@@ -592,7 +579,7 @@ GameObject:
   - component: {fileID: 8464648862982123389}
   - component: {fileID: 1154691838586633645}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Connect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -699,7 +686,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8464648862982123389}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7889421659010924873}
+        m_TargetAssemblyTypeName: MainMenuDisplay, Assembly-CSharp
+        m_MethodName: StartClient
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1291681075480425719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,8 +1472,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1608,7 +1607,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
+  m_fontSize: 50
   m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
@@ -1679,7 +1678,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3971151002878509821}
-  - component: {fileID: 2068842270326066875}
   m_Layer: 5
   m_Name: ServerList
   m_TagString: Untagged
@@ -1709,18 +1707,6 @@ RectTransform:
   m_AnchoredPosition: {x: -7.4249, y: 109.05}
   m_SizeDelta: {x: 953.15, y: 1533.9}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2068842270326066875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2456245542108247276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 026c95d8d8fdaed459112d0c5f9e8ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2786812665068778272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,7 +1844,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Connect
+  m_text: Host
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1943,7 +1929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1745527855095469666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2013,8 +1999,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35.190735, y: -372.44604}
-  m_SizeDelta: {x: 310.3815, y: 46.3782}
+  m_AnchoredPosition: {x: -240.18, y: -446.49}
+  m_SizeDelta: {x: 487.6375, y: 92.927}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4670804790738121119
 CanvasRenderer:
@@ -2554,6 +2540,7 @@ RectTransform:
   - {fileID: 8274128055174229309}
   - {fileID: 3971151002878509821}
   - {fileID: 1906629858386290239}
+  - {fileID: 5819735191694338785}
   m_Father: {fileID: 2718846337652931866}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2732,7 +2719,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8684130712794674480}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
@@ -2826,7 +2813,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.4999981}
+  m_AnchoredPosition: {x: 0, y: -0.4999962}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4286549194474476846
@@ -3333,7 +3320,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Connect
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3360,8 +3347,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3943,7 +3930,7 @@ GameObject:
   - component: {fileID: 3640799428477630348}
   - component: {fileID: 8416600175226887902}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Host
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4053,7 +4040,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7889421659010924873}
         m_TargetAssemblyTypeName: MainMenuDisplay, Assembly-CSharp
-        m_MethodName: StartClient
+        m_MethodName: StartHost
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4781,3 +4768,92 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1001 &6501680228634480958
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2534562702075371225}
+    m_Modifications:
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -540
+      objectReference: {fileID: 0}
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -960
+      objectReference: {fileID: 0}
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033312828679858751, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 3342707180538596722}
+    - target: {fileID: 4035496089117857766, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_Name
+      value: GameRoomSettings
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977404322885222888, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7889421659010924873}
+    - target: {fileID: 8182671711511591831, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7889421659010924873}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2, type: 3}
+--- !u!4 &5819735191694338785 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 790735686704020447, guid: 4ceba8a9a28be7a4698fa8c80cefd2a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6501680228634480958}
+  m_PrefabAsset: {fileID: 0}

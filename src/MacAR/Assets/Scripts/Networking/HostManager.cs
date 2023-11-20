@@ -14,7 +14,9 @@ using UnityEngine.SceneManagement;
 public class HostManager : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private int maxConnections = 4;
+    private int maxConnections = 4;
+    private string lobbyPassword;
+    private string lobbyName;
     [SerializeField] private string characterSelectSceneName = "CharacterSelect";
     [SerializeField] private string gameplaySceneName = "Gameplay";
 
@@ -39,8 +41,27 @@ public class HostManager : MonoBehaviour
         }
     }
 
+    public void setConnections(int maxSize)
+    {
+        this.maxConnections = maxSize;
+    }
+
+    public void setPassword(string password)
+    {
+        this.lobbyPassword = password;
+    }
+
+    public void setLobbyName(string name)
+    {
+        this.lobbyName = name;
+    }
+
     public async void StartHost()
     {
+        Debug.Log(lobbyName);
+        Debug.Log(lobbyPassword);
+        Debug.Log(maxConnections);
+
         Allocation allocation;
 
         try
@@ -74,6 +95,10 @@ public class HostManager : MonoBehaviour
         {
             var createLobbyOptions = new CreateLobbyOptions();
             createLobbyOptions.IsPrivate = false;
+            if (lobbyPassword != null)
+            {
+                createLobbyOptions.Password = lobbyPassword;
+            }
             createLobbyOptions.Data = new Dictionary<string, DataObject>()
             {
                 {
@@ -84,7 +109,7 @@ public class HostManager : MonoBehaviour
                 }
             };
 
-            Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("My Lobby", maxConnections, createLobbyOptions);
+            Lobby lobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxConnections, createLobbyOptions);
             lobbyId = lobby.Id;
             StartCoroutine(HeartbeatLobbyCoroutine(15));
         }
