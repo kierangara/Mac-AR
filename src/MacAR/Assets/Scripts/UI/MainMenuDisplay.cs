@@ -50,6 +50,7 @@ public class MainMenuDisplay : MonoBehaviour
 
     public async void StartClient()
     {
+
         Debug.Log(joinCodeInputField.text);
         await ClientManager.Instance.StartClient(joinCodeInputField.text);
     }

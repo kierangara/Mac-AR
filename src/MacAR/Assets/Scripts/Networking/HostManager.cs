@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
+using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
+//using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,10 +17,11 @@ public class HostManager : MonoBehaviour
 {
     [Header("Settings")]
     private int maxConnections = 4;
-    private string lobbyPassword;
+    private string lobbyPassword = null;
     private string lobbyName;
     [SerializeField] private string characterSelectSceneName = "CharacterSelect";
     [SerializeField] private string gameplaySceneName = "Gameplay";
+    [SerializeField] private string mainMenuName = "MainMenu";
 
     public static HostManager Instance { get; private set; }
 
@@ -58,9 +61,9 @@ public class HostManager : MonoBehaviour
 
     public async void StartHost()
     {
-        Debug.Log(lobbyName);
-        Debug.Log(lobbyPassword);
-        Debug.Log(maxConnections);
+        //Debug.Log(lobbyName);
+        //Debug.Log(lobbyPassword);
+        //Debug.Log(maxConnections);
 
         Allocation allocation;
 
@@ -95,7 +98,7 @@ public class HostManager : MonoBehaviour
         {
             var createLobbyOptions = new CreateLobbyOptions();
             createLobbyOptions.IsPrivate = false;
-            if (lobbyPassword != null)
+            if (lobbyPassword.Length!=0)
             {
                 createLobbyOptions.Password = lobbyPassword;
             }
@@ -178,4 +181,6 @@ public class HostManager : MonoBehaviour
 
         NetworkManager.Singleton.SceneManager.LoadScene(gameplaySceneName, LoadSceneMode.Single);
     }
+
+
 }
