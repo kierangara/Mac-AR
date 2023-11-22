@@ -720,7 +720,7 @@ The following section goes over tests related to starting a game, loading game a
 \end{enumerate}
 
 \subsubsection{Save/Load Game Testing}
-The following section will go over tests related to saving game progress and loading game data. The functional requirements that are covered by this section are SG1, SG2, SG3, SG4, SG5, SG6, SG7, SG8, LG1, LG2, LG3, DS1, DS2.
+The following section will go over tests related to saving game progress and loading game data. The functional requirements that are covered by this section are SG1, SG2, SG3, SG4, LG1, LG2, LG3, DS1, DS2.
 
 \begin{enumerate}
 
@@ -734,75 +734,17 @@ The following section will go over tests related to saving game progress and loa
 
 \textbf{Input:} Save game action is triggered.
 
-\textbf{Output:}  Game pauses for user who triggered save game action, while game state is saved to device.
+\textbf{Output:}  Game state is saved to device.
 
 \textbf{Test Case Derivation:} User should be able to save their current progress on a puzzle and continue playing at a later time.
 
 \textbf{How test will be performed:} Create automated test that triggers save game functionality and checks that the current game state has been saved to the device.
 
-\textbf{Requirements being verified: } SG1 SG2 SG3 SG7
-
-\item{\textbf{Name:} Continue actions during save}
-
-\textbf{Id:} Test-SG2
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} User has started game.
-
-\textbf{Input:} User presses save game button.
-
-\textbf{Output:} Users who did not press the save game button are able to act during saving process.
-
-\textbf{Test Case Derivation:} One user saving the game should not stop the other users from continuing playing.
-
-\textbf{How test will be performed:} Tester will verify that when the save game button is pressed they are able to continue doing actions.
-
-\textbf{Requirements being verified: } SG4
-
-\item{\textbf{Name:} Return to play after saving back-end}
-
-\textbf{Id:} Test-SG3
-
-\textbf{Type}: Automated
-
-\textbf{Initial State:} User has started game.
-
-\textbf{Input:} Save game action is triggered.
-
-\textbf{Output:} Once save game action has completed the user is able to return to interacting with the game.
-
-\textbf{Test Case Derivation:}
-The user should be able to save the game data and return to playing the game. Their game should not remain paused and uninteractable once the save process has completed.
-
-\textbf{How test will be performed:}
-Create an automated test that triggers the save game functionality. Once the data saving process has completed, the automated test will simulate interacting with a puzzle and will be deemed successful if this interaction is registered.
-
-\textbf{Requirements being verified: } SG3 SG5
-
-\item{\textbf{Name:} Return to play after saving front-end}
-
-\textbf{Id:} Test-SG4
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} User has started game.
-
-\textbf{Input:} User presses the save game button.
-
-\textbf{Output:} Once save game action has completed the main camera view and AR overlay return to updating in real time.
-
-\textbf{Test Case Derivation:}
-The user should be able to save the game data and return to playing the game. Once the game is un-paused they should be able to use their camera to look around and have this information updated on their UI, along with the components of the AR overlay mapped to their surroundings.
-
-\textbf{How test will be performed:}
-Tester will trigger the save game action. They will turn 180 degrees to point their camera in the direction opposite its original direction, and watch to see if the UI updates to match this new view. The test is successful if the UI update is perceived as instantaneous by the user. This metric is based on PR1.
-
-\textbf{Requirements being verified: } SG5
+\textbf{Requirements being verified: } SG1 SG2 SG3
 
 \item{\textbf{Name:} Repeated saves}
 
-\textbf{Id:} Test-SG5
+\textbf{Id:} Test-SG2
 
 \textbf{Type}: Automated
 
@@ -818,11 +760,11 @@ The system should be capable of handling a user saving the game multiple times. 
 \textbf{How test will be performed:}
 Create an automated test that triggers the save game action 10 times in a loop. The time each save action finishes is recorded. The system shall then read the timestamp of the saved data from the device. If the timestamp on the saved data is between the second last and last recorded save action finish times, the test is successful. 
 
-\textbf{Requirements being verified: } SG6 SG7
+\textbf{Requirements being verified: } SG2 SG3
 
 \item{\textbf{Name:} Data saved to device}
 
-\textbf{Id:} Test-SG6
+\textbf{Id:} Test-SG3
 
 \textbf{Type}: Manual
 
@@ -838,11 +780,11 @@ The game files are being stored on the local device so that a separate database 
 \textbf{How test will be performed:}
 Tester will press the save game button. They will then exit the app, locate the game files on their phone and check that the time modified matches the time of the save. 
 
-\textbf{Requirements being verified: } SG7
+\textbf{Requirements being verified: } SG3
 
 \item{\textbf{Name:} Saved data encoded}
 
-\textbf{Id:} Test-SG7
+\textbf{Id:} Test-SG4
 
 \textbf{Type}: Automated
 
@@ -858,11 +800,11 @@ To prove that the save data is being encoded when stored, it must be proven that
 \textbf{How test will be performed:}
 Create an automated test that loads the saved game data from the device without decoding it. This test must contain error handling that produces an error message if the data cannot be properly loaded. The test is successful if this error message is produced.
 
-\textbf{Requirements being verified: } SG8
+\textbf{Requirements being verified: } SG4
 
 \item{\textbf{Name:} Saved data decoded}
 
-\textbf{Id:} Test-SG8
+\textbf{Id:} Test-SG5
 
 \textbf{Type}: Automated
 
@@ -878,7 +820,7 @@ To prove that the data can be decoded it must be shown that the game can decode 
 \textbf{How test will be performed:}
 Create an automated test that loads the saved game data from the device with decoding it. The test is successful if no errors are produced during the game loading process.
 
-\textbf{Requirements being verified: } SG8 LG2
+\textbf{Requirements being verified: } SG4 LG2
 
 \item{\textbf{Name:} Load saved game}
 
@@ -898,7 +840,7 @@ When a saved game is loaded it must be in the same state as when it was saved. S
 \textbf{How test will be performed:}
 Tester will save an existing game and record all relevant information on the game state manually, such as puzzle progress, room progress and current AR overlay locations. They will then close the game room, returning to the main menu. They will then load that saved game and observe the resulting game room. The test is successful if this game room contains all the same information as the original game room.
 
-\textbf{Requirements being verified: } SG1 SG8 LG1 LG2 LG3
+\textbf{Requirements being verified: } SG1 SG4 LG1 LG2 LG3
 
 \item{\textbf{Name:} Load saved game}
 
@@ -918,7 +860,7 @@ When a saved game is loaded it must be in the same state as when it was saved. S
 \textbf{How test will be performed:}
 Tester will save an existing game and record all relevant information on the game state manually, such as puzzle progress, room progress and current AR overlay locations. They will then close the game room, returning to the main menu. They will then load that saved game and observe the resulting game room. The test is successful if this game room contains all the same information as the original game room.
 
-\textbf{Requirements being verified: } SG1 SG8 LG1 LG2 LG3
+\textbf{Requirements being verified: } SG1 SG4 LG1 LG2 LG3
 
 \item{\textbf{Name:} Delete saved game UI}
 
@@ -1682,7 +1624,7 @@ Tests for performance requirements.
 
 \textbf{Type:} Non-Functional, Manual
 					
-\textbf{Initial State:} The time is between 6am and 6pm. 
+\textbf{Initial State:} The time is between 6am and 6pm and there is no current server outage. 
 					
 \textbf{Input:} A request is made to join a lobby.  
 					
@@ -1700,7 +1642,7 @@ Tests for performance requirements.
 
 \textbf{Type:} Non-Functional, Manual
 					
-\textbf{Initial State:} The time is between 6pm and 6am EST. 
+\textbf{Initial State:} The time is between 6pm and 6am EST and there is no current server outage. 
 					
 \textbf{Input:} A request is made to join a lobby.  
 					
@@ -1709,6 +1651,24 @@ Tests for performance requirements.
 \textbf{Test Case Derivation:} 6pm - 6am EST would be the peak hours for users in the main region of North America as it is right after they get home from work/school. 
 					
 \textbf{How test will be performed:} A user will attempt to use the app during the night and ensure that functionality isn't hindered. 
+
+\textbf{Requirements being tested:} PR2
+
+\item{\textbf{Name:} Server Outage Warning}
+
+\textbf{Id:} Test-PR4
+
+\textbf{Type:} Non-Functional, Manual
+					
+\textbf{Initial State:} There is an active server outage. 
+					
+\textbf{Input:} A request is made to join a lobby.  
+					
+\textbf{Output:} The system will display a messaging notifying the user there is a server outage and the game is currently unavailable. 
+
+\textbf{Test Case Derivation:} If there is a server outage the game won't be available as the lobby and communication systems won't work. The user should be made aware of this so they know why they cannot access the game.
+					
+\textbf{How test will be performed:} The tester will attempt to use the app during a known outage period. The test is successful if the outage message appears.
 
 \textbf{Requirements being tested:} PR2
 
