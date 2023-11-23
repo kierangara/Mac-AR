@@ -109,6 +109,7 @@ The backend server will be responsible for connecting users together in a room, 
 %this potential failure mode.}
 
 \section{Failure Mode and Effect Analysis}
+The Failure Mode and Effect Analysis table breaks down the potential hazards/failures of the application, along with their effects and the causes leading to the failure. Additionally, each hazard has a recommended action that describes how the hazard will be mitigated, along with the specific safety and security requirements it relates to. The specific hazards also have a severity associated with them (low, medium, or high).
 
 \begin{table}[H]
     \begin{adjustbox}{width=(\textwidth*6/5)}
@@ -149,7 +150,7 @@ The backend server will be responsible for connecting users together in a room, 
           \hline
     \end{tabular}
     \end{adjustbox}
-    \caption{\bf FMEA Table}
+    \caption{\bf FMEA Table continued...}
     \label{tab:FMEA2}
 \end{table}
 
@@ -181,7 +182,7 @@ Specification Document and have been written in \textbf{bold}.
     \item[UH2] The system shall notify the user if there is no network, or they get disconnected\newline
     \textit{Fit criterion: The system should produce a notification when network connection is lost}
     \item[UH4] \textbf{The system shall prompt the user to re-enter an area with internet connection when it detects there is no network}\newline
-    \textit{Fit criterion: The system should produce a notification when network connection is lost}
+    \textit{Fit criterion: The system should produce a notification for the user telling them to move to an area that allows for internet connectivity}
     \item[UH5] \textbf{The system shall prompt the user if it detects that the existing network connection is weak}\newline
     \textit{Fit criterion: The system should produce a notification when network connection is weak}
     \item[UH6] \textbf{The system shall prompt the user if their current environment is unsuitable to use the application}\newline
