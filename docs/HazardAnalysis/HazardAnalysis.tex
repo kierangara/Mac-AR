@@ -54,6 +54,7 @@
 2023/10/17 & Matthew & Filled in multiple failure modes in the FMEA table \\
 2023/10/17 & Ethan & Worked on all sections of document \\
 2023/11/03 & Ethan & Removed SAR and added HS requirement \\
+2024/01/04 & Ethan & Updated FMEA for server crash\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -121,13 +122,13 @@ The Failure Mode and Effect Analysis table breaks down the potential hazards/fai
          \textbf{Design Functions} & \textbf{Failure Modes} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{SR} & \textbf{Ref} & \textbf{Severity}\\
          \hline
         Internet connectivity      &      Loss of internet connection           &       The user is unable to send or receive data from the server                      &                The user's device has lost connection to the internet            &                  Notify the user that they have lost internet connection. &UH2&H1-1&Medium\\&&&& Prompt the user to play the game in an area with good internet connection, and if they get disconnected, prompt the user to reconnect before play can resume.           & UH4            &           &                  \\
-                                   &     Unstable Internet Connection     &  The user is not able to keep up-to date with the server and the other users &  The user's internet connection is poor/weak    &        Prompt the user when poor connection is detected to connect to a more stable internet network           &  UH5           &  H1-2           &    Medium              \\
+                                   &     Unstable Internet Connection     &  The user is not able to keep up-to date with the server and the other users &  The user's internet connection is poor/weak    &        Prompt the user when poor connection is detected to connect to a more stable internet network.           &  UH5           &  H1-2           &    Medium              \\
           \hline
-        General                    &      System Powerdown     &          The user's phone has shutdown                   &     Some failure from the user's phone/device caused the device to shutdown        &     The user should turn their phone back on and when they launch our app again, they should be allowed to rejoin the room and continue playing the game       & UH7            &   H2-1           &        High          \\
+        General                    &      System Powerdown     &          The user's phone has shutdown                   &     Some failure from the user's phone/device caused the device to shutdown        &     The user should turn their phone back on and when they launch our app again, they should be allowed to rejoin the room and continue playing the game.       & UH7            &   H2-1           &        High          \\
                                    &       Application Crash     &      The application has crashed on the user's device         &     A bug in the code or an issue with the user's device     &     The user can relaunch the application and reconnect to their game room.    &  UH7           &   H2-2          &   High               \\
           \hline
-          Backend Server                   &    Server cannot respond within a reasonable time         &     Possible loss of data from users, status of game rooms not clear    &    Too many user's sending and receiving data from the server at the same time    &     Limit the amount of users to ensure the server always has enough time to handle requests      &   PR1          &  H3-1            &      Low            \\
-                                   &                        &                             &                            &                             &             &              &                  \\
+          Backend Server                   &    Server cannot respond within a reasonable time         &     Possible loss of data from users, status of game rooms not clear    &    Too many user's sending and receiving data from the server at the same time    &     Limit the amount of users to ensure the server always has enough time to handle requests.      &   PR1          &  H3-1            &      Low            \\
+                                   &     Server Crash                   & Server has crashed resulting in users being unable to send and receive data from the server                          &   A failure in the backend server causes it to become unresponsive/crash                       &  Limit users from playing the game until server has become responsive                               &  PR2           &  H3-2             &  High                 \\
           \hline
     \end{tabular}
     \end{adjustbox}
@@ -145,8 +146,8 @@ The Failure Mode and Effect Analysis table breaks down the potential hazards/fai
          \textbf{Design Functions} & \textbf{Failure Modes} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{SR} & \textbf{Ref} & \textbf{Severity}\\
          \hline
           User Interface                   &           User Exits the game room             &           The user is too far from the puzzles to complete them           &                The user leaves the pre-defined area set by calibration            &           Inform the user before they leave the area to not leave, and if they leave, inform the user to return.                  &   UH6          &   H4-1           &   Low               \\
-            &    User is injured     &    The user has sustained an injury during the use of our application      &  The user was not aware of their surrounding during the use of the application and injured themselves from their surroundings \newline                 &    Prompt the user before the game starts to be aware of their surroundings, and play in an open area with no visible hazards    &  HS1           &   H4-2     & High\\&&& User was using application in dangerous conditions \newline & Warn the user about potentially dangerous weather and to exit the area if outside&   UH8   &  &                \\
-                                   &    User calibration setup fails   &   User is unable to start puzzle due to calibration setup not being able to map real life room into AR environment & Room is too bright resulting in camera not being able to accurately map environment, User exits room during calibration setup, User attempts to play game in unsuitable environment (ex. moving car) & Prompt the user before the game starts to let them know the suitable environments for playing the game. &UH6&H4-3& Medium\\&&&& Prompt user through pop up warning during calibration to let user know that their current environment is not suitable and they must change their environment before they can resume play   & UH6   & H4-4 & Medium   \\
+            &    User is injured     &    The user has sustained an injury during the use of our application      &  The user was not aware of their surrounding during the use of the application and injured themselves from their surroundings \newline                 &    Prompt the user before the game starts to be aware of their surroundings, and play in an open area with no visible hazards.    &  HS1           &   H4-2     & High\\&&& User was using application in dangerous conditions \newline & Warn the user about potentially dangerous weather and to exit the area if outside. &   UH8   &  H4-3 & Low                \\
+                                   &    User calibration setup fails   &   User is unable to start puzzle due to calibration setup not being able to map real life room into AR environment & Room is too bright resulting in camera not being able to accurately map environment, User exits room during calibration setup, User attempts to play game in unsuitable environment (ex. moving car) & Prompt the user before the game starts to let them know the suitable environments for playing the game. &UH6&H4-4& Medium\\&&&& Prompt user through pop up warning during calibration to let user know that their current environment is not suitable and they must change their environment before they can resume play.   & UH6   & H4-5 & Medium   \\
           \hline
     \end{tabular}
     \end{adjustbox}
@@ -201,6 +202,8 @@ Specification Document and have been written in \textbf{bold}.
 \begin{enumerate}
     \item[PR1] The system shall respond to user interaction instantaneously as perceived by the user\newline
     \textit{Fit criterion: The system shall respond within 100ms of user interaction}
+    \item[PR2] The system shall be available for users at any time or display the reasoning for the system outage \newline
+    \textit{Fit criterion: The system will be accessible 24 hours a day unless the server is under-going maintenance or experiencing an outage. If there is maintenance or an outage an error message is displayed stating the respective issue}
 \end{enumerate}
 %\subsection{Integrity Requirements}
 %\begin{enumerate}
