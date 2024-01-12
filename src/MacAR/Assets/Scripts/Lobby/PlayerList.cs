@@ -15,6 +15,7 @@ public class PlayerList : NetworkBehaviour
     [SerializeField] private Transform playerItemParent;
     [SerializeField] private PlayerItem playerItemPrefab;
     [SerializeField] private TMP_Text joinCodeText;
+    public static readonly VivoxUnity.Client mainClient = new VivoxUnity.Client();
     private NetworkList<PlayerData> players;
 
     private bool readyState = false;
@@ -27,12 +28,19 @@ public class PlayerList : NetworkBehaviour
     {
         players = new NetworkList<PlayerData>();
         VoiceToggle.onValueChanged.AddListener(delegate 
-            { VivoxToggle(VoiceToggle); });
+            { VivoxToggle(VoiceToggle,mainClient); });
     }
 
-    void VivoxToggle(Toggle voiceToggle)
+    void VivoxToggle(Toggle voiceToggle, VivoxUnity.Client client)
     {
         Debug.Log("Voice " + voiceToggle.isOn);
+        if (voiceToggle.isOn)
+        {
+            client.AudioInputDevices.Muted = false; 
+        } else
+        {
+            client.AudioInputDevices.Muted = true;
+        }
     }
 
      public override void OnNetworkSpawn()
