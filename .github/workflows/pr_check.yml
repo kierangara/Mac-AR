@@ -16,7 +16,7 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
-          projectPath: ../src/MacAR
+          projectPath: ../../src/
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           testMode: EditMode
       - uses: actions/upload-artifact@v2
