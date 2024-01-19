@@ -16,6 +16,7 @@ jobs:
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
+          docker-images: false
           projectPath: src/MacAR
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           testMode: EditMode
