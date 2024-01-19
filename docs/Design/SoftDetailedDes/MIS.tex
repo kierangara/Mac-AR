@@ -19,7 +19,9 @@
 \usepackage[section]{placeins}
 \usepackage{caption}
 \usepackage{fullpage}
-
+\usepackage{ dsfont }
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
 \hypersetup{
 bookmarks=true,     % show bookmarks bar?
 colorlinks=true,       % false: boxed links; true: colored links
@@ -33,8 +35,8 @@ urlcolor=cyan          % color of external links
 
 \externaldocument{../../SRS/SRS}
 
-\input{../../Comments}
-\input{../../Common}
+\input{../Comments}
+\input{../Common}
 
 \begin{document}
 
@@ -53,8 +55,11 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+January 13, 2024 & 1.0 & Initial changes\\
+January 15 & 1.1 & Module Definitions\\
+January 16 & 1.2 & Module Details\\
+January 17 & 1.3 & Appendix\\
+January 18 & 1.4 & Revision 0\\
 \bottomrule
 \end{tabularx}
 
@@ -62,9 +67,22 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
-See SRS Documentation at \wss{give url}
+See SRS Documentation \href{https://github.com/SammyG7/Mac-AR/blob/main/docs/SRS/SRS.pdf} {here}\\
 
-\wss{Also add any additional symbols, abbreviations or acronyms}
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{symbol} & \textbf{description}\\
+  \midrule 
+  AR & Augmented Reality\\
+  M & Module \\
+  MG & Module Guide \\
+  MIS & Module Interface Specification\\
+  OS & Operating System \\
+  SRS & Software Requirements Specification\\
+  \bottomrule
+\end{tabular}\\
 
 \newpage
 
@@ -76,17 +94,13 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+The following document details the Module Interface Specifications for the Mac-AR Augmented Reality escape room style game.
 
-Complementary documents include the System Requirement Specifications
-and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+Complementary documents include the \href{https://github.com/SammyG7/Mac-AR/blob/main/docs/SRS/SRS.pdf}{System Requirement Specifications}
+and \href{https://github.com/SammyG7/Mac-AR/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module Guide}.  The full documentation and implementation can be
+found at \url{https://github.com/SammyG7/Mac-AR}. 
 
 \section{Notation}
-
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -108,15 +122,24 @@ character & char & a single symbol or digit\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
 natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+string & string & a group of characters\\
+Lobby & Lobby & represents a lobby object\\
+LobbiesList & LobbiesList & represents a collection of lobbies\\
+Array of ... & Array of ... & represents an array containing elements of a particular data type\\
+ChannelID & ChannelID & represents a voice/text channel object\\
+IParticipant & IParticipant & represents a voice/text chat participant object \\
+TextMessage & TextMessage & represents the text message data type present in Vivox library\\
+UnityObject & UnityObject & represents unity objects\\
+PlayerData & PlayerData & tuple representing a player by an ID and ready status\\
 \bottomrule
 \end{tabular} 
 \end{center}
 
 \noindent
-The specification of \progname \ uses some derived data types: sequences, strings, and
+The specification of Mac-AR \ uses some derived data types: sequences, strings, and
 tuples. Sequences are lists filled with elements of the same data type. Strings
 are sequences of characters. Tuples contain a list of values, potentially of
-different types. In addition, \progname \ uses functions, which
+different types. In addition, Mac-AR \ uses functions, which
 are defined by the data types of their inputs and outputs. Local functions are
 described by giving their type signature followed by their specification.
 
@@ -131,21 +154,26 @@ The following table is taken directly from the Module Guide document for this pr
 \textbf{Level 1} & \textbf{Level 2}\\
 \midrule
 
-{Hardware-Hiding} & ~ \\
+{Hardware-Hiding Module} & Hardware Module \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
+\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module}
+& Game Room Module\\
+& Text Communication Module\\
+& Voice Communication Module\\
+& Game Save Module\\
+& Multiplayer Puzzle Module\\
+& Simon Says Puzzle Module\\
+& Code Puzzle Module\\
+& Wires Puzzle Module\\
+& Maze Puzzle Module\\
+& Math Puzzle Module\\
+& Bomb Puzzle Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & Database/Network Manager Module\\
+& Error Manager Module\\
+& Documentation Module\\
 \bottomrule
 
 \end{tabular}
@@ -154,34 +182,80 @@ The following table is taken directly from the Module Guide document for this pr
 \end{table}
 
 \newpage
-~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
-  cross-referencing}
-
-\wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
-
-\wss{It is also possible to use \LaTeX for hypperlinks to external documents.}
+\section{MIS of {Hardware Module}} \label{HardwareModule} 
 
 \subsection{Module}
 
-\wss{Short name for the module}
+This module is dependant on the user's phone, and the hardware interfaces are entirely dependant on the device used. 
+
+\subsection{Uses}
+ None
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+N/A
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+Assuming the device the user is using has a working camera and gyroscope, and the required firmware to run the application
+
+\subsubsection{Access Routine Semantics}
+
+Implemented by operating system
+
+\subsubsection{Local Functions}
+
+Implemented by operating system
+
+\newpage
+
+\section{MIS of Game Room Module} \label{GameRoomModule} 
+\subsection{Module}
+
+GameRoomModule
 
 \subsection{Uses}
 
+Database/Network Manager Module
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
 
+Min Room Capacity = 2\\
+Max Room Capacity = 10\\
+Minimum Password Length = 8\\
+Maximum Password length = 64\\
+
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+StartHost & $\mathbb{N}$, string, string & - & - \\
+Initialize  & LobbiesList, Lobby & - & - \\
+readyPress  & - & $\mathbb{B}$ & - \\
+RefreshPlayerList  & - & LobbiesList & - \\
+JoinAsync  & Lobby, string & - & - \\
+StartGame & - & - & - \\
+setLobby  & Lobby & - & - \\
+setConnections & $\mathbb{N}$ & - & - \\
+setPassword & string & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -190,52 +264,1213 @@ The following table is taken directly from the Module Guide document for this pr
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+inLobby : $\mathbb{B}$
+isReady : $\mathbb{B}$
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+This module has external interaction with the phone screen the user is using, there will be buttons to be pressed to call some of these functions.
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent readyPress():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+\item output: out := isReady
+\item exception: None
+\end{itemize}\
+
+\noindent {JoinAsync}(lobby,password):
+\begin{itemize}
+\item transition: $join := (lobby.password=password \land lobby.availableSlots>0)$
+\item output: out := isJoining
+\item exception: None
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\noindent {RefreshList}():
+\begin{itemize}
+\item transition: $\forall Lobby \in Lobbies \implies Initialize(Lobby)$
+\item output: None
+\item exception: None
+\end{itemize}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent {StartGame}():
+\begin{itemize}
+\item transition: GameScene := Puzzle
+\item exception: None
+\end{itemize}
+
+\noindent {StartHost}(connections, lobbyName, password):
+\begin{itemize}
+\item transition: GameScene := Lobby
+\item output: Lobby.MaxConnections = connections, Lobby.LobbyName := lobbyName, Lobby.Password = password
+\item exception: None
+\end{itemize}
+
+\noindent {setLobby}(lobby):
+\begin{itemize}
+\item transition: Lobby := lobby
+\item exception: None
+\end{itemize}
+
+\noindent {setConnections}(connections):
+\begin{itemize}
+\item transition: Lobby.MaxConnections := connections
+\item exception: None
+\end{itemize}
+
+\noindent {setPassword}(password):
+\begin{itemize}
+\item transition: Lobby.Password := password
+\item exception: None 
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+None
 
 \newpage
 
+\section{MIS of Text Communication Module} \label{text} 
+
+  This module uses the built in Unity library called Vivox to implement text chat.
+
+
+\subsection{Module}
+textCommunication
+
+\subsection{Uses}
+Vivox (Unity Library)\\
+Database/Network Manager Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{6cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+ClearMessageObjectPool & - & - & - \\
+ClearOutTextField & - & - & - \\
+SubmitTextToVivox & - & - & - \\
+EnterKeyOnTextField & - & - & - \\
+SendScrollRectToBottom & - & - & - \\
+OnParticipantAdded & string, ChannelID, IParticipant & - & - \\
+OnTextMessageLogReceivedEvent & string, IChannelTextMessage & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+None
+\subsubsection{Environment Variables}
+
+Device screen\\
+Device keyboard\\
+There are UI components such as a chat box and buttons that will be present on the user screen when some of these access routines are called.\\
+
+\subsubsection{Assumptions}
+
+None\\
+
+\subsubsection{Access Routine Semantics}
+
+\noindent ClearMessageObjectPool():
+\begin{itemize}
+\item transition: Clear chatbox
+\item exception: None
+\end{itemize}
+
+
+\noindent ClearOutTextField():
+\begin{itemize}
+\item transition: Clear user chat box input field
+\item exception: None
+\end{itemize}
+
+\noindent SubmitTextToVivox():
+\begin{itemize}
+\item transition: Send text message present in input field to \_textChannel
+\item exception: None
+\end{itemize}
+
+\noindent EnterKeyOnTextField():
+\begin{itemize}
+\item transition: $user.input == return =>  SubmitTextToVivox()$
+\item exception: None
+\end{itemize}
+
+\noindent SendScrollRectToBottom():
+\begin{itemize}
+\item transition: Enable scrolling of \_textChatScrollRect
+\item exception: None
+\end{itemize}
+
+\noindent OnParticipantAdded(username, channel, participant):
+\begin{itemize}
+\item transition: $\_vivoxVoiceManager.channel.users = \_vivoxVoiceManager.channel.users + 1$
+\item exception: None
+\end{itemize}
+
+\noindent OnTextMessageLogReceivedEvent(sender, channelTextMessage):
+\begin{itemize}
+\item transition: $channelTextMessage.FromSelf == 1 => sender.color = green \newline \land SendScrollRectToBottom$
+
+$channelTextMessage.FromSelf == 0 => sender.color = white \land SendScrollRectToBottom$
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+
+\subsubsection{Local Variables}
+\_vivoxVoiceManager : VivoxVoiceManager instance\\
+\_textChannel : ChannelId\\
+\_textChatScrollRect : ScrollRect\\
+
+
+\newpage
+
+\section{MIS of Voice Communication Module} \label{text} 
+This module uses the built in Unity library called Vivox to implement voice chat.
+
+\subsection{Module}
+voiceCommunication
+
+\subsection{Uses}
+Vivox (Unity Library)\\
+Database/Network Manager Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+Start & - & - & - \\
+IsMicPermissionGranted  & - & $\mathds{B}$ & - \\
+AskForPermissions  & - &  & - \\
+OnUserLoggedIn  & - & - & SignInException \\
+OnUserLoggedOut  & - & - & - \\
+VivoxToggle  & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+VoiceToggleIsOn : $\mathds{B}$
+
+\subsubsection{Environment Variables}
+
+Device microphone\\
+Device audio\\
+Device screen
+
+\subsubsection{Assumptions}
+
+None\\
+
+\subsubsection{Access Routine Semantics}
+
+
+\noindent Start():
+\begin{itemize}
+\item transition: $\_vvm :=$ Vivox voice manager instance
+\item exception: None
+\end{itemize}
+
+\noindent isMicPermissionGranted():
+\begin{itemize}
+\item transition: $isGranted = Permission.HasUserAuthorizedPermission(Permission.Microphone)$
+\item output: $out :=$ isGranted
+\item exception: None
+\end{itemize}
+
+\noindent AskForPermissions():
+\begin{itemize}
+\item transition: Request access to user microphone
+\item exception: None
+\end{itemize}
+
+\noindent OnUserLoggedIn():
+\begin{itemize}
+\item transition: $\_vvm.LoginState == VivoxUnity.LoginState.LoggedIn =>$ Join voice channel
+\item exception: $\_vvm.LoginState != VivoxUnity.LoginState.LoggedIn =>$ SignInException
+\end{itemize}
+
+\noindent OnUserLoggedOut():
+\begin{itemize}
+\item transition: Disconnect from Vivox voice manager
+\item exception: None
+\end{itemize}
+
+\noindent VivoxToggle():
+\begin{itemize}
+\item transition: $VoiceToggleIsOn => AudioInputDevice.Muted = false$
+
+$!VoiceToggleIsOn => AudioInputDevice.Muted = true$
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+None
+
+\newpage
+
+\section{MIS of Game Save Module} \label{SaveModule} 
+
+The Game Save Module implements functionality for saving the current puzzle state of the game, load the puzzle state of an existing game or delete a save entry.
+
+\subsection{Module}
+
+GameSaveModule
+
+\subsection{Uses}
+
+Database/Network Manager Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+SaveGame & $\mathbb{Z}$, set of $\mathbb{B}$ & - & - \\
+LoadGame  & $\mathbb{Z}$ & set of $\mathbb{B}$ & - \\
+DeleteSave  & $\mathbb{Z}$ & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+saveTable: Dictionary of arrays of $\mathbb{B}$ {saveId -> puzzleStates}
+
+\subsubsection{Environment Variables}
+
+This module has external interaction with the phone screen the user is using, there will be buttons to be pressed to call some of these functions.
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent {SaveGame}(saveId, puzzleStates):
+\begin{itemize}
+\item transition: saveTable.Add(saveId, puzzleStates)
+\item exception: None
+\end{itemize}\
+
+\noindent {LoadGame}(saveId):
+\begin{itemize}
+\item output: out := puzzleStates
+\item exception: None
+\end{itemize}
+
+\noindent {DeleteSave}(saveId):
+\begin{itemize}
+\item transition: saveTable.Delete(saveId)
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+None
+
+\newpage
+
+\section{MIS of {Multiplayer Puzzle Module}} \label{DocModule} 
+
+The base module that all other puzzle modules will inherit from. The module will handle all of the common behaviour shared between the puzzle implementations. This consists of the puzzle hint system, the puzzle skip system, and the coordination between users working on the same puzzle instance. 
+
+\subsection{Module}
+MultiplayerPuzzleModule
+
+\subsection{Uses}
+Database/Network Manager Module\\
+Error Manager Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+ALLOWED\_SKIPS = 3 \newline
+\noindent ALLOWED\_HINTS = 3
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{3cm} p{3cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+GeneratePuzzle & - & - & - \\
+SkipPuzzle & $\mathds{Z}$ & $\mathds{B}$ & - \\
+GenerateHint & $\mathds{Z}$ & string & - \\
+CompletePuzzle & $\mathds{Z}$ & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+PuzzlePlayers := Tuple\textlangle$\mathds{Z}$, Array\textlangle$\mathds{Z}$\textrangle\textrangle
+
+\subsubsection{Environment Variables}
+
+PlayerIds := Array\textlangle$\mathds{Z}$\textrangle
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent {GeneratePuzzle}():
+\begin{itemize}
+\item transition: Assign all available players to a puzzle in the PuzzlePlayers tuple
+\end{itemize}
+
+\noindent {SkipPuzzle}(playerId):
+\begin{itemize}
+\item transition: $\forall$ player $\in$ PuzzlePlayers[getCurrentPuzzle(playerId)] : \newline PuzzlePlayers[newPuzzle].append(player) $\land$ numSkips++
+\item output: numSkips \textless ALLOWED SKIPS
+\end{itemize}
+
+\noindent {GenerateHint}(playerId):
+\begin{itemize}
+\item transition: $\forall$ player $\in$ PuzzlePlayers[getCurrentPuzzle(playerId)] : \newline PuzzlePlayers[newPuzzle].appnd(player) $\land$ numHints++
+\item output: numHints \textless ALLOWED HINTS $\Rightarrow$ hintString
+\end{itemize}
+
+\noindent {CompletePuzzle}(playerId):
+\begin{itemize}
+\item transition: $\forall$ player $\in$ PuzzlePlayers[getCurrentPuzzle(playerId)] : \newline PuzzlePlayers[newPuzzle].append(player)
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+None
+
+\subsubsection{Local Variables}
+
+None
+
+\newpage
+
+\section{MIS of Simon Says Puzzle Module} \label{Simon}
+
+\noindent The Simon Says Puzzle Module implements functionality for the Simon Says puzzle that is present in the application. This puzzle involves two users. User 1 has a 4 buttons of different colours (red, blue, green, yellow) in their game environment and User 2 has a area in their environment that flashes with different colours. User 2 must remember the pattern of colours that was shown and communicate with User 1 to let them know the order to press the coloured buttons in.
+
+\subsection{Module}
+SimonSaysPuzzle
+
+\subsection{Uses}
+Multiplayer Puzzle Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+GenerateColourSequence & - & Array of $\mathds{N}$ & - \\
+DisableInteractionWithButtons & - & - & - \\
+EnableInteractionWithButtons & - & - & - \\
+ButtonClickOrder & - & - & - \\
+CheckIfSuccess & Array of $\mathds{N}$ & $\mathds{B}$ & - \\
+ColourBlink & - & - & - \\
+IncreaseLevel & - & - & - \\
+Reset & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+Device Screen\\
+This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
+
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent GenerateColourSequence():
+\begin{itemize}
+\item transition: $ (\forall i: level <= i < level + 1 : \newline colourSequenceArray.append(randInt(0,4)))$
+\item output: out := colourSequenceArray
+\item exception: None
+\end{itemize}
+
+\noindent DisableInteractionWithButtons():
+\begin{itemize}
+\item transition: $ (\forall i: 0 <= i < 4 : \newline buttons[i].interactable = False$
+\item exception: None
+\end{itemize}
+
+\noindent EnableInteractionWithButtons():
+\begin{itemize}
+\item transition: $ (\forall i: 0 <= i < 4 : \newline buttons[i].interactable = True$
+\item exception: None
+\end{itemize}
+
+\noindent ButtonClickOrder():
+\begin{itemize}
+\item transition: Detect and store user input order of buttons in game environment
+\item exception: None
+\end{itemize}
+
+\noindent CheckIfSuccess(sequence):
+\begin{itemize}
+\item transition: $success == False => ResetLevel()$
+\item output: success := $ \forall i: 0 <= i < length(sequence) : \newline sequence[i] == userInput[i] => True  \: | \: else => False$
+\item exception: None
+\end{itemize}
+
+\noindent ColourBlink():
+\begin{itemize}
+\item transition: $success == True =>$ screen flash green $\: | \: else =>$ screen flash red
+\item exception: None
+\end{itemize}
+
+\noindent IncreaseLevel():
+\begin{itemize}
+\item transition: level := level + 1
+\item exception: None
+\end{itemize}
+
+\noindent ResetLevel():
+\begin{itemize}
+\item transition: level := 1
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+None
+\subsubsection{Local Variables}
+level := 1 $\{1<=\mathbb{N}<10\}$\\
+success := $\mathds{B}$\\
+colourSequenceArray := Array of $\mathds{N}$\\
+buttonsArray := \{0, 1, 2, 3\}\\
+colourDictionary := $\{Red -> 0, Blue -> 1, Green -> 2, Yellow -> 3\}$
+\newpage
+
+\section{MIS of Code Puzzle Module} \label{Code}
+\noindent The Decipher Code Puzzle Module implements functionality for the Decipher Code puzzle that is present in the application. This puzzle involves two users. User 1 has a group of symbols located next to each other in a row. User 2 has a cipher that shows the correlation between English letters and the symbols. User 1 must describe to User 2 the symbols they are seeing in order to crack the cipher. Once the symbols have been mapped to English letters, User 1 must enter the code to solve the puzzle.
+
+\subsection{Module}
+CodePuzzle
+
+\subsection{Uses}
+Multiplayer Puzzle Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+CodeLength = 6
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+GenerateCode & - & string & - \\
+MapLettersToSymbols & string & string & - \\
+StoreUserInput & - & - & - \\
+CheckIfSuccess & string & $\mathds{B}$ & - \\
+ColourBlink & - & - & - \\
+ResetInput & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+SymbolsArray $:= \{symbol0,symbol1,symbol2,…,symbol25\}$
+
+\subsubsection{Environment Variables}
+
+Device screen\\
+This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent GenerateCode():
+\begin{itemize}
+\item output: code := randString(CodeLength)
+\item exception: None
+\end{itemize}
+
+\noindent MapLettersToSymbols(code):
+\begin{itemize}
+\item output: symbolCode :=  \{$0 <= i < length(code)   :   \newline code[i] \: \longrightarrow SymbolsArray[lettersToNumberDictionary[code[i]]]\}$
+\item exception: None
+\end{itemize}
+
+\noindent StoreUserInput():
+\begin{itemize}
+\item transition: Detect and store user input of buttons in game environment
+\item exception: None
+\end{itemize}
+
+
+\noindent CheckIfSuccess(code):
+\begin{itemize}
+\item output: success := $ \forall i: 0 <= i < length(code) : \newline code[i] = userInput[i] => True  \: | \: else => False$
+\item exception: None
+\end{itemize}
+
+\noindent ColourBlink():
+\begin{itemize}
+\item transition: $success == True =>$ screen flash green $\: | \: else =>$ screen flash red
+\item exception: None
+\end{itemize}
+
+\noindent ResetInput():
+\begin{itemize}
+\item transition: Clear user input entry
+\item exception: None
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+
+randString(codeLength): Generate random string of length CodeLength
+\begin{itemize}
+    \item output: code := newCode
+    \item exception: None
+\end{itemize}
+
+\subsubsection{Local Variables}
+success := $\mathds{B}$\\
+code := string\\
+letterToNumberDictionary := $\{A -> 0, B -> 1, C -> 2, ..., Z -> 25\}$
+
+\newpage
+
+\section{MIS of {Wires Puzzle Module}} \label{WiresModule} 
+
+Puzzle module to be interacted with by two or more users. The module will generate a set of interactable wires for one user, and provide information on the correct order of wires to other users.
+ 
+\subsection{Module}
+WirePuzzle Module
+\subsection{Uses}
+Multiplayer Puzzle Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+NUM\_WIRES = 5
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{3cm} p{3cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+GenerateWires & - & - & - \\
+GenerateSequence & - & - & - \\
+ConnectWire & $\mathds{Z}$, $\mathds{Z}$ & - & - \\
+DisconnectWire & $\mathds{Z}$ & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+ConnectedWires := Array\textlangle$\mathds{B}$\textrangle \newline
+Sequence := Array\textlangle$\mathds{Z}$\textrangle
+
+\subsubsection{Environment Variables}
+
+Device Screen\\
+This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent {GenerateWires}():
+\begin{itemize}
+\item transition: Create the unity wire objects
+\item exception: None
+\end{itemize}
+
+\noindent {GenerateSequence}():
+\begin{itemize}
+\item transition: $\forall$ i : 0 \textless i \textless NUM\_WIRES : wire[i].position = rand()
+\item exception: None
+\end{itemize}
+
+\noindent {ConnectWire}(wireId, connectionId):
+\begin{itemize}
+\item transition: wire[wireId].connection = connectionId
+\item exception: None
+\end{itemize}
+
+\noindent {DisconnectWire}(wireId):
+\begin{itemize}
+\item transition: wire[wireId].connection = -1
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+None
+
+\subsubsection{Local Variables}
+
+None
+
+\newpage
+
+\section{MIS of Maze Puzzle Module} \label{MazeModule} 
+
+\subsection{Module}
+
+The maze puzzle module is a module dedicated to the maze puzzle, where one user will be in control of rotating a maze to get a ball to roll from the start to the end, while the other users will guide the user in control to move the ball through the maze. 
+
+\subsection{Uses}
+Multiplayer Puzzle Module
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+GenerateMaze & $\mathbb{N}$ & - & - \\
+RotateMaze & $\mathbb{R}$, $\mathbb{R}$, $\mathbb{R}$ & - & - \\
+BallHitsHole & - & - & - \\
+BallHitsGoal & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+BallPosition := {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
+
+\noindent MazeRotation := {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
+
+\subsubsection{Environment Variables}
+
+The phone's gyroscope rotation triggers the RotateMaze function. 
+
+\subsubsection{Assumptions}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent {GenerateMaze}(NumberOfPlayer):
+\begin{itemize}
+\item transition: SpawnMaze(), BallPosition := (0,0,0)
+\item output: ControllingPlayer := randInt(0,NumberOfPlayers-1)
+\item exception: None
+\end{itemize}
+
+\noindent {RotateMaze}(Pitch, Yaw, Roll):
+\begin{itemize}
+\item transition: MazeRotation := {Pitch,Yaw,Roll}
+\item exception: None
+\end{itemize}
+
+\noindent {BallHitsHole}():
+\begin{itemize}
+\item transition: BallPosition := (0,0,0)
+\item exception: None 
+\end{itemize}
+
+\noindent {BallHitsGoal}():
+\begin{itemize}
+\item transition: CompletePuzzle()
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+BallMovement: BallPosition x MazeRotation $\implies$ BallPosition $\equiv$ Based on current BallPosition and Maze Rotation, the current Position of the Ball changes to reflect the effect of gravity on the ball as it rolls downwards. 
+
+\subsubsection{Local Variables}
+
+Hole Locations := {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}{}
+
+\noindent ControllingPlayerIndex := $0<\mathbb{N}<10$
+
+
+
+\newpage 
+
+\section{MIS of {Math Puzzle Module}} \label{MathModule} 
+Puzzle module to be interacted with by two or more users. The module will split an equation into multiple sections and distribute the sections to each user.
+
+\subsection{Module}
+MathPuzzle Module
+\subsection{Uses}
+Multiplayer Puzzle Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+None
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{3cm} p{3cm} p{3cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+GenerateSolution & - & $\mathds{R}$ & - \\
+GenerateSections & - & - & - \\
+CompareSolution & $\mathds{R}$ & $\mathds{B}$ & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+Solution := $\mathds{R}$
+
+\subsubsection{Environment Variables}
+
+Device Screen\\
+This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent {GenerateSolution}():
+\begin{itemize}
+\item output: out := Solution
+\item exception: None
+\end{itemize}
+
+\noindent {GenerateSections}():
+\begin{itemize}
+\item transition: Split the puzzle into equal sections based on the amount of users assigned to the puzzle 
+\end{itemize}
+
+\noindent {CompareSolutions}(attemptedSolution):
+\begin{itemize}
+\item output: out := Solution == attemptedSolution
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+None
+
+\subsubsection{Local Variables}
+
+None
+
+\newpage
+
+\section{MIS of Bomb Puzzle Module} \label{Combination} 
+
+\noindent The Bomb Puzzle Module implements functionality for the combination discovery puzzle that is present in the application. This puzzle involves two to 4 users. An instruction card is generated for each user that only they can see, giving a subset of the instructions to solve a number combination. All users must communicate to combine their instructions to solve the combination.
+
+\subsection{Module}
+BombPuzzle
+
+\subsection{Uses}
+Multiplayer Puzzle Module
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+COMBO\_LENGTH=4
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+GenerateCombo & - & Array of strings & - \\
+ConvertButtonPress & - & $\mathds{N}$ & - \\
+CheckEntry & - & $\mathds{B}$ & - \\
+ColourBlink & - & - & - \\
+Restart & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+Device Screen\\
+This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
+
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent GenerateCombo():
+\begin{itemize}
+\item transition: comboSet := randCombo(comboArray)
+\item output: out := $ (\forall i : 2<=i<=numPlayers : player[i].instructions = comboArray[i+1]$, if $numPlayers<4$, loop back through remaining players assigning remaining instructions
+\item exception: None
+\end{itemize}
+
+\noindent ConvertButtonPress():
+\begin{itemize}
+\item transition: None
+\item output: userInput:= When button on keypad pressed, output equivalent natural number from 0-9
+\item exception: None
+\end{itemize}
+
+\noindent CheckEntry(userInput, comboSet):
+\begin{itemize}
+\item transition: $userInput == comboSet[0][currentDigit] \land currentDigit<4 => currentDigit+=1$
+\item output: success := $userInput == comboSet[0][currentDigit] \land currentDigit==4 => success=True | else success = False$
+\item exception: None
+\end{itemize}
+
+\noindent ColourBlink():
+\begin{itemize}
+\item transition: $success == True =>$ screen flash green $\: | \: else =>$ screen flash red, Restart()
+\item output: None
+\item exception: None
+\end{itemize}
+
+\noindent Restart():
+\begin{itemize}
+\item transition: currentDigit = 0, GenerateCombo()
+\item output: None
+\item exception: None
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+randCombo(comboArray): Select random combination-instruction set from comboArray
+\begin{itemize}
+    \item output: combo := newCombo
+    \item exception: None
+\end{itemize}
+
+\subsubsection{Local Variables}
+currentDigit := 0 $\{0<=\mathbb{N}<4\}$\\
+success := $\mathds{B}$\\
+comboArray := Array of arrays of strings of length 5. The first element of these subarrays is the combination of length COMBO\_LENGTH. The next 4 elements are the 4 instructions associated with this combo.\\
+\newpage
+
+\section{MIS of Database/Network Manager Module} \label{DatabaseNetworkModule} 
+
+\subsection{Module}
+
+DatabaseNetwork Module
+
+\subsection{Uses}
+
+None
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+OnNetworkSpawn & - & - & - \\
+OnNetworkDespawn  & - & - & - \\
+HandleClientConnected  & $\mathbb{R}$ & - & - \\
+HandleClientDisconnected  & $\mathbb{R}$ & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+players : NetworkList$<PlayerData>$
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+\noindent {OnNetworkSpawn}():
+\begin{itemize}
+\item transition: On initial connection to the network, update $players$ with the host information and all the clients who have joined the network.
+\item exception: None
+\end{itemize}\
+
+\noindent {OnNetworkDespawn}():
+\begin{itemize}
+\item transition: When the network is closed disconnect all users from the network and remove all users from $players$.
+\item exception: None
+\end{itemize}
+
+\noindent {HandleClientConnected}(clientId):
+\begin{itemize}
+\item transition: players.Add(new PlayerData(clientId))
+\item exception: None
+\end{itemize}
+
+\noindent {HandleClientDisconnected}(clientId):
+\begin{itemize}
+\item transition: if $  \exists i: 0 <= i < length(players) : \newline players[i].clientId == clientId => players.RemoveAt(i) $
+\item exception: None
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+None
+
+\newpage
+
+
+\section{MIS of {Error Manager Module}} \label{ErrorModule} 
+
+\subsection{Module}
+
+This module catches and manages all the error that pop up to give the user a more descriptive and readable version of the error that they encountered.
+
+\subsection{Uses}
+
+None
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{3.2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+Get & - & LogHandler & - \\
+LogFormat & $\mathds{N}$, UnityObject, string, object & LogHandler & - \\
+LogException & Exception, object & - &-\\
+SpawnErrorPopup & string & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+ShowErrorMessage := $\mathds{B}$
+
+\subsubsection{Environment Variables}
+
+There are buttons that the user has access to, that will activate some of these functions directly when pressed
+
+\subsubsection{Assumptions}
+
+\subsubsection{Access Routine Semantics}
+
+\noindent {Get}():
+\begin{itemize}
+\item output: out:= LogHandlerInstance
+\item exception: None
+\end{itemize}
+
+\noindent {LogFormat}(logtype,context,format,args[]):
+\begin{itemize}
+\item output: out := m\_DefaultLogHandler.LogFormat(logtype, context, format, args)
+\item exception: None
+\end{itemize}
+
+\noindent {LogException}(exception, context):
+\begin{itemize}
+\item output: out:= m\_DefaultLogHandler.LogException(exception, context)
+\item exception: None
+\end{itemize}
+
+\noindent {SpawnErrorPopup}(errorMessage):
+\begin{itemize}
+\item transition: ShowErrorMessage := true , gameOject.SetActive(true)
+\item exception: None
+\end{itemize}
+
+\noindent {ClearPopup}():
+\begin{itemize}
+\item transition: gameOject.SetActive(false)
+\item exception: None
+\end{itemize}
+
+
+\subsubsection{Local Functions}
+None
+
+\newpage 
+
+\section{MIS of {Documentation Module}} \label{DocModule} 
+Module used to map requirements that are related to user documentation. 
+\subsection{Module}
+
+\subsection{Uses}
+ None
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{2cm} p{4cm} p{4cm} p{2cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+- & - & - & - \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+None
+
+\subsubsection{Assumptions}
+
+None
+
+\subsubsection{Access Routine Semantics}
+
+None
+
+\subsubsection{Local Functions}
+
+None
+
+\newpage
+
+
 \bibliographystyle {plainnat}
-\bibliography {../../../refs/References}
+\bibliography {References}
 
 \newpage
 
 \section{Appendix} \label{Appendix}
 
-\wss{Extra information if required}
+
+The information in this section will be used to evaluate the team members on the
+graduate attribute of Problem Analysis and Design.  Please answer the following questions:
+
+\begin{enumerate}
+  \item What are the limitations of your solution?  Put another way, given
+  unlimited resources, what could you do to make the project better? (LO\_ProbSolutions)
+
+One of the main limitations of the project is the time constraint, as well as balancing the project with other courses members of the team are taking. As a result, certain features such as UI elements may be less aesthetic/nice looking due to having less time to work on them. Given unlimited resources, the following updates to the project could be made.
+
+\begin{itemize}
+    \item Improved UI elements
+    \item Creation of additional puzzle modules/types
+    \item Modification of current puzzle modules to allow them to work with several different amounts of people (ex. 2-player, 3-player, 4-player, etc.)
+\end{itemize}
+
+Another limitation of the project is the lack of choice regarding frameworks that can be used to implement AR elements. This project requires an AR game environment and there are only a few frameworks that can be used to implement AR elements, such as Unity. As a result, our team chose to use Unity to implement the application.
+  
+  \item Give a brief overview of other design solutions you considered.  What
+  are the benefits and tradeoffs of those other designs compared with the chosen
+  design?  From all the potential options, why did you select the documented design?
+  (LO\_Explores)
+
+As mentioned previously, there are not many frameworks that allow for the implementation of AR elements. At the beginning of the project, our team debated about whether to use Unreal Engine or Unity, however, we decided on Unity due to the fact that several group members had much more experience with Unity. Additionally, there are many benefits of using unity. First of all, there are many AR libraries that work hand in hand with Unity which is extremely useful for our project. Additionally, Unity has an asset store where we can get assets to be used in our game environment which is also extremely useful. Additionally, even though Unity does have many benefits, there are some negatives such as it being extremely difficult to do automated testing with Unity. Moving on, another design decision that we chose was using Vivox framework for the implementation of voice and text communication. The benefits of this is that Unity supports the use of Vivox and so the implementation of voice and text communication was not too difficult. The tradeoff, however, is that there is less freedom for the actual implementation of these communication features, as Vivox has to be set up in a specific way and only has certain functionality.
+\end{enumerate}
+
+
+\end{document}
 
 \end{document}
