@@ -4,6 +4,7 @@ on: [pull_request]
 
 jobs:
   build:
+    permissions: write-all
     name: Build my project
     runs-on: ubuntu-latest
     steps:
