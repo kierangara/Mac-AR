@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
@@ -128,6 +129,27 @@ public class HostManager : MonoBehaviour
         ClientData = new Dictionary<ulong, ClientData>();
 
         NetworkManager.Singleton.StartHost();
+    }
+
+    public async Task ChangeLobbySettings()
+    {
+     
+        var updateLobbyOptions = new UpdateLobbyOptions();
+        updateLobbyOptions.IsPrivate = false;
+        if (lobbyPassword.Length != 0)
+        {
+            updateLobbyOptions.Password = lobbyPassword;
+        }
+        updateLobbyOptions.Data = new Dictionary<string, DataObject>()
+        {
+            {
+                "JoinCode", new DataObject(
+                visibility: DataObject.VisibilityOptions.Member,
+                value: JoinCode
+                )
+            }
+        };
+        var updatedLobby = await Lobbies.Instance.UpdateLobbyAsync(lobbyId, updateLobbyOptions);
     }
 
     private IEnumerator HeartbeatLobbyCoroutine(float waitTimeSeconds)
