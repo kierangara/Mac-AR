@@ -7,6 +7,8 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Services.Vivox;
+using VivoxUnity;
 
 public class PlayerList : NetworkBehaviour
 {
@@ -14,7 +16,7 @@ public class PlayerList : NetworkBehaviour
     [SerializeField] private Toggle VoiceToggle;
     [SerializeField] private Transform playerItemParent;
     [SerializeField] private PlayerItem playerItemPrefab;
-    [SerializeField] private TMP_Text joinCodeText;
+    [SerializeField] public TMP_Text joinCodeText;
     public static readonly VivoxUnity.Client mainClient = new VivoxUnity.Client();
     private NetworkList<PlayerData> players;
 
@@ -48,6 +50,7 @@ public class PlayerList : NetworkBehaviour
         if (IsClient)
         {
             players.OnListChanged += HandlePlayersStateChanged;
+            joinCodeText.text = HostManager.Instance.JoinCode;
         }
 
         if (IsServer)
@@ -64,9 +67,12 @@ public class PlayerList : NetworkBehaviour
         if(IsHost)
         {
             joinCodeText.text = HostManager.Instance.JoinCode;
+
         }
 
+
         //Added Code
+
         var vTog = GameObject.Find("Toggle").GetComponent<Toggle>();
         Debug.Log("Getting before if statement " + vTog.isOn);
         if (vTog.isOn)
