@@ -12,12 +12,13 @@ using UnityEngine.Android;
 public class VivoxPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
-    private VivoxVoiceManager _vvm;
+    public VivoxVoiceManager _vvm;
 
     IChannelSession _chan;
     private int PermissionAskedCount;
-    [SerializeField]
-    public string VoiceChannelName = "TestChannel";
+    private string VoiceChannelName = "TestChannel";
+
+
     
 
 
@@ -123,8 +124,8 @@ public class VivoxPlayer : MonoBehaviour
         if (_vvm.LoginState == VivoxUnity.LoginState.LoggedIn)
         {
             Debug.Log("Successfully connected to Vivox");
-            Debug.Log("Joining voice channel: " + VoiceChannelName);
-            _vvm.JoinChannel(VoiceChannelName, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.TextAndAudio);
+            Debug.Log("Joining voice channel: " + GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text);
+            _vvm.JoinChannel(GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.TextAndAudio);
         }
         else
         {
