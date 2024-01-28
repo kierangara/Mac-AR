@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MultiplayerPuzzleManager : MonoBehaviour
 {
-    private List<IPuzzle> puzzles = new List<IPuzzle>;
+    private List<GameObject> puzzles = new List<GameObject>();
 
     //Start is called before the first frame update
     void Start()
