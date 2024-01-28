@@ -7,7 +7,14 @@ public class MultiplayerPuzzleBehaviour : ClickableObjectBase
 {
     [SerializeField] private GameObject cube;
     [SerializeField] private GameObject sphere;
+    [SerializeField] private GameObject component1;
+    [SerializeField] private GameObject component2;
 
+    void Start()
+    {
+        component2.transform.Translate(0, 0, 10000);
+    }
+    
     //Executed On Click
     public override void OnClick(Color newColor)
     {

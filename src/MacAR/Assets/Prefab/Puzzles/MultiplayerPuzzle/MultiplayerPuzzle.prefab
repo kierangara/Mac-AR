@@ -69,6 +69,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cube: {fileID: 9000912734957995249}
   sphere: {fileID: 2009223052958346573}
+  component1: {fileID: 6847674515161417493}
+  component2: {fileID: 1533614437684420843}
 --- !u!1001 &1012233465317025926
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -209,6 +211,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1012233465317025926}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6847674515161417493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5840042033570049939, guid: 40cb998b27ed1b64f946a3835d222267,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012233465317025926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9000912734957995249 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8279171412096052343, guid: 40cb998b27ed1b64f946a3835d222267,
@@ -298,6 +306,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f9aa01d8602a574480b1ba03e78adb0, type: 3}
+--- !u!1 &1533614437684420843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9007438364117220467, guid: 3f9aa01d8602a574480b1ba03e78adb0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7514439885981850776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2009223052958346573 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8334640069275169237, guid: 3f9aa01d8602a574480b1ba03e78adb0,
