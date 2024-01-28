@@ -116,6 +116,7 @@ public class HostManager : MonoBehaviour
             Lobby lobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxConnections, createLobbyOptions);
             lobbyId = lobby.Id;
             StartCoroutine(HeartbeatLobbyCoroutine(15));
+            GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setLobby(lobby);
         }
         catch (LobbyServiceException e)
         {
@@ -127,6 +128,8 @@ public class HostManager : MonoBehaviour
         NetworkManager.Singleton.OnServerStarted += OnNetworkReady;
 
         ClientData = new Dictionary<ulong, ClientData>();
+
+        
 
         NetworkManager.Singleton.StartHost();
     }

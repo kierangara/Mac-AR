@@ -50,7 +50,7 @@ public class PlayerList : NetworkBehaviour
         if (IsClient)
         {
             players.OnListChanged += HandlePlayersStateChanged;
-            joinCodeText.text = HostManager.Instance.JoinCode;
+            //joinCodeText.text = HostManager.Instance.JoinCode;
         }
 
         if (IsServer)
@@ -62,6 +62,7 @@ public class PlayerList : NetworkBehaviour
             {
                 HandleClientConnected(client.ClientId);
             }
+            //joinCodeText.text = HostManager.Instance.JoinCode;
         }
 
         if(IsHost)
