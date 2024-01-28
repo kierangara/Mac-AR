@@ -4,20 +4,20 @@ using UnityEngine;
 using Unity.Services.Vivox;
 using VivoxUnity;
 using UnityEngine.Android;
-
-
-
-
+using Unity.Services.Lobbies;
+using Unity.Services.Lobbies.Models;
 
 public class VivoxPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
-    private VivoxVoiceManager _vvm;
+    public VivoxVoiceManager _vvm;
 
     IChannelSession _chan;
     private int PermissionAskedCount;
-    [SerializeField]
-    public string VoiceChannelName = "TestChannel";
+    private string VoiceChannelName = "TestChannel";
+    public string lobbyer;
+
+
     
 
 
@@ -118,13 +118,27 @@ public class VivoxPlayer : MonoBehaviour
             }
         }
     }
+
+    public void setLobby(Lobby lobby)
+    {
+        lobbyer = lobby.Data["JoinCode"].Value;
+    }
+
+    public void setJoinCode(string lobbyCode)
+    {
+        this.lobbyer = lobbyCode;
+    }
+
+
     void OnUserLoggedIn ()
     {
         if (_vvm.LoginState == VivoxUnity.LoginState.LoggedIn)
         {
             Debug.Log("Successfully connected to Vivox");
-            Debug.Log("Joining voice channel: " + VoiceChannelName);
-            _vvm.JoinChannel(VoiceChannelName, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.TextAndAudio);
+            Debug.Log("Joining voice channel: " + lobbyer);
+            
+            _vvm.JoinChannel(lobbyer, ChannelType.NonPositional, VivoxVoiceManager.ChatCapability.TextAndAudio);
+
         }
         else
         {
