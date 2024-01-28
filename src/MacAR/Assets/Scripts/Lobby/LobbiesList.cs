@@ -83,15 +83,19 @@ public class LobbiesList : MonoBehaviour
                 var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id, options);
                 string joinCode = joiningLobby.Data["JoinCode"].Value;
                 await ClientManager.Instance.StartClient(joinCode);
+                GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
             }
             else
             {
                 var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id);
                 string joinCode = joiningLobby.Data["JoinCode"].Value;
                 await ClientManager.Instance.StartClient(joinCode);
+                GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
             }
+            //GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setLobby(lobby);
             
         }
+        
         catch
         {
             LogHandlerSettings.Instance.SpawnErrorPopup($"Error joining lobby : Password Mismatch issue");
