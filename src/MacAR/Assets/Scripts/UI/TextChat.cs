@@ -44,7 +44,9 @@ public class TextChat : MonoBehaviour
 #endif
         if (_vivoxVoiceManager.ActiveChannels.Count > 0)
         {
-            _lobbyChannelId = _vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == LobbyChannelName).Key;
+            //Debug.Log(_vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text).Key);
+            //_lobbyChannelId = _vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text).Key;
+            _lobbyChannelId = _vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().lobbyer).Key;
         }
         _vivoxVoiceManager.OnTextMessageLogReceivedEvent += OnTextMessageLogReceivedEvent;
     }
