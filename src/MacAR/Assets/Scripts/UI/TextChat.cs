@@ -185,14 +185,18 @@ public class TextChat : MonoBehaviour
         Debug.Log("messages should be appearing on screen");
         if (channelTextMessage.FromSelf)
         {
-            newMessageText.alignment = TextAnchor.MiddleRight;
-            newMessageText.text = string.Format($"{channelTextMessage.Message} :<color=blue>{sender} </color>\n<color=#5A5A5A><size=10>{channelTextMessage.ReceivedTime}</size></color>");
+
+            newMessageText.alignment = TextAnchor.MiddleLeft;
+            newMessageText.text = string.Format($"<color=white>{channelTextMessage.Message} </color> :<color=white>{sender} </color>\n<color=white><size=15>{channelTextMessage.ReceivedTime}</size></color>");
+
             StartCoroutine(SendScrollRectToBottom());
         }
         else
         {
             newMessageText.alignment = TextAnchor.MiddleLeft;
-            newMessageText.text = string.Format($"<color=green>{sender} </color>: {channelTextMessage.Message}\n<color=#5A5A5A><size=10>{channelTextMessage.ReceivedTime}</size></color>");
+
+            newMessageText.text = string.Format($"<color=green>{sender} </color>: {channelTextMessage.Message}\n<color=white><size=10>{channelTextMessage.ReceivedTime}</size></color>");
+
         }
     }
 }
