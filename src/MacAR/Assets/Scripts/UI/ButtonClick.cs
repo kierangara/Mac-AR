@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class ButtonClick : MonoBehaviour
 {
-    public TestPuzzleBehaviour networkObject;
+    public ClickableObjectBase networkObject;
+
     void OnMouseDown()
     {
         var buttonRender = gameObject.GetComponent<Renderer>();

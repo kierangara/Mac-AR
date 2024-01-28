@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class TestPuzzleBehaviour : ClickableObjectBase
+public class MultiplayerPuzzleBehaviour : ClickableObjectBase
 {
     [SerializeField] private GameObject cube;
+    [SerializeField] private GameObject sphere;
 
     //Executed On Click
     public override void OnClick(Color newColor)
     {
         var cubeRenderer = cube.GetComponent<Renderer>();
+        var sphereRenderer = sphere.GetComponent<Renderer>();
         
         if(cubeRenderer.material.GetColor("_Color") == newColor)
         {
@@ -19,6 +21,7 @@ public class TestPuzzleBehaviour : ClickableObjectBase
 
         // Update Local First
         cubeRenderer.material.SetColor("_Color", newColor);
+        sphereRenderer.material.SetColor("_Color", newColor);
 
         // Update Other Clients on Network
         UpdateColourServerRpc(newColor);
@@ -37,8 +40,10 @@ public class TestPuzzleBehaviour : ClickableObjectBase
     public void UpdateColourClientRpc(Color newColor)
     {
         var cubeRenderer = cube.GetComponent<Renderer>();
+        var sphereRenderer = sphere.GetComponent<Renderer>();
 
         // Call SetColor using the shader property name "_Color" and setting the color to red
         cubeRenderer.material.SetColor("_Color", newColor);
+        sphereRenderer.material.SetColor("_Color", newColor);
     }
 }
