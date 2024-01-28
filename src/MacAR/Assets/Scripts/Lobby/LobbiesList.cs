@@ -82,12 +82,14 @@ public class LobbiesList : MonoBehaviour
                 { Password = password };
                 var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id, options);
                 string joinCode = joiningLobby.Data["JoinCode"].Value;
+                //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode; 
                 await ClientManager.Instance.StartClient(joinCode);
             }
             else
             {
                 var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id);
                 string joinCode = joiningLobby.Data["JoinCode"].Value;
+                //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode;
                 await ClientManager.Instance.StartClient(joinCode);
             }
             

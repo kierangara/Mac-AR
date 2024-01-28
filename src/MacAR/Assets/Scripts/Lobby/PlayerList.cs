@@ -14,7 +14,7 @@ public class PlayerList : NetworkBehaviour
     [SerializeField] private Toggle VoiceToggle;
     [SerializeField] private Transform playerItemParent;
     [SerializeField] private PlayerItem playerItemPrefab;
-    [SerializeField] private TMP_Text joinCodeText;
+    [SerializeField] public TMP_Text joinCodeText;
     public static readonly VivoxUnity.Client mainClient = new VivoxUnity.Client();
     private NetworkList<PlayerData> players;
 
