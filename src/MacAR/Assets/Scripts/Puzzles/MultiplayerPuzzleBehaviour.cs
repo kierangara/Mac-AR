@@ -12,7 +12,7 @@ public class MultiplayerPuzzleBehaviour : ClickableObjectBase
 
     void Start()
     {
-        component2.transform.Translate(0, 0, 10000);
+        // component2.transform.Translate(0, 0, 10000);
     }
     
     //Executed On Click
