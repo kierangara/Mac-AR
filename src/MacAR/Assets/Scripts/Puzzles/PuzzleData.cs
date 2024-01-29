@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PuzzleData : MonoBehaviour
 {
-    public Camera cam;
-    public MultiplayerPuzzleManager completePuzzle;
-    public List<ulong> connectedClients;
+    // Populated by Puzzle
+    public int minPlayers = 0;
+    public int maxPlayers = 0;
+    
+    // Populated by Manager
+    [HideInInspector] public Camera cam;
+    [HideInInspector] public MultiplayerPuzzleManager completePuzzle;
+    [HideInInspector] public List<ulong> connectedClients;
 }
