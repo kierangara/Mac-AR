@@ -6,4 +6,5 @@ public class PuzzleData : MonoBehaviour
 {
     public Camera cam;
     public MultiplayerPuzzleManager completePuzzle;
+    public List<ulong> connectedClients;
 }

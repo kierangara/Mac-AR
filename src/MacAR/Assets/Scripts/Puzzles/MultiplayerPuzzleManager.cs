@@ -41,6 +41,11 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         {
             puzzle.GetComponentInChildren<PuzzleData>().cam = cam;
             puzzle.GetComponentInChildren<PuzzleData>().completePuzzle = this;
+
+            foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
+            {
+                puzzle.GetComponentInChildren<PuzzleData>().connectedClients.Add(client.ClientId);
+            }
         }
     }
 
