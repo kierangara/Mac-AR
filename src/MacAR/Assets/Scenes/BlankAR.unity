@@ -707,6 +707,21 @@ PrefabInstance:
       propertyPath: m_VerticalScrollbarVisibility
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 806461904163497777, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1411.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 806461904163497777, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -120.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 1265586848557851168, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 15.578552
+      objectReference: {fileID: 0}
     - target: {fileID: 1449768552186508690, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
       propertyPath: m_VerticalFit
@@ -741,6 +756,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809490278439418550, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1380.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2809490278439418550, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 720.81
       objectReference: {fileID: 0}
     - target: {fileID: 3400155976099111396, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
@@ -795,7 +820,12 @@ PrefabInstance:
     - target: {fileID: 5935844316141068891, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 252.56
+      value: 1363.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6823479404688043952, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 14.988586
       objectReference: {fileID: 0}
     - target: {fileID: 6929665902805160450, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
