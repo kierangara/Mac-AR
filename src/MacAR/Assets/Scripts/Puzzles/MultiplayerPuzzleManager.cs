@@ -27,11 +27,9 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         NetworkObject puzzleInstance = Instantiate(puzzle); 
 
         // Spawn
-        NetworkObject spawnedNetworkObject = puzzleInstance.GetComponent<NetworkObject>();
-        spawnedNetworkObject.Spawn();
+        puzzleInstance.SpawnWithOwnership(OwnerClientId);
 
         // Initialize
-        // puzzleInstance.GetComponentInChildren<ObjectRotate>().cam = cam;
         InitializeClientRpc(puzzleInstance);
     }
 
