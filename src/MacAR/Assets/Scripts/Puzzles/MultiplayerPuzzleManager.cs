@@ -12,23 +12,36 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     //Start is called before the first frame update
     void Start()
     {
-        // // Register Prefabs
-        // NetworkManager.AddNetworkPrefab(puzzle);
-
-        // // Spawn Puzzle Instance
-        // var puzzleInstance = Instantiate(puzzle, new Vector3(0, 0, 0), Quaternion.identity);
-        // /// Make Abstract
-        // puzzleInstance.GetComponentInChildren<ObjectRotate>().cam = cam;
-        // puzzleInstance.GetComponentInChildren<NetworkObject>().Spawn();
         SpawnPuzzleServerRpc();
     }
 
     [ServerRpc]
     private void SpawnPuzzleServerRpc()
     {
-       NetworkObject puzzleInstance = Instantiate(puzzle, new Vector3(0, 0, 0), Quaternion.identity); 
-       puzzleInstance.GetComponentInChildren<ObjectRotate>().cam = cam;
-       puzzleInstance.SpawnWithOwnership(OwnerClientId);
+        if(!IsServer)
+        {
+            return;
+        }
+
+        // Instantiate 
+        NetworkObject puzzleInstance = Instantiate(puzzle); 
+
+        // Spawn
+        NetworkObject spawnedNetworkObject = puzzleInstance.GetComponent<NetworkObject>();
+        spawnedNetworkObject.Spawn();
+
+        // Initialize
+        // puzzleInstance.GetComponentInChildren<ObjectRotate>().cam = cam;
+        InitializeClientRpc(puzzleInstance);
+    }
+
+    [ClientRpc]
+    private void InitializeClientRpc(NetworkObjectReference puzzleRef)
+    {
+        if (puzzleRef.TryGet(out NetworkObject puzzle))
+        {
+            puzzle.GetComponentInChildren<ObjectRotate>().cam = cam;
+        }
     }
 
     // Update is called once per frame
