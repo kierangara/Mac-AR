@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819a4d8522e0571408ee5410b64df189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkObject: {fileID: 5467906137616752701}
+  networkObject: {fileID: 1618516060281389959}
 --- !u!114 &6148024241779195335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5467906137616752701}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestPuzzleBehaviour, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819a4d8522e0571408ee5410b64df189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkObject: {fileID: 5467906137616752701}
+  networkObject: {fileID: 1618516060281389959}
 --- !u!114 &1000635480669668849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5467906137616752701}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestPuzzleBehaviour, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -381,12 +381,12 @@ Transform:
   m_GameObject: {fileID: 2476673875522763281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0139228, y: 1.8013557, z: -4.098626}
+  m_LocalPosition: {x: 1.0139228, y: 1.8013557, z: 0.95989275}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8497673410870245998}
-  m_Father: {fileID: 2659535251589137082}
+  m_Father: {fileID: 4332503782843107375}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4036751089599452949
 GameObject:
@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819a4d8522e0571408ee5410b64df189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkObject: {fileID: 5467906137616752701}
+  networkObject: {fileID: 1618516060281389959}
 --- !u!114 &4265296452938626741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5467906137616752701}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestPuzzleBehaviour, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819a4d8522e0571408ee5410b64df189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkObject: {fileID: 5467906137616752701}
+  networkObject: {fileID: 1618516060281389959}
 --- !u!114 &1526255956886922749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5467906137616752701}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestPuzzleBehaviour, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -753,6 +753,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4332503782843107375}
+  - component: {fileID: 1618516060281389959}
+  - component: {fileID: 2470652298055955659}
   m_Layer: 0
   m_Name: ExamplePuzzle
   m_TagString: Untagged
@@ -773,50 +775,29 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2659535251589137082}
+  - {fileID: 5412861622829992801}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7681173240485269226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2659535251589137082}
-  - component: {fileID: 5814408109801652924}
-  - component: {fileID: 5467906137616752701}
-  m_Layer: 0
-  m_Name: PuzzleNetworkManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2659535251589137082
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7681173240485269226}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 5.058519}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5412861622829992801}
-  m_Father: {fileID: 4332503782843107375}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5814408109801652924
+--- !u!114 &1618516060281389959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7681173240485269226}
+  m_GameObject: {fileID: 5840042033570049939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491b36ea9064bf04d98fd52b05801f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube: {fileID: 8279171412096052343}
+--- !u!114 &2470652298055955659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5840042033570049939}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
@@ -830,19 +811,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &5467906137616752701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7681173240485269226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 491b36ea9064bf04d98fd52b05801f09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube: {fileID: 8279171412096052343}
 --- !u!1 &8196755113101015426
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,7 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819a4d8522e0571408ee5410b64df189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkObject: {fileID: 5467906137616752701}
+  networkObject: {fileID: 1618516060281389959}
 --- !u!114 &2390780641766638307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,7 +977,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5467906137616752701}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestPuzzleBehaviour, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
@@ -1269,7 +1237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819a4d8522e0571408ee5410b64df189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkObject: {fileID: 5467906137616752701}
+  networkObject: {fileID: 1618516060281389959}
 --- !u!114 &5828038535302189136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1314,7 +1282,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5467906137616752701}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TestPuzzleBehaviour, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
