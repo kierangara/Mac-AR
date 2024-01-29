@@ -8,6 +8,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     // private List<GameObject> puzzles = new List<GameObject>();
     [SerializeField] private NetworkObject puzzle;
     public Camera cam; 
+    NetworkObject puzzleInstance;
 
     //Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         }
 
         // Instantiate 
-        NetworkObject puzzleInstance = Instantiate(puzzle); 
+        puzzleInstance = Instantiate(puzzle); 
 
         // Spawn
         puzzleInstance.SpawnWithOwnership(OwnerClientId);
@@ -39,7 +40,21 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         if (puzzleRef.TryGet(out NetworkObject puzzle))
         {
             puzzle.GetComponentInChildren<PuzzleData>().cam = cam;
+            puzzle.GetComponentInChildren<PuzzleData>().completePuzzle = this;
         }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void CompletePuzzleServerRpc(ulong clientId)
+    {
+        puzzleInstance.Despawn();
+        CompletePuzzleClientRpc();
+    }
+
+    [ClientRpc]
+    public void CompletePuzzleClientRpc()
+    {
+        puzzleInstance.Despawn();
     }
 
     // Update is called once per frame

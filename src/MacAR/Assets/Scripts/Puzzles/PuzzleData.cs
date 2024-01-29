@@ -5,4 +5,5 @@ using UnityEngine;
 public class PuzzleData : MonoBehaviour
 {
     public Camera cam;
+    public MultiplayerPuzzleManager completePuzzle;
 }

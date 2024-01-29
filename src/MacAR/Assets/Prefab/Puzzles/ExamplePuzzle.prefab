@@ -792,6 +792,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cube: {fileID: 8279171412096052343}
+  puzzleData: {fileID: 2200555280839932331}
 --- !u!114 &2470652298055955659
 MonoBehaviour:
   m_ObjectHideFlags: 0

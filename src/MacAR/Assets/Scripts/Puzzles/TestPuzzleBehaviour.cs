@@ -6,6 +6,7 @@ using Unity.Netcode;
 public class TestPuzzleBehaviour : ClickableObjectBase
 {
     [SerializeField] private GameObject cube;
+    public PuzzleData puzzleData;
 
     //Executed On Click
     public override void OnClick(Color newColor)
@@ -22,6 +23,12 @@ public class TestPuzzleBehaviour : ClickableObjectBase
 
         // Update Other Clients on Network
         UpdateColourServerRpc(newColor);
+
+        // Check for Completion
+        if(newColor == Color.white)
+        {
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+        }
     }
 
     //Send new colour to server
