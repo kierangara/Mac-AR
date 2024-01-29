@@ -38,7 +38,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     {
         if (puzzleRef.TryGet(out NetworkObject puzzle))
         {
-            puzzle.GetComponentInChildren<ObjectRotate>().cam = cam;
+            puzzle.GetComponentInChildren<PuzzleData>().cam = cam;
         }
     }
 
