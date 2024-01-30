@@ -744,20 +744,20 @@ None
 
 \noindent GenerateColourSequence():
 \begin{itemize}
-\item transition: $ (\forall i: level <= i < level + 1 : \newline colourSequenceArray.append(randInt(0,4)))$
+\item transition: $ \forall i: level <= i < level + 1 : \newline colourSequenceArray.append(randInt(0,4))$
 \item output: out := colourSequenceArray
 \item exception: None
 \end{itemize}
 
 \noindent DisableInteractionWithButtons():
 \begin{itemize}
-\item transition: $ (\forall i: 0 <= i < 4 : \newline buttons[i].interactable = False$
+\item transition: $ \forall i: 0 <= i < 4 : \newline buttons[i].interactable = False$
 \item exception: None
 \end{itemize}
 
 \noindent EnableInteractionWithButtons():
 \begin{itemize}
-\item transition: $ (\forall i: 0 <= i < 4 : \newline buttons[i].interactable = True$
+\item transition: $ \forall i: 0 <= i < 4 : \newline buttons[i].interactable = True$
 \item exception: None
 \end{itemize}
 
