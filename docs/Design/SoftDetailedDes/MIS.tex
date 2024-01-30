@@ -250,7 +250,7 @@ Maximum Password length = 64\\
 StartHost & $\mathbb{N}$, string, string & - & - \\
 Initialize  & LobbiesList, Lobby & - & - \\
 readyPress  & - & $\mathbb{B}$ & - \\
-RefreshPlayerList  & - & LobbiesList & - \\
+RefreshLobbiesList  & - & LobbiesList & - \\
 JoinAsync  & Lobby, string & - & - \\
 StartGame & - & - & - \\
 setLobby  & Lobby & - & - \\
@@ -264,8 +264,9 @@ setPassword & string & - & - \\
 
 \subsubsection{State Variables}
 
-inLobby : $\mathbb{B}$
-isReady : $\mathbb{B}$
+inLobby : $\mathbb{B}$\\
+isReady : $\mathbb{B}$\\
+lobbies : LobbiesList
 
 \subsubsection{Environment Variables}
 
@@ -290,10 +291,10 @@ None
 \item exception: None
 \end{itemize}
 
-\noindent {RefreshList}():
+\noindent {RefreshLobbiesList}():
 \begin{itemize}
-\item transition: $\forall Lobby \in Lobbies \implies Initialize(Lobby)$
-\item output: None
+\item transition: $\forall lobby \in lobbies \implies Initialize(lobby)$
+\item output: out:=lobbies
 \item exception: None
 \end{itemize}
 
@@ -306,7 +307,7 @@ None
 \noindent {StartHost}(connections, lobbyName, password):
 \begin{itemize}
 \item transition: GameScene := Lobby
-\item output: Lobby.MaxConnections = connections, Lobby.LobbyName := lobbyName, Lobby.Password = password
+\item output: Lobby.MaxConnections := connections, Lobby.LobbyName := lobbyName, Lobby.Password := password
 \item exception: None
 \end{itemize}
 
