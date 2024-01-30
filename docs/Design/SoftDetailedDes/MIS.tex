@@ -645,11 +645,11 @@ CompletePuzzle & $\mathds{Z}$ & - & - \\
 
 \subsubsection{State Variables}
 
-PuzzlePlayers := Tuple\textlangle$\mathds{Z}$, Array\textlangle$\mathds{Z}$\textrangle\textrangle
+PuzzlePlayers : Tuple\textlangle$\mathds{Z}$, Array\textlangle$\mathds{Z}$\textrangle\textrangle
 
 \subsubsection{Environment Variables}
 
-PlayerIds := Array\textlangle$\mathds{Z}$\textrangle
+PlayerIds : Array\textlangle$\mathds{Z}$\textrangle
 
 \subsubsection{Assumptions}
 
@@ -795,8 +795,8 @@ None
 None
 \subsubsection{Local Variables}
 level := 1 $\{1<=\mathbb{N}<10\}$\\
-success := $\mathds{B}$\\
-colourSequenceArray := Array of $\mathds{N}$\\
+success : $\mathds{B}$\\
+colourSequenceArray : Array of $\mathds{N}$\\
 buttonsArray := \{0, 1, 2, 3\}\\
 colourDictionary := $\{Red -> 0, Blue -> 1, Green -> 2, Yellow -> 3\}$
 \newpage
@@ -895,8 +895,8 @@ randString(codeLength): Generate random string of length CodeLength
 \end{itemize}
 
 \subsubsection{Local Variables}
-success := $\mathds{B}$\\
-code := string\\
+success : $\mathds{B}$\\
+code : string\\
 letterToNumberDictionary := $\{A -> 0, B -> 1, C -> 2, ..., Z -> 25\}$
 
 \newpage
@@ -934,8 +934,8 @@ DisconnectWire & $\mathds{Z}$ & - & - \\
 
 \subsubsection{State Variables}
 
-ConnectedWires := Array\textlangle$\mathds{B}$\textrangle \newline
-Sequence := Array\textlangle$\mathds{Z}$\textrangle
+ConnectedWires : Array\textlangle$\mathds{B}$\textrangle \newline
+Sequence : Array\textlangle$\mathds{Z}$\textrangle
 
 \subsubsection{Environment Variables}
 
@@ -1013,9 +1013,9 @@ BallHitsGoal & - & - & - \\
 
 \subsubsection{State Variables}
 
-BallPosition := {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
+BallPosition : {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
 
-\noindent MazeRotation := {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
+\noindent MazeRotation : {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
 
 \subsubsection{Environment Variables}
 
@@ -1056,9 +1056,9 @@ BallMovement: BallPosition x MazeRotation $\implies$ BallPosition $\equiv$ Based
 
 \subsubsection{Local Variables}
 
-Hole Locations := {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}{}
+Hole Locations : {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}{}
 
-\noindent ControllingPlayerIndex := $0<\mathbb{N}<10$
+\noindent ControllingPlayerIndex : $0<\mathbb{N}<10$
 
 
 
@@ -1094,7 +1094,7 @@ CompareSolution & $\mathds{R}$ & $\mathds{B}$ & - \\
 
 \subsubsection{State Variables}
 
-Solution := $\mathds{R}$
+Solution : $\mathds{R}$
 
 \subsubsection{Environment Variables}
 
@@ -1228,7 +1228,7 @@ randCombo(comboArray): Select random combination-instruction set from comboArray
 
 \subsubsection{Local Variables}
 currentDigit := 0 $\{0<=\mathbb{N}<4\}$\\
-success := $\mathds{B}$\\
+success : $\mathds{B}$\\
 comboArray := Array of arrays of strings of length 5. The first element of these subarrays is the combination of length COMBO\_LENGTH. The next 4 elements are the 4 instructions associated with this combo.\\
 \newpage
 
@@ -1343,7 +1343,7 @@ SpawnErrorPopup & string & - & - \\
 
 \subsubsection{State Variables}
 
-ShowErrorMessage := $\mathds{B}$
+ShowErrorMessage : $\mathds{B}$
 
 \subsubsection{Environment Variables}
 
