@@ -188,13 +188,15 @@ public class TextChat : MonoBehaviour
         if (channelTextMessage.FromSelf)
         {
             newMessageText.alignment = TextAnchor.MiddleLeft;
-            newMessageText.text = string.Format($"<color=white>{channelTextMessage.Message} </color> :<color=white>{sender} </color>\n<color=white><size=15>{channelTextMessage.ReceivedTime}</size></color>");
+            //newMessageText.text = string.Format($"<color=white>{channelTextMessage.Message} </color> :<color=white>{sender} </color>\n<color=white><size=15>{channelTextMessage.ReceivedTime}</size></color>");
+            newMessageText.text = string.Format($"<color=white>{sender} </color>\n<color=white>{channelTextMessage.Message} </color>\n");
             StartCoroutine(SendScrollRectToBottom());
         }
         else
         {
             newMessageText.alignment = TextAnchor.MiddleLeft;
-            newMessageText.text = string.Format($"<color=green>{sender} </color>: {channelTextMessage.Message}\n<color=white><size=10>{channelTextMessage.ReceivedTime}</size></color>");
+            //newMessageText.text = string.Format($"<color=green>{sender} </color>: {channelTextMessage.Message}\n<color=white><size=10>{channelTextMessage.ReceivedTime}</size></color>");
+            newMessageText.text = string.Format($"<color=green>{sender} </color>\n{channelTextMessage.Message}\n");
         }
     }
 }
