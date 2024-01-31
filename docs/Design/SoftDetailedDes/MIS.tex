@@ -1158,8 +1158,8 @@ COMBO\_LENGTH=4
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
 GenerateCombo & - & Array of strings & - \\
-ConvertButtonPress & - & $\mathds{N}$ & - \\
-CheckEntry & - & $\mathds{B}$ & - \\
+ConvertButtonPress & - & char & - \\
+CheckEntry & char, Array of strings & $\mathds{B}$ & - \\
 ColourBlink & - & - & - \\
 Restart & - & - & - \\
 \hline
@@ -1170,7 +1170,7 @@ Restart & - & - & - \\
 
 \subsubsection{State Variables}
 
-None
+comboSet : Array of strings
 
 \subsubsection{Environment Variables}
 
@@ -1187,14 +1187,14 @@ None
 \noindent GenerateCombo():
 \begin{itemize}
 \item transition: comboSet := randCombo(comboArray)
-\item output: out := $ (\forall i : 2<=i<=numPlayers : player[i].instructions = comboArray[i+1]$, if $numPlayers<4$, loop back through remaining players assigning remaining instructions
+\item output: out := $ (\forall i : 0<=i<=numPlayers : player[i].instructions = comboSet[i+1]$, if $numPlayers<4$, loop back through remaining players assigning remaining instructions
 \item exception: None
 \end{itemize}
 
 \noindent ConvertButtonPress():
 \begin{itemize}
 \item transition: None
-\item output: userInput:= When button on keypad pressed, output equivalent natural number from 0-9
+\item output: userInput:= When button on keypad pressed, output character of equivalent number from 0-9
 \item exception: None
 \end{itemize}
 
