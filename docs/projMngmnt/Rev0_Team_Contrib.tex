@@ -20,14 +20,22 @@
 
 \section{Demo Plans}
 
-\wss{What you will demonstrating}
+The team will be demonstrating the following functionality:
+\begin{itemize}
+    \item Updated voice chat
+    \item Updated text chat
+    \item Updated lobby menu
+    \item Puzzle gameplay for the following puzzles
+        \begin{itemize}
+            \item Simon Says Puzzle
+            \item Combination Puzzle
+            \item Maze Puzzle
+            \item Math Puzzle
+        \end{itemize}
+    \item Cooperative gameplay between two users
+\end{itemize}
 
 \section{Meeting Attendance}
-
-\wss{For each team member how many team meetings have they attended since the
-POC demo.  This number should be determined from the meeting issues in the
-team's repo.  The first entry in the table should be the total number of team
-meetings held by the team.}
 
 \begin{table}[H]
 \centering
@@ -35,24 +43,18 @@ meetings held by the team.}
 \toprule
 \textbf{Student} & \textbf{Meetings}\\
 \midrule
-Total & Num\\
-Name 1 & Num\\
-Name 2 & Num\\
-Name 3 & Num\\
-Name 4 & Num\\
-Name 5 & Num\\
+Total & 8\\
+Matthew & 8\\
+Ethan & 8\\
+Kieran & 8\\
+Sam & 8\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the counts can be provided here.}
+Every group member has been present for all group meetings.
 
 \section{Lecture Attendance}
-
-\wss{For each team member how many lectures have they attended since the POC
-demo.  This number should be determined from the lecture issues in the team's
-repo.  The first entry in the table should be the total number of lectures since
-the POC demo.}
 
 \begin{table}[H]
 \centering
@@ -60,24 +62,16 @@ the POC demo.}
 \toprule
 \textbf{Student} & \textbf{Lectures}\\
 \midrule
-Total & Num\\
-Name 1 & Num\\
-Name 2 & Num\\
-Name 3 & Num\\
-Name 4 & Num\\
-Name 5 & Num\\
+Total & 2\\
+Matthew & 2\\
+Ethan & 2\\
+Kieran & 2\\
+Sam & 2\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the lecture attendance can be provided here.}
-
 \section{Commits}
-
-\wss{For each team member how many commits to the main branch have been made
-since the POC demo.  The total is the total number of commits for the entire
-team since the POC demo.  The percentage is the percentage of the total commits
-made by each team member.}
 
 \begin{table}[H]
 \centering
@@ -85,25 +79,18 @@ made by each team member.}
 \toprule
 \textbf{Student} & \textbf{Commits} & \textbf{Percent}\\
 \midrule
-Total & Num & 100\% \\
-Name 1 & Num & \% \\
-Name 2 & Num & \% \\
-Name 3 & Num & \% \\
-Name 4 & Num & \% \\
-Name 5 & Num & \% \\
+Total & 51 & 100\% \\
+Matthew & 9 & 18\% \\
+Ethan & 10 & 20\% \\
+Kieran & 11 & 21\% \\
+Sam & 21 & 41\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the counts can be provided here.  For
-instance, if a team member has more commits to unmerged branches, these numbers
-can be provided here.}
+The commits from the "development" branch, which is used as a final staging branch before main, have not been completely merged to Main as of creating this document. In addition, administrative work which is done in small individual commits, such as updating CI/CD or issue templates, can cause commit numbers to become disproportionate. The work itself has been split mostly evenly.
 
 \section{Issue Tracker}
-
-\wss{For each team member how many issues have they authored (including open and
-closed issues) and how many have they been assigned (only counting closed
-issues).}
 
 \begin{table}[H]
 \centering
@@ -111,19 +98,18 @@ issues).}
 \toprule
 \textbf{Student} & \textbf{Authored (O+C)} & \textbf{Assigned (C only)}\\
 \midrule
-Name 1 & Num & Num \\
-Name 2 & Num & Num \\
-Name 3 & Num & Num \\
-Name 4 & Num & Num \\
-Name 5 & Num & Num \\
+Matthew & 24 & 44 \\
+Ethan & 13 & 47 \\
+Kieran & 5 & 37\\
+Sam & 24 & 28 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\wss{If needed, an explanation for the counts can be provided here.}
+Certain categories of issues, such as issues created for lectures and meetings, causes some of the "authored" commit numbers to be disproportionate, and don't reflect the amount of important issues that were created. The number of non-administrative tickets created is fairly even among team members, 
 
 \section{CICD}
 
-\wss{Say how CICD is used in your project}
+CI/CD has been implemented at present to run the entire "edit mode" suite of tests, which in Unity consists of all of the unit tests that can be run in isolation, without the full program being launched. The pipeline is set up to run automatically for all pull requests, in addition to running on main when any changes are pushed. 
 
 \end{document}
