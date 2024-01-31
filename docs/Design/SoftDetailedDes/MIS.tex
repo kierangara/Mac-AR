@@ -251,7 +251,7 @@ StartHost & $\mathbb{N}$, string, string & - & - \\
 Initialize  & LobbiesList, Lobby & - & - \\
 readyPress  & - & $\mathbb{B}$ & - \\
 RefreshLobbiesList  & - & LobbiesList & - \\
-JoinAsync  & Lobby, string & - & - \\
+JoinAsync  & Lobby, string & $\mathbb{B}$ & - \\
 StartGame & - & - & - \\
 setLobby  & Lobby & - & - \\
 setConnections & $\mathbb{N}$ & - & - \\
@@ -266,6 +266,7 @@ setPassword & string & - & - \\
 
 inLobby : $\mathbb{B}$\\
 isReady : $\mathbb{B}$\\
+isJoining : $\mathbb{B}$\\
 lobbies : LobbiesList
 
 \subsubsection{Environment Variables}
@@ -306,8 +307,7 @@ None
 
 \noindent {StartHost}(connections, lobbyName, password):
 \begin{itemize}
-\item transition: GameScene := Lobby
-\item output: Lobby.MaxConnections := connections, Lobby.LobbyName := lobbyName, Lobby.Password := password
+\item transition: GameScene := Lobby, Lobby.MaxConnections := connections, Lobby.LobbyName := lobbyName, Lobby.Password := password
 \item exception: None
 \end{itemize}
 
@@ -1002,7 +1002,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-GenerateMaze & $\mathbb{N}$ & - & - \\
+GenerateMaze & $\mathbb{N}$ & $\mathbb{Z}$ & - \\
 RotateMaze & $\mathbb{R}$, $\mathbb{R}$, $\mathbb{R}$ & - & - \\
 BallHitsHole & - & - & - \\
 BallHitsGoal & - & - & - \\
