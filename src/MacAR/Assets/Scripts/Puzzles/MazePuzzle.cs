@@ -6,6 +6,7 @@ using System.Linq;
 using UnityEngine.UIElements;
 using System;
 using System.ComponentModel;
+using Unity.Netcode;
 
 public class MazePuzzle : MonoBehaviour
 {
@@ -24,29 +25,68 @@ public class MazePuzzle : MonoBehaviour
 
     private MazeCell[,] _mazeGrid;
 
+    public PuzzleData puzzleData;
+
 
     private float trackingYRot;
     private float trackingXRot;
     private float trackingZRot;
     private static bool puzzleComplete = false;
     // Start is called before the first frame update
-    private void Start()
+    public void InitializePuzzle()
     {
-        _mazeGrid = new MazeCell[_mazeWidth, _mazeLength];
-        for(int x=0;x<_mazeWidth;x++)
+        //puzzleData =GameObject.Find("PuzzleInit").GetComponent<PuzzleData>();
+        if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
-            for(int z=0;z<_mazeLength;z++) 
+            _mazeGrid = new MazeCell[_mazeWidth, _mazeLength];
+            for (int x = 0; x < _mazeWidth; x++)
             {
-                _mazeGrid[x,z]=Instantiate(_mazeCellPrefab, new Vector3((float)(x*0.1+maze.transform.position.x-0.45), (float)-1.44, (float)(z*0.1+maze.transform.position.z-0.45)),Quaternion.identity);
-                _mazeGrid[x,z].transform.parent = maze.transform;
+                for (int z = 0; z < _mazeLength; z++)
+                {
+                    _mazeGrid[x, z] = Instantiate(_mazeCellPrefab, new Vector3((float)(x * 0.1 + maze.transform.position.x - 0.45), (float)-1.44, (float)(z * 0.1 + maze.transform.position.z - 0.45)), Quaternion.identity);
+                    _mazeGrid[x, z].transform.parent = maze.transform;
+                }
             }
+            GenerateMaze(null, _mazeGrid[0, 0]);
+            GenerateMazeServerRpc(_mazeGrid);
+
+            UpdateMazeAndBallTransformServerRpc(new Vector3(maze.transform.position.x - 0.45f, maze.transform.position.y + 0.1f, maze.transform.position.z - 0.45f), Quaternion.identity.eulerAngles);
         }
 
-        GenerateMaze(null, _mazeGrid[0,0]);
-        ball.transform.position= new Vector3(maze.transform.position.x - 0.45f, maze.transform.position.y + 0.1f, maze.transform.position.z - 0.45f);
-        maze.transform.rotation = Quaternion.identity;
+
+        //GenerateMaze(null, _mazeGrid[0,0]);
+        //ball.transform.position= new Vector3(maze.transform.position.x - 0.45f, maze.transform.position.y + 0.1f, maze.transform.position.z - 0.45f);
+        //maze.transform.rotation = Quaternion.identity;
         Input.gyro.enabled = true;
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void GenerateMazeServerRpc(MazeCell[,] mazeGrid)
+    {
+        GenerateMazeClientRpc(mazeGrid);
+    }
+
+    [ClientRpc]
+    public void GenerateMazeClientRpc(MazeCell[,] mazeGrid)
+    {
+        this._mazeGrid= mazeGrid;
+    }
+
+    [ServerRpc(RequireOwnership =false)]
+    public void UpdateMazeAndBallTransformServerRpc(Vector3 ballPosition, Vector3 mazeRotation)
+    {
+        UpdateMazeAndBallTransformClientRpc(ballPosition, mazeRotation);
+        //GenerateMazeClientRpc(newColor);
+    }
+    [ClientRpc]
+    public void UpdateMazeAndBallTransformClientRpc(Vector3 ballPosition, Vector3 mazeRotation)
+    {
+        ball.transform.position = ballPosition;
+        maze.transform.eulerAngles = mazeRotation;
+        //GenerateMazeClientRpc(newColor);
+    }
+
+
 
     private void GenerateMaze(MazeCell previousCell,MazeCell currentCell)
     {
@@ -181,18 +221,32 @@ public class MazePuzzle : MonoBehaviour
 
     }
 
-    public static void BallHitsGoal()
+    public void BallHitsGoal()
     {
+        puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
         puzzleComplete = true;
+
     }
     // Update is called once per frame
     void Update()
     {
+        if (ball.transform.position.y < maze.transform.position.y - 0.1)
+        {
+            ball.transform.position = new Vector3(ball.transform.position.x, maze.transform.position.y + 0.1f /*(float)-0.95*/, ball.transform.position.z);
+        }
+        if (ball.transform.position.x > maze.transform.position.x + 0.8 || ball.transform.position.x < maze.transform.position.x - 0.8)
+        {
+            ball.transform.position = new Vector3(maze.transform.position.x - 0.45f, ball.transform.position.y, ball.transform.position.z);
+        }
+        if (ball.transform.position.z > maze.transform.position.z + 0.8 || ball.transform.position.z < maze.transform.position.z - 0.8)
+        {
+            ball.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y, maze.transform.position.z - 0.45f);
+        }
         if (puzzleComplete) 
         {
-            debugText.text = "Congrats you completed the puzzle!";
+            //debugText.text = "Congrats you completed the puzzle!";
         }
-        else
+        else if(NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
             if (SystemInfo.supportsGyroscope)
             {
@@ -201,28 +255,18 @@ public class MazePuzzle : MonoBehaviour
                 trackingYRot += -Input.gyro.rotationRateUnbiased.y;
                 trackingZRot += -Input.gyro.rotationRateUnbiased.z;
                 Vector3 phoneRotation = new Vector3(trackingXRot * 3, trackingZRot, trackingYRot * 3);
-                RotateMaze(phoneRotation);
+                UpdateMazeAndBallTransformServerRpc(ball.transform.position,phoneRotation);
+                //RotateMaze(phoneRotation);
                 //Debug.Log(phoneRotation.ToString());
-                debugText.text = phoneRotation.ToString();
+                //debugText.text = phoneRotation.ToString();
             }
             else
             {
-                debugText.text = "This phone does not support Gyroscope";
+                //debugText.text = "This phone does not support Gyroscope";
             }
         }
 
-        if(ball.transform.position.y<maze.transform.position.y-0.1)
-        {
-            ball.transform.position= new Vector3(ball.transform.position.x,maze.transform.position.y+0.1f /*(float)-0.95*/,ball.transform.position.z);
-        }
-        if(ball.transform.position.x>maze.transform.position.x+0.8 || ball.transform.position.x<maze.transform.position.x-0.8)
-        {
-            ball.transform.position= new Vector3(maze.transform.position.x-0.45f, ball.transform.position.y, ball.transform.position.z);
-        }
-        if (ball.transform.position.z > maze.transform.position.z + 0.8 || ball.transform.position.z < maze.transform.position.z - 0.8)
-        {
-            ball.transform.position= new Vector3(ball.transform.position.x, ball.transform.position.y, maze.transform.position.z - 0.45f);
-        }
+        
 
         //RotateMaze (GyroToUnity(phoneRotation));
         //Debug.Log(phoneRotation.ToString());

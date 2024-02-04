@@ -46,7 +46,12 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             {
                 puzzle.GetComponentInChildren<PuzzleData>().connectedClients.Add(client.ClientId);
             }
+
+            puzzleRef.
+
+
         }
+        
     }
 
     [ServerRpc(RequireOwnership = false)]

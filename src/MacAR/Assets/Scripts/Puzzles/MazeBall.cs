@@ -8,7 +8,9 @@ public class MazeBall : MonoBehaviour
     {
         if(col.name=="MazeGoal")
         {
-            MazePuzzle.BallHitsGoal();
+            //MazePuzzle.BallHitsGoal();
+            GameObject.Find("Maze").GetComponent<MazePuzzle>().BallHitsGoal();
+            //GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
         }
     }
 }
