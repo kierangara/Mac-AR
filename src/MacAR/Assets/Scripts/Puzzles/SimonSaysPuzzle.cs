@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
 
 public class SimonSaysPuzzle : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class SimonSaysPuzzle : MonoBehaviour
     [SerializeField] private GameObject yellowButton;
     [SerializeField] private GameObject component1;
     [SerializeField] private GameObject component2;
+    [SerializeField] private TMP_Text debugText;
 
     public static SimonSaysPuzzle instance;
 
@@ -40,6 +42,10 @@ public class SimonSaysPuzzle : MonoBehaviour
         // component2.transform.Translate(0, 0, 10000);
     }
 
+    [ServerRpc(RequireOwnership = false)]
+
+
+
     private int IncrementLevel()
     {
         level += 1;
@@ -50,12 +56,19 @@ public class SimonSaysPuzzle : MonoBehaviour
 
     public IEnumerator BeginSimonSays()
     {
+        if (level == 4)
+        {
+            Debug.Log("Puzzle complete");
+            debugText.text = "Congrats you completed the puzzle!";
+            yield break;
+        }
         demoInProgress = true;
         generatedSequence.Clear();
         playerSequence.Clear();
-
-        for (int i = 0; i < level * 3; i++)
+        yield return new WaitForSeconds(2.0f);
+        for (int i = 0; i < level * 2; i++)
         {
+            
             int randColour = Random.Range(0, 3);
             generatedSequence.Add(randColour);
             if (randColour == 0)
@@ -91,15 +104,18 @@ public class SimonSaysPuzzle : MonoBehaviour
         {
             if (playerSequence[i] != generatedSequence[i])
             {
-                Debug.Log("Incorrect");
-                return;
+                Debug.Log("Incorrect, level resetting");
+                level = 1;
+                StartCoroutine(BeginSimonSays());
             }
         }
-        if (playerSequence.Count == generatedSequence.Count)
+        if (playerSequence.Count == generatedSequence.Count && generatedSequence.Count != 0)
         {
-            Debug.Log("Correct, Next Level");
+ 
             IncrementLevel();
+            Debug.Log("Correct, Next Level");
             StartCoroutine(BeginSimonSays());
+
         }
     }
 
@@ -107,9 +123,11 @@ public class SimonSaysPuzzle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (level == 4)
-        {
-            Debug.Log("Puzzle complete");
-        }
+        //if (level == 4)
+        //{
+            //Debug.Log("Puzzle complete");
+            //puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+
+        //}
     }
 }
