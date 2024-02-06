@@ -43,19 +43,20 @@ public class FollowMouse : MonoBehaviour
     {
         // Move Physical Wire
         float distance = Vector3.Distance(baseAnchor.position, endPos);
-        wireRoot.transform.localScale = new Vector3(initialScale.x, distance/2f, initialScale.z);
+        transform.localScale = new Vector3(initialScale.x, distance/2f, initialScale.z);
 
         Vector3 middlePoint = (baseAnchor.position + endPos)/2f;
-        wireRoot.transform.position = middlePoint;
+        transform.position = middlePoint;
         if(debug) Debug.Log("Initial: " + transform.position);
 
         Vector3 rotationDirection = (endPos - baseAnchor.position);
-        wireRoot.transform.up = rotationDirection;
+        transform.up = rotationDirection;
         if(debug) Debug.Log("After Rot: " + transform.position);
 
         // Move Collider
-        // wireRoot.GetComponent<Collider>().transform.position = endPos; //- new Vector3(0, 1, 0);
+        collisionObject.GetComponent<Collider>().transform.position = endPos;
         // if(debug) Debug.Log("After Collider: " + transform.position);
+        // wireRoot.GetComponent<Collider>().transform.localScale = new Vector3(1, 1, 1);
 
         if(debug)
         {
