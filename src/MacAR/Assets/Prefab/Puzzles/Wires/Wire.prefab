@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1682040511266528506}
   - component: {fileID: 3611567289546137988}
   - component: {fileID: 7807266652636040983}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collisionObject: {fileID: 7807266652636040983}
   baseAnchor: {fileID: 2713388119543182139}
-  finalPositions: []
+  anchorList: {fileID: 0}
+  mainPuzzle: {fileID: 0}
 --- !u!33 &1845927589574888968
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -31,6 +31,12 @@ public class WASDCamera : MonoBehaviour {
             //Mouse  camera angle done.  
         }
        
+        Translate();
+        Rotate();
+    }
+
+    private void Translate()
+    {
         //Keyboard commands
         float f = 0.0f;
         Vector3 p = GetBaseInput();
@@ -79,5 +85,26 @@ public class WASDCamera : MonoBehaviour {
     private bool MoveMouse()
     {
         return Input.GetKey(KeyCode.LeftControl);
+    }
+
+    private void Rotate()
+    {
+        if (Input.GetKey (KeyCode.Q))
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y - 0.3f, 0);
+        }  
+        else if (Input.GetKey (KeyCode.E))
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 0.3f, 0);
+        } 
+
+        if (Input.GetKey (KeyCode.O))
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x - 0.3f, transform.eulerAngles.y, 0);
+        } 
+        else if (Input.GetKey (KeyCode.P))
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x + 0.3f, transform.eulerAngles.y, 0);
+        }
     }
 }
