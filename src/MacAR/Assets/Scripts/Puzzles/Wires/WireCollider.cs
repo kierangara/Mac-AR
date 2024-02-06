@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class WireCollider : MonoBehaviour
 {
+    public Collider collidedObject = null;
+
     void OnTriggerStay(Collider other)
     {
-        Debug.Log("Collision");
+        collidedObject = other;
     }
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("Collision Exit");
+        collidedObject = null;
     }
 
     // Start is called before the first frame update

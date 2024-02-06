@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wireRoot: {fileID: 7017752559514426579}
+  collisionObject: {fileID: 6301399506445994479}
   baseAnchor: {fileID: 0}
   finalPositions: []
 --- !u!33 &1845927589574888968
@@ -133,6 +134,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6563289922300629475}
   - component: {fileID: 6049750643739792854}
+  - component: {fileID: 6301399506445994479}
   m_Layer: 0
   m_Name: Wire
   m_TagString: Untagged
@@ -171,9 +173,22 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5876035
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &6301399506445994479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7017752559514426579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7986f522681e2a94a9ba0f5940adfb68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collidedObject: {fileID: 0}
