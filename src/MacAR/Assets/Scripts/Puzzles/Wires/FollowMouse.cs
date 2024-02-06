@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FollowMouse : MonoBehaviour
 {
-    public GameObject wireRoot;
     public WireCollider collisionObject;
     public Transform baseAnchor;
     public List<Transform> finalPositions;
