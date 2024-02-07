@@ -44,7 +44,9 @@ public class TextChat : MonoBehaviour
 #endif
         if (_vivoxVoiceManager.ActiveChannels.Count > 0)
         {
-            _lobbyChannelId = _vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == LobbyChannelName).Key;
+            //Debug.Log(_vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text).Key);
+            //_lobbyChannelId = _vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text).Key;
+            _lobbyChannelId = _vivoxVoiceManager.ActiveChannels.FirstOrDefault(ac => ac.Channel.Name == GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().lobbyer).Key;
         }
         _vivoxVoiceManager.OnTextMessageLogReceivedEvent += OnTextMessageLogReceivedEvent;
     }
@@ -186,13 +188,15 @@ public class TextChat : MonoBehaviour
         if (channelTextMessage.FromSelf)
         {
             newMessageText.alignment = TextAnchor.MiddleLeft;
-            newMessageText.text = string.Format($"<color=white>{channelTextMessage.Message} </color> :<color=white>{sender} </color>\n<color=white><size=15>{channelTextMessage.ReceivedTime}</size></color>");
+            //newMessageText.text = string.Format($"<color=white>{channelTextMessage.Message} </color> :<color=white>{sender} </color>\n<color=white><size=15>{channelTextMessage.ReceivedTime}</size></color>");
+            newMessageText.text = string.Format($"<color=white>{sender} </color>\n<color=white>{channelTextMessage.Message} </color>\n");
             StartCoroutine(SendScrollRectToBottom());
         }
         else
         {
             newMessageText.alignment = TextAnchor.MiddleLeft;
-            newMessageText.text = string.Format($"<color=green>{sender} </color>: {channelTextMessage.Message}\n<color=white><size=10>{channelTextMessage.ReceivedTime}</size></color>");
+            //newMessageText.text = string.Format($"<color=green>{sender} </color>: {channelTextMessage.Message}\n<color=white><size=10>{channelTextMessage.ReceivedTime}</size></color>");
+            newMessageText.text = string.Format($"<color=green>{sender} </color>\n{channelTextMessage.Message}\n");
         }
     }
 }
