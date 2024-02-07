@@ -12,6 +12,7 @@ public class FollowMouse : MonoBehaviour
 
     private Camera mainCamera;
     private float cameraZDistance;
+    private Vector3 cameraDistance;
     private Vector3 initialScale;
     private float initialZPos;
     
@@ -20,23 +21,61 @@ public class FollowMouse : MonoBehaviour
     {
         initialScale = mainPuzzle.localScale; 
         mainCamera = Camera.main;
-        cameraZDistance = mainCamera.WorldToScreenPoint(transform.position).z;
+        // cameraZDistance = mainCamera.WorldToScreenPoint(transform.position).z;
         initialZPos = baseAnchor.localPosition.z;
     }
 
     private void OnMouseDrag()
     {
-        Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraZDistance);
+        Quaternion puzzleRot = Quaternion.Euler(mainPuzzle.eulerAngles);
+        // Vector3 testVector = new Vector3(1, 2, 3);
+        // Debug.Log(puzzleRot * testVector);
+
+        cameraDistance = mainCamera.transform.position - mainPuzzle.position;
+        // Debug.Log("Distance 0: " + cameraDistance);
+        // Debug.Log("Rot: " + mainPuzzle.eulerAngles);
+        // cameraDistance = puzzleRot * cameraDistance;
+        Quaternion cameraRot = Quaternion.Euler(-mainCamera.transform.eulerAngles);
+
+        Vector3 mouseScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraDistance.magnitude);
+        // Vector3 a = mouseScreenPosition;
+        // mouseScreenPosition += cameraDistance;
+
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mouseScreenPosition);
+        // Vector3 realPos = mouseWorldPosition + cameraDistance;
+        Vector3 realPos = mouseWorldPosition;
+        realPos.z *= -1;
+        realPos = puzzleRot * realPos;
+        // mouseWorldPosition += cameraDistance;
 
-        Vector3 relPos = Quaternion.Euler(mainPuzzle.eulerAngles) * mouseWorldPosition;
-        Vector3 puzzleRelPos = Quaternion.Euler(mainPuzzle.eulerAngles) * mainPuzzle.localPosition;
-        SetPosition(relPos - wireRoot.localPosition - puzzleRelPos);
+        // Vector3 relPos = puzzleRot * mouseWorldPosition;
+        // Vector3 puzzleRelPos = puzzleRot * mainPuzzle.localPosition;
+        // SetPosition(relPos - wireRoot.localPosition - puzzleRelPos);
+        Vector3 relPuzzle = mainPuzzle.localPosition;
+        relPuzzle.z *= -1;
+        relPuzzle = puzzleRot * relPuzzle;
+        // relPuzzle.z *= -1;
 
-        Debug.Log("Rot:" + mainPuzzle.eulerAngles);
-        Debug.Log("Screen: " + mouseScreenPosition);
+        Vector3 relRoot = wireRoot.localPosition;
+        // relRoot = puzzleRot * relRoot;
+        // relRoot.z *= -1;
+        // Vector3 endPos = realPos - wireRoot.localPosition - mainPuzzle.localPosition;
+        Vector3 endPos = realPos - relRoot - relPuzzle;
+        // Quaternion puzzleRot = Quaternion.Euler(mainPuzzle.eulerAngles);
+        SetPosition(endPos);
+
+        // Debug.Log("Screen:" + mouseScreenPosition);
         Debug.Log("World: " + mouseWorldPosition);
-        // Debug.Log("Rel Pos: " + relPos);
+        Debug.Log("Real: " + realPos);
+        Debug.Log("End:" + endPos);
+        Debug.Log("Puzzle Rot: " + puzzleRot);
+        // Debug.Log("Cam Rot:" + cameraRot);
+        // Debug.Log("Tot Rot:" + puzzleRot * cameraRot);
+        // Debug.Log("Rel: " + relPos);
+        // Debug.Log("World: " + mouseWorldPosition);
+        // // Debug.Log("Distance 1: " + cameraDistance);
+        // Debug.Log("Original: " + a);
+        // Debug.Log("After: " + mouseScreenPosition);
     }
 
     void OnMouseUp()
@@ -67,6 +106,7 @@ public class FollowMouse : MonoBehaviour
 
         Vector3 rotationDirection = (endPos - baseAnchor.localPosition);
         transform.up = Quaternion.Euler(mainPuzzle.eulerAngles) * rotationDirection;
+        // transform.up = rotationDirection;
         // if(debug) Debug.Log("After Rot: " + transform.position);
 
         // Move Collider
