@@ -1317,10 +1317,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 210639883}
   m_SourcePrefab: {fileID: 100100000, guid: 9b5d47bbf1120954eb2f6c9381fc622d, type: 3}
---- !u!224 &2111837405 stripped
+--- !u!1 &2111837405 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8250699110158273696, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
     type: 3}
+  m_PrefabInstance: {fileID: 2111837404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2111837406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,6 +1337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textChatLogo: {fileID: 21300000, guid: 1857b3e8bde3d484fb1431dab8960b9e, type: 3}
   xLogo: {fileID: 21300000, guid: 80368d6fc571ddf488199749dc0edc6f, type: 3}
+--- !u!1660057539 &9223372036854775807
 
 SceneRoots:
   m_ObjectHideFlags: 0
