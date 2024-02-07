@@ -19,7 +19,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     [ServerRpc]
     private void SpawnPuzzleServerRpc()
     {
-        if(!IsServer)
+        if (!IsServer)
         {
             return;
         }
@@ -46,6 +46,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             {
                 puzzle.GetComponentInChildren<PuzzleData>().connectedClients.Add(client.ClientId);
             }
+            Debug.Log("I am here");
+            puzzle.GetComponent<SimonSaysPuzzle>().InitalizePuzzle();
         }
     }
 

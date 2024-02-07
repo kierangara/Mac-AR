@@ -757,11 +757,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimonSaysPuzzle
       objectReference: {fileID: 0}
+    - target: {fileID: 335531627863484667, guid: 59d3ec05ab21ea94c9165f93667707c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1684098041296157334, guid: 59d3ec05ab21ea94c9165f93667707c2,
         type: 3}
       propertyPath: level
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1684098041296157334, guid: 59d3ec05ab21ea94c9165f93667707c2,
+        type: 3}
+      propertyPath: debugText
+      value: 
+      objectReference: {fileID: 551203515}
     - target: {fileID: 2123401293123316312, guid: 59d3ec05ab21ea94c9165f93667707c2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1117,7 +1127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc2ec2ffe362a043b2aa0daefbc9ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzle: {fileID: 0}
+  puzzle: {fileID: -1647956298961555347, guid: 59d3ec05ab21ea94c9165f93667707c2, type: 3}
   cam: {fileID: 0}
 --- !u!4 &1724960852
 Transform:
