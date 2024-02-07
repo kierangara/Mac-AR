@@ -3,15 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class TestPuzzleBehaviour : ClickableObjectBase
+public class MultiplayerPuzzleBehaviour : ClickableObjectBase
 {
     [SerializeField] private GameObject cube;
-    public PuzzleData puzzleData;
+    [SerializeField] private GameObject sphere;
+    [SerializeField] private GameObject component1;
+    [SerializeField] private GameObject component2;
 
+    void Start()
+    {
+        // component2.transform.Translate(0, 0, 10000);
+    }
+    
     //Executed On Click
     public override void OnClick(Color newColor)
     {
         var cubeRenderer = cube.GetComponent<Renderer>();
+        var sphereRenderer = sphere.GetComponent<Renderer>();
         
         if(cubeRenderer.material.GetColor("_Color") == newColor)
         {
@@ -20,15 +28,10 @@ public class TestPuzzleBehaviour : ClickableObjectBase
 
         // Update Local First
         cubeRenderer.material.SetColor("_Color", newColor);
+        sphereRenderer.material.SetColor("_Color", newColor);
 
         // Update Other Clients on Network
         UpdateColourServerRpc(newColor);
-
-        // Check for Completion
-        if(newColor == Color.white)
-        {
-            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
-        }
     }
 
     //Send new colour to server
@@ -44,8 +47,10 @@ public class TestPuzzleBehaviour : ClickableObjectBase
     public void UpdateColourClientRpc(Color newColor)
     {
         var cubeRenderer = cube.GetComponent<Renderer>();
+        var sphereRenderer = sphere.GetComponent<Renderer>();
 
         // Call SetColor using the shader property name "_Color" and setting the color to red
         cubeRenderer.material.SetColor("_Color", newColor);
+        sphereRenderer.material.SetColor("_Color", newColor);
     }
 }
