@@ -13,17 +13,23 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     //Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Multiplayer Puzzle Manager called");
         SpawnPuzzleServerRpc();
     }
 
     [ServerRpc]
     private void SpawnPuzzleServerRpc()
     {
+        
         if(!IsServer)
         {
             return;
         }
-
+        if(puzzleInstance!=null)
+        {
+            return;
+        }
+        Debug.Log("SpawnPuzzleServerRpcCalled");
         // Instantiate 
         puzzleInstance = Instantiate(puzzle); 
 
@@ -46,8 +52,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             {
                 puzzle.GetComponentInChildren<PuzzleData>().connectedClients.Add(client.ClientId);
             }
-
-            puzzleRef.
+            puzzle.GetComponentInChildren<MazePuzzle>().InitializePuzzle();
+            //puzzleRef.
 
 
         }
