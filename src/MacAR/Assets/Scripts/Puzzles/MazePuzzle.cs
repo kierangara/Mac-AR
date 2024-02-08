@@ -128,7 +128,7 @@ public class MazePuzzle : NetworkBehaviour
     public void SendPuzzleDataClientRpc(ulong[] p)
     {
         puzzleData.connectedClients = p.ToList();
-        Debug.Log("PuzzleDataUpdated");
+        //Debug.Log("PuzzleDataUpdated");
     }
 
 
@@ -145,7 +145,7 @@ public class MazePuzzle : NetworkBehaviour
         if(_mazeGrid==null)
         {
             convertLayoutToGrid(mazeLayouts);
-            Debug.Log("Maze should get updated");
+            //Debug.Log("Maze should get updated");
         }
     }
 
@@ -158,11 +158,7 @@ public class MazePuzzle : NetworkBehaviour
     [ClientRpc]
     public void UpdateMazeAndBallTransformClientRpc(Vector3 ballPosition, Vector3 mazeRotation)
     {
-        if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
-        {
-            ball.transform.position = ballPosition;
-        }
-        
+        ball.transform.position = ballPosition;
         maze.transform.eulerAngles = mazeRotation;
         //GenerateMazeClientRpc(newColor);
     }
@@ -349,7 +345,7 @@ public class MazePuzzle : NetworkBehaviour
         maze.transform.rotation = Quaternion.identity;
         Input.gyro.enabled = true;
         GenerateMaze(2);
-        Debug.Log("Reached Awake");
+        //Debug.Log("Reached Awake");
     }
 
     private void GenerateMaze(int NumberOfPlayers)
