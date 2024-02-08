@@ -34,6 +34,7 @@ public class MazePuzzle : NetworkBehaviour
     private float trackingYRot;
     private float trackingXRot;
     private float trackingZRot;
+    private GameObject checkPoint;
     private static bool puzzleComplete = false;
     // Start is called before the first frame update
     private void Start()
@@ -68,7 +69,7 @@ public class MazePuzzle : NetworkBehaviour
                     mazeLayout[x, z] = (_mazeGrid[x, z].GetRightWall() ? 1 : 0) + (_mazeGrid[x, z].GetFrontWall() ? 2 : 0);
                 }
             }
-            GenerateMazeServerRpc(mazeLayout);
+            GenerateMazeServerRpc(To1DArray(mazeLayout));
         }
 
 
@@ -94,9 +95,11 @@ public class MazePuzzle : NetworkBehaviour
    [ClientRpc]
     public void SendMazeClientRpc()
     {
+
+
         if(NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
-            GenerateMazeServerRpc(mazeLayout);
+            GenerateMazeServerRpc ( To1DArray( mazeLayout));
         }
     }
 
@@ -131,18 +134,17 @@ public class MazePuzzle : NetworkBehaviour
 
 
     [ServerRpc(RequireOwnership = false)]
-    public void GenerateMazeServerRpc(int[,] mazeLayouts)
+    public void GenerateMazeServerRpc(int[] mazeLayouts)
     {
         GenerateMazeClientRpc(mazeLayouts);
     }
 
     [ClientRpc]
-    public void GenerateMazeClientRpc(int[,] mazeLayouts)
+    public void GenerateMazeClientRpc(int[] mazeLayouts)
     {
         if(_mazeGrid==null)
         {
-            mazeLayout = mazeLayouts;
-            convertLayoutToGrid();
+            convertLayoutToGrid(mazeLayouts);
             Debug.Log("Maze should get updated");
         }
     }
@@ -156,13 +158,36 @@ public class MazePuzzle : NetworkBehaviour
     [ClientRpc]
     public void UpdateMazeAndBallTransformClientRpc(Vector3 ballPosition, Vector3 mazeRotation)
     {
-        ball.transform.position = ballPosition;
+        if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
+        {
+            ball.transform.position = ballPosition;
+        }
+        
         maze.transform.eulerAngles = mazeRotation;
         //GenerateMazeClientRpc(newColor);
     }
 
+    static int[] To1DArray(int[,] input)
+    {
+        // Step 1: get total size of 2D array, and allocate 1D array.
+        int size = input.Length;
+        int[] result = new int[size];
 
-    private void convertLayoutToGrid()
+        // Step 2: copy 2D array elements into a 1D array.
+        int write = 0;
+        for (int i = 0; i <= input.GetUpperBound(0); i++)
+        {
+            for (int z = 0; z <= input.GetUpperBound(1); z++)
+            {
+                result[write++] = input[i, z];
+            }
+        }
+        // Step 3: return the new array.
+        return result;
+    }
+
+
+    private void convertLayoutToGrid(int[] mazeLayouts)
     {
         _mazeGrid = new MazeCell[_mazeWidth, _mazeLength];
         for (int x = 0; x < _mazeWidth; x++)
@@ -173,10 +198,14 @@ public class MazePuzzle : NetworkBehaviour
                 _mazeGrid[x, z].transform.parent = maze.transform;
             }
         }
-        for (int x = 0; x < _mazeWidth; x++)
+        mazeLayout = Make2DArray<int>(mazeLayouts, _mazeWidth, _mazeLength);
+
+
+        for (int x = 0; x < _mazeWidth*_mazeLength; x++)
         {
             for (int z = 0; z < _mazeLength; z++)
             {
+                _mazeGrid[x, z].Visit();
                 if (mazeLayout[x,z]%2==1)
                 {
                     _mazeGrid[x, z].ClearRightWall();
@@ -194,10 +223,23 @@ public class MazePuzzle : NetworkBehaviour
     }
 
 
+    private static T[,] Make2DArray<T>(T[] input, int height, int width)
+    {
+        T[,] output = new T[height, width];
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                output[i, j] = input[i * width + j];
+            }
+        }
+        return output;
+    }
+
 
     private void GenerateMaze(MazeCell previousCell,MazeCell currentCell)
     {
-        currentCell.Visit();
+        currentCell.IsVisited=true;
         ClearWalls(previousCell, currentCell);
 
         MazeCell nextCell;
@@ -324,9 +366,9 @@ public class MazePuzzle : NetworkBehaviour
         //Debug.Log(maze.transform.rotation.ToString());
     }
 
-    private void BallHitsHole()
+    public void BallHitsCheckpoint(GameObject checkpoint)
     {
-
+        checkPoint= checkpoint;
     }
 
     public void BallHitsGoal()
@@ -356,15 +398,18 @@ public class MazePuzzle : NetworkBehaviour
 
             if (ball.transform.position.y < maze.transform.position.y - 0.1)
             {
-                ball.transform.position = new Vector3(ball.transform.position.x, maze.transform.position.y + 0.1f /*(float)-0.95*/, ball.transform.position.z);
+                ball.transform.position = checkPoint.transform.position;
+               // ball.transform.position = new Vector3(ball.transform.position.x, maze.transform.position.y + 0.1f /*(float)-0.95*/, ball.transform.position.z);
             }
             if (ball.transform.position.x > maze.transform.position.x + 0.8 || ball.transform.position.x < maze.transform.position.x - 0.8)
             {
-                ball.transform.position = new Vector3(maze.transform.position.x - 0.45f, ball.transform.position.y, ball.transform.position.z);
+                ball.transform.position = checkPoint.transform.position;
+                //ball.transform.position = new Vector3(maze.transform.position.x - 0.45f, ball.transform.position.y, ball.transform.position.z);
             }
             if (ball.transform.position.z > maze.transform.position.z + 0.8 || ball.transform.position.z < maze.transform.position.z - 0.8)
             {
-                ball.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y, maze.transform.position.z - 0.45f);
+                ball.transform.position = checkPoint.transform.position;
+                //ball.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y, maze.transform.position.z - 0.45f);
             }
 
             if (SystemInfo.supportsGyroscope)
