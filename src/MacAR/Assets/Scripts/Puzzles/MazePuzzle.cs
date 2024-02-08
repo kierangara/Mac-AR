@@ -163,6 +163,14 @@ public class MazePuzzle : NetworkBehaviour
         //GenerateMazeClientRpc(newColor);
     }
 
+    public void resetRotationPress()
+    {
+        trackingXRot = 0;
+        trackingYRot = 0;
+        trackingZRot = 0;
+    }
+
+
     static int[] To1DArray(int[,] input)
     {
         // Step 1: get total size of 2D array, and allocate 1D array.
