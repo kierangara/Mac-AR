@@ -43,12 +43,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             clients.Add(client.ClientId);
         }
 
-        Debug.Log("Init 0");
-
         // Serialize
         byte[] bytes = objectToBytes(clients);
-        Debug.Log($"[{string.Join(",", clients)}]");
-        Debug.Log($"[{string.Join(",", bytes)}]");
 
         // Instantiate 
         puzzleInstance = Instantiate(puzzle); 
@@ -63,27 +59,22 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     [ClientRpc]
     private void InitializeClientRpc(NetworkObjectReference puzzleRef, byte[] clientBytes)
     {
-        Debug.Log("Init 1");
         if (puzzleRef.TryGet(out NetworkObject puzzle))
         {
             // Deserialize
             List<ulong> clients = bytesToObject(clientBytes);
 
-            Debug.Log("Init 2");
             puzzle.GetComponentInChildren<PuzzleData>().cam = cam;
             puzzle.GetComponentInChildren<PuzzleData>().completePuzzle = this;
 
             // TODO: Check if there are any ref issues with passing in entire list at once, faster than 
             // one at a time
-            Debug.Log($"[{string.Join(",", clientBytes)}]");
-            Debug.Log($"[{string.Join(",", clients)}]");
             foreach (ulong client in clients)
             {
                 puzzle.GetComponentInChildren<PuzzleData>().connectedClients.Add(client);
             }
-            puzzle.GetComponentInChildren<MazePuzzle>().InitializePuzzle();
-            //puzzleRef.
-            Debug.Log("Init 3");
+            
+            puzzle.GetComponentInChildren<PuzzleBase>().InitializePuzzle();
         }
         
     }
