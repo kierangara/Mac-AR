@@ -11,7 +11,7 @@ using Unity.Netcode;
 
 
 
-public class MazePuzzle : NetworkBehaviour
+public class MazePuzzle : PuzzleBase
 {
     //Vector3 BallPosition=new Vector3(0,0,0);
     //Vector3 MazeRotation = new Vector3(0, 0, 0);
@@ -42,8 +42,9 @@ public class MazePuzzle : NetworkBehaviour
         Debug.Log("MazeSpawned");
     }
 
-    public void InitializePuzzle()
+    public override void InitializePuzzle()
     {
+        Debug.Log("Maze Initializing");
         //puzzleData =GameObject.Find("PuzzleInit").GetComponent<PuzzleData>();
         if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
