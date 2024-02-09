@@ -14,7 +14,7 @@ public class MazeCell : MonoBehaviour
     private GameObject _rearWall;
     [SerializeField]
     private GameObject _unvisitedBlock;
-    public bool IsVisited { get; private set; }
+    public bool IsVisited { get; set; }
 
     public void Visit()
     {
@@ -39,5 +39,21 @@ public class MazeCell : MonoBehaviour
         _rearWall.SetActive(false);
     }
 
+    public bool GetLeftWall()
+    {
+        return( !_leftWall.activeSelf);
+    }
+    public bool GetRightWall()
+    {
+        return (!_rightWall.activeSelf);
+    }
+    public bool GetFrontWall()
+    {
+        return (!_frontWall.activeSelf);
+    }
+    public bool GetRearWall()
+    {
+        return (!_rearWall.activeSelf);
+    }
 
 }
