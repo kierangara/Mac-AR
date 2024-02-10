@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4113556230389219616}
-  - component: {fileID: 1950822351485047078}
   - component: {fileID: 5438477198352480956}
   m_Layer: 0
   m_Name: CombinationPuzzle
@@ -35,20 +34,6 @@ Transform:
   - {fileID: 6156995944534933493}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1950822351485047078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539032670121321862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 491b36ea9064bf04d98fd52b05801f09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cube: {fileID: 0}
-  puzzleData: {fileID: 3296016383363581492}
 --- !u!114 &5438477198352480956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc22ab06374b8c4c84b8bb9bf8a9533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  codeInputField: {fileID: 7215137402946696714}
+  codeInputField: {fileID: 3479107768904138502}
+  combinationPuzzle: {fileID: 1539032670121321862}
+  puzzleData: {fileID: 3296016383363581492}
 --- !u!1 &7215137402946696714
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,10 +488,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -620,10 +637,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -739,10 +786,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -858,10 +935,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -977,10 +1084,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1091,10 +1228,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1210,10 +1377,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1329,10 +1526,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1448,10 +1675,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1567,10 +1824,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1704,7 +1991,7 @@ PrefabInstance:
     - target: {fileID: 6594184275290374817, guid: 1236452548453414d83eda93634d6821,
         type: 3}
       propertyPath: maxPlayers
-      value: 100
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6594184275290374817, guid: 1236452548453414d83eda93634d6821,
         type: 3}
