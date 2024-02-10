@@ -5,7 +5,7 @@ using UnityEngine;
 using Unity.Netcode;
 using TMPro;
 
-public class SimonSaysPuzzle : MonoBehaviour
+public class SimonSaysPuzzle : PuzzleBase
 {
     [SerializeField] private GameObject cube;
     [SerializeField] private GameObject redButton;
@@ -19,7 +19,10 @@ public class SimonSaysPuzzle : MonoBehaviour
 
     public SimonButton[] simonButtons;
     public int level = 1;
+    public int counter = 0;
+    public NetworkVariable<int> randColour = new NetworkVariable<int>();
 
+    //public int counter = 0;
 
     public PuzzleData puzzleData;
     public List<int> generatedSequence = new List<int>();
@@ -28,7 +31,8 @@ public class SimonSaysPuzzle : MonoBehaviour
     public static bool demoInProgress;
 
 
-    public void InitalizePuzzle()
+    //[ServerRpc(RequireOwnership = false)]
+    public override void InitializePuzzle()
     {
         if (instance != this && instance != null)
         {
@@ -36,29 +40,43 @@ public class SimonSaysPuzzle : MonoBehaviour
         } else
         {
             instance = this;
-            //Instantiate(instance, new Vector3(-6.51f, 0, 12.41f), Quaternion.identity);
-            //Instantiate(component1, new Vector3(-6.51f, 0, 12.41f), Quaternion.identity);
-            //Instantiate(cube, new Vector3(-3.0f, 0, 12.41f), Quaternion.identity);
-            //Instantiate(component2, new Vector3(-6.51f, 0, 12.41f), Quaternion.identity);
-            if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
+            if (puzzleData.connectedClients.Count > 1 && NetworkManager.Singleton.LocalClientId != puzzleData.connectedClients[0])
             {
-                Debug.Log("client 0");
-                //component1.transform.position = new Vector3(10, 10, 10); 
-                //GameObject.Find("component 1").transform.localScale = new Vector3(0, 0, 0);
-            }
-            else
+                component2.transform.position = new Vector3(10, 10, 10);
+            } else if (puzzleData.connectedClients.Count > 1 && NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
             {
-                Debug.Log("other client");
-                //component2.transform.position = new Vector3(10, 10, 10);
-                //GameObject.Find("component 2").transform.localScale = new Vector3(0, 0, 0);
+                component1.transform.position = new Vector3(10, 10, 10);
             }
+ 
             StartCoroutine(BeginSimonSays());
         }
-        // component2.transform.Translate(0, 0, 10000);
     }
 
-    //[ServerRpc(RequireOwnership = false)]
+    [ServerRpc(RequireOwnership = false)]
+    public void UpdateCubeServerRpc(Color colour)
+    {
+        UpdateCubeClientRpc(colour);
+    }
 
+    [ClientRpc]
+    public void UpdateCubeClientRpc(Color colour)
+    {
+        cube.GetComponent<Renderer>().material.SetColor("_Color", colour);
+
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void UpdateTextServerRpc(string text)
+    {
+        UpdateTextClientRpc(text);
+    }
+
+    [ClientRpc]
+    public void UpdateTextClientRpc(string text)
+    {
+        debugText.text = text;
+
+    }
 
 
     private int IncrementLevel()
@@ -71,58 +89,77 @@ public class SimonSaysPuzzle : MonoBehaviour
 
     public IEnumerator BeginSimonSays()
     {
+       
         Debug.Log("In Simon");
         if (level == 4)
         {
             Debug.Log("Puzzle complete");
-            debugText.text = "Congrats you completed the puzzle!";
+            string texter = "Congrats you completed the puzzle!";
+            UpdateTextServerRpc(texter);
             yield return new WaitForSeconds(3.0f);
             puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
             yield break;
         }
-        debugText.text = "Level = " + level;
+        string text = "Level = " + level;
+        UpdateTextServerRpc(text);
         demoInProgress = true;
         generatedSequence.Clear();
+
         playerSequence.Clear();
+
+        UpdateCubeServerRpc(Color.black);
         yield return new WaitForSeconds(2.0f);
-        for (int i = 0; i < level * 2; i++)
+        //int counter = 0;
+        if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
-            Debug.Log("In for loop");
-            int randColour = Random.Range(0, 3);
-            generatedSequence.Add(randColour);
-            if (randColour == 0)
-            {
-                component1.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.red);
-                cube.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
-            } else if (randColour == 1)
-            {
-                component1.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.blue);
-                cube.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
-            }
-            else if (randColour == 2)
-            {
-                component1.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.green);
-                cube.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
-            }
-            else if (randColour == 3)
-            {
-                component1.GetComponentInChildren<Renderer>().material.SetColor("_Color", Color.yellow);
-                cube.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
-            }
 
-            //Make square change colours here
-            yield return new WaitForSeconds(1.0f);
-            cube.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
-            yield return new WaitForSeconds(0.3f);
+        
+            for (int i = 0; i < level * 2; i++)
+            {
+
+                Debug.Log("In for loop" + i);
+
+                randColour.Value = Random.Range(0, 4);
+                //int randColour = Random.Range(0, 3);
+                generatedSequence.Add(randColour.Value);
+                Debug.Log("RAND COLOUR" + randColour.Value);
+
+                if (randColour.Value == 0)
+                {
+
+                    UpdateCubeServerRpc(Color.red);
+                } else if (randColour.Value == 1)
+                {
+
+                    UpdateCubeServerRpc(Color.blue);
+                }
+                else if (randColour.Value == 2)
+                {
+
+                    UpdateCubeServerRpc(Color.green);
+                }
+                else if (randColour.Value == 3)
+                {
+
+                    UpdateCubeServerRpc(Color.yellow);
+                }
+
+                //Make square change colours here
+                yield return new WaitForSeconds(1.0f);
+                UpdateCubeServerRpc(Color.black);
+                yield return new WaitForSeconds(0.3f);
+            
+            }
         }
-
         demoInProgress = false;
+
     }
 
     public void TrackUserInput(SimonButton button)
     {
         //Get button pressed by player (0 = red, 1 = blue, 2 = green, 3 = yellow)
         playerSequence.Add(button.id);
+
         for  (int i = 0; i < playerSequence.Count; i++)
         {
             if (playerSequence[i] != generatedSequence[i])
@@ -136,7 +173,7 @@ public class SimonSaysPuzzle : MonoBehaviour
         {
  
             IncrementLevel();
-            //debugText.text = "Level = " + level;
+
             Debug.Log("Correct, Next Level");
             StartCoroutine(BeginSimonSays());
 
