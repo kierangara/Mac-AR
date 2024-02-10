@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -828,10 +828,35 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1197484700165223563, guid: 6e4abc6ad0476e149b5f12d3cae48009,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1604925224018112830, guid: 6e4abc6ad0476e149b5f12d3cae48009,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745527855095469666, guid: 6e4abc6ad0476e149b5f12d3cae48009,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 561.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745527855095469666, guid: 6e4abc6ad0476e149b5f12d3cae48009,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1053.857
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745527855095469666, guid: 6e4abc6ad0476e149b5f12d3cae48009,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1745527855095469666, guid: 6e4abc6ad0476e149b5f12d3cae48009,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1211
       objectReference: {fileID: 0}
     - target: {fileID: 1883054930142441021, guid: 6e4abc6ad0476e149b5f12d3cae48009,
         type: 3}
@@ -908,6 +933,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4188053053658218596, guid: 6e4abc6ad0476e149b5f12d3cae48009,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerName
+      objectReference: {fileID: 0}
     - target: {fileID: 4593247059407894268, guid: 6e4abc6ad0476e149b5f12d3cae48009,
         type: 3}
       propertyPath: m_Name
@@ -938,6 +968,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
+    - target: {fileID: 5491996984338857463, guid: 6e4abc6ad0476e149b5f12d3cae48009,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1956823611}
     - target: {fileID: 6035865733389414253, guid: 6e4abc6ad0476e149b5f12d3cae48009,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -947,6 +982,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782700785992725139, guid: 6e4abc6ad0476e149b5f12d3cae48009,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782700785992725139, guid: 6e4abc6ad0476e149b5f12d3cae48009,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -145
       objectReference: {fileID: 0}
     - target: {fileID: 8127780461003797128, guid: 6e4abc6ad0476e149b5f12d3cae48009,
         type: 3}
@@ -1018,6 +1063,7 @@ MonoBehaviour:
   _issuer: 35738-macar-43879-udash
   _domain: mtu1xp.vivox.com
   _server: https://unity.vivox.com/appconfig/35738-macar-43879-udash
+  PlayerName: 
 --- !u!4 &1956823612
 Transform:
   m_ObjectHideFlags: 0

@@ -17,6 +17,10 @@ public class PlayerList : NetworkBehaviour
     [SerializeField] private Transform playerItemParent;
     [SerializeField] private PlayerItem playerItemPrefab;
     [SerializeField] public TMP_Text joinCodeText;
+    [SerializeField] public TMP_InputField playerNameField;
+
+
+
     public static readonly VivoxUnity.Client mainClient = new VivoxUnity.Client();
     private NetworkList<PlayerData> players;
 
@@ -25,9 +29,11 @@ public class PlayerList : NetworkBehaviour
     private Color readyColor = Color.green;
     private bool isRefreshing;
     private Lobby lobby;
+    private string playerName = "Spencer Smith";
 
     private void Awake()
     {
+        print("playerlist creation");
         players = new NetworkList<PlayerData>();
         VoiceToggle.onValueChanged.AddListener(delegate 
             { VivoxToggle(VoiceToggle,mainClient); });
@@ -79,7 +85,8 @@ public class PlayerList : NetworkBehaviour
         if (vTog.isOn)
         {
             Debug.Log("Getting after if statement " + vTog.isOn);
-            GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().SignIntoVivox();
+            print(playerNameField.text);
+            GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().SignIntoVivox(playerNameField.text);
         }
     }
 

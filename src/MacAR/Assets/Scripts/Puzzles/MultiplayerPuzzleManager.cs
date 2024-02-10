@@ -9,7 +9,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
 {
     // private List<GameObject> puzzles = new List<GameObject>();
     [SerializeField] private NetworkObject puzzle;
-    public Camera cam;
+    public Camera cam; 
     NetworkObject puzzleInstance;
 
     //Start is called before the first frame update
@@ -47,7 +47,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         byte[] bytes = objectToBytes(clients);
 
         // Instantiate 
-        puzzleInstance = Instantiate(puzzle);
+        puzzleInstance = Instantiate(puzzle); 
 
         // Spawn
         puzzleInstance.SpawnWithOwnership(OwnerClientId);
@@ -95,17 +95,17 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    private byte[] objectToBytes(List<ulong> clients)
+    private byte[] objectToBytes(List<ulong> clients) 
     {
         return clients
             .SelectMany(BitConverter.GetBytes)
             .ToArray();
     }
 
-    private List<ulong> bytesToObject(byte[] bytes)
+    private List<ulong> bytesToObject(byte[] bytes) 
     {
         // TODO: Add ulong size check that changes Uint64/ UInt32
         var size = sizeof(ulong);
@@ -113,5 +113,4 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
                      .Select(i => BitConverter.ToUInt64(bytes, i * size))
                      .ToList();
     }
-
 }
