@@ -23,22 +23,22 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     [ServerRpc]
     private void SpawnPuzzleServerRpc()
     {
-
-        if (!IsServer)
+        
+        if(!IsServer)
         {
             return;
         }
-        if (puzzleInstance != null)
+        if(puzzleInstance!=null)
         {
             return;
         }
-
+        
         Debug.Log("SpawnPuzzleServerRpcCalled");
 
         // Get Users
         /// TODO: Exists here in case of changes to list, check if can be moved to start and updated asyncronously 
         List<ulong> clients = new List<ulong>();
-        foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
+        foreach(NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
         {
             clients.Add(client.ClientId);
         }
@@ -73,10 +73,10 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             {
                 puzzle.GetComponentInChildren<PuzzleData>().connectedClients.Add(client);
             }
-
+            
             puzzle.GetComponentInChildren<PuzzleBase>().InitializePuzzle();
         }
-
+        
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -113,4 +113,5 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
                      .Select(i => BitConverter.ToUInt64(bytes, i * size))
                      .ToList();
     }
+
 }
