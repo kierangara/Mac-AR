@@ -408,82 +408,7 @@ PrefabInstance:
     - target: {fileID: 489271577075967834, guid: d6ab62658137a534d868d434112e444d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
-      objectReference: {fileID: 0}
-    - target: {fileID: 544058388501300604, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 96.348
-      objectReference: {fileID: 0}
-    - target: {fileID: 544058388501300604, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -75.815
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1581956974}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 23575120}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 907121866817568090, guid: d6ab62658137a534d868d434112e444d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: -0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 544058388501300604, guid: d6ab62658137a534d868d434112e444d,
         type: 3}
@@ -494,6 +419,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -48.857
+      objectReference: {fileID: 0}
+    - target: {fileID: 635983664820772878, guid: d6ab62658137a534d868d434112e444d,
+        type: 3}
+      propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 635983664820772878, guid: d6ab62658137a534d868d434112e444d,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 836446265939265162, guid: d6ab62658137a534d868d434112e444d,
         type: 3}
@@ -555,6 +490,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 907121866817568090, guid: d6ab62658137a534d868d434112e444d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 972052431282613195, guid: d6ab62658137a534d868d434112e444d,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -604,6 +544,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 393
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380338819418518607, guid: d6ab62658137a534d868d434112e444d,
+        type: 3}
+      propertyPath: playerNameField
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1663522641074826822, guid: d6ab62658137a534d868d434112e444d,
         type: 3}
@@ -889,6 +834,8 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 907121866817568090, guid: d6ab62658137a534d868d434112e444d, type: 3}
     - {fileID: 4754428470436124530, guid: d6ab62658137a534d868d434112e444d, type: 3}
+    - {fileID: 8465738392730612392, guid: d6ab62658137a534d868d434112e444d, type: 3}
+    - {fileID: 3440198946589344144, guid: d6ab62658137a534d868d434112e444d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8525478835072960747, guid: d6ab62658137a534d868d434112e444d,
