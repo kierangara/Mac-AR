@@ -501,7 +501,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -650,7 +650,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -799,7 +799,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -948,7 +948,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1097,7 +1097,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1241,7 +1241,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1390,7 +1390,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1539,7 +1539,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1688,7 +1688,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
@@ -1837,7 +1837,7 @@ PrefabInstance:
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: KeyPadPress
+      value: KeyPressedServerRpc
       objectReference: {fileID: 0}
     - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}

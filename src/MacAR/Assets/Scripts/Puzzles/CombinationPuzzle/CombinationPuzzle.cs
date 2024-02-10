@@ -112,14 +112,14 @@ public class CombinationPuzzle : PuzzleBase
     }
 
     [ServerRpc(RequireOwnership = false)]
-    public void KeyPressedServerRpc(int[] mazeLayouts)
+    public void KeyPressedServerRpc(string number)
     {
-        KeyPressedClientRpc(mazeLayouts);
+        KeyPressedClientRpc(number);
     }
 
     [ClientRpc]
-    public void KeyPressedClientRpc(int[] mazeLayouts)
+    public void KeyPressedClientRpc(string number)
     {
-        
+        KeyPadPress(number);
     }
 }
