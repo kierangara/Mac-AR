@@ -22,7 +22,6 @@ public class SimonSaysPuzzle : PuzzleBase
     public int counter = 0;
     public NetworkVariable<int> randColour = new NetworkVariable<int>();
 
-    //public int counter = 0;
 
     public PuzzleData puzzleData;
     public List<int> generatedSequence = new List<int>();
@@ -31,7 +30,6 @@ public class SimonSaysPuzzle : PuzzleBase
     public static bool demoInProgress;
 
 
-    //[ServerRpc(RequireOwnership = false)]
     public override void InitializePuzzle()
     {
         if (instance != this && instance != null)
@@ -42,10 +40,12 @@ public class SimonSaysPuzzle : PuzzleBase
             instance = this;
             if (puzzleData.connectedClients.Count > 1 && NetworkManager.Singleton.LocalClientId != puzzleData.connectedClients[0])
             {
-                component2.transform.position = new Vector3(10, 10, 10);
+                component2.SetActive(false);
+                //component2.transform.position = new Vector3(10, 10, 10);
             } else if (puzzleData.connectedClients.Count > 1 && NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
             {
-                component1.transform.position = new Vector3(10, 10, 10);
+                component1.SetActive(false);
+                //component1.transform.position = new Vector3(10, 10, 10);
             }
  
             StartCoroutine(BeginSimonSays());
