@@ -196,7 +196,7 @@ public class VivoxVoiceManager : MonoBehaviour
     {
         if(m_Account == null) 
         {
-            m_Account = new Account(displayName);
+            m_Account = new Account("SpencerSmith");
         }
         // print(displayName);
         LoginSession = _client.GetLoginSession(m_Account);

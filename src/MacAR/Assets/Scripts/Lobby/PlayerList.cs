@@ -85,8 +85,7 @@ public class PlayerList : NetworkBehaviour
         if (vTog.isOn)
         {
             Debug.Log("Getting after if statement " + vTog.isOn);
-            print(playerNameField.text);
-            GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().SignIntoVivox(playerNameField.text);
+            GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().SignIntoVivox();
         }
     }
 

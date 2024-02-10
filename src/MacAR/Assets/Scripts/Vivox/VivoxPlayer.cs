@@ -33,7 +33,7 @@ public class VivoxPlayer : MonoBehaviour
         
     }
 
-    public void SignIntoVivox(string playerName)
+    public void SignIntoVivox()
     {
 #if (UNITY_ANDROID && !UNITY_EDITOR) || __ANDROID__
     bool IsAndroid12AndUp()
