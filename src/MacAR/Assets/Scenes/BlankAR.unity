@@ -582,7 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc2ec2ffe362a043b2aa0daefbc9ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzle: {fileID: 5438477198352480956, guid: 81d746b054bad594eab4db69f076c42e, type: 3}
+  puzzle: {fileID: -1647956298961555347, guid: 59d3ec05ab21ea94c9165f93667707c2, type: 3}
   cam: {fileID: 1354141926}
 --- !u!4 &1527853315
 Transform:
@@ -705,6 +705,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TextChat
+      objectReference: {fileID: 0}
+    - target: {fileID: 40557886773491342, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 540712273826900370, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}

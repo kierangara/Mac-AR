@@ -98,23 +98,22 @@ public class VivoxPlayer : MonoBehaviour
 #endif
             return PermissionAskedCount == 1;
         }
-
         //Actual code runs from here
         if (IsMicPermissionGranted())
         {
-            _vvm.Login(transform.name.ToString());
+            _vvm.Login(_vvm.PlayerName);
         }
         else
         {
             if (IsPermissionsDenied())
             {
                 PermissionAskedCount = 0;
-                _vvm.Login(transform.name.ToString());
+                _vvm.Login(_vvm.PlayerName);
             }
             else
             {
                 AskForPermissions();
-                _vvm.Login(transform.name.ToString());      //NEED TO FIX !
+                _vvm.Login(_vvm.PlayerName);      //NEED TO FIX !
             }
         }
     }
