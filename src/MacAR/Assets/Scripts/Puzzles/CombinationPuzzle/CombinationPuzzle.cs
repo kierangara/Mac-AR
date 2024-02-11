@@ -10,7 +10,9 @@ using System.Linq;
 public class CombinationPuzzle : PuzzleBase
 {
     [SerializeField] TextMeshProUGUI codeInputField;
-    [SerializeField]  GameObject combinationPuzzle;
+    [SerializeField] GameObject combinationPuzzle;
+
+    [SerializeField] TextMeshProUGUI instructionPage;
     public PuzzleData puzzleData;
 
     private string[] codeCombo;
@@ -27,17 +29,22 @@ public class CombinationPuzzle : PuzzleBase
         currentDigit = 0;
         //Create code and instructions
         string code = "1359";
-        string instr1 = "The second row and column each contain one number";
-        string instr2 = "The second number is the only number in the first column";
-        string instr3 = "The first number is two greater than the second number";
-        string instr4 = "The fourth number is the only number in the third row";
+        string instr1 = "The second row and column each contain one number\n";
+        string instr2 = "The second number is the only number in the first column\n";
+        string instr3 = "The first number is two greater than the second number\n";
+        string instr4 = "The fourth number is the only number in the third row\n";
         codeCombo = new string[]{code,instr1, instr2, instr3, instr4};
     }
 
     public override void InitializePuzzle(){
-        if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
-        {
-
+        for(int i = 0; i<puzzleData.connectedClients.Count; i++){
+            if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[i])
+            {
+                instructionPage.text = "\n"+codeCombo[i+1];
+                if(puzzleData.connectedClients.Count<(4-(i))){
+                    instructionPage.text += "\n"+codeCombo[puzzleData.connectedClients.Count+i];
+                }
+            }
         }
         Debug.Log("COMBO PUZZLE INITIALIZED");
     }
@@ -48,6 +55,7 @@ public class CombinationPuzzle : PuzzleBase
         
     }
 
+    //Button reaction
     public void KeyPadPress(string number){
         string temp;
         Debug.Log($"Clicked {number}");
@@ -67,6 +75,7 @@ public class CombinationPuzzle : PuzzleBase
             //Puzzle complete
             else{
                 temp = "Correct";
+                puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
             }
             Debug.Log(temp);
             currentCode = temp;
@@ -111,15 +120,32 @@ public class CombinationPuzzle : PuzzleBase
         //Debug.Log("PuzzleDataUpdated");
     }
 
+    //Button action on side of commit
     [ServerRpc(RequireOwnership = false)]
     public void KeyPressedServerRpc(string number)
     {
         KeyPressedClientRpc(number);
     }
 
+    //Button action applied to other users
     [ClientRpc]
     public void KeyPressedClientRpc(string number)
     {
         KeyPadPress(number);
     }
+
+    /*[ServerRpc(RequireOwnership = false)]
+    public void DistributeInstructionsServerRPC(){
+        DistributeInstructionsClientRpc();
+    }
+
+    [ClientRpc]
+    public void DistributeInstructionsClientRpc(){
+        int currentUser = 0;
+        foreach(ulong user in puzzleData.connectedClients){
+            if(user == puzzleData.connectedClients[currentUser]){
+
+            }
+        }
+    }*/
 }
