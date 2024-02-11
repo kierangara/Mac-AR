@@ -381,6 +381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6226029587505815946}
   - component: {fileID: 816589085301764500}
+  - component: {fileID: 3743451147135581535}
   m_Layer: 2
   m_Name: Active Wires
   m_TagString: Untagged
@@ -434,6 +435,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 11.58643, y: 9.134656, z: 5.47344}
   m_Center: {x: 0.5, y: 3, z: 0}
+--- !u!114 &3743451147135581535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6413838398651995005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b45a4bdc0a2d8dd478d6bf597cebe1d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireMain: {fileID: 0}
 --- !u!1 &6723346732623958290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1220,6 +1234,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 099a198e5455bdf44b039ea12acdcd56, type: 2}
     - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
         type: 3}
+      propertyPath: active
+      value: 
+      objectReference: {fileID: 3743451147135581535}
+    - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
+        type: 3}
       propertyPath: wireRoot
       value: 
       objectReference: {fileID: 6067886086079344042}
@@ -1312,6 +1331,16 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5a7d09b037623c849897df8bc5a01b68, type: 2}
+    - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
+        type: 3}
+      propertyPath: active
+      value: 
+      objectReference: {fileID: 3743451147135581535}
+    - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
+        type: 3}
+      propertyPath: wireID
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
         type: 3}
       propertyPath: wireRoot
@@ -1408,6 +1437,16 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: fd5666b15bd3b9f40a4fb5f304f6ce99, type: 2}
     - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
         type: 3}
+      propertyPath: active
+      value: 
+      objectReference: {fileID: 3743451147135581535}
+    - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
+        type: 3}
+      propertyPath: wireID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
+        type: 3}
       propertyPath: wireRoot
       value: 
       objectReference: {fileID: 7529212733330449868}
@@ -1500,6 +1539,16 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: caa46481870ab3248a8862ffd1f205f1, type: 2}
+    - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
+        type: 3}
+      propertyPath: active
+      value: 
+      objectReference: {fileID: 3743451147135581535}
+    - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
+        type: 3}
+      propertyPath: wireID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5357650200898027511, guid: 92fd8e4d50a43b44a8385431ec220e7d,
         type: 3}
       propertyPath: wireRoot

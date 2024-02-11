@@ -15,4 +15,9 @@ public class AnchorList : MonoBehaviour
 
         return anchors.Contains(collider);
     }
+
+    public int IndexOf(Collider collider)
+    {
+        return anchors.IndexOf(collider);
+    }
 }

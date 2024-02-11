@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class FollowMouse : MonoBehaviour
 {
+    public int wireID;
     public WireCollider collisionObject;
     public Transform baseAnchor;
     public AnchorList anchorList; 
     public Transform mainPuzzle;
     public Transform wireRoot;
+    public ActiveWires active;
 
     private Camera mainCamera;
     private float cameraZDistance;
@@ -38,6 +40,11 @@ public class FollowMouse : MonoBehaviour
         //     currentPos = previousPos;
         //     SetPosition(previousPos, false);
         // }
+
+        // Clear Connections
+        active.UpdateSequence(wireID, -1);
+
+        // Move Cylinder
         MoveCylinder();
 
         // Transform transform = mainCamera.transform;
@@ -98,6 +105,8 @@ public class FollowMouse : MonoBehaviour
         {
             SetPosition(collisionObject.collidedObject.gameObject.transform.localPosition -
                         wireRoot.localPosition);
+
+            active.UpdateSequence(wireID, anchorList.IndexOf(collisionObject.collidedObject));
         }
     }
 
