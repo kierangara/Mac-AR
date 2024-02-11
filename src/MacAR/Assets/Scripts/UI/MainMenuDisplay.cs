@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.Netcode;
 using Unity.Services.Authentication;
@@ -17,6 +18,8 @@ public class MainMenuDisplay : MonoBehaviour
     [SerializeField] private TMP_InputField lobbyNameInputField;
     [SerializeField] private TMP_InputField passwordInputField;
     [SerializeField] private Slider sliderInput;
+
+    private string playerName = "SpencerSmith";
 
     private async void Start()
     {

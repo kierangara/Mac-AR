@@ -1,5 +1,6 @@
 using System;
 using Unity.Netcode;
+using Unity.VisualScripting.FullSerializer;
 
 public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
 {
