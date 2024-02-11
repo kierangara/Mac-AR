@@ -42,11 +42,11 @@ public class PassiveWires : MonoBehaviour
 
         if(colour == 1)
         {
-            material = materialBlue;
+            material = materialGreen;
         }
         else if(colour == 2)
         {
-            material = materialGreen;
+            material = materialBlue;
         }
         else if(colour == 3)
         {
@@ -62,11 +62,11 @@ public class PassiveWires : MonoBehaviour
         roots = new List<GameObject>{root1, root2, root3, root4};
         wires = new List<GameObject>{wire1, wire2, wire3, wire4};
 
-        List<List<uint>> testList = new List<List<uint>>{new List<uint>{1, 3}, 
-                                                         new List<uint>{0, 0}, 
-                                                         new List<uint>{3, 2}, 
-                                                         new List<uint>{2, 1}};
-        Init(testList);
+        // List<List<uint>> testList = new List<List<uint>>{new List<uint>{1, 3}, 
+        //                                                  new List<uint>{0, 0}, 
+        //                                                  new List<uint>{3, 2}, 
+        //                                                  new List<uint>{2, 1}};
+        // Init(testList);
     }
 
     // Update is called once per frame
