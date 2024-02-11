@@ -32,7 +32,7 @@ public class CombinationPuzzle : PuzzleBase
         }
         currentDigit = 0;
         //Create code and instructions
-        string code = "1359";
+        string code = "3159";
         string instr1 = "The second row and column each contain one number\n";
         string instr2 = "The second number is the only number in the first column\n";
         string instr3 = "The first number is two greater than the second number\n";
