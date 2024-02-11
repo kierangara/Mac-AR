@@ -72,11 +72,12 @@ public class FollowMouse : MonoBehaviour
 
         Vector3 endPos = realPos - relRoot - relPuzzle;
 
-        Debug.Log("EndPos: " + endPos);
-        if(WithinBounds(endPos))
-        {
-            SetPosition(endPos);
-        }
+        // Re-Enable bound checking when working
+        // Debug.Log("EndPos: " + endPos);
+        // if(WithinBounds(endPos - relRoot))
+        // {
+        SetPosition(endPos);
+        // }
     }
 
     private bool WithinBounds(Vector3 endPos)
