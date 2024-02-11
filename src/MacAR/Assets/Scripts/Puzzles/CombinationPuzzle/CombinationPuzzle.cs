@@ -23,6 +23,10 @@ public class CombinationPuzzle : PuzzleBase
     {
         //Read initial placeholder code
         Debug.Log("Combo Puzzle Started");
+        
+    }
+
+    public override void InitializePuzzle(){
         foreach(char j in codeInputField.text){
             currentCode+=j;
         }
@@ -34,16 +38,16 @@ public class CombinationPuzzle : PuzzleBase
         string instr3 = "The first number is two greater than the second number\n";
         string instr4 = "The fourth number is the only number in the third row\n";
         codeCombo = new string[]{code,instr1, instr2, instr3, instr4};
-    }
-
-    public override void InitializePuzzle(){
         for(int i = 0; i<puzzleData.connectedClients.Count; i++){
             if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[i])
             {
+                Debug.Log(i);
+                Debug.Log(instructionPage.text);
                 instructionPage.text = "\n"+codeCombo[i+1];
-                if(puzzleData.connectedClients.Count<(4-(i))){
-                    instructionPage.text += "\n"+codeCombo[puzzleData.connectedClients.Count+i];
+                if(puzzleData.connectedClients.Count<(codeCombo.Length-(i+1))){
+                    instructionPage.text += "\n"+codeCombo[puzzleData.connectedClients.Count+i+1];
                 }
+                //instructionPage.text = "Hello";
             }
         }
         Debug.Log("COMBO PUZZLE INITIALIZED");
@@ -58,13 +62,10 @@ public class CombinationPuzzle : PuzzleBase
     //Button reaction
     public void KeyPadPress(string number){
         string temp;
-        Debug.Log($"Clicked {number}");
         //Get digit from code to test input against
         char correctDigit = codeCombo[0][currentDigit];
         //Check if input is correct digit, output to screen if correct and move on to next digit
-        Debug.Log("Test1");
         if(char.Parse(number)==correctDigit){
-            Debug.Log("Test3");
             if(currentDigit==0){
                 temp = number + currentCode.Substring(1,currentCode.Length-1);
             }
@@ -87,8 +88,6 @@ public class CombinationPuzzle : PuzzleBase
             currentDigit = 0;
             currentCode = "_ _ _ _";
             codeInputField.text = "_ _ _ _";
-            Debug.Log(currentCode);
-            Debug.Log(codeInputField.text);
         }
     }
 
@@ -133,19 +132,4 @@ public class CombinationPuzzle : PuzzleBase
     {
         KeyPadPress(number);
     }
-
-    /*[ServerRpc(RequireOwnership = false)]
-    public void DistributeInstructionsServerRPC(){
-        DistributeInstructionsClientRpc();
-    }
-
-    [ClientRpc]
-    public void DistributeInstructionsClientRpc(){
-        int currentUser = 0;
-        foreach(ulong user in puzzleData.connectedClients){
-            if(user == puzzleData.connectedClients[currentUser]){
-
-            }
-        }
-    }*/
 }
