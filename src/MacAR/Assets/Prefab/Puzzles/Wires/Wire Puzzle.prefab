@@ -50,6 +50,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passive: {fileID: 6254114196836464254}
   active: {fileID: 6550417040165743648}
+  passiveObj: {fileID: 771072797074027937}
+  activeObj: {fileID: 3464993664287916546}
+  puzzleData: {fileID: 5909900628129956897}
 --- !u!114 &8887691806463535750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +141,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03d6ea5dcf4100f4790d9ecf82c882e4, type: 3}
+--- !u!1 &771072797074027937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 679775408388096879, guid: 03d6ea5dcf4100f4790d9ecf82c882e4,
+    type: 3}
+  m_PrefabInstance: {fileID: 278214642433832654}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &868113423289252115 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1139483485530214365, guid: 03d6ea5dcf4100f4790d9ecf82c882e4,
@@ -150,7 +159,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 278214642433832654}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 771072797074027937}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44a2164cda4a3494e9ecabc1a6296f79, type: 3}
@@ -230,6 +239,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 686536048723691136}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5909900628129956897 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6594184275290374817, guid: 1236452548453414d83eda93634d6821,
+    type: 3}
+  m_PrefabInstance: {fileID: 686536048723691136}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def69eacbac8dd844a2eb343f9d8ed2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7571863153675719039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,6 +264,16 @@ PrefabInstance:
       propertyPath: wireMain
       value: 
       objectReference: {fileID: 34269474412284401}
+    - target: {fileID: 3743451147135581535, guid: 4e40f2f90b7edfc4d98e4f5b4efdf975,
+        type: 3}
+      propertyPath: puzzleData
+      value: 
+      objectReference: {fileID: 5909900628129956897}
+    - target: {fileID: 5006376808421622718, guid: 4e40f2f90b7edfc4d98e4f5b4efdf975,
+        type: 3}
+      propertyPath: puzzleData
+      value: 
+      objectReference: {fileID: 5909900628129956897}
     - target: {fileID: 6226029587505815946, guid: 4e40f2f90b7edfc4d98e4f5b4efdf975,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -298,11 +329,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: Active Wires
       objectReference: {fileID: 0}
+    - target: {fileID: 7120987058488119567, guid: 4e40f2f90b7edfc4d98e4f5b4efdf975,
+        type: 3}
+      propertyPath: puzzleData
+      value: 
+      objectReference: {fileID: 5909900628129956897}
+    - target: {fileID: 8419177775537989622, guid: 4e40f2f90b7edfc4d98e4f5b4efdf975,
+        type: 3}
+      propertyPath: puzzleData
+      value: 
+      objectReference: {fileID: 5909900628129956897}
+    - target: {fileID: 8733161406078159832, guid: 4e40f2f90b7edfc4d98e4f5b4efdf975,
+        type: 3}
+      propertyPath: puzzleData
+      value: 
+      objectReference: {fileID: 5909900628129956897}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e40f2f90b7edfc4d98e4f5b4efdf975, type: 3}
+--- !u!1 &3464993664287916546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6413838398651995005, guid: 4e40f2f90b7edfc4d98e4f5b4efdf975,
+    type: 3}
+  m_PrefabInstance: {fileID: 7571863153675719039}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4572250418971603189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6226029587505815946, guid: 4e40f2f90b7edfc4d98e4f5b4efdf975,
@@ -315,7 +367,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7571863153675719039}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 3464993664287916546}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b45a4bdc0a2d8dd478d6bf597cebe1d6, type: 3}

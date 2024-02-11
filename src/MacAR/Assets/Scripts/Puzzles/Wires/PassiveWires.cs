@@ -25,6 +25,9 @@ public class PassiveWires : MonoBehaviour
 
     public void Init(List<List<uint>> sequence)
     {
+        roots = new List<GameObject>{root1, root2, root3, root4};
+        wires = new List<GameObject>{wire1, wire2, wire3, wire4};
+
         m_sequence = sequence;
 
         // TODO: Remove magic numbers
@@ -59,8 +62,9 @@ public class PassiveWires : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        roots = new List<GameObject>{root1, root2, root3, root4};
-        wires = new List<GameObject>{wire1, wire2, wire3, wire4};
+        // Debug.Log("Start Passive");
+        // roots = new List<GameObject>{root1, root2, root3, root4};
+        // wires = new List<GameObject>{wire1, wire2, wire3, wire4};
 
         // List<List<uint>> testList = new List<List<uint>>{new List<uint>{1, 3}, 
         //                                                  new List<uint>{0, 0}, 

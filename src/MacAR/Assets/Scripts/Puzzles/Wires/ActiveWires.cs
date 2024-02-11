@@ -7,6 +7,7 @@ public class ActiveWires : MonoBehaviour
     private List<List<uint>> m_sequence;
     private List<int> currentSequence = new List<int>();
     public WireBehaviour wireMain;
+    public PuzzleData puzzleData;
 
     public void Init(List<List<uint>> sequence)
     {
@@ -33,6 +34,7 @@ public class ActiveWires : MonoBehaviour
         if(correctSequence)
         {
             Debug.Log("Correct Wires");
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
         }
     }
 

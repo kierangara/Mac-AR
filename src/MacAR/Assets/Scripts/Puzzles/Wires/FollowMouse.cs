@@ -5,6 +5,7 @@ using UnityEngine;
 public class FollowMouse : MonoBehaviour
 {
     public int wireID;
+    public PuzzleData puzzleData;
     public WireCollider collisionObject;
     public Transform baseAnchor;
     public AnchorList anchorList; 
@@ -24,7 +25,7 @@ public class FollowMouse : MonoBehaviour
     void Start()
     {
         initialScale = mainPuzzle.localScale; 
-        mainCamera = Camera.main;
+        mainCamera = puzzleData.cam;
         initialZPos = baseAnchor.localPosition.z;
     }
 
