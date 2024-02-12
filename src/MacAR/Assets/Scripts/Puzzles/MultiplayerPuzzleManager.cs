@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 public class MultiplayerPuzzleManager : NetworkBehaviour
 {
     // private List<GameObject> puzzles = new List<GameObject>();
-    [SerializeField] private NetworkObject puzzle;
+    // [SerializeField] private NetworkObject puzzle;
+    [SerializeField] private List<NetworkObject> puzzles;
+    private int puzzleIndex = 0;
     public Camera cam; 
     NetworkObject puzzleInstance;
 
@@ -47,13 +50,17 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         byte[] bytes = objectToBytes(clients);
 
         // Instantiate 
-        puzzleInstance = Instantiate(puzzle); 
+        Debug.Log("Spawn: " + puzzleIndex);
+        puzzleInstance = Instantiate(puzzles[puzzleIndex]); 
 
         // Spawn
         puzzleInstance.SpawnWithOwnership(OwnerClientId);
 
         // Initialize
         InitializeClientRpc(puzzleInstance, bytes);
+
+        // Increment
+        puzzleIndex += 1;
     }
 
     [ClientRpc]
@@ -79,17 +86,49 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
-    [ServerRpc(RequireOwnership = false)]
+    // TODO: Will need to take in puzzle ID too to allow anyone to call (not just host) while also
+    // making sure to ignore duplicate requests to complete the same puzzle
+    [ServerRpc]
     public void CompletePuzzleServerRpc(ulong clientId)
     {
-        puzzleInstance.Despawn();
-        CompletePuzzleClientRpc();
+        Debug.Log("Despawn");
+        try 
+        {
+            puzzleInstance.Despawn();
+        }
+        catch 
+        {
+            Debug.Log("No object to despawn");
+        }
+        
+        if(puzzleIndex < puzzles.Count)
+        {
+            CompletePuzzleClientRpc();
+        }
+        else 
+        {
+            SceneManager.LoadScene(0);
+        }
+        
     }
 
     [ClientRpc]
     public void CompletePuzzleClientRpc()
     {
-        puzzleInstance.Despawn();
+        Debug.Log("Despawn");
+        try
+        {
+            puzzleInstance.Despawn();
+        }
+        catch 
+        {
+            Debug.Log("No object to despawn");
+        }
+    
+        puzzleInstance = null;
+
+        Debug.Log("Spawn New");
+        SpawnPuzzleServerRpc();
     }
 
     // Update is called once per frame
