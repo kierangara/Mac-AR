@@ -89,6 +89,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
+    // TODO: Will need to take in puzzle ID too to allow anyone to call (not just host) while also
+    // making sure to ignore duplicate requests to complete the same puzzle
     [ServerRpc]
     public void CompletePuzzleServerRpc(ulong clientId)
     {
