@@ -162,6 +162,7 @@
             October 6, 2023 & All & Group worked on traceability matrix and finishing rest of SRS\\  
             October 27, 2023 & Ethan & Updated SRS based on feedback from Team 2 and Team 18\\
             November 3, 2023 & Ethan & Updated SRS to include Hazard Analysis requirements\\
+            January 4, 2024 & Ethan & Updated SRS to include requirement for notifying user to update to latest version of application\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -366,7 +367,7 @@ external systems and services.
     \item The settings are displayed for the user
     \item The user chooses the settings they want to change
     \item The system updates the game room settings
-    \item The server informs the other users of the settings changes
+    \item The server informs the other group members of the settings changes
     \item The user closes the settings page
 \end{enumerate}
 \textbf{Use Case \#4:} User exits the game room\\
@@ -376,18 +377,18 @@ external systems and services.
 \begin{enumerate}
 	\item The user is removed from the game room
     \item The system updates the information of the game room
-    \item The server sends the updated information to each user in the game room
+    \item The server sends the updated information to each group member in the game room
     \item The user is brought back to the main menu
 \end{enumerate}
 \textbf{Use Case \#5:} User starts the game\\
 \textbf{Trigger:} The users in a game room click the start game button\\
-\textbf{Pre-condition:} The game room has enough available players\\
+\textbf{Pre-condition:} The game room has enough available group members\\
 \textbf{Outcome:}
 \begin{enumerate}
-	\item The server launches the game and synchronizes all the user data. 
+	\item The server launches the game and synchronizes the user and group member data. 
     \item The user performs a synchronization step to map the room and place the puzzles
-    \item The system shows the users the first puzzles
-    \item Each user is given a unique view on the puzzles they have available to them
+    \item The system shows the user and group members the first puzzles
+    \item The user and group members are each given a unique view on the puzzles they have available to them
 \end{enumerate}
 \textbf{Use Case \#6:} User saves game\\
 \textbf{Trigger:} The user selects the save game button\\
@@ -396,7 +397,7 @@ external systems and services.
 \begin{enumerate}
 	\item A local copy of the progress in the game is saved on the user's side
     \item All relevant data on the status of the puzzles is saved
-    \item This data can be used to load the game at a later date, and it is safe for users to leave the session
+    \item This data can be used to load the game at a later date, and it is safe for the user to leave the session
 \end{enumerate}
 \textbf{Use Case \#7:} User Loads game\\
 \textbf{Trigger:} The user hits the load game button and selects the game data they want to load\\
@@ -432,26 +433,26 @@ external systems and services.
 \begin{enumerate}
 	\item The system displays the predetermined hint for the associated puzzle
 	\item The user reads the hint and presses the button to close the hint
-	\item The system closes the hint display.
+	\item The system closes the hint display
 \end{enumerate}
 \textbf{Use Case \#11:} User skips a puzzle\\
 \textbf{Trigger:} The user hits the skip button\\
 \textbf{Pre-condition:} The user is interacting with a puzzle\\
 \textbf{Outcome:}
 \begin{enumerate}
-	\item The system saves the state of the puzzle and closes the puzzle display, returning to the main scene.
+	\item The system saves the state of the puzzle and closes the puzzle display, returning to the main scene
 \end{enumerate}
 \textbf{Use Case \#12:} User sends a message\\
 \textbf{Trigger:} The user presses a communication button\\
 \textbf{Pre-condition:} More than one user are in a game room\\
 \textbf{Outcome:}
 \begin{enumerate}
-	\item The system queries the server to determine the users in the room
-	\item The system displays the other users in the room to the user
+	\item The system queries the server to determine the group members in the room
+	\item The system displays the other group members in the room to the user
 	\item The user selects the desired recipient
         \item The system displays the interface for the user to create the message
         \item The user creates the message and hits the send button
-        \item The system uses the server to send the message to the other user's device and to create a message notification on that device. It then notifies the sender that the message has been sent.
+        \item The system uses the server to send the message to the selected group member's device and to create a message notification on that device. It then notifies the sender that the message has been sent
 \end{enumerate}
 \textbf{Use Case \#13:} User reads a message\\
 \textbf{Trigger:} The user clicks on a received message notification\\
@@ -460,34 +461,35 @@ external systems and services.
 \begin{enumerate}
         \item The system removes the message notification and displays the message to the user
 	\item The user reads the message, then closes the message display window
-	\item The system returns the user to the main game scene.
+	\item The system returns the user to the main game scene
 \end{enumerate}
 
 \subsection{Functional Requirements}
 \subsubsection{Create Game Room}
 \begin{enumerate}[label=CG\arabic*., series=CreateGame]
-    \item The system shall allow the user to create a game room \newline \textbf{Rationale:} The user must be able to group together with other users, creating the game room will allow the users to organize the group.
+    \item The system shall allow the user to create a game room \newline 
+    \textbf{Rationale:} The user must be able to group together with other users, creating the game room will allow the users to organize the group
     \item The system shall allow the user to enter a name for the game room \newline
     \textbf{Rationale:} The users must be able to uniquely identify the game rooms to allow the other users to find the room they want to join in case they have a group they wanted to solve the puzzles with
     \item The system shall allow the user to set the size of the game room \newline
-    \textbf{Rationale:} The user should be allowed to limit the number of players in the game room in case they want a small amount of players or large amount of players.
+    \textbf{Rationale:} The user should be allowed to limit the number of group members in the game room in case they want a small amount of group members or large amount of group members
     \item The system shall allow the user to put a password on the game room \newline
-    \textbf{Rationale:} The user should be able to allow or disallow any other user from joining except the ones they want in the case they are playing with friends.
+    \textbf{Rationale:} The user should be able to allow or disallow any other users from joining except the ones they want in the case they are playing with friends
     \item The system shall redirect the user to a new screen when in a game room \newline
-    \textbf{Rationale: } The users in the room should have a display of the game room and the amount of players in the room etc. 
+    \textbf{Rationale: } The users in the room should have a display of the game room and the amount of group members in the room etc. 
 \end{enumerate}
 \subsubsection{Join Game Room}
 \begin{enumerate}[label=JG\arabic*., series=JoinGame]
 	\item The system shall allow the user to join an existing game room with available capacity \newline 
     \textbf{Rationale:} The user should be able to join a room to group up with other users 
     \item The system shall allow the user to enter a password for the room if another user set a password for the room \newline 
-    \textbf{Rationale:} In the case of a game room having a password, the user should be able to have a space to enter the password.
-    \item The system shall update the game room information to add another member, and decrease the available capacity\newline 
-    \textbf{Rationale:} When a user joins a game room, that information should be updated to let the users users see the status of the room to inform them on which game room to join.
+    \textbf{Rationale:} In the case of a game room having a password, the user should be able to have a space to enter the password
+    \item When a user joins the game room the system shall update the game room information to add another member, and decrease the available capacity\newline 
+    \textbf{Rationale:} When a user joins a game room, that information should be updated to let the users users see the status of the room to inform them on which game room to join
     \item The system shall redirect the user to a new screen upon successfully connecting to a room\newline 
-    \textbf{Rationale:} When a user joins the room, they should get redirected to a new page where they can see the information on the current game room and wait for the host to start the game.
+    \textbf{Rationale:} When a user joins the room, they should get redirected to a new page where they can see the information on the current game room and wait for the host to start the game
     \item The system shall not allow a user to join a game room that is at max capacity\newline
-    \textbf{Rationale:} If the game room is full, the room should not be able to take in more users because it is at max capacity.
+    \textbf{Rationale:} If the game room is full, the room should not be able to take in more users because it is at max capacity
 \end{enumerate}
 
 \subsubsection{Edit Room Settings}
@@ -500,19 +502,19 @@ external systems and services.
     \textbf{Rationale:} The user should be able to change the password of the room to ensure security
     \item The system shall allow the user to change the capacity of the room\newline 
     \textbf{Rationale:} If the user was planning on having a set number of users and decides they want more or less users, they are able to change the capacity
-    \item The system shall allow the user to remove other users from the game room\newline 
-    \textbf{Rationale:} If the host user decides another user should not be in the game room, they can remove them instead of making a new room
-    \item The system shall display the updated settings to the other users in the game room\newline 
+    \item The system shall allow the user to remove group members from the game room\newline 
+    \textbf{Rationale:} If the host user decides a group member should not be in the game room, they can remove them instead of making a new room
+    \item The system shall display the updated settings to the game members in the game room\newline 
     \textbf{Rationale:} When a setting changes the other users in the game room should be able to see the changes in case they will affect them
 \end{enumerate}
 
 \subsubsection{Exit Room}
 \begin{enumerate}[label=ER\arabic*., series=ExitRoom]
-    \item The system shall allow the user leave the existing game room\newline 
+    \item The system shall allow the user to leave the existing game room\newline 
     \textbf{Rationale:} If the user does not wish to stay in a game room, the user should be able to leave
-    \item The system shall update the game room and display the one less user\newline 
+    \item When a group member leaves the room the system shall update the game room and display the one less user\newline 
     \textbf{Rationale:} The system should update based on the current number of users
-    \item The server shall update all user's screens to show the new amount of users and the updated capacity\newline 
+    \item When the a group member leaves the room the server shall update the screens of all group member's remaining in the room to show the new amount of users and the updated capacity\newline 
     \textbf{Rationale:} The server should update all the other users on the current capacity and number of users in the game room to inform them of any possible changes
 \end{enumerate}
 
@@ -523,33 +525,25 @@ external systems and services.
     \textbf{Rationale:} The users should be able to start the game to play the puzzles
     \item The system shall load all the assets used to play the game\newline 
     \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay
-    \item The system shall inform the user to complete a calibration step\newline 
+    \item The system shall inform all group members to complete a calibration step\newline 
     \textbf{Rationale:} AR games require some calibration step to scan the surfaces in the room so objects can be placed with gravity
-    \item The system shall determine an order of the puzzles, and which users can see which parts of the puzzles\newline 
-    \textbf{Rationale:} In games with more than one puzzle, there needs to be an order to solve the questions. The system will determine a logical order, and assign which users can see which parts of the puzzles.
+    \item The system shall determine an order of the puzzles, and which group members can see which parts of the puzzles\newline 
+    \textbf{Rationale:} In games with more than one puzzle, there needs to be an order to solve the questions. The system will determine a logical order, and assign which group members can see which parts of the puzzles
     \item The system shall display a progress bar based on the current progress on the screen\newline 
-    \textbf{Rationale:} The users should have some indicator how close they are to finishing the game
-    \item The system shall reveal the available puzzles to the users and commence the game\newline 
-    \textbf{Rationale:} The users should be able to view the puzzles they have access to
+    \textbf{Rationale:} The group members should have some indicator how close they are to finishing the game
+    \item The system shall reveal the available puzzles to the group members and commence the game\newline 
+    \textbf{Rationale:} The group members should be able to view the puzzles they have access to
 \end{enumerate}
 \subsubsection{Save Game}
-\begin{enumerate}[label=SG\arabic*., series=StartGame]
-	\item The system shall allow the user to save the game\newline 
-    \textbf{Rationale:} Saving the game will allow users to keep the progress on the game they are playing
-    \item The system shall take a snapshot of the data available upon hitting save, saving progress on all puzzles and the overall room progress \newline 
-    \textbf{Rationale:} If the user wants to load the game in the future they should have all the data required for continuing
-    \item The system shall pause the game during the save for the user saving it\newline 
-    \textbf{Rationale:} All the game data will be saved based on a point in time, so pausing the user's game to save will allow the game state to remain intact
-    \item The system shall allow other users to act during the saving process \newline 
-    \textbf{Rationale:} One user saving the game should not stop the other users from continuing playing
-    \item After saving, the system shall resume play for the saving user \newline 
-    \textbf{Rationale:} The user might want to return to playing after a save
-    \item The user shall be allowed to save as many times as they desire, as frequently as they desire aside from the pause during saving. \newline 
+\begin{enumerate}[label=SG\arabic*., series=SaveGame]
+    \item Upon the user hitting save, take a snapshot of the data available saving progress on all puzzles and the overall room progress \newline 
+    \textbf{Rationale:} If the user wants to load the game in the future they should have all the data required for continuing from the point at which they saved
+    \item The user shall be allowed to save as many times as they desire, as frequently as they desire \newline 
     \textbf{Rationale:} There should be no limit on saves in case of any external factors that would effect the game
     \item The system shall store the saved data on the user's device \newline 
     \textbf{Rationale:} Storing the data on the user's device will reduce the stress on the database, the save files should be small in size and it likely won't inconvenience the user
     \item The system shall encode the data such that it is not in its original format and the operation can be reversed \newline 
-    \textbf{Rationale:} Encoding the data can reduce the size and prevent users from manually changing the save data and potentially creating issues with the data. 
+    \textbf{Rationale:} Encoding the data can reduce the size and prevent users from manually changing the save data and potentially creating issues with the data 
 \end{enumerate}
 
 \subsubsection{Load Game}
@@ -564,7 +558,7 @@ external systems and services.
 
 \subsubsection{Delete Save}
 \begin{enumerate}[label=DS\arabic*., series=DeleteSave]
-	\item The system shall allow to delete the saved game data \newline 
+	\item The system shall allow the user to delete the saved game data \newline 
     \textbf{Rationale:} If the user wishes to never load the data, the user can remove it
     \item The system shall remove the saved data from the user's device \newline 
     \textbf{Rationale:} The user's device will no longer hold onto data it won't use
@@ -574,60 +568,60 @@ external systems and services.
 
 \subsubsection{Puzzle Interaction}
     \begin{enumerate}[label=PI\arabic*., series=PuzzleInteract]
-        \item The system shall allow users to select a puzzle to attempt from the main scene.\\
-        \textbf{Rationale}: The user is shown multiple puzzles on the main scene and must be able to select the one they would like to attempt.
-        \item The system shall present the user with an enlarged version of the puzzle once they've selected it.\\
-        \textbf{Rationale}: For full scale versions of all puzzles to visible on the main scene, too much of the scene would be obscured. This is resolved by forcing the user to select the puzzle to see the full size puzzle.
-        \item The system shall allow users to perform all necessary actions on the puzzle to complete the puzzle.\\
-        \textbf{Rationale}: The user must be able to complete the puzzles in order to progress in the game.
+        \item The system shall allow the user to select a puzzle to attempt from the main scene\\
+        \textbf{Rationale}: The user is shown multiple puzzles on the main scene and must be able to select the one they would like to attempt
+        \item The system shall present the user with an enlarged version of the puzzle once they've selected it\\
+        \textbf{Rationale}: For full scale versions of all puzzles to visible on the main scene, too much of the scene would be obscured. This is resolved by forcing the user to select the puzzle to see the full size puzzle
+        \item The system shall allow users to perform all necessary actions on the puzzle to complete the puzzle\\
+        \textbf{Rationale}: The user must be able to complete the puzzles in order to progress in the game
         \item The system shall display the new puzzle state after a user performs an action on a puzzle\\
         \textbf{Rationale}: The user must be able to see the results of their actions in order to decide how to proceed with the puzzle
         \item The system shall update the puzzle state of group members cooperating on an updated puzzle\\
-        \textbf{Rationale}: When multiple users are cooperating on a puzzle they must be able to see updates caused by the actions of one another.
+        \textbf{Rationale}: When multiple group members are cooperating on a puzzle they must be able to see updates caused by the actions of one another
         \item The system shall notify the user when they have completed a puzzle\\
-        \textbf{Rationale}: Users should know when they've completed a puzzle so they know they can move on. A notification at the end of a puzzle can also make completing it more satisfying for the user.
+        \textbf{Rationale}: Users should know when they've completed a puzzle so they know they can move on. A notification at the end of a puzzle can also make completing it more satisfying for the user
         \item The system shall update the overall room progress when a puzzle is completed\\
-        \textbf{Rationale}: The overall room progress must be continuously updated as puzzles are completed so the game can detect when all the puzzles have been completed and the users have accomplished their goal.
+        \textbf{Rationale}: The overall room progress must be continuously updated as puzzles are completed so the game can detect when all the puzzles have been completed and the users have accomplished their goal
     \end{enumerate}
 \subsubsection{Hint Request}
     \begin{enumerate}[label=HR\arabic*., series=HintRequest]
-        \item The system shall have at least one hint for each puzzle.\\
-        \textbf{Rationale}: If a user gets stuck on a puzzle they should have an alternative to giving up on the puzzle.
-        \item The system shall have a means of requesting a hint for the puzzle to be displayed.\\
-        \textbf{Rationale}: The player must be able to request the hint for the puzzle.
+        \item The system shall have at least one hint for each puzzle\\
+        \textbf{Rationale}: If a user gets stuck on a puzzle they should have an alternative to giving up on the puzzle
+        \item The system shall have a means of requesting a hint for the puzzle to be displayed\\
+        \textbf{Rationale}: The user must be able to request the hint for the puzzle
         \item The system shall allow the user to close the hint display\\
-        \textbf{Rationale}: The user should not have to keep the hint on the screen, as it may obstruct other functions.
+        \textbf{Rationale}: The user should not have to keep the hint on the screen, as it may obstruct other functions
     \end{enumerate}
 \subsubsection{Skip Puzzle}
     \begin{enumerate}[label=SP\arabic*., series=SkipPuzzle]
-        \item The system shall allow the user to skip a puzzle and return to the main scene.\\
-        \textbf{Rationale}: The user should not have to complete a puzzle to attempt a different one. They should be able to leave a puzzle and return to it later.
-        \item The system shall save the users progress on a skipped puzzle.\\
-        \textbf{Rationale}: If a user skips a puzzle they should be able to return to it without having to start over.
-        \item The system shall notify any cooperators on the skipped puzzle that it has been skipped\\
-        \textbf{Rationale}: One users work on a puzzle will typically depend on another users work on the puzzle. They must be notified the puzzle has been skipped so they are not waiting on an action from the other user.
+        \item The system shall allow the user to skip a puzzle and return to the main scene\\
+        \textbf{Rationale}: The user should not have to complete a puzzle to attempt a different one. They should be able to leave a puzzle and return to it later
+        \item The system shall save the users progress on a skipped puzzle\\
+        \textbf{Rationale}: If a user skips a puzzle they should be able to return to it without having to start over
+        \item The system shall notify any group members cooperating on the skipped puzzle that it has been skipped\\
+        \textbf{Rationale}: A group members work on a puzzle will typically depend on another group members work on the puzzle. They must be notified the puzzle has been skipped so they are not waiting on an action from the group member
     \end{enumerate}
 \subsubsection{Send Message}
-    \begin{enumerate}[label=SM\arabic*., series=Send Message]
-        \item The system shall allow the user to view all the users in the current game room.\\
-        \textbf{Rationale}: For the communication system the user must be able to see all the users in the game room to choose who to contact.
+    \begin{enumerate}[label=SM\arabic*., series=SendMessage]
+        \item The system shall allow the user to view all group members in the current game room\\
+        \textbf{Rationale}: For the communication system the user must be able to see all the group members in the game room to choose who to contact
         \item The system shall contain an interface that allows the user to compose a message\\
-        \textbf{Rationale}: The users must be able to create their own custom messages to allow for optimal communication in puzzles and to create the most realistic social experience.
-        \item The system shall allow the user to send a message to any other user in the game room\\
-        \textbf{Rationale}: The primary goal of the game is to allow users to have social interaction from a remote setting. All users in the game must be able to interact with one another to complete this goal.
-        \item The system shall allow the user to cancel a message before sending it.\\
-        \textbf{Rationale}: If a user decides they do not want to send a message they must be able to return to the game without having to send something.
-        \item The system shall notify the user once the message has been sent.\\
-        \textbf{Rationale}: It is important that the user receive feedback that the message has been sent so there is no uncertainty or confusion for the user.
+        \textbf{Rationale}: The user must be able to create their own custom messages to allow for optimal communication in puzzles and to create the most realistic social experience
+        \item The system shall allow the user to send a message to any other group member in the game room\\
+        \textbf{Rationale}: The primary goal of the game is to allow users to have social interaction from a remote setting. All users in the game must be able to interact with one another to complete this goal
+        \item The system shall allow the user to cancel a message before sending it\\
+        \textbf{Rationale}: If a user decides they do not want to send a message they must be able to return to the game without having to send something
+        \item The system shall notify the user once the message has been sent\\
+        \textbf{Rationale}: It is important that the user receive feedback that the message has been sent so there is no uncertainty or confusion for the user
     \end{enumerate}
 \subsubsection{Read Message}
     \begin{enumerate}[label=RM\arabic*., series=ReadMessage]
-        \item The system shall notify the user when a new message is received.\\
-        \textbf{Rationale}: Communication is core to the game. If a user doesn't know when they receive a message good communication will not be maintained.
-        \item The system shall allow the user to view messages.\\
-        \textbf{Rationale}: Users must be able to see what other users are trying to communicate to them for social purposes and to complete puzzles.
-        \item The system shall allow users to close a message.\\
-        \textbf{Rationale}: Users must be able to return to the mains scene after viewing a message to continue game play.
+        \item The system shall notify the user when a new message is received\\
+        \textbf{Rationale}: Communication is core to the game. If a user doesn't know when they receive a message good communication will not be maintained
+        \item The system shall allow the user to view messages\\
+        \textbf{Rationale}: Users must be able to see what other users are trying to communicate to them for social purposes and to complete puzzles
+        \item The system shall allow users to close a message\\
+        \textbf{Rationale}: Users must be able to return to the mains scene after viewing a message to continue game play
     \end{enumerate}
 \subsection{Formal Specification}
 $(\forall r \in rooms  | (\sum\limits_{user \in r} 1)  \leq r.roomCapacity)$\\
@@ -651,8 +645,8 @@ The following section will describe the non-functional requirements of the appli
 
 \subsection{Usability and Humanity Requirements}
 \begin{enumerate}[UH\arabic*.]
-	\item The system shall be accessible by any supported mobile device\newline
-    \textit{Fit criterion: The system should run on the devices listed in solution constraint 1.3.1}
+	\item The system shall be accessible by any supported mobile devices using up to date software\newline
+    \textit{Fit criterion: The system should allow the application to be launched displaying the initial menu screen on the devices listed in solution constraint 1.3.1 with an operating system satisfying OE1}
     \item The system shall notify the user if there is no network, or they get disconnected\newline
     \textit{Fit criterion: The system should produce a notification when network connection is lost}
     \item The system shall be able to be navigated by any user\newline
@@ -662,23 +656,27 @@ The following section will describe the non-functional requirements of the appli
     \item The system shall prompt the user if it detects that the existing network connection is weak\newline
     \textit{Fit criterion: The system should produce a notification when network connection is weak}
     \item The system shall prompt the user if their current environment is unsuitable to use the application\newline
-    \textit{Fit criterion: The system will produce a pop up notification during calibration setup to let user know of issues with their environment}
+    \textit{Fit criterion: The system will produce a pop up notification during calibration setup to let user know of issues with their environment, as well as if after calibration the user environment becomes unsuitable}
     \item The system shall allow users to reconnect to their game session if they become disconnected\newline
     \textit{Fit criterion: The system will prompt the user to reconnect to their game session through a reconnect button, which upon pressing will reconnect to the user's previous session}
     \item The system shall alert users of potentially dangerous conditions \newline
     \textit{Fit criterion: The system will notify the user about incoming dangerous weather when it is detected}
+    \item The system shall inform users who are using an old version of the application to check for updates and use the latest version
+    \newline
+    \textit{Fit criterion: The system will produce a notification to let the user know to update their application to the latest version, in order to play online}
+    
 \end{enumerate}
 \subsection{Performance Requirements}
 \begin{enumerate}[PR\arabic*.]
 	\item The system shall respond to user interaction instantaneously as perceived by the user\newline
     \textit{Fit criterion: The system shall respond within 100ms of user interaction}
-    \item The system shall be available for users at any time\newline
-    \textit{Fit criterion: The system will be accessible 24 hours a day}
+    \item The system shall be available for users at any time or display the reasoning for the system outage\newline
+    \textit{Fit criterion: The system will be accessible 24 hours a day unless the server is undergoing maintenance or experiencing an outage. If there is maintenance or an outage an error message is displayed stating the respective issue }
 \end{enumerate}
 \subsection{Operational and Environmental Requirements}
 \begin{enumerate}[OE\arabic*.]
     \item The system shall be available on Android 11 or above and iOS 16 or above\newline
-    \textit{Fit criterion: The system shall be able to be downloaded from the Google Play Store and Apple Store that have Android 11 or iOS 16 (or later) operating systems}
+    \textit{Fit criterion: The system shall be able to be downloaded from the Google Play Store and Apple Store on devices that have Android 11 or iOS 16 (or later) operating systems}
 \end{enumerate}
 \subsection{Maintainability and Support Requirements}
 \begin{enumerate}[MS\arabic*.]
@@ -690,7 +688,7 @@ The following section will describe the non-functional requirements of the appli
 \subsection{Security Requirements}
 \begin{enumerate}[SR\arabic*.]
     \item The system shall keep user data private\newline
-    \textit{Fit criterion: The system shall not make user passwords or IP addresses able to be publicly accessed}
+    \textit{Fit criterion: User passwords or IP addresses should not be displayed and should only be accessible to the internal system functions. No external data queries to the database or the system should be able to retrieve this information.}
     \item The users will only be allowed to see limited data. Unnecessary data will not be displayed to the user\newline
     \textit{Fit criterion: The system shall only show users any data required in order to play the game}
 \end{enumerate}
@@ -893,7 +891,7 @@ The development of the project will be split into three phases:
 \end{itemize}
 The creation of the proof of concept demonstration will aid in overcoming the main challenges of the system. It will demonstrate the ability for multiple users to interact in AR, and provide the documentation for the future application to be developed.
 
-The initial development of the application will take the design of the PoC and improve on the concepts. All the components of the application will be working in this version, and the stakeholders will be able to see the implementation and provide feedback. 
+The initial development of the application will take the design of the PoC and improve on the concepts. Four puzzles will be implemented, and the multiplayer functionalities will also be implemented. The Save/Load game functional requirements and the hint and skip system will not be required for revision 0 as they are not crucial parts of the overall system. The stakeholders will be able to see the implementation and provide feedback. 
 
 The refinement will take all the user feedback and improve on the initial design. There is no expectation for major features to be developed at this stage, just improvements on the existing system and the addition of potential stretch goals. 
 

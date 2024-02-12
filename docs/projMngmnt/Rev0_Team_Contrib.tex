@@ -1,0 +1,115 @@
+\documentclass{article}
+
+\usepackage{float}
+\restylefloat{table}
+
+\usepackage{booktabs}
+
+\title{Team Contributions: Rev 0\\\progname}
+
+\author{\authname}
+
+\date{}
+
+\input{../Comments}
+\input{../Common}
+
+\begin{document}
+
+\maketitle
+
+\section{Demo Plans}
+
+The team will be demonstrating the following functionality:
+\begin{itemize}
+    \item Updated voice chat
+    \item Updated text chat
+    \item Updated lobby menu
+    \item Puzzle gameplay for the following puzzles
+        \begin{itemize}
+            \item Simon Says Puzzle
+            \item Combination Puzzle
+            \item Maze Puzzle
+            \item Wires Puzzle
+        \end{itemize}
+    \item Cooperative gameplay between two users
+\end{itemize}
+
+\section{Meeting Attendance}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Student} & \textbf{Meetings}\\
+\midrule
+Total & 8\\
+Matthew & 8\\
+Ethan & 8\\
+Kieran & 8\\
+Sam & 8\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Every group member has been present for all group meetings.
+
+\section{Lecture Attendance}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Student} & \textbf{Lectures}\\
+\midrule
+Total & 2\\
+Matthew & 2\\
+Ethan & 2\\
+Kieran & 2\\
+Sam & 2\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Commits}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Student} & \textbf{Commits} & \textbf{Percent}\\
+\midrule
+Total & 51 & 100\% \\
+Matthew & 9 & 18\% \\
+Ethan & 10 & 20\% \\
+Kieran & 11 & 21\% \\
+Sam & 21 & 41\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The commits from the "development" branch, which is used as a final staging branch before main, have not been completely merged to Main as of creating this document. In addition, administrative work which is done in small individual commits, such as updating CI/CD or issue templates, can cause commit numbers to become disproportionate. The work itself has been split mostly evenly.
+
+\section{Issue Tracker}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Student} & \textbf{Authored (O+C)} & \textbf{Assigned (C only)}\\
+\midrule
+Matthew & 24 & 44 \\
+Ethan & 13 & 47 \\
+Kieran & 5 & 37\\
+Sam & 24 & 28 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Certain categories of issues, such as issues created for lectures and meetings, causes some of the "authored" commit numbers to be disproportionate, and don't reflect the amount of important issues that were created. The number of non-administrative tickets created is fairly even among team members, 
+
+\section{CICD}
+
+CI/CD has been implemented at present to run the entire "edit mode" suite of tests, which in Unity consists of all of the unit tests that can be run in isolation, without the full program being launched. The pipeline is set up to run automatically for all pull requests, in addition to running on main when any changes are pushed. 
+
+\end{document}
