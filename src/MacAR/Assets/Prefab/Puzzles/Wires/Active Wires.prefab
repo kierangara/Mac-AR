@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wireMain: {fileID: 0}
+  puzzleData: {fileID: 0}
 --- !u!1 &6723346732623958290
 GameObject:
   m_ObjectHideFlags: 0
