@@ -417,6 +417,7 @@ GameObject:
   - component: {fileID: 1354141929}
   - component: {fileID: 1354141928}
   - component: {fileID: 1354141927}
+  - component: {fileID: 1354141931}
   m_Layer: 0
   m_Name: AR Camera
   m_TagString: Untagged
@@ -456,7 +457,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.1
-  far clip plane: 20
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -540,6 +541,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1659859599}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1354141931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354141925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219346f99f22f004ba02ee05fa76423a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1502696550 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5902447150203161824, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
@@ -582,7 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc2ec2ffe362a043b2aa0daefbc9ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzle: {fileID: -1647956298961555347, guid: 59d3ec05ab21ea94c9165f93667707c2, type: 3}
+  puzzle: {fileID: 8887691806463535750, guid: 8d22bd06a8a72364c8e96245b5dd4fae, type: 3}
   cam: {fileID: 1354141926}
 --- !u!4 &1527853315
 Transform:
