@@ -81,6 +81,8 @@ public class VivoxVoiceManager : MonoBehaviour
     [SerializeField]
     private string _server;
 
+    public string PlayerName;
+
     /// <summary>
     /// Access singleton instance through this propriety.
     /// </summary>
@@ -93,7 +95,7 @@ public class VivoxVoiceManager : MonoBehaviour
                 if (m_Instance == null)
                 {
                     // Search for existing instance.
-                    m_Instance = (VivoxVoiceManager)FindObjectOfType(typeof(VivoxVoiceManager));
+                    m_Instance = (VivoxVoiceManager)FindFirstObjectByType(typeof(VivoxVoiceManager));
 
                     // Create new instance if one doesn't already exist.
                     if (m_Instance == null)
@@ -183,11 +185,20 @@ public class VivoxVoiceManager : MonoBehaviour
             _client.Uninitialize();
         }
     }
+    public void SetAccountName(string accountName)
+    {
+        m_Account = new Account(accountName);
+        PlayerName = accountName;
+    }
+
 
     public void Login(string displayName = null)
     {
-        m_Account = new Account(displayName);
-
+        if(m_Account == null) 
+        {
+            m_Account = new Account("SpencerSmith");
+        }
+        // print(displayName);
         LoginSession = _client.GetLoginSession(m_Account);
         LoginSession.PropertyChanged += OnLoginSessionPropertyChanged;
         LoginSession.BeginLogin(LoginSession.GetLoginToken(), SubscriptionMode.Accept, null, null, null, ar =>
@@ -471,7 +482,7 @@ public class VivoxVoiceManager : MonoBehaviour
 
     private void VivoxLog(string msg)
     {
-        Debug.Log("<color=green>VivoxVoice: </color>: " + msg);
+        //Debug.Log("<color=green>VivoxVoice: </color>: " + msg);
     }
 
     private void VivoxLogError(string msg)

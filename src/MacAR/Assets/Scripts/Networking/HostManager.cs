@@ -1,22 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
+using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
+//using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HostManager : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private int maxConnections = 4;
+    private int maxConnections = 4;
+    private string lobbyPassword = null;
+    private string lobbyName;
     [SerializeField] private string characterSelectSceneName = "CharacterSelect";
     [SerializeField] private string gameplaySceneName = "Gameplay";
+    [SerializeField] private string mainMenuName = "MainMenu";
 
     public static HostManager Instance { get; private set; }
 
@@ -39,8 +45,27 @@ public class HostManager : MonoBehaviour
         }
     }
 
+    public void setConnections(int maxSize)
+    {
+        this.maxConnections = maxSize;
+    }
+
+    public void setPassword(string password)
+    {
+        this.lobbyPassword = password;
+    }
+
+    public void setLobbyName(string name)
+    {
+        this.lobbyName = name;
+    }
+
     public async void StartHost()
     {
+        //Debug.Log(lobbyName);
+        //Debug.Log(lobbyPassword);
+        //Debug.Log(maxConnections);
+
         Allocation allocation;
 
         try
@@ -74,6 +99,10 @@ public class HostManager : MonoBehaviour
         {
             var createLobbyOptions = new CreateLobbyOptions();
             createLobbyOptions.IsPrivate = false;
+            if (lobbyPassword.Length!=0)
+            {
+                createLobbyOptions.Password = lobbyPassword;
+            }
             createLobbyOptions.Data = new Dictionary<string, DataObject>()
             {
                 {
@@ -84,9 +113,10 @@ public class HostManager : MonoBehaviour
                 }
             };
 
-            Lobby lobby = await Lobbies.Instance.CreateLobbyAsync("My Lobby", maxConnections, createLobbyOptions);
+            Lobby lobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxConnections, createLobbyOptions);
             lobbyId = lobby.Id;
             StartCoroutine(HeartbeatLobbyCoroutine(15));
+            GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setLobby(lobby);
         }
         catch (LobbyServiceException e)
         {
@@ -99,7 +129,30 @@ public class HostManager : MonoBehaviour
 
         ClientData = new Dictionary<ulong, ClientData>();
 
+        
+
         NetworkManager.Singleton.StartHost();
+    }
+
+    public async Task ChangeLobbySettings()
+    {
+     
+        var updateLobbyOptions = new UpdateLobbyOptions();
+        updateLobbyOptions.IsPrivate = false;
+        if (lobbyPassword.Length != 0)
+        {
+            updateLobbyOptions.Password = lobbyPassword;
+        }
+        updateLobbyOptions.Data = new Dictionary<string, DataObject>()
+        {
+            {
+                "JoinCode", new DataObject(
+                visibility: DataObject.VisibilityOptions.Member,
+                value: JoinCode
+                )
+            }
+        };
+        var updatedLobby = await Lobbies.Instance.UpdateLobbyAsync(lobbyId, updateLobbyOptions);
     }
 
     private IEnumerator HeartbeatLobbyCoroutine(float waitTimeSeconds)
@@ -153,4 +206,6 @@ public class HostManager : MonoBehaviour
 
         NetworkManager.Singleton.SceneManager.LoadScene(gameplaySceneName, LoadSceneMode.Single);
     }
+
+
 }

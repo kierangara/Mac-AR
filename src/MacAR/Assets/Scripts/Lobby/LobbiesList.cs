@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
-
+using System;
 public class LobbiesList : MonoBehaviour
 {
     [SerializeField] private Transform lobbyItemParent;
@@ -63,25 +63,53 @@ public class LobbiesList : MonoBehaviour
         isRefreshing = false;
     }
 
-    public async void JoinAsync(Lobby lobby)
+    public async void JoinAsync(Lobby lobby, string password = null)
     {
+        //Debug.Log(password);
         if (isJoining) { return; }
 
         isJoining = true;
-
+        //password = "12345678";
+        //try
+        //{
+        
         try
         {
-            var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id);
-            string joinCode = joiningLobby.Data["JoinCode"].Value;
-
-            await ClientManager.Instance.StartClient(joinCode);
+            JoinLobbyByIdOptions options = new JoinLobbyByIdOptions();
+            if (password.Length != 0)
+            {
+                options = new JoinLobbyByIdOptions
+                { Password = password };
+                var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id, options);
+                string joinCode = joiningLobby.Data["JoinCode"].Value;
+                //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode; 
+                await ClientManager.Instance.StartClient(joinCode);
+                GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
+            }
+            else
+            {
+                var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id);
+                string joinCode = joiningLobby.Data["JoinCode"].Value;
+                //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode;
+                await ClientManager.Instance.StartClient(joinCode);
+                GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
+            }
+            //GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setLobby(lobby);
+            
         }
-        catch (LobbyServiceException e)
+        
+        catch
         {
+            LogHandlerSettings.Instance.SpawnErrorPopup($"Error joining lobby : Password Mismatch issue");
+        }
+            
+        //}
+        //catch (LobbyServiceException e)
+       /* {
             Debug.Log(e);
             isJoining = false;
             throw;
-        }
+        }*/
 
         isJoining = false;
     }

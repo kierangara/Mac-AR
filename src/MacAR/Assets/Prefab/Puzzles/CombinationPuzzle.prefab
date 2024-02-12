@@ -1,0 +1,2485 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1539032670121321862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4113556230389219616}
+  - component: {fileID: 5438477198352480956}
+  m_Layer: 0
+  m_Name: CombinationPuzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4113556230389219616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539032670121321862}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6959754623623024691}
+  - {fileID: 6156995944534933493}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5438477198352480956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539032670121321862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!1 &1725382244370820688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4323551883654448733}
+  - component: {fileID: 7496702975217110876}
+  - component: {fileID: 4498212818202453511}
+  m_Layer: 5
+  m_Name: KeypadCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4323551883654448733
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725382244370820688}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.625, y: 0.33333334, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5482069520618278516}
+  m_Father: {fileID: 2159671757622223516}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &7496702975217110876
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725382244370820688}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &4498212818202453511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725382244370820688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!1 &1762245551838057335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2159671757622223516}
+  - component: {fileID: 6253648591602173831}
+  - component: {fileID: 2026951379464518736}
+  - component: {fileID: 5210279737979173536}
+  - component: {fileID: 601845736203875430}
+  m_Layer: 0
+  m_Name: Keypad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2159671757622223516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762245551838057335}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
+  m_LocalScale: {x: 1.6, y: 3, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4323551883654448733}
+  - {fileID: 554460896908932544}
+  - {fileID: 1137667011872029087}
+  - {fileID: 1370026279813399788}
+  - {fileID: 8471085259760570395}
+  - {fileID: 2932835539743010904}
+  - {fileID: 8132591501083036340}
+  - {fileID: 9138413873571739111}
+  - {fileID: 512850292769131583}
+  - {fileID: 1575609199680972276}
+  - {fileID: 6188530456298398275}
+  m_Father: {fileID: 6156995944534933493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6253648591602173831
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762245551838057335}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2026951379464518736
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762245551838057335}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8df8ea51a7428614daee5efc3c092589, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5210279737979173536
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762245551838057335}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &601845736203875430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762245551838057335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc22ab06374b8c4c84b8bb9bf8a9533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  codeInputField: {fileID: 3479107768904138502}
+  combinationPuzzle: {fileID: 1539032670121321862}
+  instructionPage: {fileID: 2074332256210681869}
+  puzzleData: {fileID: 3296016383363581492}
+--- !u!1 &5269139122275047875
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2070391022441389823}
+  - component: {fileID: 7682415751413608381}
+  - component: {fileID: 8586620926474376961}
+  - component: {fileID: 2202021142001598628}
+  m_Layer: 0
+  m_Name: Instructions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2070391022441389823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269139122275047875}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2, y: 0, z: 5}
+  m_LocalScale: {x: 1.6, y: 2.5, z: 0.025}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6495039129529340801}
+  m_Father: {fileID: 6156995944534933493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7682415751413608381
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269139122275047875}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &8586620926474376961
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269139122275047875}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2202021142001598628
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269139122275047875}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7215137402946696714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5482069520618278516}
+  - component: {fileID: 7220641011775099348}
+  - component: {fileID: 3479107768904138502}
+  m_Layer: 5
+  m_Name: Code
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5482069520618278516
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215137402946696714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.501}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4323551883654448733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.175, y: 1.123}
+  m_SizeDelta: {x: 150, y: 50.000145}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7220641011775099348
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215137402946696714}
+  m_CullTransparentMesh: 1
+--- !u!114 &3479107768904138502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215137402946696714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: _ _ _ _
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 25.17178, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7594404140696759735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6495039129529340801}
+  - component: {fileID: 6413505684143150642}
+  - component: {fileID: 6819793435603805343}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6495039129529340801
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7594404140696759735}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.625, y: 0.4, z: 40}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7296047037827974260}
+  - {fileID: 4338881068297085741}
+  m_Father: {fileID: 2070391022441389823}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &6413505684143150642
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7594404140696759735}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &6819793435603805343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7594404140696759735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!1 &7767116691914072620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6156995944534933493}
+  m_Layer: 0
+  m_Name: PuzzleNetworkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6156995944534933493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7767116691914072620}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2159671757622223516}
+  - {fileID: 2070391022441389823}
+  m_Father: {fileID: 4113556230389219616}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9102393939024109947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7296047037827974260}
+  - component: {fileID: 2153454514149787910}
+  - component: {fileID: 8709757574745004437}
+  m_Layer: 5
+  m_Name: InstructionTitle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7296047037827974260
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102393939024109947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.051}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6495039129529340801}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1.005}
+  m_SizeDelta: {x: 149.1809, y: 34.0418}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2153454514149787910
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102393939024109947}
+  m_CullTransparentMesh: 1
+--- !u!114 &8709757574745004437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102393939024109947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Instructions
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 1
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 0, g: 0, b: 0, a: 1}
+    topRight: {r: 0, g: 0, b: 0, a: 1}
+    bottomLeft: {r: 0, g: 0, b: 0, a: 1}
+    bottomRight: {r: 0, g: 0, b: 0, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 28
+  m_fontSizeBase: 28
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1001 &1992126788856837923
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015788814124334876, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &2932835539743010904 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1992126788856837923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2311961810806653847
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.308
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015788814124334876, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_text
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &1370026279813399788 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2311961810806653847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2795401214677639823
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.308
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015788814124334876, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_text
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &1575609199680972276 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2795401214677639823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3749510846601595716
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015788814124334876, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_text
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &512850292769131583 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3749510846601595716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3794042578266354363
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.308
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &554460896908932544 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3794042578266354363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4386291351727374052
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015788814124334876, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_text
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &1137667011872029087 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4386291351727374052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4798693269780048400
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6495039129529340801}
+    m_Modifications:
+    - target: {fileID: 8957145837812964304, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_Name
+      value: InstructionsText
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 149.1809
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 199.338
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.051
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.2025
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6116d08abf4adc44981dd11b7ace362b, type: 3}
+--- !u!114 &2074332256210681869 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6796459779089672733, guid: 6116d08abf4adc44981dd11b7ace362b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4798693269780048400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &4338881068297085741 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 9128426241816250685, guid: 6116d08abf4adc44981dd11b7ace362b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4798693269780048400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4884776402046832079
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.308
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.308
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015788814124334876, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_text
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &8132591501083036340 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4884776402046832079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5087279263872161632
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.308
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015788814124334876, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_text
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &8471085259760570395 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5087279263872161632}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5603843118226125468
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.308
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015788814124334876, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_text
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &9138413873571739111 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 5603843118226125468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7418801916685460792
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2159671757622223516}
+    m_Modifications:
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPressedServerRpc
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3769928675320406109, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: KeypadPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 601845736203875430}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1762245551838057335}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: KeyPadPress
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombinationPuzzle, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4633947639931392483, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_Name
+      value: KeypadButton0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9015788814124334876, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a56ce0fee549a764ab191f651393365d, type: 3}
+--- !u!4 &6188530456298398275 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3681396514671560571, guid: a56ce0fee549a764ab191f651393365d,
+    type: 3}
+  m_PrefabInstance: {fileID: 7418801916685460792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8520514559799674005
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4113556230389219616}
+    m_Modifications:
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594184275290374817, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: maxPlayers
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6594184275290374817, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: minPlayers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7792403031675138309, guid: 1236452548453414d83eda93634d6821,
+        type: 3}
+      propertyPath: m_Name
+      value: PuzzleInit
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1236452548453414d83eda93634d6821, type: 3}
+--- !u!114 &3296016383363581492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6594184275290374817, guid: 1236452548453414d83eda93634d6821,
+    type: 3}
+  m_PrefabInstance: {fileID: 8520514559799674005}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def69eacbac8dd844a2eb343f9d8ed2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &6959754623623024691 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1632820042788344998, guid: 1236452548453414d83eda93634d6821,
+    type: 3}
+  m_PrefabInstance: {fileID: 8520514559799674005}
+  m_PrefabAsset: {fileID: 0}

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class TestPuzzleBehaviour : NetworkBehaviour
+public class TestPuzzleBehaviour : ClickableObjectBase
 {
     [SerializeField] private GameObject cube;
+    public PuzzleData puzzleData;
 
     //Executed On Click
-    public void OnClick(Color newColor)
+    public override void OnClick(Color newColor)
     {
         var cubeRenderer = cube.GetComponent<Renderer>();
         
@@ -22,6 +23,12 @@ public class TestPuzzleBehaviour : NetworkBehaviour
 
         // Update Other Clients on Network
         UpdateColourServerRpc(newColor);
+
+        // Check for Completion
+        if(newColor == Color.white)
+        {
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+        }
     }
 
     //Send new colour to server
