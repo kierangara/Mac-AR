@@ -8,7 +8,9 @@ using Unity.Netcode;
 public class MultiplayerPuzzleManager : NetworkBehaviour
 {
     // private List<GameObject> puzzles = new List<GameObject>();
-    [SerializeField] private NetworkObject puzzle;
+    // [SerializeField] private NetworkObject puzzle;
+    [SerializeField] private List<NetworkObject> puzzles;
+    private int puzzleIndex = 0;
     public Camera cam; 
     NetworkObject puzzleInstance;
 
@@ -47,13 +49,21 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         byte[] bytes = objectToBytes(clients);
 
         // Instantiate 
-        puzzleInstance = Instantiate(puzzle); 
+        Debug.Log("Spawn: " + puzzleIndex);
+        puzzleInstance = Instantiate(puzzles[puzzleIndex]); 
 
         // Spawn
         puzzleInstance.SpawnWithOwnership(OwnerClientId);
 
         // Initialize
         InitializeClientRpc(puzzleInstance, bytes);
+
+        // Increment
+        puzzleIndex += 1;
+        if(puzzleIndex >= puzzles.Count)
+        {
+            puzzleIndex = 0;
+        }
     }
 
     [ClientRpc]
@@ -82,14 +92,36 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void CompletePuzzleServerRpc(ulong clientId)
     {
-        puzzleInstance.Despawn();
+        Debug.Log("Despawn");
+        try 
+        {
+            puzzleInstance.Despawn();
+        }
+        catch 
+        {
+            Debug.Log("No object to despawn");
+        }
+        
         CompletePuzzleClientRpc();
     }
 
     [ClientRpc]
     public void CompletePuzzleClientRpc()
     {
-        puzzleInstance.Despawn();
+        Debug.Log("Despawn");
+        try
+        {
+            puzzleInstance.Despawn();
+        }
+        catch 
+        {
+            Debug.Log("No object to despawn");
+        }
+    
+        puzzleInstance = null;
+
+        Debug.Log("Spawn New");
+        SpawnPuzzleServerRpc();
     }
 
     // Update is called once per frame

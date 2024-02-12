@@ -595,7 +595,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc2ec2ffe362a043b2aa0daefbc9ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzle: {fileID: 8887691806463535750, guid: 8d22bd06a8a72364c8e96245b5dd4fae, type: 3}
+  puzzles:
+  - {fileID: 5438477198352480956, guid: 81d746b054bad594eab4db69f076c42e, type: 3}
+  - {fileID: 8887691806463535750, guid: 8d22bd06a8a72364c8e96245b5dd4fae, type: 3}
+  - {fileID: -1647956298961555347, guid: 59d3ec05ab21ea94c9165f93667707c2, type: 3}
+  - {fileID: 1352522442704362113, guid: 5a846e6e4673a3c4b8d132c05af36a0d, type: 3}
   cam: {fileID: 1354141926}
 --- !u!4 &1527853315
 Transform:
