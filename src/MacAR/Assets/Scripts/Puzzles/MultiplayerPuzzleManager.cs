@@ -89,7 +89,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc]
     public void CompletePuzzleServerRpc(ulong clientId)
     {
         Debug.Log("Despawn");
