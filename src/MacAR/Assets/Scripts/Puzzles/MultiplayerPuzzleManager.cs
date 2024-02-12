@@ -60,10 +60,6 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
 
         // Increment
         puzzleIndex += 1;
-        if(puzzleIndex >= puzzles.Count)
-        {
-            puzzleIndex = 0;
-        }
     }
 
     [ClientRpc]
@@ -104,7 +100,15 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             Debug.Log("No object to despawn");
         }
         
-        CompletePuzzleClientRpc();
+        if(puzzleIndex < puzzles.Count)
+        {
+            CompletePuzzleClientRpc();
+        }
+        else 
+        {
+            SceneManager.LoadScene(0);
+        }
+        
     }
 
     [ClientRpc]
