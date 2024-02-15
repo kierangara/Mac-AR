@@ -26,7 +26,6 @@ public class ClientManager : MonoBehaviour
     public async Task StartClient(string joinCode)
     {
         JoinAllocation allocation;
-
         try
         {
             allocation = await RelayService.Instance.JoinAllocationAsync(joinCode);

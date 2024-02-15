@@ -7,6 +7,8 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Services.Vivox;
+using VivoxUnity;
 
 public class PlayerList : NetworkBehaviour
 {
@@ -14,7 +16,12 @@ public class PlayerList : NetworkBehaviour
     [SerializeField] private Toggle VoiceToggle;
     [SerializeField] private Transform playerItemParent;
     [SerializeField] private PlayerItem playerItemPrefab;
-    [SerializeField] private TMP_Text joinCodeText;
+    [SerializeField] public TMP_Text joinCodeText;
+    [SerializeField] public TMP_InputField playerNameField;
+
+
+
+    public static readonly VivoxUnity.Client mainClient = new VivoxUnity.Client();
     private NetworkList<PlayerData> players;
 
     private bool readyState = false;
@@ -22,17 +29,26 @@ public class PlayerList : NetworkBehaviour
     private Color readyColor = Color.green;
     private bool isRefreshing;
     private Lobby lobby;
+    private string playerName = "Spencer Smith";
 
     private void Awake()
     {
+        print("playerlist creation");
         players = new NetworkList<PlayerData>();
         VoiceToggle.onValueChanged.AddListener(delegate 
-            { VivoxToggle(VoiceToggle); });
+            { VivoxToggle(VoiceToggle,mainClient); });
     }
 
-    void VivoxToggle(Toggle voiceToggle)
+    void VivoxToggle(Toggle voiceToggle, VivoxUnity.Client client)
     {
         Debug.Log("Voice " + voiceToggle.isOn);
+        if (voiceToggle.isOn)
+        {
+            client.AudioInputDevices.Muted = false; 
+        } else
+        {
+            client.AudioInputDevices.Muted = true;
+        }
     }
 
      public override void OnNetworkSpawn()
@@ -40,6 +56,7 @@ public class PlayerList : NetworkBehaviour
         if (IsClient)
         {
             players.OnListChanged += HandlePlayersStateChanged;
+            //joinCodeText.text = HostManager.Instance.JoinCode;
         }
 
         if (IsServer)
@@ -51,14 +68,18 @@ public class PlayerList : NetworkBehaviour
             {
                 HandleClientConnected(client.ClientId);
             }
+            //joinCodeText.text = HostManager.Instance.JoinCode;
         }
 
         if(IsHost)
         {
             joinCodeText.text = HostManager.Instance.JoinCode;
+
         }
 
+
         //Added Code
+
         var vTog = GameObject.Find("Toggle").GetComponent<Toggle>();
         Debug.Log("Getting before if statement " + vTog.isOn);
         if (vTog.isOn)
