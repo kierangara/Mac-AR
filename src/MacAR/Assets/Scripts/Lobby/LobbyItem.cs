@@ -32,7 +32,6 @@ public class LobbyItem : MonoBehaviour
 
     public void Join()
     {
-        bool lobbyMade = false;
         //Debug.Log(passwordEnter.text);
         try
         {
@@ -40,7 +39,6 @@ public class LobbyItem : MonoBehaviour
             {
                 //Debug.Log(lobby.HasPassword);
                 lobbiesList.JoinAsync(lobby,passwordEnter.text);
-                lobbyMade = true;
                 //passwordPopUp.SetActive(false);
             }
             else
@@ -55,7 +53,7 @@ public class LobbyItem : MonoBehaviour
             LogHandlerSettings.Instance.SpawnErrorPopup($"Error joining lobby : ({exception.ErrorCode}) {exception.Message}");
             passwordPopUp.SetActive(true);
         }
-        catch(Exception e)
+        catch(Exception)
         {
             LogHandlerSettings.Instance.SpawnErrorPopup($"Error joining lobby : Password Mismatch issue");
         }

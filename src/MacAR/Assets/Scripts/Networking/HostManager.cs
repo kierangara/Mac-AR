@@ -22,7 +22,7 @@ public class HostManager : MonoBehaviour
     private string lobbyName;
     [SerializeField] private string characterSelectSceneName = "CharacterSelect";
     [SerializeField] private string gameplaySceneName = "Gameplay";
-    [SerializeField] private string mainMenuName = "MainMenu";
+    //[SerializeField] private string mainMenuName = "MainMenu";
 
     public static HostManager Instance { get; private set; }
 

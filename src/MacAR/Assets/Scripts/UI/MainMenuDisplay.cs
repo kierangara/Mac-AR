@@ -19,7 +19,6 @@ public class MainMenuDisplay : MonoBehaviour
     [SerializeField] private TMP_InputField passwordInputField;
     [SerializeField] private Slider sliderInput;
 
-    private string playerName = "SpencerSmith";
 
     private async void Start()
     {

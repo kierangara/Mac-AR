@@ -29,7 +29,7 @@ public class PlayerList : NetworkBehaviour
     private Color readyColor = Color.green;
     private bool isRefreshing;
     private Lobby lobby;
-    private string playerName = "Spencer Smith";
+    //private string playerName = "Spencer Smith";
 
     private void Awake()
     {
