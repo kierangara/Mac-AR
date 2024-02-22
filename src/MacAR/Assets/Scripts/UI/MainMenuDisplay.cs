@@ -26,7 +26,7 @@ public class MainMenuDisplay : MonoBehaviour
         {
             await UnityServices.InitializeAsync();
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            Debug.Log($"Player Id: {AuthenticationService.Instance.PlayerId}");
+            //Debug.Log($"Player Id: {AuthenticationService.Instance.PlayerId}");
         }
         catch (Exception e)
         {
