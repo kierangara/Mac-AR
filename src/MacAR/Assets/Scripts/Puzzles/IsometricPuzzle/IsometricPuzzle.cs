@@ -30,7 +30,7 @@ public class IsometricPuzzleManager : PuzzleBase
                 }
             }
         }
-        setCubes("2W");
+        setCubes("3I");
     }
 
     public void setCubes(string key)
@@ -47,18 +47,6 @@ public class IsometricPuzzleManager : PuzzleBase
         }
         switch (key)
         {
-            case "4L":
-                activeGrid[0, 0, 0] = true;
-                activeGrid[0, 1, 0] = true;
-                activeGrid[0, 2, 0] = true;
-                activeGrid[0, 2, 1] = true;
-                activeGrid[3, 2, 2] = true;
-                activeGrid[0, 3, 0] = true;
-                activeGrid[0, 3, 2] = true;
-                activeGrid[2, 3, 2] = true;
-                activeGrid[0, 4, 0] = true;
-                activeGrid[1, 4, 2] = true;
-                break;
             case "1T":
                 activeGrid[2, 0, 2] = true;
                 activeGrid[2, 1, 2] = true;
@@ -86,6 +74,55 @@ public class IsometricPuzzleManager : PuzzleBase
                 activeGrid[4, 2, 2] = true;
                 activeGrid[4, 3, 0] = true;
                 activeGrid[4, 4, 1] = true;
+                break;
+            case "3I":
+                activeGrid[0, 0, 0] = true;
+                activeGrid[0, 0, 2] = true;
+                activeGrid[0, 4, 1] = true;
+                activeGrid[0, 4, 3] = true;
+                activeGrid[1, 0, 0] = true;
+                activeGrid[1, 4, 0] = true;
+                activeGrid[2, 0, 2] = true;
+                activeGrid[2, 1, 1] = true;
+                activeGrid[2, 2, 0] = true;
+                activeGrid[2, 3, 2] = true;
+                activeGrid[2, 4, 1] = true;
+                activeGrid[3, 0, 0] = true;
+                activeGrid[3, 4, 0] = true;
+                activeGrid[4, 0, 1] = true;
+                activeGrid[4, 0, 3] = true;
+                activeGrid[4, 4, 0] = true;
+                activeGrid[4, 4, 2] = true;
+                break;
+            case "4L":
+                activeGrid[0, 0, 0] = true;
+                activeGrid[0, 1, 0] = true;
+                activeGrid[0, 2, 0] = true;
+                activeGrid[0, 2, 1] = true;
+                activeGrid[3, 2, 2] = true;
+                activeGrid[0, 3, 0] = true;
+                activeGrid[0, 3, 2] = true;
+                activeGrid[2, 3, 2] = true;
+                activeGrid[0, 4, 0] = true;
+                activeGrid[1, 4, 2] = true;
+                break;
+            case "5I":
+                activeGrid[0, 0, 2] = true;
+                activeGrid[0, 4, 2] = true;
+                activeGrid[1, 0, 1] = true;
+                activeGrid[1, 4, 0] = true;
+                activeGrid[2, 0, 0] = true;
+                activeGrid[2, 1, 0] = true;
+                activeGrid[2, 2, 0] = true;
+                activeGrid[2, 2, 1] = true;
+                activeGrid[2, 2, 2] = true;
+                activeGrid[2, 2, 3] = true;
+                activeGrid[2, 3, 3] = true;
+                activeGrid[2, 4, 1] = true;
+                activeGrid[3, 0, 3] = true;
+                activeGrid[3, 4, 0] = true;
+                activeGrid[4, 0, 1] = true;
+                activeGrid[4, 4, 2] = true;
                 break;
             default:
                 break;
