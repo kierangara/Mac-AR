@@ -470,7 +470,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterSelectSceneName: Lobby
   gameplaySceneName: BlankAR
-  mainMenuName: MainMenu
 --- !u!1 &1323410559 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6485963998722371868, guid: f548fa2bab401774eac6ed03b223d6e6,
