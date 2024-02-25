@@ -19,7 +19,6 @@ public class MainMenuDisplay : MonoBehaviour
     [SerializeField] private TMP_InputField passwordInputField;
     [SerializeField] private Slider sliderInput;
 
-    private string playerName = "SpencerSmith";
 
     private async void Start()
     {
@@ -27,7 +26,7 @@ public class MainMenuDisplay : MonoBehaviour
         {
             await UnityServices.InitializeAsync();
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            Debug.Log($"Player Id: {AuthenticationService.Instance.PlayerId}");
+            //Debug.Log($"Player Id: {AuthenticationService.Instance.PlayerId}");
         }
         catch (Exception e)
         {

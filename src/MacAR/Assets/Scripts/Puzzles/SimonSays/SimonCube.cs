@@ -9,7 +9,7 @@ public class SimonCube : MonoBehaviour
     public float startDelay = 1f;
     public float colourPeriod = 0.001f;
     private float timePassed = 0f;
-    private float interval = 2.0f;
+    //private float interval = 2.0f;
     int counter = 0;
     Random rnd = new Random();
     Color[] colorArray = { Color.red, Color.blue, Color.green, Color.yellow };
