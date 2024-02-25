@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
+using System.Linq;
+using static Unity.VisualScripting.Member;
+using System;
+using Unity.Collections.LowLevel.Unsafe;
 
 public class IsometricPuzzleManager : PuzzleBase
 {
@@ -15,8 +19,12 @@ public class IsometricPuzzleManager : PuzzleBase
     public PuzzleData puzzleData;
     private IsometricCube[,,] _cubesCollection;
     private bool[,,] activeGrid;
+    private string[] _cubeNames;
+    private int cubeIndex;
     public override void InitializePuzzle()
     {
+        
+
         _cubesCollection = new IsometricCube[_cubeWidth,_cubeHeight ,_cubeLength];
         activeGrid = new bool[_cubeWidth, _cubeHeight, _cubeLength];
         for (int x = 0; x < _cubeWidth; x++)
@@ -30,9 +38,28 @@ public class IsometricPuzzleManager : PuzzleBase
                 }
             }
         }
-        setCubes("3I");
-    }
+        cubeIndex = 0;
+        if (false)
+        {
+            _cubeNames = new string[8];
+            _cubeNames[0] = "1T";
+            _cubeNames[1] = "2W";
+            _cubeNames[2] = "3I";
+            _cubeNames[3] = "4L";
+            _cubeNames[4] = "5I";
+            _cubeNames[5] = "6G";
+            _cubeNames[6] = "7H";
+            _cubeNames[7] = "8T";
+            
+            setCubes(_cubeNames[cubeIndex]);
+        }
+        SendPuzzleDataServerRpc(puzzleData.connectedClients.ToArray());
+        SetIsometricPuzzlesServerRpc("1T 2W 3I 4L 5I 6G 7H 8T");
 
+        setCubes(_cubeNames[cubeIndex]);
+    }
+    //--------------------------------------------------------------------//
+    //This function will set the current cube layout
     public void setCubes(string key)
     {
         for (int x = 0; x < _cubeWidth; x++)
@@ -124,6 +151,57 @@ public class IsometricPuzzleManager : PuzzleBase
                 activeGrid[4, 0, 1] = true;
                 activeGrid[4, 4, 2] = true;
                 break;
+            case "6G":
+                activeGrid[0, 0, 3] = true;
+                activeGrid[0, 1, 4] = true;
+                activeGrid[0, 2, 2] = true;
+                activeGrid[0, 3, 4] = true;
+                activeGrid[0, 4, 3] = true;
+                activeGrid[1, 0, 2] = true;
+                activeGrid[1, 2, 0] = true;
+                activeGrid[1, 4, 0] = true;
+                activeGrid[2, 0, 0] = true;
+                activeGrid[2, 2, 4] = true;
+                activeGrid[2, 4, 1] = true;
+                activeGrid[3, 0, 1] = true;
+                activeGrid[3, 0, 4] = true;
+                activeGrid[3, 1, 0] = true;
+                activeGrid[3, 2, 1] = true;
+                activeGrid[3, 4, 2] = true;
+                activeGrid[3, 4, 4] = true;
+                break;
+            case "7H":
+                activeGrid[0, 0, 0] = true;
+                activeGrid[0, 1, 0] = true;
+                activeGrid[0, 1, 4] = true;
+                activeGrid[0, 2, 0] = true;
+                activeGrid[0, 3, 0] = true;
+                activeGrid[0, 4, 0] = true;
+                activeGrid[1, 2, 1] = true;
+                activeGrid[1, 3, 4] = true;
+                activeGrid[2, 2, 2] = true;
+                activeGrid[2, 2, 4] = true;
+                activeGrid[3, 0, 4] = true;
+                activeGrid[3, 2, 3] = true;
+                activeGrid[3, 4, 4] = true;
+                break;
+            case "8T":
+                activeGrid[0, 0, 2] = true;
+                activeGrid[0, 1, 2] = true;
+                activeGrid[0, 3, 2] = true;
+                activeGrid[0, 4, 0] = true;
+                activeGrid[0, 4, 2] = true;
+                activeGrid[1, 0, 2] = true;
+                activeGrid[1, 2, 2] = true;
+                activeGrid[1, 4, 4] = true;
+                activeGrid[2, 0, 2] = true;
+                activeGrid[2, 2, 2] = true;
+                activeGrid[2, 4, 3] = true;
+                activeGrid[3, 0, 2] = true;
+                activeGrid[3, 1, 2] = true;
+                activeGrid[3, 3, 2] = true;
+                activeGrid[3, 4, 1] = true;
+                break;
             default:
                 break;
 
@@ -141,13 +219,50 @@ public class IsometricPuzzleManager : PuzzleBase
         }
     }
 
+    [ServerRpc]
+    public void SendPuzzleDataServerRpc(ulong[] p)
+    {
+        SendPuzzleDataClientRpc(p);
+    }
+
+    [ClientRpc]
+    public void SendPuzzleDataClientRpc(ulong[] p)
+    {
+        puzzleData.connectedClients = p.ToList();
+        //Debug.Log("PuzzleDataUpdated");
+    }
+
+    //--------------------------------------------------------------------//
+    //This function will update choose the next puzzle to show
+
+    public void nextIsometric()
+    {
+        cubeIndex++;
+        if(cubeIndex>=_cubeNames.Length)
+        {
+            cubeIndex = 0;
+        }
+        setCubes(_cubeNames[cubeIndex]);
+    }
+    public void prevIsometric()
+    {
+        cubeIndex--;
+        if (cubeIndex <= -1)
+        {
+            cubeIndex = 7;
+        }
+        setCubes(_cubeNames[cubeIndex]);
+    }
+
+
 
     //--------------------------------------------------------------------//
     //These 3 functions will update the input field on each player's screen
-    //solutionFieldChanged is called from the solutionField script
+    //solutionFieldChanged is called from the solutionField input field
     public void solutionFieldChanged()
     {
-        UpdateTextServerRpc(solutionField.text.Substring(0,8));
+        
+        UpdateTextServerRpc(solutionField.text);
     }
     [ServerRpc(RequireOwnership = false)]//calls the server to find the client RPC's to all clients
     public void UpdateTextServerRpc(string text)
@@ -157,7 +272,14 @@ public class IsometricPuzzleManager : PuzzleBase
     [ClientRpc]//each client will run this and update their text
     public void UpdateTextClientRpc(string text)
     {
-        solutionField.text = text;
+        if(solutionField.text!=text)
+        {
+            solutionField.text = text;
+        }
+        if (solutionField.text.ToUpper() == "TWILIGHT")
+        {
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+        }
 
     }
 
@@ -166,5 +288,31 @@ public class IsometricPuzzleManager : PuzzleBase
     void Update()
     {
         
+    }
+
+    //The following two functions are used to initialize each player's state
+    [ServerRpc]//calls the server to find the client RPC's to all clients
+    public void SetIsometricPuzzlesServerRpc(string word )
+    {
+        int i = 0;
+        string[] words = word.Split(" ");
+        int chunkSize =(int)Math.Ceiling((float)(words.Length)/puzzleData.connectedClients.Count);
+        System.Random r = new System.Random();
+        var result = words.OrderBy(x => r.Next()).GroupBy(s => i++ / chunkSize).Select(g => g.ToArray()).ToArray();
+        for (int j = 0; j < result.Length; j++)
+        {
+            Debug.Log(result.Length);
+            SetIsometricPuzzlesClientRpc(string.Join(" ", result[j]),j);
+        }
+        
+    }
+    [ClientRpc]//each client will run this and update their text
+    public void SetIsometricPuzzlesClientRpc(string isoPuzzles,int clientId)
+    {
+        if(NetworkManager.Singleton.LocalClientId== puzzleData.connectedClients[clientId])
+        {
+            _cubeNames=isoPuzzles.Split(' ');
+            
+        }
     }
 }
