@@ -842,29 +842,9 @@ Tester will save an existing game and record all relevant information on the gam
 
 \textbf{Requirements being verified: } SG1 SG4 LG1 LG2 LG3
 
-\item{\textbf{Name:} Load saved game}
-
-\textbf{Id:} Test-SG10
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} User has started game and pressed the save game button at least once. They have then closed the game and are in the create/load game scene. 
-
-\textbf{Input:} User presses load button on a saved game.
-
-\textbf{Output:} Game room is loaded in the same state as the original game room was in when it was saved.
-
-\textbf{Test Case Derivation:}
-When a saved game is loaded it must be in the same state as when it was saved. Specifically, it must have the same puzzle progress and overall room progress.
-
-\textbf{How test will be performed:}
-Tester will save an existing game and record all relevant information on the game state manually, such as puzzle progress, room progress and current AR overlay locations. They will then close the game room, returning to the main menu. They will then load that saved game and observe the resulting game room. The test is successful if this game room contains all the same information as the original game room.
-
-\textbf{Requirements being verified: } SG1 SG4 LG1 LG2 LG3
-
 \item{\textbf{Name:} Delete saved game UI}
 
-\textbf{Id:} Test-SG11
+\textbf{Id:} Test-SG10
 
 \textbf{Type}: Manual
 
@@ -884,7 +864,7 @@ Tester will delete a saved game from the list of loadable games. The test is suc
 
 \item{\textbf{Name:} Deleted game not available in new session}
 
-\textbf{Id:} Test-SG12]
+\textbf{Id:} Test-SG11
 
 \textbf{Type}: Manual
 
@@ -904,7 +884,7 @@ Tester will delete a saved game from the list of loadable games. They will then 
 
 \item{\textbf{Name:} Deleted game removed from device}
 
-\textbf{Id:} Test-SG13
+\textbf{Id:} Test-SG12
 
 \textbf{Type}: Automated
 
@@ -1893,7 +1873,6 @@ Tests for health and safety requirements.
 \multicolumn{1}{|l|}{\textbf{Test-SG7}}   &             &             &             &              &             &             &             &             &              &              &              &             &             &             &              &                & & & & & & & & & & & & & & & & &X & & &\\ \hline
 \multicolumn{1}{|l|}{\textbf{Test-SG8}}   &              &              &              &              &              &             &             &             &             &             &             &             &              &              &              &                & & & & & & & & & & & & & & & & &X & &X& \\ \hline
 \multicolumn{1}{|l|}{\textbf{Test-SG9}}   &             &             &             &             &             &             &             &             &              &              &              &              &             &             &              &                & & & & & & & & & &X & & & & & & &X &X &X &X\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG10}}   &             &             &             &              &             &             &             &             &              &              &             &             &             &             &              &                & & & & & & & & & &X & & & & & & &X &X &X &X\\ \hline
 
 
 \end{tabular}
@@ -1912,9 +1891,9 @@ Tests for health and safety requirements.
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} \hline 
 \cline{2-24}
                                      & \textbf{DS1}& \textbf{DS2}& \textbf{PI1}& \textbf{PI2}& \textbf{PI3}& \textbf{PI4}& \textbf{PI5}& \textbf{PI6}& \textbf{PI7}& \textbf{HR1}& \textbf{HR2}& \textbf{HR3}& \textbf{SP1}& \textbf{SP2}& \textbf{SP3}& \textbf{SM1} & \textbf{SM2}& \textbf{SM3}& \textbf{SM4}& \textbf{SM5}& \textbf{RM1}& \textbf{RM2}&\textbf{RM3}\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG11}}   &X             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG12}}   &X             &X              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG13}}   &             &X              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-SG10}}   &X             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-SG11}}   &X             &X              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-SG12}}   &             &X              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\textbf{Test-PI1}}   &             &              &X             &X              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\textbf{Test-PI2}}   &             &              &X             &X              &X             &X             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\textbf{Test-PI3}}   &             &              &X             &              &X             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
