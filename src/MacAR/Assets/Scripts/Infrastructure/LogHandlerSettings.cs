@@ -11,6 +11,10 @@ public class LogHandlerSettings : MonoBehaviour
     [SerializeField]
     private PopUpUI m_popUp;
 
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     public static LogHandlerSettings Instance
     {
