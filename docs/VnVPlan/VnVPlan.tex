@@ -46,6 +46,7 @@
 2023/11/01 & Matthew & Work on non-functional tests\\
 2023/11/02 & All & Traceability and final revisions\\
 2023/11/03 & All & Reflections\\
+2024/03/01 & Ethan & Removal of Save/Load Game Tests\\
 \bottomrule
 \end{tabularx}
 
@@ -165,7 +166,7 @@ Matthew Collard          & Lead test developer, Fullstack test developer, Manual
 Sam Gorman             & Fullstack test developer, Manual tester, Code Verifier       & Create automated tests for backend code, Manually test UI and game functionality, Make sure source code follows project coding standard. Main verification reviewer for the Hazard Analysis document.                                                            \\ \hline
 Ethan Kannampuzha         & Fullstack test developer, Manual tester, Code Verifier                & Create automated tests for backend code, Manually test UI and game functionality, Make sure source code follows project coding standards. Main verification reviewer for the Verification and Validation document.                                                                                               \\ \hline
 Kieran Gara            & Fullstack test developer, Manual tester        & Create automated tests for backend code, Manually test UI and game functionality. Main verification reviewer for MIS document.                                            \\ \hline
-Dr. Irene Yuan & Supervisor, SRS verifier, Final reviewer &  Make sure SRS meets requirements of the project, Validate documentation. Because Dr. Yuan is the supervisor of this project, she will be able to validate the requirements.\\ \hline
+Dr. Irene Yuan & Supervisor, SRS validator, Final reviewer &  Make sure SRS meets requirements of the project, Validate documentation. Because Dr. Yuan is the supervisor of this project, she will be able to validate the requirements.\\ \hline
 \end{tabular}
 \end{table}
 
@@ -256,7 +257,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow user to have the option to create a game room with specified settings, and the menu being present is the first step for this.
 
-\textbf{How test will be performed:} Tester will manually press Host button and verify that they are redirected to the create game menu.
+\textbf{How test will be performed:} Tester will manually press Host button and verify that they are redirected to the create game menu. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified:}  CG1
 
@@ -274,7 +275,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to set a name for their game room.
 
-\textbf{How test will be performed:} Create automated test that creates a game room name and verify that the game room is present in the database.
+\textbf{How test will be performed:} Create automated test that creates a game room name and verify that the game room is present in the database. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified:} CG1 CG2
 
@@ -292,7 +293,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System requires users to specify a game room name so that other users can find the game room.
 
-\textbf{How test will be performed:} Create automated test that creates a game room with empty string and verify that the game room is not created and error message is present.
+\textbf{How test will be performed:} Create automated test that creates a game room with empty string and verify that the game room is not created and error message is present. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified:} CG1 CG2
 
@@ -310,7 +311,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to create a game room with a certain capacity to allow users to set the amount of users in their game room.
 
-\textbf{How test will be performed:} Tester will manually select a capacity for the game room in one instance, and in another instance check to see if the game room exists and the capacity matches the set capacity.
+\textbf{How test will be performed:} Tester will manually select a capacity for the game room in one instance, and in another instance check to see if the game room exists and the capacity matches the set capacity. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }CG1 CG3
 
@@ -328,7 +329,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to set a password to their game room to prevent random users from joining.
 
-\textbf{How test will be performed:} Tester will manually input game room password on one instance, and in another instance check if the game room exists and that they need to correctly enter the password to enter the game room. 
+\textbf{How test will be performed:} Tester will manually input game room password on one instance, and in another instance check if the game room exists and that they need to correctly enter the password to enter the game room. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }CG1 CG4
 
@@ -346,7 +347,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to create a game room without a password if they would like to (allows for random people to join).
 
-\textbf{How test will be performed:} Tester will manually input nothing for game room password on one instance, and in another instance attempt to join, and check if it requires them to enter a password.
+\textbf{How test will be performed:} Tester will manually input nothing for game room password on one instance, and in another instance attempt to join, and check if it requires them to enter a password. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }CG1 CG4
 
@@ -364,7 +365,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should redirect users to game room menu once they have inputted their settings in the create game room menu.
 					
-\textbf{How test will be performed:} Tester will manually press create game room and verify that they are redirected to the game room menu.
+\textbf{How test will be performed:} Tester will manually press create game room and verify that they are redirected to the game room menu. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }CG1 CG5
 
@@ -382,7 +383,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to join game rooms that are not at max capacity.
 
-\textbf{How test will be performed:} Tester will manually press Join Game button and verify that they are redirected to the join game menu.
+\textbf{How test will be performed:} Tester will manually press Join Game button and verify that they are redirected to the join game menu. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }JG1 JG5
 
@@ -400,7 +401,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to join game rooms that have no password set.
 
-\textbf{How test will be performed:} Tester will manually enter room name and verify that they can join without needing to enter a password.
+\textbf{How test will be performed:} Tester will manually enter room name and verify that they can join without needing to enter a password. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }JG1
 
@@ -418,7 +419,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow people to join game rooms that have a password set if they enter the correct password. 
 
-\textbf{How test will be performed:} Tester will manually enter room name and verify that they are prompted to enter the game room password.
+\textbf{How test will be performed:} Tester will manually enter room name and verify that they are prompted to enter the game room password. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }JG1 JG2
 
@@ -436,7 +437,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should update game room available capacity based on the current amount of people in the game room.
 
-\textbf{How test will be performed:} Create automated test that simulates a user joining a room and checks that available capacity decreases by 1.
+\textbf{How test will be performed:} Create automated test that simulates a user joining a room and checks that available capacity decreases by 1. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }JG1 JG3
 
@@ -454,7 +455,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should redirect users to game room menu once they have joined the game room.
 
-\textbf{How test will be performed:} Tester will manually join a game room and verify that they are redirected to the game room menu.
+\textbf{How test will be performed:} Tester will manually join a game room and verify that they are redirected to the game room menu. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }JG1 JG4
 
@@ -472,7 +473,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to correct their game room settings in case they put in incorrect values initially.
 
-\textbf{How test will be performed:} Tester will manually enter a game room and press the settings button to verify that they are redirected to the edit game settings menu.
+\textbf{How test will be performed:} Tester will manually enter a game room and press the settings button to verify that they are redirected to the edit game settings menu. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RS1 RS2
 
@@ -490,7 +491,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow users to edit the password to their game room to ensure security.
 
-\textbf{How test will be performed:} Tester will manually update game room password in edit game room settings menu and verify that the game room in the database now requires the new password to join.
+\textbf{How test will be performed:} Tester will manually update game room password in edit game room settings menu and verify that the game room in the database now requires the new password to join. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RS1 RS2 RS3
 
@@ -508,7 +509,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} System should allow user to change the number of users that can join the game room in case they want to add more or less users.
 
-\textbf{How test will be performed:} Tester will manually update game room capacity value in edit game room settings menu and verify that the game room in the database now allows capacity value of users to join the game room.
+\textbf{How test will be performed:} Tester will manually update game room capacity value in edit game room settings menu and verify that the game room in the database now allows capacity value of users to join the game room. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RS1 RS2 RS4
 
@@ -526,7 +527,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} Host user should be able to remove any user from the game room.
 
-\textbf{How test will be performed:} Tester will manually select user they want to remove, press kick button, and verify that the user has been removed from the game room.
+\textbf{How test will be performed:} Tester will manually select user they want to remove, press kick button, and verify that the user has been removed from the game room. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RS1 RS2 RS5
 
@@ -544,7 +545,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} When changing a setting, all users in a game room should should be able to see the updated settings.
 
-\textbf{How test will be performed:} Tester will manually update game settings and verify that game room setting menu has been updated to show updated values.
+\textbf{How test will be performed:} Tester will manually update game settings and verify that game room setting menu has been updated to show updated values. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RS1 RS2 RS6
 
@@ -562,7 +563,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} If user wants to leave the game room, they should be allowed to.
 
-\textbf{How test will be performed:} Tester will manually press exit button in game room menu and verify that they are no longer in the game room.
+\textbf{How test will be performed:} Tester will manually press exit button in game room menu and verify that they are no longer in the game room. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } ER1
 
@@ -580,7 +581,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} The game room should be updated to show the current users present in the game room.
 
-\textbf{How test will be performed:} Tester will manually verify that after a user exits the game room, the game room menu is updated to longer display that user in the game room.
+\textbf{How test will be performed:} Tester will manually verify that after a user exits the game room, the game room menu is updated to longer display that user in the game room. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } ER2 ER3
 
@@ -598,7 +599,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Test Case Derivation:} If a user leaves the game room, the total number of users present in the game room should be decreases by 1.
 
-\textbf{How test will be performed:} Create automated test which removes a user from a game room and verify that the total number of users in the game room database is one less than previous.
+\textbf{How test will be performed:} Create automated test which removes a user from a game room and verify that the total number of users in the game room database is one less than previous. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } ER3
 
@@ -716,191 +717,6 @@ The following section goes over tests related to starting a game, loading game a
 \textbf{How test will be performed:} Tester will manually start game and verify that the puzzle is displayed to the user.
 
 \textbf{Requirements being verified: } ST1 ST2 ST4 ST6
-
-\end{enumerate}
-
-\subsubsection{Save/Load Game Testing}
-The following section will go over tests related to saving game progress and loading game data. The functional requirements that are covered by this section are SG1, SG2, SG3, SG4, LG1, LG2, LG3, DS1, DS2.
-
-\begin{enumerate}
-
-\item{\textbf{Name:} Able to save game}
-
-\textbf{Id:} Test-SG1
-
-\textbf{Type}: Automated
-
-\textbf{Initial State:} User has started game.
-
-\textbf{Input:} Save game action is triggered.
-
-\textbf{Output:}  Game state is saved to device.
-
-\textbf{Test Case Derivation:} User should be able to save their current progress on a puzzle and continue playing at a later time.
-
-\textbf{How test will be performed:} Create automated test that triggers save game functionality and checks that the current game state has been saved to the device.
-
-\textbf{Requirements being verified: } SG1 SG2 SG3
-
-\item{\textbf{Name:} Repeated saves}
-
-\textbf{Id:} Test-SG2
-
-\textbf{Type}: Automated
-
-\textbf{Initial State:} User has started game.
-
-\textbf{Input:} Save game action is triggered 10 times in succession.
-
-\textbf{Output:} The game data is saved 10 times with the final saved data representing the system state at the timestamp of the most recent save.
-
-\textbf{Test Case Derivation:}
-The system should be capable of handling a user saving the game multiple times. This represents the extreme case of if the user is clicking the save button multiple times in a row. The number of saves is limited to 10 to limit data transfer usage during testing, keeping in mind the limit imposed by Unity.
-
-\textbf{How test will be performed:}
-Create an automated test that triggers the save game action 10 times in a loop. The time each save action finishes is recorded. The system shall then read the timestamp of the saved data from the device. If the timestamp on the saved data is between the second last and last recorded save action finish times, the test is successful. 
-
-\textbf{Requirements being verified: } SG2 SG3
-
-\item{\textbf{Name:} Data saved to device}
-
-\textbf{Id:} Test-SG3
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} User has started game.
-
-\textbf{Input:} User presses the save game button.
-
-\textbf{Output:} The game files on the device are updated with the current game state data.
-
-\textbf{Test Case Derivation:}
-The game files are being stored on the local device so that a separate database is not needed. As such, the user should be able to see on their device that the game files have been updated after pressing the save game button.
-
-\textbf{How test will be performed:}
-Tester will press the save game button. They will then exit the app, locate the game files on their phone and check that the time modified matches the time of the save. 
-
-\textbf{Requirements being verified: } SG3
-
-\item{\textbf{Name:} Saved data encoded}
-
-\textbf{Id:} Test-SG4
-
-\textbf{Type}: Automated
-
-\textbf{Initial State:} User has started game and triggered save game action at least once.
-
-\textbf{Input:} Encoded files containing saved data.
-
-\textbf{Output:} Error message stating files cannot be loaded.
-
-\textbf{Test Case Derivation:}
-To prove that the save data is being encoded when stored, it must be proven that it is not in its original format. This can be shown by the file information not being able to be loaded back into the game if it is not first decoded.
-
-\textbf{How test will be performed:}
-Create an automated test that loads the saved game data from the device without decoding it. This test must contain error handling that produces an error message if the data cannot be properly loaded. The test is successful if this error message is produced.
-
-\textbf{Requirements being verified: } SG4
-
-\item{\textbf{Name:} Saved data decoded}
-
-\textbf{Id:} Test-SG5
-
-\textbf{Type}: Automated
-
-\textbf{Initial State:} User has started game and triggered save game action at least once.
-
-\textbf{Input:} Encoded files containing saved data.
-
-\textbf{Output:} Game loads into a game room without error.
-
-\textbf{Test Case Derivation:}
-To prove that the data can be decoded it must be shown that the game can decode the saved game files and load them into a valid state. That is, it can load the files without error.
-
-\textbf{How test will be performed:}
-Create an automated test that loads the saved game data from the device with decoding it. The test is successful if no errors are produced during the game loading process.
-
-\textbf{Requirements being verified: } SG4 LG2
-
-\item{\textbf{Name:} Load saved game}
-
-\textbf{Id:} Test-SG9
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} User has started game and pressed the save game button at least once. They have then closed the game and are in the create/load game scene. 
-
-\textbf{Input:} User presses load button on a saved game.
-
-\textbf{Output:} Game room is loaded in the same state as the original game room was in when it was saved.
-
-\textbf{Test Case Derivation:}
-When a saved game is loaded it must be in the same state as when it was saved. Specifically, it must have the same puzzle progress and overall room progress.
-
-\textbf{How test will be performed:}
-Tester will save an existing game and record all relevant information on the game state manually, such as puzzle progress, room progress and current AR overlay locations. They will then close the game room, returning to the main menu. They will then load that saved game and observe the resulting game room. The test is successful if this game room contains all the same information as the original game room.
-
-\textbf{Requirements being verified: } SG1 SG4 LG1 LG2 LG3
-
-\item{\textbf{Name:} Delete saved game UI}
-
-\textbf{Id:} Test-SG10
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} User has started game and pressed the save game button at least once. They have then closed the game and are in the create/load game scene. 
-
-\textbf{Input:} User presses the delete button on a saved game
-
-\textbf{Output:} Saved game is removed from list of loadable games.
-
-\textbf{Test Case Derivation:}
-When a saved game is deleted it should no longer be available to be loaded.
-
-\textbf{How test will be performed:}
-Tester will delete a saved game from the list of loadable games. The test is successful if it no longer appears as a loadable game.
-
-\textbf{Requirements being verified: } DS1
-
-\item{\textbf{Name:} Deleted game not available in new session}
-
-\textbf{Id:} Test-SG11
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} User has started game and pressed the save game button at least once. They have then closed the game and are in the create/load game scene. 
-
-\textbf{Input:} User presses the delete button on a saved game. User then closes and re-opens the application and returns to the load game screen.
-
-\textbf{Output:} Saved game is still removed from list of loadable games.
-
-\textbf{Test Case Derivation:}
-A saved game that has been deleted should not reappear after the application has been restarted.
-
-\textbf{How test will be performed:}
-Tester will delete a saved game from the list of loadable games. They will then close and reopen the application and return to the load games scene. The test is successful if the deleted game has not reappeared in the list of loadable games.
-
-\textbf{Requirements being verified: } DS1 DS2
-
-\item{\textbf{Name:} Deleted game removed from device}
-
-\textbf{Id:} Test-SG12
-
-\textbf{Type}: Automated
-
-\textbf{Initial State:} There is an existing game save file.
-
-\textbf{Input:} Trigger to delete saved game.
-
-\textbf{Output:} Saved game file is removed from device.
-
-\textbf{Test Case Derivation:}
-A saved game that has been deleted should no longer be stored on the device.
-
-\textbf{How test will be performed:}
-Create an automated test to trigger the deletion of a save file and scan the device files to check that file no longer exists on the device.
-
-\textbf{Requirements being verified: } DS2
 
 \end{enumerate}
 
@@ -1193,7 +1009,7 @@ The following section will go over tests related to sending and receiving messag
 A user should be able to see all the other users in the game room so they can select which user to send a message to.
 
 \textbf{How test will be performed:}
-Three testers are in a game room. The first tester clicks the messaging button. The test is successful if the other two testers names are displayed.
+Three testers are in a game room. The first tester clicks the messaging button. The test is successful if the other two testers names are displayed. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } SM1 SM3
 
@@ -1213,7 +1029,7 @@ Three testers are in a game room. The first tester clicks the messaging button. 
 The user must be presented with an interface that allows them to compose a message once they have selected the recipient.
 
 \textbf{How test will be performed:}
-Tester selects another tester from the list of users in the game room. The test is successful if a keyboard and textbox appear on the interface.
+Tester selects another tester from the list of users in the game room. The test is successful if a keyboard and textbox appear on the interface. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } SM2 SM3
 
@@ -1233,7 +1049,7 @@ Tester selects another tester from the list of users in the game room. The test 
 The user must be able to see the message they are typing, and then be able to cancel this message if they decide they don't want to send it.
 
 \textbf{How test will be performed:}
-Tester uses the keyboard to type a message, and then presses the cancel button to cancel this message. The test is successful if the tester can see the message they are typing in the text-box and if when they press the cancel button the keyboard and text-box are removed and they are returned to the list of users in the room.
+Tester uses the keyboard to type a message, and then presses the cancel button to cancel this message. The test is successful if the tester can see the message they are typing in the text-box and if when they press the cancel button the keyboard and text-box are removed and they are returned to the list of users in the room. 
 
 \textbf{Requirements being verified: } SM2 SM4
 
@@ -1253,7 +1069,7 @@ Tester uses the keyboard to type a message, and then presses the cancel button t
 The user must be able to see the message they are typing. Once the message has been sent they should be able to see the message they sent, and also be provided an empty text box to send a new message.
 
 \textbf{How test will be performed:}
-Tester uses the keyboard to type a message, and then presses the send button to send this message. The test is successful if the tester can see the message they are typing in the text-box and if when they press the send button the sent message is displayed and the fillable text box is emptied.
+Tester uses the keyboard to type a message, and then presses the send button to send this message. The test is successful if the tester can see the message they are typing in the text-box and if when they press the send button the sent message is displayed and the fillable text box is emptied. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } SM2 SM3 SM5
 
@@ -1273,7 +1089,7 @@ Tester uses the keyboard to type a message, and then presses the send button to 
 When a message has been sent the recipient should receive a notification that they've received a message.
 
 \textbf{How test will be performed:}
-Tester sends a message to the selected recipient. The test is successful if a notification is displayed on the recipient's UI that a message has been received.
+Tester sends a message to the selected recipient. The test is successful if a notification is displayed on the recipient's UI that a message has been received. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RM1 SM3
 
@@ -1293,7 +1109,7 @@ Tester sends a message to the selected recipient. The test is successful if a no
 When a user receives a message they should be able to press the notification to see the message and remove the notification.
 
 \textbf{How test will be performed:}
-Tester presses the notification for the received message. The test is successful if the message is displayed, the notification is removed and the message matches the message that was originally sent.
+Tester presses the notification for the received message. The test is successful if the message is displayed, the notification is removed and the message matches the message that was originally sent. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RM1 RM2 SM3
 
@@ -1313,7 +1129,7 @@ Tester presses the notification for the received message. The test is successful
 Once a user has read the message they received, they must be able to close the display of that message and return to what they were doing before.
 
 \textbf{How test will be performed:}
-Tester presses the close button of the received message display. The test is successful if the display of the message is closed and the tester is returned to the game state they were in before pressing the notification. 
+Tester presses the close button of the received message display. The test is successful if the display of the message is closed and the tester is returned to the game state they were in before pressing the notification.
 
 \textbf{Requirements being verified: } RM3
 
@@ -1555,7 +1371,7 @@ Tests for usability and humanity requirements.
 					
 \textbf{Output:} The user should be prompted to rejoin the game after their connection is restored.
 					
-\textbf{How test will be performed:} The tester will join a game with an internet connection, then they will turn off the internet on their phone and wait to get disconnected from the lobby, then turn on the internet and see if they can rejoin.
+\textbf{How test will be performed:} The tester will join a game with an internet connection, then they will turn off the internet on their phone and wait to get disconnected from the lobby, then turn on the internet and see if they can rejoin. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being tested:} UH7
 
@@ -1606,7 +1422,7 @@ Tests for performance requirements.
 					
 \textbf{Output:} The system responds within 100ms.
 					
-\textbf{How test will be performed:}A script will be run to create a lobby, and the server response time will be measured. The test will pass if the response happens within 100ms.
+\textbf{How test will be performed:}A script will be run to create a lobby, and the server response time will be measured. The test will pass if the response happens within 100ms. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being tested:} PR1
 
@@ -1712,7 +1528,7 @@ N/A
 					
 \textbf{Output:} No IP address returned.
 					
-\textbf{How test will be performed:} Externally querying the database through code injection attacks to see if they can obtain another user's IP address.
+\textbf{How test will be performed:} Externally querying the database through code injection attacks to see if they can obtain another user's IP address. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified:} SR1
 					
@@ -1834,45 +1650,36 @@ Tests for health and safety requirements.
 
 \begin{table}[H]
 \begin{adjustwidth}{-0.1in}{-1in}
-\scalebox{0.50}{
+\scalebox{0.60}{
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|} \hline 
 \cline{2-17}
-                                     & \textbf{CG1}& \textbf{CG2}& \textbf{CG3}& \textbf{CG4}& \textbf{CG5}& \textbf{JG1}& \textbf{JG2}& \textbf{JG3}& \textbf{JG4}& \textbf{JG5}& \textbf{RS1}& \textbf{RS2}& \textbf{RS3}& \textbf{RS4}& \textbf{RS5}& \textbf{RS6} & \textbf{ER1}& \textbf{ER2}& \textbf{ER3}& \textbf{ST1}& \textbf{ST2}& \textbf{ST3}&\textbf{ST4} & \textbf{ST5}& \textbf{ST6}& \textbf{SG1}&\textbf{SG2} & \textbf{SG3}&\textbf{SG4} & \textbf{SG5} & \textbf{SG6} & \textbf{SG7} &\textbf{SG8} & \textbf{LG1} & \textbf{LG2} &\textbf{LG3}\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-CR1}}   &             X&              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-CR2}}   &             X&             X&             &              &             &             &             &             &              &              &              &             &             &             &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-CR3}}   &             X&              &             X&             &             &             &             &             &              &              &              &             &              &             &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-CR4}}   &             X&             &             X&              &             &              &             &             &              &              &             &             &              &             &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-CR5}}   &             X&              &             &             X&             &              &              &             &              &              &             &             &              &              &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-CR6}}   &              X&              &              &             X&              &             &             &             &              &              &              &             &              &              &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-CR7}}   &             X&             &             &              &             X&              &             &             &              &              &             &             &              &             &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-JR1}}   &             &             &             &              &             &              X&              &             &              &              X&              &              &              &              &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-JR2}}   &             &              &             &             &             &              X&              &             &              &              &             &             &              &              &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-JR3}}   &             &             &              &              &             &              X&              X&             &              &              &              &              &              &             &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-JR4}}   &             &             &             &              &             &              X&              &             X&              &              &              &             &              &              &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-JR5}}   &             &             &             &              &             &              X&              &             &              X&              &             &             &              &              &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-RS1}}   &             &             &             &              &             &              &              &             &              &              &              X&              X&              &              &              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-RS2}}   &             &             &             &             &             &             &              &             &              &              &             X&              X&             X&             &              &                & & & & & & & & & & & & & & & & & & & & \\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-RS3}}   &             &             &             &              &             &              &             &             &              &              &              X&              X&              &              X&              &                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-RS4}}   &             &             &             &             &             &              &             &             &              &              &             X&              X&              &             &              X&                & & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-RS5}}   &             &             &             &              &             &              &              &             &              &              &             X&              X&              &             &              &                X& & & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-ER1}}   &             &             &             &              &             &              &              &             &              &              &             &              &              &             &              &                & X& & & & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-ER2}}   &             &             &             &              &             &             &             &             &              &              &              &              &              &              &              &               & & X& X& & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-ER3}}   &              &             &             &              &              &              &              &             &             &             &              &              &             &             &             &                & & & X& & & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-ST1}}   &             &             &             &              &              &              &              &             &              &              &              &              &              &              &              &                & & & & X& & & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-ST2}}   &              &              &              &              &              &              &              &             &             &             &              &              &              &              &              &                & & & & X& X& & & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-ST3}}   &             &              &             &              &              &              &             &             &              &              &              &              &              &              &              &                & & & & X& & X& & & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-ST4}}   &             &              &             &              &              &              &              &             &              &              &              &              &              &              &              &                & & & & X& & & X& & & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-ST5}}   &             &             &             &             &             &             &             &             &              &              &             &             &              &             &              &                & & & & X& & & & X& & & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-ST6}}   &              &              &             &              &             &             &             &             &              &              &             &             &              &              &              &                & & & & X& X& & X& & X& & & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG1}}   &             &             &             &              &              &             &             &             &              &              &              &              &              &              &              &                & & & & & & & & & & X& X& X& & & &X & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG2}}   &             &             &             &              &             &             &             &             &              &              &              &              &              &              &              &                & & & & & & & & & & & & & X& & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG3}}   &             &             &             &              &              &             &             &             &              &              &              &              &             &             &              &                & & & & & & & & & & & & X& & X& & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG4}}   &             &             &             &              &             &             &             &             &              &              &             &              &              &              &              &                & & & & & & & & & & & & & & X& & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG5}}   &              &              &              &              &              &             &             &             &              &              &             &             &              &              &              &                & & & & & & & & & & & & & & & X& X& & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG6}}   &              &              &              &              &              &             &             &             &             &             &             &             &              &              &              &                & & & & & & & & & & & & & & & & X& & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG7}}   &             &             &             &              &             &             &             &             &              &              &              &             &             &             &              &                & & & & & & & & & & & & & & & & &X & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG8}}   &              &              &              &              &              &             &             &             &             &             &             &             &              &              &              &                & & & & & & & & & & & & & & & & &X & &X& \\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG9}}   &             &             &             &             &             &             &             &             &              &              &              &              &             &             &              &                & & & & & & & & & &X & & & & & & &X &X &X &X\\ \hline
+                                     & \textbf{CG1}& \textbf{CG2}& \textbf{CG3}& \textbf{CG4}& \textbf{CG5}& \textbf{JG1}& \textbf{JG2}& \textbf{JG3}& \textbf{JG4}& \textbf{JG5}& \textbf{RS1}& \textbf{RS2}& \textbf{RS3}& \textbf{RS4}& \textbf{RS5}& \textbf{RS6} & \textbf{ER1}& \textbf{ER2}& \textbf{ER3}& \textbf{ST1}& \textbf{ST2}& \textbf{ST3}&\textbf{ST4} & \textbf{ST5}& \textbf{ST6}\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CR1}}   &             X&              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CR2}}   &             X&             X&             &              &             &             &             &             &              &              &              &             &             &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CR3}}   &             X&              &             X&             &             &             &             &             &              &              &              &             &              &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CR4}}   &             X&             &             X&              &             &              &             &             &              &              &             &             &              &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CR5}}   &             X&              &             &             X&             &              &              &             &              &              &             &             &              &              &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CR6}}   &              X&              &              &             X&              &             &             &             &              &              &              &             &              &              &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-CR7}}   &             X&             &             &              &             X&              &             &             &              &              &             &             &              &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-JR1}}   &             &             &             &              &             &              X&              &             &              &              X&              &              &              &              &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-JR2}}   &             &              &             &             &             &              X&              &             &              &              &             &             &              &              &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-JR3}}   &             &             &              &              &             &              X&              X&             &              &              &              &              &              &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-JR4}}   &             &             &             &              &             &              X&              &             X&              &              &              &             &              &              &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-JR5}}   &             &             &             &              &             &              X&              &             &              X&              &             &             &              &              &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-RS1}}   &             &             &             &              &             &              &              &             &              &              &              X&              X&              &              &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-RS2}}   &             &             &             &             &             &             &              &             &              &              &             X&              X&             X&             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-RS3}}   &             &             &             &              &             &              &             &             &              &              &              X&              X&              &              X&              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-RS4}}   &             &             &             &             &             &              &             &             &              &              &             X&              X&              &             &              X&                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-RS5}}   &             &             &             &              &             &              &              &             &              &              &             X&              X&              &             &              &                X& & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-ER1}}   &             &             &             &              &             &              &              &             &              &              &             &              &              &             &              &                & X& & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-ER2}}   &             &             &             &              &             &             &             &             &              &              &              &              &              &              &              &               & & X& X& & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-ER3}}   &              &             &             &              &              &              &              &             &             &             &              &              &             &             &             &                & & & X& & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-ST1}}   &             &             &             &              &              &              &              &             &              &              &              &              &              &              &              &                & & & & X& & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-ST2}}   &              &              &              &              &              &              &              &             &             &             &              &              &              &              &              &                & & & & X& X& & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-ST3}}   &             &              &             &              &              &              &             &             &              &              &              &              &              &              &              &                & & & & X& & X& & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-ST4}}   &             &              &             &              &              &              &              &             &              &              &              &              &              &              &              &                & & & & X& & & X& &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-ST5}}   &             &             &             &             &             &             &             &             &              &              &             &             &              &             &              &                & & & & X& & & & X&\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-ST6}}   &              &              &             &              &             &             &             &             &              &              &             &             &              &              &              &                & & & & X& X& & X& & X\\ \hline
 
 
 \end{tabular}
@@ -1887,33 +1694,30 @@ Tests for health and safety requirements.
 \begin{landscape}
 \begin{table}[H]
 \begin{adjustwidth}{-0.1in}{-1in}
-\scalebox{0.5}{
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} \hline 
-\cline{2-24}
-                                     & \textbf{DS1}& \textbf{DS2}& \textbf{PI1}& \textbf{PI2}& \textbf{PI3}& \textbf{PI4}& \textbf{PI5}& \textbf{PI6}& \textbf{PI7}& \textbf{HR1}& \textbf{HR2}& \textbf{HR3}& \textbf{SP1}& \textbf{SP2}& \textbf{SP3}& \textbf{SM1} & \textbf{SM2}& \textbf{SM3}& \textbf{SM4}& \textbf{SM5}& \textbf{RM1}& \textbf{RM2}&\textbf{RM3}\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG10}}   &X             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG11}}   &X             &X              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-SG12}}   &             &X              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI1}}   &             &              &X             &X              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI2}}   &             &              &X             &X              &X             &X             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI3}}   &             &              &X             &              &X             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI4}}   &             &              &             &              &             &             &X             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI5}}   &             &              &X             &X              &X             &X             &X             &X             &X              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI6}}  &             &              &X             &X              &X             &X             &X             &X             &X              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI7}}   &             &              &             &              &             &             &             &             &              &X              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI8}}   &             &              &             &              &             &             &             &             &              &X              &X             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI9}}   &             &              &             &              &             &             &             &             &              &              &             &X             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI10}}   &             &              &X             &              &             &             &             &             &              &              &             &             &X              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI11}}   &             &              &X             &              &             &             &             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI12}}   &             &              &X             &              &             &             &X             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-PI13}}   &             &              &             &              &             &             &             &             &              &              &             &             &X              &X             &X              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-MS1}}   &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &X                & &X & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-MS2}}   &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X &X & & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-MS3}}   &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X & &X & & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-MS4}}   &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X &X & &X & & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-MS5}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & &X & & &X & &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-MS6}}   &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & &X & & &X &X &\\ \hline
-\multicolumn{1}{|l|}{\textbf{Test-MS7}}   &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &X\\ \hline
+\scalebox{0.6}{
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} \hline 
+\cline{2-22}
+                                     & \textbf{PI1}& \textbf{PI2}& \textbf{PI3}& \textbf{PI4}& \textbf{PI5}& \textbf{PI6}& \textbf{PI7}& \textbf{HR1}& \textbf{HR2}& \textbf{HR3}& \textbf{SP1}& \textbf{SP2}& \textbf{SP3}& \textbf{SM1} & \textbf{SM2}& \textbf{SM3}& \textbf{SM4}& \textbf{SM5}& \textbf{RM1}& \textbf{RM2}&\textbf{RM3}\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI1}}   &X             &X              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI2}}   &X             &X              &X             &X             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI3}}   &X             &              &X             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI4}}   &             &              &             &             &X             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI5}}   &X             &X              &X             &X             &X             &X             &X              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI6}}  &X             &X              &X             &X             &X             &X             &X              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI7}}   &             &              &             &             &             &             &              &X              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI8}}   &             &              &             &             &             &             &              &X              &X             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI9}}   &             &              &             &             &             &             &              &              &             &X             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI10}}   &X             &              &             &             &             &             &              &              &             &             &X              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI11}}   &X             &              &             &             &             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI12}}   &X             &              &             &             &X             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-PI13}}   &             &              &             &             &             &             &              &              &             &             &X              &X             &X              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS1}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &X                & &X & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS2}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X &X & & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS3}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X & &X & & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS4}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X &X & &X & & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS5}}  &             &              &             &             &             &             &              &              &             &             &              &             &              &                & &X & & &X & &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS6}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &                & &X & & &X &X &\\ \hline
+\multicolumn{1}{|l|}{\textbf{Test-MS7}}   &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & &X\\ \hline
 
 \end{tabular}
 }
