@@ -348,7 +348,7 @@ external systems and services.
 \textbf{Outcome:}
 \begin{enumerate}
 	\item The system creates a room for users to join, and automatically makes the user join the room
-    \item The user can choose the length of the game and the settings
+    \item The user can choose the room settings
 	\item The server sends the data of the game room to all the users, to show that the room is available to join, and the capacity of the room, and the current users that have joined the room
 \end{enumerate}
 \textbf{Use Case \#2:} User Joins Game\\
@@ -423,10 +423,9 @@ external systems and services.
 \begin{enumerate}
 	\item The system queries the server to determine the group members in the room
 	\item The system displays the other group members in the room to the user
-	\item The user selects the desired recipient
         \item The system displays the interface for the user to create the message
         \item The user creates the message and hits the send button
-        \item The system uses the server to send the message to the selected group member's device and to create a message notification on that device. It then notifies the sender that the message has been sent
+        \item The system uses the server to send the message group members devices and to create a message notification on those devices. It then notifies the sender that the message has been sent
 \end{enumerate}
 \textbf{Use Case \#10:} User reads a message\\
 \textbf{Trigger:} The user clicks on a received message notification\\
@@ -499,8 +498,6 @@ external systems and services.
     \textbf{Rationale:} The users should be able to start the game to play the puzzles
     \item The system shall load all the assets used to play the game\newline 
     \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay
-    \item The system shall inform all group members to complete a calibration step\newline 
-    \textbf{Rationale:} AR games require some calibration step to scan the surfaces in the room so objects can be placed with gravity
     \item The system shall determine an order of the puzzles, and which group members can see which parts of the puzzles\newline 
     \textbf{Rationale:} In games with more than one puzzle, there needs to be an order to solve the questions. The system will determine a logical order, and assign which group members can see which parts of the puzzles
     \item The system shall display a progress bar based on the current progress on the screen\newline 
@@ -550,7 +547,7 @@ external systems and services.
         \textbf{Rationale}: For the communication system the user must be able to see all the group members in the game room to choose who to contact
         \item The system shall contain an interface that allows the user to compose a message\\
         \textbf{Rationale}: The user must be able to create their own custom messages to allow for optimal communication in puzzles and to create the most realistic social experience
-        \item The system shall allow the user to send a message to any other group member in the game room\\
+        \item The system shall allow the user to send a message to the users in the game room\\
         \textbf{Rationale}: The primary goal of the game is to allow users to have social interaction from a remote setting. All users in the game must be able to interact with one another to complete this goal
         \item The system shall allow the user to cancel a message before sending it\\
         \textbf{Rationale}: If a user decides they do not want to send a message they must be able to return to the game without having to send something
