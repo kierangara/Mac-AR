@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActiveWires : MonoBehaviour
 {
-    private List<List<uint>> m_sequence;
+    public List<List<uint>> m_sequence;
     private List<int> currentSequence = new List<int>();
     public WireBehaviour wireMain;
     public PuzzleData puzzleData;
