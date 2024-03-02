@@ -163,6 +163,7 @@
             October 27, 2023 & Ethan & Updated SRS based on feedback from Team 2 and Team 18\\
             November 3, 2023 & Ethan & Updated SRS to include Hazard Analysis requirements\\
             January 4, 2024 & Ethan & Updated SRS to include requirement for notifying user to update to latest version of application\\
+            March 1, 2024 & Ethan & Updated SRS to remove Save/Load/Delete Requirements\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -334,7 +335,7 @@ The following section will go over the necessary functional requirement informat
 The context diagram depicted below illustrates the interactions of the system with adjacent
 external systems and services.
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=1.05\textwidth]{Capstone/docs/SRS/UseCaseDiagram.png}}
+\centerline{\includegraphics[width=1.05\textwidth]{Capstone/docs/SRS/capstoneUseCase.drawio_1.drawio_1.png}}
 \label{UseCaseDiagram}
 \end{figure}
 
@@ -390,34 +391,7 @@ external systems and services.
     \item The system shows the user and group members the first puzzles
     \item The user and group members are each given a unique view on the puzzles they have available to them
 \end{enumerate}
-\textbf{Use Case \#6:} User saves game\\
-\textbf{Trigger:} The user selects the save game button\\
-\textbf{Pre-condition:} There is an active game they are playing in\\
-\textbf{Outcome:}
-\begin{enumerate}
-	\item A local copy of the progress in the game is saved on the user's side
-    \item All relevant data on the status of the puzzles is saved
-    \item This data can be used to load the game at a later date, and it is safe for the user to leave the session
-\end{enumerate}
-\textbf{Use Case \#7:} User Loads game\\
-\textbf{Trigger:} The user hits the load game button and selects the game data they want to load\\
-\textbf{Pre-condition:} The user has created a game room, and the user has save data to load\\
-\textbf{Outcome:}
-\begin{enumerate}
-	\item The system reads the user's save data, and when the game is started, the state of the game is loaded
-    \item The location of the puzzles might change, but the progress of each puzzle and the total progress of the room is the same as when the game state was saved 
-\end{enumerate}
-\textbf{Use Case \#8:} User deletes save data\\
-\textbf{Trigger:} The user hits delete on their save data\\
-\textbf{Pre-condition:} The user has save data\\
-\textbf{Outcome:}
-\begin{enumerate}
-	\item The system deletes the save data from the user's device
-    \item The system updates the save data list, and removes that save data from it
-\end{enumerate}
-
-
-\textbf{Use Case \#9:} User interacts with a puzzle\\
+\textbf{Use Case \#6:} User interacts with a puzzle\\
 \textbf{Trigger:} The user selects a puzzle to attempt\\
 \textbf{Pre-condition:} The user has started a puzzle\\
 \textbf{Outcome:}
@@ -426,7 +400,7 @@ external systems and services.
 	\item The user performs an action on the puzzle
 	\item The system registers the action, performs any necessary puzzle state changes and displays the new puzzle state to the user    
 \end{enumerate}
-\textbf{Use Case \#10:} User requests a hint\\
+\textbf{Use Case \#7:} User requests a hint\\
 \textbf{Trigger:} The user presses the request hint button\\
 \textbf{Pre-condition:} The user has started a puzzle\\
 \textbf{Outcome:}
@@ -435,14 +409,14 @@ external systems and services.
 	\item The user reads the hint and presses the button to close the hint
 	\item The system closes the hint display
 \end{enumerate}
-\textbf{Use Case \#11:} User skips a puzzle\\
+\textbf{Use Case \#8:} User skips a puzzle\\
 \textbf{Trigger:} The user hits the skip button\\
 \textbf{Pre-condition:} The user is interacting with a puzzle\\
 \textbf{Outcome:}
 \begin{enumerate}
 	\item The system saves the state of the puzzle and closes the puzzle display, returning to the main scene
 \end{enumerate}
-\textbf{Use Case \#12:} User sends a message\\
+\textbf{Use Case \#9:} User sends a message\\
 \textbf{Trigger:} The user presses a communication button\\
 \textbf{Pre-condition:} More than one user are in a game room\\
 \textbf{Outcome:}
@@ -454,7 +428,7 @@ external systems and services.
         \item The user creates the message and hits the send button
         \item The system uses the server to send the message to the selected group member's device and to create a message notification on that device. It then notifies the sender that the message has been sent
 \end{enumerate}
-\textbf{Use Case \#13:} User reads a message\\
+\textbf{Use Case \#10:} User reads a message\\
 \textbf{Trigger:} The user clicks on a received message notification\\
 \textbf{Pre-condition:} The user has received a message\\
 \textbf{Outcome:}
@@ -533,37 +507,6 @@ external systems and services.
     \textbf{Rationale:} The group members should have some indicator how close they are to finishing the game
     \item The system shall reveal the available puzzles to the group members and commence the game\newline 
     \textbf{Rationale:} The group members should be able to view the puzzles they have access to
-\end{enumerate}
-\subsubsection{Save Game}
-\begin{enumerate}[label=SG\arabic*., series=SaveGame]
-    \item Upon the user hitting save, take a snapshot of the data available saving progress on all puzzles and the overall room progress \newline 
-    \textbf{Rationale:} If the user wants to load the game in the future they should have all the data required for continuing from the point at which they saved
-    \item The user shall be allowed to save as many times as they desire, as frequently as they desire \newline 
-    \textbf{Rationale:} There should be no limit on saves in case of any external factors that would effect the game
-    \item The system shall store the saved data on the user's device \newline 
-    \textbf{Rationale:} Storing the data on the user's device will reduce the stress on the database, the save files should be small in size and it likely won't inconvenience the user
-    \item The system shall encode the data such that it is not in its original format and the operation can be reversed \newline 
-    \textbf{Rationale:} Encoding the data can reduce the size and prevent users from manually changing the save data and potentially creating issues with the data 
-\end{enumerate}
-
-\subsubsection{Load Game}
-\begin{enumerate}[label=LG\arabic*., series=LoadGame]
-	\item The system shall allow the user to load an existing save file \newline 
-    \textbf{Rationale:} Loading the save files is the purpose for having safe files in the first place
-    \item The system shall decode the save file and recall the progress on the saved room\newline 
-    \textbf{Rationale:} Decoding the save file makes the data readable by the system
-    \item The system shall display the saved data in the game room for all the users to see the progress\newline 
-    \textbf{Rationale:} This information will allow the users in the game room to be caught upto date with the progress on the save file
-\end{enumerate}
-
-\subsubsection{Delete Save}
-\begin{enumerate}[label=DS\arabic*., series=DeleteSave]
-	\item The system shall allow the user to delete the saved game data \newline 
-    \textbf{Rationale:} If the user wishes to never load the data, the user can remove it
-    \item The system shall remove the saved data from the user's device \newline 
-    \textbf{Rationale:} The user's device will no longer hold onto data it won't use
-    %\item The system shall stop the user from loading the saved game in the future \newline 
-    %\textbf{Rationale:} Since the saved game data is gone, it should no longer be able to be loaded
 \end{enumerate}
 
 \subsubsection{Puzzle Interaction}
@@ -738,20 +681,6 @@ The following section will describe the non-functional requirements of the appli
 \multicolumn{1}{|l|}{\textbf{ST4}}   &              &              &              &              &              &              &              &       X      &       X      &       X      &              &              &              &              &              &               \\ \hline
 \multicolumn{1}{|l|}{\textbf{ST5}}   &      X       &              &       X      &              &              &              &       X      &       X      &              &              &              &              &              &              &              &               \\ \hline
 \multicolumn{1}{|l|}{\textbf{ST6}}   &      X       &              &       X      &              &              &              &              &       X      &              &              &              &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{SG1}}   &      X       &      X       &       X      &       X      &       X      &      X       &       X      &       X      &              &              &      X       &      X       &              &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{SG2}}   &              &              &       X      &       X       &             &      X       &       X      &       X      &              &              &      X       &     X        &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{SG3}}   &      X       &      X       &       X      &              &              &      X       &       X      &       X      &              &              &              &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{SG4}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &              &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{SG5}}   &      X       &      X       &       X      &              &              &      X       &       X      &       X      &              &              &              &              &       X      &       X      &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{SG6}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &       X      &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{SG7}}   &              &              &              &              &              &      X       &       X      &       X      &              &              &       X      &       X      &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{SG8}}   &              &              &              &              &              &      X       &       X      &       X      &       X      &       X      &       X      &       X      &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{LG1}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &              &       X      &       X      &       X      &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{LG2}}   &              &              &              &              &              &      X       &       X      &       X      &       X      &       X      &       X      &       X      &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{LG3}}   &      X       &      X       &       X      &       X      &       X      &      X       &       X      &       X      &              &              &              &              &       X      &       X      &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{DS1}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &       X      &       X      &       X      &       X      &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{DS2}}   &              &              &       X      &              &              &      X       &              &       X      &       X      &       X      &       X      &       X      &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{DS3}}   &              &              &       X      &              &       X      &      X       &              &       X      &              &              &       X      &       X      &       X      &       X      &              &               \\ \hline
 
 \end{tabular}
 
