@@ -161,7 +161,6 @@ The following table is taken directly from the Module Guide document for this pr
 & Game Room Module\\
 & Text Communication Module\\
 & Voice Communication Module\\
-& Game Save Module\\
 & Multiplayer Puzzle Module\\
 & Simon Says Puzzle Module\\
 & Code Puzzle Module\\
@@ -529,78 +528,6 @@ None\\
 \item transition: $VoiceToggleIsOn => AudioInputDevice.Muted = false$
 
 $!VoiceToggleIsOn => AudioInputDevice.Muted = true$
-\item exception: None
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-None
-
-\newpage
-
-\section{MIS of Game Save Module} \label{SaveModule} 
-
-The Game Save Module implements functionality for saving the current puzzle state of the game, load the puzzle state of an existing game or delete a save entry.
-
-\subsection{Module}
-
-GameSaveModule
-
-\subsection{Uses}
-
-Database/Network Manager Module
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-
-None
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-SaveGame & $\mathbb{Z}$, set of $\mathbb{B}$ & - & - \\
-LoadGame  & $\mathbb{Z}$ & set of $\mathbb{B}$ & - \\
-DeleteSave  & $\mathbb{Z}$ & - & - \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-saveTable: Dictionary of arrays of $\mathbb{B}$ {saveId -> puzzleStates}
-
-\subsubsection{Environment Variables}
-
-This module has external interaction with the phone screen the user is using, there will be buttons to be pressed to call some of these functions.
-
-\subsubsection{Assumptions}
-
-None
-
-\subsubsection{Access Routine Semantics}
-
-\noindent {SaveGame}(saveId, puzzleStates):
-\begin{itemize}
-\item transition: saveTable.Add(saveId, puzzleStates)
-\item exception: None
-\end{itemize}\
-
-\noindent {LoadGame}(saveId):
-\begin{itemize}
-\item output: out := puzzleStates
-\item exception: None
-\end{itemize}
-
-\noindent {DeleteSave}(saveId):
-\begin{itemize}
-\item transition: saveTable.Delete(saveId)
 \item exception: None
 \end{itemize}
 
