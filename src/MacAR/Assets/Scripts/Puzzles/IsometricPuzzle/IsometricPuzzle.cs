@@ -39,20 +39,6 @@ public class IsometricPuzzleManager : PuzzleBase
             }
         }
         cubeIndex = 0;
-        if (false)
-        {
-            _cubeNames = new string[8];
-            _cubeNames[0] = "1T";
-            _cubeNames[1] = "2W";
-            _cubeNames[2] = "3I";
-            _cubeNames[3] = "4L";
-            _cubeNames[4] = "5I";
-            _cubeNames[5] = "6G";
-            _cubeNames[6] = "7H";
-            _cubeNames[7] = "8T";
-            
-            setCubes(_cubeNames[cubeIndex]);
-        }
         SendPuzzleDataServerRpc(puzzleData.connectedClients.ToArray());
         SetIsometricPuzzlesServerRpc("1T 2W 3I 4L 5I 6G 7H 8T");
 
@@ -60,7 +46,7 @@ public class IsometricPuzzleManager : PuzzleBase
     }
     //--------------------------------------------------------------------//
     //This function will set the current cube layout
-    public void setCubes(string key)
+    private void setCubes(string key)
     {
         for (int x = 0; x < _cubeWidth; x++)
         {
@@ -217,6 +203,30 @@ public class IsometricPuzzleManager : PuzzleBase
                 }
             }
         }
+    }
+
+    private void TestingSetup()
+    {
+        _cubeHeight = 5;
+        _cubeWidth= 5;
+        _cubeLength = 5;
+        GameObject tempTransform = Resources.Load<GameObject>("IsoMaster");
+        tempTransform = GameObject.Instantiate(tempTransform, new Vector3(0, 0, 0), Quaternion.identity);
+        _cubePrefab = Resources.Load<IsometricCube>("IsoCube");
+        _cubesCollection = new IsometricCube[_cubeWidth, _cubeHeight, _cubeLength];
+        activeGrid = new bool[_cubeWidth, _cubeHeight, _cubeLength];
+        for (int x = 0; x < _cubeWidth; x++)
+        {
+            for (int y = 0; y < _cubeLength; y++)
+            {
+                for (int z = 0; z < _cubeLength; z++)
+                {
+                    _cubesCollection[x, y, z] = Instantiate(_cubePrefab, new Vector3((float)(x * 0.2 + tempTransform.transform.position.x - 0.5), (float)(y * 0.2 + tempTransform.transform.position.y - 0.5), (float)(z * 0.2 + tempTransform.transform.position.z - 0.5)), Quaternion.identity);
+                    _cubesCollection[x, y, z].transform.parent = tempTransform.transform;
+                }
+            }
+        }
+        cubeIndex = 0;
     }
 
     [ServerRpc]
