@@ -7,7 +7,11 @@
         "MainAssembly",
         "Unity.InputSystem",
         "Unity.InputSystem.TestFramework",
-        "Unity.Netcode.Runtime"
+        "Unity.Netcode.Runtime",
+        "Unity.Services.Relay",
+        "Unity.Services.Lobbies",
+        "Unity.Services.Authentication",
+        "Unity.Services.Core"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

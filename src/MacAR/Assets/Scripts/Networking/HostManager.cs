@@ -60,7 +60,7 @@ public class HostManager : MonoBehaviour
         this.lobbyName = name;
     }
 
-    public async void StartHost()
+    public async Task StartHost()
     {
         //Debug.Log(lobbyName);
         //Debug.Log(lobbyPassword);
@@ -132,6 +132,7 @@ public class HostManager : MonoBehaviour
         
 
         NetworkManager.Singleton.StartHost();
+        return;
     }
 
     public async Task ChangeLobbySettings()
