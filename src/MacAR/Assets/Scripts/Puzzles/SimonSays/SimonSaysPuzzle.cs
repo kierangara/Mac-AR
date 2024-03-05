@@ -78,7 +78,7 @@ public class SimonSaysPuzzle : PuzzleBase
     }
 
 
-    private int IncrementLevel()
+    public int IncrementLevel()
     {
         level += 1;
         return level;
@@ -105,11 +105,12 @@ public class SimonSaysPuzzle : PuzzleBase
         generatedSequence.Clear();
 
         playerSequence.Clear();
+        Debug.Log("player sequence cleared");
 
         UpdateCubeServerRpc(Color.black);
         yield return new WaitForSeconds(2.0f);
         //int counter = 0;
-        if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
+        if (counter == 0 && NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
 
         
