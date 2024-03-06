@@ -43,14 +43,16 @@ public class MazeTest : InputTestFixture
     public void Maze2DArrayTo1DSuccess()
     {
         int[,] matrix = new int[3,3];
+        int[] solution = new int[9];
         for (int i=0; i<matrix.GetLength(0); i++) 
         { 
             for (int j=0; j<matrix.GetLength(1); j++)
             {
-                matrix[i, j] = (i+1) * (j+1);
+                System.Random random = new System.Random();
+                matrix[i, j] = random.Next();
+                solution[3 * i + j] = matrix[i, j];
             }
         }
-        int[] solution = { 1, 2, 3, 2, 4, 6, 3, 6, 9 };
 
         MazePuzzle m_MazePuzzle = new MazePuzzle();
 
@@ -63,15 +65,17 @@ public class MazeTest : InputTestFixture
     [Test]
     public void Maze2DArrayTo1DFail()
     {
-        int[,] matrix = new int[3, 3];
+        int[,] matrix = new int[5, 4];
+        int[] solution = new int[20];
         for (int i = 0; i < matrix.GetLength(0); i++)
         {
             for (int j = 0; j < matrix.GetLength(1); j++)
             {
-                matrix[i, j] = (i + 1) * (j + 1);
+                System.Random random = new System.Random();
+                matrix[i, j] = random.Next();
+                solution[i + 3*j] = matrix[i, j];
             }
         }
-        int[] solution = { 9, 2, 3, 2, 4, 6, 3, 6, 9 };
 
         MazePuzzle m_MazePuzzle = new MazePuzzle();
 
@@ -85,18 +89,21 @@ public class MazeTest : InputTestFixture
     public void Maze1DArrayTo2DSuccess()
     {
         int[,] matrix = new int[3, 3];
+        int[] solution = new int[9];
         for (int i = 0; i < matrix.GetLength(0); i++)
         {
             for (int j = 0; j < matrix.GetLength(1); j++)
             {
-                matrix[i, j] = (i + 1) * (j + 1);
+                System.Random random = new System.Random();
+                matrix[i, j] = random.Next();
+                solution[3 * i + j] = matrix[i, j];
             }
         }
-        int[] solution = { 1, 2, 3, 2, 4, 6, 3, 6, 9 };
+        
         MazePuzzle m_MazePuzzle = new MazePuzzle();
         PrivateObject privateObjectMazePuzzle = new PrivateObject(m_MazePuzzle);
         object[] arguments = new object[1];
-        int[,] returnedMatrix = (int[,])privateObjectMazePuzzle.Invoke("Make2DArray", new object[] { solution, 3, 3 });
+        int[,] returnedMatrix = (int[,])privateObjectMazePuzzle.Invoke("Make2DArray", new object[] { solution, matrix.GetLength(0), matrix.GetLength(1) });
         bool successFull=true;
         for(int i=0;i< returnedMatrix.GetLength(0);i++)
         {
@@ -113,19 +120,21 @@ public class MazeTest : InputTestFixture
     [Test]
     public void Maze1DArrayTo2DFail()
     {
-        int[,] matrix = new int[3, 3];
+        int[,] matrix = new int[5, 4];
+        int[] solution = new int[20];
         for (int i = 0; i < matrix.GetLength(0); i++)
         {
             for (int j = 0; j < matrix.GetLength(1); j++)
             {
-                matrix[i, j] = (i + 1) * (j + 1);
+                System.Random random = new System.Random();
+                matrix[i, j] = random.Next();
+                solution[i + 3*j] = matrix[i, j];
             }
         }
-        int[] solution = { 9, 2, 3, 2, 4, 6, 3, 6, 9 };
         MazePuzzle m_MazePuzzle = new MazePuzzle();
         PrivateObject privateObjectMazePuzzle = new PrivateObject(m_MazePuzzle);
         object[] arguments = new object[1];
-        int[,] returnedMatrix = (int[,])privateObjectMazePuzzle.Invoke("Make2DArray", new object[] { solution, 3, 3 });
+        int[,] returnedMatrix = (int[,])privateObjectMazePuzzle.Invoke("Make2DArray", new object[] { solution, matrix.GetLength(0), matrix.GetLength(1) });
         bool successFull = true;
         for (int i = 0; i < returnedMatrix.GetLength(0); i++)
         {
