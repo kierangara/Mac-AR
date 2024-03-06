@@ -137,14 +137,14 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
-    private byte[] objectToBytes(List<ulong> clients) 
+    public byte[] objectToBytes(List<ulong> clients) 
     {
         return clients
             .SelectMany(BitConverter.GetBytes)
             .ToArray();
     }
 
-    private List<ulong> bytesToObject(byte[] bytes) 
+    public List<ulong> bytesToObject(byte[] bytes) 
     {
         // TODO: Add ulong size check that changes Uint64/ UInt32
         var size = sizeof(ulong);
