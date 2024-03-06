@@ -28,7 +28,6 @@ public class SimonSaysTests : InputTestFixture
         SceneManager.LoadScene("Scenes/Test");
         base.Setup();
 
-        var mouse = InputSystem.AddDevice<Mouse>();
         characterInstance = GameObject.Instantiate(simonSaysPuzzle, Vector3.zero, Quaternion.identity);
     }
 
@@ -36,6 +35,12 @@ public class SimonSaysTests : InputTestFixture
     public void SimonSaysSpawnTest()
     {
         NUnit.Framework.Assert.IsTrue(simonSaysPuzzle.activeSelf);
+    }
+
+    [Test]
+    public void SimonSaysObjectNonNullTest()
+    {
+        NUnit.Framework.Assert.That(characterInstance, !Is.Null);
     }
 
     [Test]
