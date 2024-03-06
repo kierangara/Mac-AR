@@ -1,25 +1,20 @@
 {
-    "name": "Tests",
+    "name": "EditModeTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "MainAssembly",
-        "Unity.InputSystem",
-        "Unity.InputSystem.TestFramework",
-        "Unity.Netcode.Runtime",
-        "Unity.Services.Relay",
-        "Unity.Services.Lobbies",
-        "Unity.Services.Authentication",
-        "Unity.Services.Core"
+        "Unity.Netcode.Runtime"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "nunit.framework.dll",
-        "Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll"
+        "nunit.framework.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [
