@@ -38,7 +38,7 @@ public class MainMenuDisplay : MonoBehaviour
         menuPanel.SetActive(true);
     }
 
-    public void StartHost()
+    public async void StartHost()
     {
         HostManager.Instance.setConnections((int)Math.Min(Math.Max(2.0, Mathf.RoundToInt(sliderInput.value * 10)), 10));
         HostManager.Instance.setLobbyName(lobbyNameInputField.text);
@@ -47,7 +47,7 @@ public class MainMenuDisplay : MonoBehaviour
             HostManager.Instance.setPassword(passwordInputField.text);
         }
 
-        HostManager.Instance.StartHost();
+        await HostManager.Instance.StartHost();
     }
 
     public async void StartClient()
