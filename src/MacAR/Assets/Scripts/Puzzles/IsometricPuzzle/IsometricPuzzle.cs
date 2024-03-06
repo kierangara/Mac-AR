@@ -259,7 +259,7 @@ public class IsometricPuzzleManager : PuzzleBase
         cubeIndex--;
         if (cubeIndex <= -1)
         {
-            cubeIndex = 7;
+            cubeIndex = _cubeNames.Length-1;
         }
         setCubes(_cubeNames[cubeIndex]);
     }
