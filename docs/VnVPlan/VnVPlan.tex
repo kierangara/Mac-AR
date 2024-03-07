@@ -23,6 +23,7 @@
 \usepackage{placeins}
 \usepackage{pdflscape}
 \usepackage{amsthm,letltxmacro,changepage}
+\usepackage{amsfonts}
 \begin{document}
 
 \title{Project Title: System Verification and Validation Plan for \progname{}} 
@@ -50,6 +51,8 @@
 2024/02/29 & Matthew & Created a test case for the usability survey\\
 2024/03/01 & Ethan & Removal of Save/Load Game Tests\\
 2024/03/01 & Matthew & Description for what the term "database" implies in the test cases\\
+2024/03/06 & Sam & Updated Traceability, removed PI7 (updated indexes to match)\\
+2024/03/06 & All & Worked on updating the document for revision 0 of VnV Report\\
 \bottomrule
 \end{tabularx}
 
@@ -256,7 +259,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Input:} User presses Host button.
 
-\textbf{Output:} User redirected to create game menu which has entries to set game room settings (game room name, game room capacity, game room password).
+\textbf{Output:} User redirected to create game menu which has entries to set game room settings (game room name and game room password).
 
 \textbf{Test Case Derivation:} System should allow user to have the option to create a game room with specified settings, and the menu being present is the first step for this.
 
@@ -269,7 +272,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Id:} Test-CR2
 
-\textbf{Type}: Automated
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Create game menu open.
 
@@ -281,17 +284,17 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{How test will be performed:} Create automated test that creates a game room name and verify that the game room is present in the database. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
-\textbf{Requirements being verified:} CG1 CG2
+\textbf{Requirements being verified:} CG1 CG2 CG5
 
 \item{\textbf{Name:} Unsuccessful creation of game room without name} \label{itm:Test-CR3}
 
 \textbf{Id:} Test-CR3
 
-\textbf{Type}: Automated
+\textbf{Type}: Manual
 
 \textbf{Initial State:} Game room creation screen open, nothing input for the game room name.
 
-\textbf{Input:} User tries to create a new game room.
+\textbf{Input:} User tries to create a new game room without inputting a name for the game room name.
 
 \textbf{Output:} Game room is not created and error message tells user that game room name is not valid.
 
@@ -299,7 +302,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{How test will be performed:} Create automated test that creates a game room with empty string and verify that the game room is not created and error message is present. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
-\textbf{Requirements being verified:} CG1 CG2
+\textbf{Requirements being verified:} CG1 CG2 CG5
 
 \item{\textbf{Name:} Creation of game room with certain capacity} \label{itm:Test-CR4}
 
@@ -317,7 +320,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{How test will be performed:} Tester will manually select a capacity for the game room in one instance, and in another instance check to see if the game room exists and the capacity matches the set capacity. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
-\textbf{Requirements being verified: }CG1 CG3
+\textbf{Requirements being verified: }CG1 CG3 CG5
 
 \item{\textbf{Name:} Creation of game room with password} \label{itm:Test-CR5}
 
@@ -335,7 +338,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{How test will be performed:} Tester will manually input game room password on one instance, and in another instance check if the game room exists and that they need to correctly enter the password to enter the game room. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
-\textbf{Requirements being verified: }CG1 CG4 JG1 JG2
+\textbf{Requirements being verified: }CG1 CG4 CG5 JG1 JG2
 
 \item{\textbf{Name:} Creation of game room with empty password} \label{itm:Test-CR6}
 
@@ -345,7 +348,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Initial State:} Create game menu open
 
-\textbf{Input:} User does not input anything for game room password.
+\textbf{Input:} User does not input anything for game room password, and hosts a game room.
 
 \textbf{Output:} Game room requiring no password is created in database.
 
@@ -353,25 +356,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{How test will be performed:} Tester will manually input nothing for game room password on one instance, and in another instance attempt to join, and check if it requires them to enter a password. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
-\textbf{Requirements being verified: }CG1 CG4
-
-\item{\textbf{Name:} Game room menu present after creating game room} \label{itm:Test-CR7}
-
-\textbf{Id:} Test-CR7
-
-\textbf{Type}: Manual 
-					
-\textbf{Initial State:} Create game menu open and all valid settings set.
-					
-\textbf{Input:} User presses create game room.
-					
-\textbf{Output:} Game room is created and user is redirected to game room menu which displays the users present in the game room.
-
-\textbf{Test Case Derivation:} System should redirect users to game room menu once they have inputted their settings in the create game room menu.
-					
-\textbf{How test will be performed:} Tester will manually press create game room and verify that they are redirected to the game room menu. This test can be run in conjunction with \hyperref[itm:Test-CR1]{Test-CR1},\hyperref[itm:Test-CR2]{Test-CR2}, \hyperref[itm:Test-CR4]{Test-CR4}, \hyperref[itm:Test-CR5]{Test-CR5}, and \hyperref[itm:Test-CR6]{Test-CR6}. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
-
-\textbf{Requirements being verified: }CG1 CG5
+\textbf{Requirements being verified: }CG1 CG4 CG5
 
 \item{\textbf{Name:} Join game room menu present } \label{itm:Test-JR1}
 
@@ -383,17 +368,33 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Input:} User presses Join Game button.
 
-\textbf{Output:} User redirected to join room menu which lists all present game rooms in database that are available to be joined and are under capacity.
+\textbf{Output:} User redirected to join room menu which lists all present game rooms in the database.
 
-\textbf{Test Case Derivation:} System should allow users to join game rooms that are not at max capacity.
+\textbf{Test Case Derivation:} System should allow users to view all the game rooms.
 
 \textbf{How test will be performed:} Tester will manually press Join Game button and verify that they are redirected to the join game menu. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: }JG1 JG5
 
+\textbf{Id:} Test-JR2
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} Join game menu open.
+
+\textbf{Input:} User attempts to enter a room that is at its maximum capacity.
+
+\textbf{Output:} The user is not able to enter the room.
+
+\textbf{Test Case Derivation:} System should not allow users to join a full game room.
+
+\textbf{How test will be performed:} Tester will manually attempt to enter a room that is at its maximum capacity. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
+
+\textbf{Requirements being verified: }JG1
+
 \item{\textbf{Name:} Join game room requiring no password} \label{itm:Test-JR2}
 
-\textbf{Id:} Test-JR2
+\textbf{Id:} Test-JR3
 
 \textbf{Type}: Manual
 
@@ -411,7 +412,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Game room info updated when user joins} \label{itm:Test-JR3}
 
-\textbf{Id:} Test-JR3
+\textbf{Id:} Test-JR4
 
 \textbf{Type}: Automated
 
@@ -429,7 +430,7 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \item{\textbf{Name:} Game room menu present after joining game} \label{itm:Test-JR4}
 
-\textbf{Id:} Test-JR4
+\textbf{Id:} Test-JR5
 
 \textbf{Type}: Manual
 
@@ -453,9 +454,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Initial State:} Game room menu is present.
 
-\textbf{Input:} User presses settings button, then processes to change the game room name, password, or capacity.
+\textbf{Input:} User presses settings button, then processes to change the game room name or password.
 
-\textbf{Output:} User is redirected to edit game settings menu which displays the current settings of the game room (ie. room capacity, and password).
+\textbf{Output:} User is redirected to edit game settings menu which displays the current settings of the game room (ie. room name, and password).
 
 \textbf{Test Case Derivation:} System should allow users to correct their game room settings in case they put in incorrect values initially.
 
@@ -481,45 +482,9 @@ The following section deals with tests for creating and joining game rooms, as w
 
 \textbf{Requirements being verified: } RS1 RS2 RS3
 
-\item{\textbf{Name:} Edit game room capacity} \label{itm:Test-RS3}
+\item{\textbf{Name:} Display updated game settings} \label{itm:Test-RS3}
 
 \textbf{Id:} Test-RS3
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} Edit game room settings menu present.
-
-\textbf{Input:} Game Room capacity slider is changed
-
-\textbf{Output:} Game room capacity is updated.
-
-\textbf{Test Case Derivation:} System should allow user to change the number of users that can join the game room in case they want to add more or less users.
-
-\textbf{How test will be performed:} Tester will manually update game room capacity value using the settings. The tester will then examine the game room capacity on a second device. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
-
-\textbf{Requirements being verified: } RS1 RS2 RS4
-
-\item{\textbf{Name:} Remove user from game room} \label{itm:Test-RS4}
-
-\textbf{Id:} Test-RS4
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} Host user (creator of game room) is in game room menu with one or more other users, and edit game room settings menu is present.
-
-\textbf{Input:} Host user selects users name they want to remove, and presses kick button.
-
-\textbf{Output:} User selected by host is removed from the game room and current number of users present in game room decreases by 1.
-
-\textbf{Test Case Derivation:} Host user should be able to remove any user from the game room.
-
-\textbf{How test will be performed:} Tester will manually select user they want to remove, press kick button, and verify that the user has been removed from the game room. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
-
-\textbf{Requirements being verified: } RS1 RS2 RS5
-
-\item{\textbf{Name:} Display updated game settings} \label{itm:Test-RS5}
-
-\textbf{Id:} Test-RS5
 
 \textbf{Type}: Manual
 
@@ -626,7 +591,7 @@ The following section goes over tests related to starting a game, loading game a
 
 \textbf{Output:} All assets used in the game are enabled and in the scene.
 
-\textbf{Test Case Derivation:} All assets should be loaded at the start of the game.
+\textbf{Test Case Derivation:} Assets should be loaded into the game when required.
 
 \textbf{How test will be performed:} Create automated test that detects if all assets have been loaded at the start of a game. The automated test will check if the required assets have the enabled flag set to true by looping through the puzzle list. 
 
@@ -772,7 +737,7 @@ When a user interacts with a puzzle other users in the game room working on the 
 \textbf{How test will be performed:}
 Tester shall interact with one of the interactable components of the puzzle. The test is successful if the system displays the correct puzzle state response in the UI of another tester in the game room interacting with the same puzzle according to the specification for that puzzle. Should be performed for each puzzle type.
 
-\textbf{Requirements being verified: } PI5
+\textbf{Requirements being verified: } PI4 PI5
 
 \item{\textbf{Name:} Puzzle completion UI} \label{itm:Test-PI5}
 
@@ -792,7 +757,7 @@ When users have performed all the necessary actions to complete a puzzle they sh
 \textbf{How test will be performed:}
 Testers shall perform the entire required sequence of tasks to complete the puzzle, as specified by the puzzle specification. When complete all testers working on the puzzle should be notified the puzzle has been completed and the game room progress increase should be represented in the UI. Should be performed for each puzzle type.
 
-\textbf{Requirements being verified: } PI1 PI2 PI3 PI4 PI5 PI6 PI7
+\textbf{Requirements being verified: } PI1 PI2 PI3 PI4 PI5 PI6 PI7 ST4
 
 \item{\textbf{Name:} Room progress update upon puzzle completion} \label{itm:Test-PI6}
 
@@ -814,29 +779,9 @@ Testers shall perform the entire required sequence of tasks to complete the puzz
 
 \textbf{Requirements being verified: } PI1 PI2 PI3 PI4 PI5 PI6 PI7
 
-\item{\textbf{Name:} Hint for each puzzle} \label{itm:Test-PI7}
-
-\textbf{Id:} Test-PI7
-
-\textbf{Type}: Automated
-
-\textbf{Initial State:} A puzzle has been selected.
-
-\textbf{Input:} Request a hint functionality triggered.
-
-\textbf{Output:} Hint for current puzzle is provided.
-
-\textbf{Test Case Derivation:}
-Each puzzle must have at least one hint for if users get stuck on the puzzle.
-
-\textbf{How test will be performed:}
-Create an automated test that triggers the request hint functionality. The test if successful if the system successfully returns a hint. Should be performed for each puzzle type.
-
-\textbf{Requirements being verified: } HR1
-
 \item{\textbf{Name:} Puzzle hint request} \label{itm:Test-PI8}
 
-\textbf{Id:} Test-PI8
+\textbf{Id:} Test-PI7
 
 \textbf{Type}: Manual
 
@@ -856,7 +801,7 @@ Tester presses the hint button. Test is successful if a hint for the current puz
 
 \item{\textbf{Name:} Close hint display} \label{itm:Test-PI9}
 
-\textbf{Id:} Test-PI9
+\textbf{Id:} Test-PI8
 
 \textbf{Type}: Manual
 
@@ -876,7 +821,7 @@ Tester presses the close button on the hint display. Test is successful if the h
 
 \item{\textbf{Name:} Skip puzzle} \label{itm:Test-PI10}
 
-\textbf{Id:} Test-PI10
+\textbf{Id:} Test-PI9
 
 \textbf{Type}: Manual
 
@@ -896,7 +841,7 @@ Tester presses the skip button. Test is successful if the puzzle returns to its 
 
 \item{\textbf{Name:} Save skipped puzzle progress} \label{itm:Test-PI11}
 
-\textbf{Id:} Test-PI11
+\textbf{Id:} Test-PI10
 
 \textbf{Type}: Manual
 
@@ -916,7 +861,7 @@ Tester selects the puzzle they have skipped. The test is successful if the state
 
 \item{\textbf{Name:} Skipped puzzle progress maintained for other users} \label{itm:Test-PI12}
 
-\textbf{Id:} Test-PI12
+\textbf{Id:} Test-PI11
 
 \textbf{Type}: Manual
 
@@ -936,7 +881,7 @@ Tester selects a puzzle that was started and then skipped by another tester. The
 
 \item{\textbf{Name:} Notify puzzle collaborators of puzzle skip} \label{itm:Test-PI13}
 
-\textbf{Id:} Test-PI13
+\textbf{Id:} Test-PI12
 
 \textbf{Type}: Manual
 
@@ -961,45 +906,45 @@ The following section will go over tests related to sending and receiving messag
 
 \begin{enumerate}
 
-\item{\textbf{Name:} View users available for messaging} \label{itm:Test-MS1}
+\item{\textbf{Name:} Open messaging interface} \label{itm:Test-MS1}
 
 \textbf{Id:} Test-MS1
 
 \textbf{Type}: Manual
 
-\textbf{Initial State:} User is in a game room with at least one other user.
+\textbf{Initial State:} User is in a game room.
 
 \textbf{Input:} User clicks messaging button.
 
-\textbf{Output:} List of all other users in the game room is displayed.
+\textbf{Output:} Messaging interface is displayed.
 
 \textbf{Test Case Derivation:}
-A user should be able to see all the other users in the game room so they can select which user to send a message to.
+The user must be able open the messaging interface to send a message.
 
 \textbf{How test will be performed:}
-Three testers are in a game room. The first tester clicks the messaging button. The test is successful if the other two testers names are displayed. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
+Tester clicks the messaging button. The test is successful if the messaging interface containing the display window and the input field are displayed.
 
 \textbf{Requirements being verified: } SM1 SM3
 
-\item{\textbf{Name:} Cancel message} \label{itm:Test-MS2}
+\item{\textbf{Name:} Close messaging interface} \label{itm:Test-MS2}
 
 \textbf{Id:} Test-MS2
 
 \textbf{Type}: Manual
 
-\textbf{Initial State:} Message composition interface composed of interactable keyboard and text-box is displayed.
+\textbf{Initial State:} Messaging interface composed of the message display port and text input field are displayed.
 
-\textbf{Input:} User types on keyboard to compose a message, presses the cancel button.
+\textbf{Input:} User presses the "X" button to close the interface.
 
-\textbf{Output:} Typed message appears in text-box, then once cancel button is pressed message composition interface is closed and user is returned to list of users in game room.
+\textbf{Output:} The messaging interface is closed.
 
 \textbf{Test Case Derivation:}
-The user must be able to see the message they are typing, and then be able to cancel this message if they decide they don't want to send it.
+The user must be able to leave the messaging interface and any point and return to the puzzle component of the game.
 
 \textbf{How test will be performed:}
-Tester uses the keyboard to type a message, and then presses the cancel button to cancel this message. The test is successful if the tester can see the message they are typing in the text-box and if when they press the cancel button the keyboard and text-box are removed and they are returned to the list of users in the room. 
+When the messaging interface is open, the tester checks that the "X" button is visible to close it. The tester then presses the "X" button and the test is successful if the message display port, text input field and "X" button are no longer visible.
 
-\textbf{Requirements being verified: } SM2 SM4
+\textbf{Requirements being verified: } SM2 SM4 RM3
 
 \item{\textbf{Name:} Send message} \label{itm:Test-MS3}
 
@@ -1007,17 +952,17 @@ Tester uses the keyboard to type a message, and then presses the cancel button t
 
 \textbf{Type}: Manual
 
-\textbf{Initial State:} Message composition interface composed of interactable keyboard and text-box is displayed.
+\textbf{Initial State:} Messaging interface composed of messaging display port and text input field is displayed.
 
-\textbf{Input:} User types on keyboard to compose a message, presses the send button.
+\textbf{Input:} User taps the input field and types on the displayed keyboard to compose a message, presses the send button.
 
-\textbf{Output:} Typed message appears in text-box, then once send button is pressed message is displayed in separate un-editable text box and fillable text-box is emptied.
+\textbf{Output:} Typed message appears in text input field, then once send button is pressed message is displayed in the message display port. The input field returns to the empty (default) state.
 
 \textbf{Test Case Derivation:}
 The user must be able to see the message they are typing. Once the message has been sent they should be able to see the message they sent, and also be provided an empty text box to send a new message.
 
 \textbf{How test will be performed:}
-Tester uses the keyboard to type a message, and then presses the send button to send this message. The test is successful if the tester can see the message they are typing in the text-box and if when they press the send button the sent message is displayed and the fillable text box is emptied. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
+Tester taps the input field and uses the displayed keyboard to type a message, and then presses the send button to send this message. The test is successful if the tester can see the message they are typing in the input field and if when they press the send button the sent message is displayed in the messaging display port and the input field is emptied.
 
 \textbf{Requirements being verified: } SM2 SM3 SM5
 
@@ -1027,17 +972,17 @@ Tester uses the keyboard to type a message, and then presses the send button to 
 
 \textbf{Type}: Manual
 
-\textbf{Initial State:} User has selected a recipient and typed a message. The message a string of ASCII character longer than 0 characters.
+\textbf{Initial State:} User has opened the messaging interface, tapped the input field and typed a message. The message is a string of ASCII characters longer than 0 characters.
 
 \textbf{Input:} User presses send.
 
-\textbf{Output:} The UI of the selected recipient displays a notification that a message has been received.
+\textbf{Output:} The UI of all the other users in the game room display a notification that a message has been received.
 
 \textbf{Test Case Derivation:}
 When a message has been sent the recipient should receive a notification that they've received a message.
 
 \textbf{How test will be performed:}
-Tester sends a message to the selected recipient. The test is successful if a notification is displayed on the recipient's UI that a message has been received. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
+Tester sends a message. The test is successful if a notification is displayed on the UI of all other users in the game room that a message has been received. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RM1 SM3
 
@@ -1060,26 +1005,6 @@ When a user receives a message they should be able to press the notification to 
 Tester presses the notification for the received message. The test is successful if the message is displayed, the notification is removed and the message matches the message that was originally sent. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RM1 RM2 SM3
-
-\item{\textbf{Name:} Close read message} \label{itm:Test-MS6}
-
-\textbf{Id:} Test-MS6
-
-\textbf{Type}: Manual
-
-\textbf{Initial State:} User has pressed the notification for a message they received.
-
-\textbf{Input:} User presses close button.
-
-\textbf{Output:} The received message is removed from the display, the user is returned to their state before pressing the notification.
-
-\textbf{Test Case Derivation:}
-Once a user has read the message they received, they must be able to close the display of that message and return to what they were doing before.
-
-\textbf{How test will be performed:}
-Tester presses the close button of the received message display. The test is successful if the display of the message is closed and the tester is returned to the game state they were in before pressing the notification.
-
-\textbf{Requirements being verified: } RM3
 
 \end{enumerate}
 
@@ -1106,7 +1031,7 @@ Tests for look and feel requirements.
 
 \textbf{Id:} Test-LF1
 
-\textbf{Type:} Non-Functional, Automated
+\textbf{Type:} Non-Functional, Manual
 					
 \textbf{Initial State:} Program is run with simulated screen dimensions h (height) and w (width).
 					
@@ -1193,7 +1118,7 @@ Tests for usability and humanity requirements.
 
 \textbf{Id:} Test-UH2
 
-\textbf{Type:} Non-Functional, Automated
+\textbf{Type:} Non-Functional
 					
 \textbf{Initial State:} The user is in a lobby and connected to the internet.
 					
@@ -1209,7 +1134,7 @@ Tests for usability and humanity requirements.
 
 \textbf{Id:} Test-UH3
 
-\textbf{Type:} Non-Functional, Automated
+\textbf{Type:} Non-Functional
 					
 \textbf{Initial State:} The user is in a game and connected to the internet.
 					
@@ -1273,27 +1198,27 @@ Tests for usability and humanity requirements.
 					
 \textbf{How test will be performed:} Multiple users selected at random in the demographic of above the age of 30 will go through the startup sequence and initial section of the app. The test will be considered passed if they determine that they are able to operate the app without major issues. 
 
-\textbf{Requirements being verified:} UH3
+\textbf{Requirements being verified:} UH3 UH6
 
-\item{\textbf{Name:} Internet connection becomes weak} \label{itm:Test-UH7}
+%\item{\textbf{Name:} Internet connection becomes weak} \label{itm:Test-UH7}
 
-\textbf{Id:} Test-UH7
+%\textbf{Id:} Test-UH7
 
-\textbf{Type:} Non-Functional, Manual
+%\textbf{Type:} Non-Functional, Manual
 					
-\textbf{Initial State:} The program detects a strong internet connection
+%\textbf{Initial State:} The program detects a strong internet connection
 					
-\textbf{Input:} The device is moved to a location with a weak internet connection
+%\textbf{Input:} The device is moved to a location with a weak internet connection
 					
-\textbf{Output:} A message will be created prompting the user to find a stronger connection
+%\textbf{Output:} A message will be created prompting the user to find a stronger connection
 					
-\textbf{How test will be performed:} A tester will start in an area with a strong connection and move to the edge of the connection zone where the connection is weaker. The test will be considered passed if an element is displayed with text instructing the user to find a better connection before the connection has been lost completely.
+%\textbf{How test will be performed:} A tester will start in an area with a strong connection and move to the edge of the connection zone where the connection is weaker. The test will be considered passed if an element is displayed with text instructing the user to find a better connection before the connection has been lost completely.
 
-\textbf{Requirements being verified:} UH5
+%\textbf{Requirements being verified:} UH5
 
 \item{\textbf{Name: }Internet Disconnect } \label{itm:Test-UH8}
 
-\textbf{Id:} Test-UH8
+\textbf{Id:} Test-UH7
 
 \textbf{Type:} Functional, Dynamic, Manual
 					
@@ -1305,31 +1230,17 @@ Tests for usability and humanity requirements.
 					
 \textbf{How test will be performed:} The tester will join a game with an internet connection, then they will turn off the internet on their phone and wait to get disconnected from the lobby, then turn on the internet and see if they can rejoin. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
-\textbf{Requirements being tested:} UH7
+\textbf{Requirements being tested:} UH5 UH7
 
-\item{\textbf{Name: }Dangerous Conditions Warning } \label{itm:Test-UH9}
+\item{\textbf{Name: }Usability Survey } \label{itm:Test-UH9}
 
-\textbf{Id:} Test-UH9
-
-\textbf{Type:} Functional, Dynamic, Manual
-					
-\textbf{Initial State:} User is playing the game.
-					
-\textbf{Input:} Potential dangerous conditions is reported.
-					
-\textbf{Output:} The system will tell the user to go inside or stop playing the game if dangerous conditions are detected.
-					
-\textbf{How test will be performed:} The tester will simulate a signal of dangerous conditions getting input to the user, then see if the dangerous conditions message appears.
-
-\textbf{Requirements being tested:} UH8
-
-\item{\textbf{Name: }Usability Survey } \label{itm:Test-UH10}
-
-\textbf{Id:} Test-UH10
+\textbf{Id:} Test-UH8
 
 \textbf{Type:} Non-Functional, Dynamic, Manual
 					
 \textbf{Initial State:} Users have completed playing the game
+
+\textbf{Output:} Average rating of usability survey is 3/5 or higher
 
 \textbf{How test will be performed:}  The usability survey \ref{subsec:UsabilitySurvey}, is given to the users that have completed the game to fill out to provide feedback on the game-play experience.
 
@@ -1346,15 +1257,15 @@ Tests for performance requirements.
 
 \textbf{Id:} Test-PR1
 
-\textbf{Type:} Non-Functional, Automated
+\textbf{Type:} Non-Functional, Manual
 					
 \textbf{Initial State:} The app is connected to the internet. 
 					
 \textbf{Input:} A request is made to join a lobby.  
 					
-\textbf{Output:} The system responds within 100ms.
+\textbf{Output:} The system responds within 5s.
 					
-\textbf{How test will be performed:}A script will be run to create a lobby, and the server response time will be measured. The test will pass if the response happens within 100ms. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
+\textbf{How test will be performed:}The tester will run the app and create a lobby. The server response time for this request will be measured. The test will pass if the response happens within 5 seconds. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being tested:} PR1
 
@@ -1498,7 +1409,7 @@ N/A
 					
 \textbf{Output:} No offensive images, text, or sound are displayed or heard during playing the game.
 					
-\textbf{How test will be performed:} A group of testers of various ethnicity, religion, and culture will be selected to play-test the game, and to report any potentially miss-leading, offensive, or sensitive subject matter during the game play.  
+\textbf{How test will be performed:} The testers will play through the game during the other tests and report any potentially miss-leading, offensive, or sensitive subject matter during the game play.
 
 \textbf{Requirements being verified:} CR1
 					
@@ -1573,12 +1484,13 @@ Tests for health and safety requirements.
 
 \textbf{Requirements being verified:} HS1
 \end{enumerate}
-\begin{landscape}
 \subsection{Traceability Between Test Cases and Requirements}
 
 %\wss{Provide a table that shows which test cases are supporting which
 %  requirements.}
 
+
+\begin{landscape}
 
 \begin{table}[H]
 \begin{adjustwidth}{-0.1in}{-1in}
@@ -1587,16 +1499,16 @@ Tests for health and safety requirements.
 \cline{2-17}
                                      & \textbf{CG1}& \textbf{CG2}& \textbf{CG3}& \textbf{CG4}& \textbf{CG5}& \textbf{JG1}& \textbf{JG2}& \textbf{JG3}& \textbf{JG4}& \textbf{JG5}& \textbf{RS1}& \textbf{RS2}& \textbf{RS3}& \textbf{RS4}& \textbf{RS5}& \textbf{RS6} & \textbf{ER1}& \textbf{ER2}& \textbf{ER3}& \textbf{ST1}& \textbf{ST2}& \textbf{ST3}&\textbf{ST4} & \textbf{ST5}& \textbf{ST6}\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-CR1]{Test-CR1}}   &             X&              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR2]{Test-CR2}}   &             X&             X&             &              &             &             &             &             &              &              &              &             &             &             &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR3]{Test-CR3}}   &             X&              &             X&             &             &             &             &             &              &              &              &             &              &             &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR4]{Test-CR4}}   &             X&             &             X&              &             &              &             &             &              &              &             &             &              &             &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR5]{Test-CR5}}   &             X&              &             &             X&             &        X      &       X       &             &              &              &             &             &              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR6]{Test-CR6}}   &              X&              &              &             X&              &             &             &             &              &              &              &             &              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR7]{Test-CR7}}   &             X&             &             &              &             X&              &             &             &              &              &             &             &              &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CR2]{Test-CR2}}   &             X&             X&             &              &    X         &             &             &             &              &              &              &             &             &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CR3]{Test-CR3}}   &             X&              &             X&             &   X          &             &             &             &              &              &              &             &              &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CR4]{Test-CR4}}   &             X&             &             X&              &    X         &              &             &             &              &              &             &             &              &             &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CR5]{Test-CR5}}   &             X&              &             &             X&     X        &        X      &       X       &             &              &              &             &             &              &              &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CR6]{Test-CR6}}   &              X&              &              &             X&     X         &             &             &             &              &              &              &             &              &              &              &                & & & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-JR1]{Test-JR1}}   &             &             &             &              &             &              X&              &             &              &              X&              &              &              &              &              &                & & & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-JR2]{Test-JR2}}   &             &              &             &             &             &              X&              &             &              &              &             &             &              &              &              &                & & & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-JR3]{Test-JR3}}   &             &             &             &              &             &              X&              &             X&              &              &              &             &              &              &              &                & & & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-JR4]{Test-JR4}}   &             &             &             &              &             &              X&              &             &              X&              &             &             &              &              &              &                & & & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-JR5]{Test-JR5}}   &             &              &             &             &             &              X&              &             &              &              &             &             &              &              &              &                & & & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-RS1]{Test-RS1}}   &             &             &             &              &             &              &              &             &              &              &              X&              X&              &              &              &                & & & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-RS2]{Test-RS2}}   &             &             &             &             &             &             &              &             &              &              &             X&              X&             X&             &              &                & & & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-RS3]{Test-RS3}}   &             &             &             &              &             &              &             &             &              &              &              X&              X&              &              X&              &                & & & & & & & & &\\ \hline
@@ -1610,6 +1522,7 @@ Tests for health and safety requirements.
 \multicolumn{1}{|l|}{\hyperref[itm:Test-ST3]{Test-ST3}}   &             &              &             &              &              &              &              &             &              &              &              &              &              &              &              &                & & & & X& & & X& &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-ST4]{Test-ST4}}   &             &             &             &             &             &             &             &             &              &              &             &             &              &             &              &                & & & & X& & & & X&\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-ST5]{Test-ST5}}   &              &              &             &              &             &             &             &             &              &              &             &             &              &              &              &                & & & & X& X& & X& & X\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI5]{Test-PI5}}   &              &              &             &              &             &             &             &             &              &              &             &             &              &              &              &                & & & & & & &X & & \\ \hline
 
 
 \end{tabular}
@@ -1619,34 +1532,63 @@ Tests for health and safety requirements.
     \label{tab:matrix1}
 \end{adjustwidth}
 \end{table}
-\end{landscape}
 
-\begin{landscape}
 \begin{table}[H]
 \begin{adjustwidth}{-0.1in}{-1in}
-\scalebox{0.6}{
+\scalebox{0.5}{
 \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} \hline 
 \cline{2-22}
                                      & \textbf{PI1}& \textbf{PI2}& \textbf{PI3}& \textbf{PI4}& \textbf{PI5}& \textbf{PI6}& \textbf{PI7}& \textbf{HR1}& \textbf{HR2}& \textbf{HR3}& \textbf{SP1}& \textbf{SP2}& \textbf{SP3}& \textbf{SM1} & \textbf{SM2}& \textbf{SM3}& \textbf{SM4}& \textbf{SM5}& \textbf{RM1}& \textbf{RM2}&\textbf{RM3}\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-PI1]{Test-PI1}}   &X             &X              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-PI2]{Test-PI2}}   &X             &X              &X             &X             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-PI3]{Test-PI3}}   &X             &              &X             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI4]{Test-PI4}}   &             &              &             &             &X             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI4]{Test-PI4}}   &             &              &             &       X      &X             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-PI5]{Test-PI5}}   &X             &X              &X             &X             &X             &X             &X              &              &             &             &              &             &              &                & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-PI6]{Test-PI6}}  &X             &X              &X             &X             &X             &X             &X              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI7]{Test-PI7}}   &             &              &             &             &             &             &              &X              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI8]{Test-PI8}}   &             &              &             &             &             &             &              &X              &X             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI9]{Test-PI9}}   &             &              &             &             &             &             &              &              &             &X             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI10]{Test-PI10}}   &X             &              &             &             &             &             &              &              &             &             &X              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI11]{Test-PI11}}   &X             &              &             &             &             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI12]{Test-PI12}}   &X             &              &             &             &X             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI13]{Test-PI13}}   &             &              &             &             &             &             &              &              &             &             &X              &X             &X              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI8]{Test-PI7}}   &             &              &             &             &             &             &              &X              &X             &             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI9]{Test-PI8}}   &             &              &             &             &             &             &              &              &             &X             &              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI10]{Test-PI9}}   &X             &              &             &             &             &             &              &              &             &             &X              &             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI11]{Test-PI10}}   &X             &              &             &             &             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI12]{Test-PI11}}   &X             &              &             &             &X             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI13]{Test-PI12}}   &             &              &             &             &             &             &              &              &             &             &X              &X             &X              &                & & & & & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-MS1]{Test-MS1}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &X                & &X & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-MS2]{Test-MS2}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X & &X & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-MS2]{Test-MS2}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X & &X & & & &X\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-MS3]{Test-MS3}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X &X & &X & & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-MS4]{Test-MS4}}    &             &              &             &             &             &             &              &              &             &             &              &             &              &                & &X & & &X & &\\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-MS5]{Test-MS5}}  &             &              &             &             &             &             &              &              &             &             &              &             &              &                & &X & & &X &X &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-MS6]{Test-MS6}}   &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & &X\\ \hline
+\multicolumn{1}{|l|}{{Test-PM1}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-PM2}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-PM3}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-PM4}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-PM5}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-WI1}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-WI2}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-WI3}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-WI4}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-WI5}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-MP1}} &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-MP2}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-MP3}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-MP4}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-MP5}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-MP6}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-MP7}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-SP1}} &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-SP2}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-SP3}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-SP4}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-SP5}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-SP6}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-IP1}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-IP2}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-IP3}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-IP4}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-CP1}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-CP2}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-CP3}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-CP4}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-CP5}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{{Test-CP6}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
 
 \end{tabular}
 }
@@ -1677,14 +1619,13 @@ Tests for health and safety requirements.
 \multicolumn{1}{|l|}{\hyperref[itm:Test-UH3]{Test-UH3}}   &             &             &             &     X        &              &     X        &             &             &              &              &              &              &             &             &             &       &  &&&&     \\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-UH4]{Test-UH4}}   &              &              &              &              &    X          &              &             &             &             &             &             &             &              &              &            &     &  &&&&       \\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-UH5]{Test-UH5}}   &             &             &             &             &      X       &             &             &             &              &              &              &              &             &             &             &      &   &&&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH6]{Test-UH6}}   &             &             &              &             &      X       &             &             &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH7]{Test-UH7}}   &             &             &              &             &             &           &     X        &             &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH8]{Test-UH8}}   &             &             &              &             &             &           &             &             &      X        &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH9]{Test-UH9}}   &             &             &              &             &             &           &             &             &              &        X      &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH10]{Test-UH10}}   &       X      &      X       &      X        &       X      &        X     &      X     &       X      &       X      &      X        &        X      &       X       &              &             &             &             &      &  &X&&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH6]{Test-UH6}}   &             &             &              &             &      X       &             &             &        X     &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH7]{Test-UH7}}   &             &             &              &             &             &           &  X           &             &      X        &              &              &              &             &             &             &      &  &&&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH8]{Test-UH8}}   &             &             &              &             &             &           &             &             &              &        X      &              &              &             &             &             &      &  &&&&      \\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-PR1]{Test-PR1}}   &             &             &              &             &             &             &             &             &              &              &      X        &              &             &             &             &       & &&&&      \\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-PR2]{Test-PR2}}   &              &              &              &              &              &             &             &             &             &             &             &    X         &              &              &            &      &   &&&&     \\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-PR3]{Test-PR3}}   &             &             &              &             &             &             &            &             &              &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PR4]{Test-PR4}}   &             &             &              &             &             &             &            &             &              &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-MT1]{Test-MT1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &      X       &      X      &         &&&&&     \\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-MT2]{Test-MT2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &       X      &       X      &         &&&&&     \\ \hline
 \multicolumn{1}{|l|}{\hyperref[itm:Test-SR1]{Test-SR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &    X     &&&&&     \\ \hline
@@ -1723,69 +1664,517 @@ This section will be filled out once the MIS is completed.
 
 \subsection{Unit Testing Scope}
 
-TBD
-% \wss{What modules are outside of the scope.  If there are modules that are
-%   developed by someone else, then you would say here if you aren't planning on
-%   verifying them.  There may also be modules that are part of your software, but
-%   have a lower priority for verification than others.  If this is the case,
-%   explain your rationale for the ranking of module importance.}
+The scope of the unit testing is limited to functions that have observable effects outside of the unity game scene. Mostly helper functions that implement modules.
 
 \subsection{Tests for Functional Requirements}
 
-TBD
 % \wss{Most of the verification will be through automated unit testing.  If
 %   appropriate specific modules can be verified by a non-testing based
 %   technique.  That can also be documented in this section.}
+\subsubsection{MultiplayerPuzzle Module}
+The Multiplayer Puzzle Module tests deal with testing the puzzle manager which handles all of the spawning and despawning of puzzles, along with puzzle based communication between client and server. 
 
-% \subsubsection{Module 1}
-% TBD
-% \wss{Include a blurb here to explain why the subsections below cover the module.
-%   References to the MIS would be good.  You will want tests from a black box
-%   perspective and from a white box perspective.  Explain to the reader how the
-%   tests were selected.}
+\begin{enumerate}
 
-% \begin{enumerate}
+ \item{Test-PM1\\}
 
-% \item{Test-id1\\}
-
-% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-%   be automatic}
+ \textbf{Type:} Automatic
 					
-% Initial State: 
+ \textbf{Initial State:} N/A
 					
-% Input: 
+ \textbf{Input:} Simple vector of data created
 					
-% Output: \wss{The expected result for the given inputs}
+ \textbf{Output:} Data correctly serialized into bytes
 
-% Test Case Derivation: \wss{Justify the expected value given in the Output field}
+ \textbf{Test Case Derivation:} Allows for the server to send simple data to the client
 
-% How test will be performed: 
+ \textbf{How test will be performed:} Puzzle manager will be created and ObjectToBytes will be called with the data
+
+ \item{Test-PM2\\}
+
+ \textbf{Type:} Automatic
 					
-% \item{Test-id2\\}
-
-% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-%   be automatic}
+ \textbf{Initial State:} N/A
 					
-% Initial State: 
+ \textbf{Input:} Complex vector of data created
 					
-% Input: 
+ \textbf{Output:} Data correctly serialized into bytes
+
+ \textbf{Test Case Derivation:} Allows for the server to send complex data to the client
+
+ \textbf{How test will be performed:} Puzzle manager will be created and ObjectToBytes will be called with the data
+
+ \item{Test-PM3\\}
+
+ \textbf{Type:} Automatic
 					
-% Output: \wss{The expected result for the given inputs}
+ \textbf{Initial State:} N/A
+					
+ \textbf{Input:} Simple vector of bytes created
+					
+ \textbf{Output:} Data correctly deserialized into bytes
 
-% Test Case Derivation: \wss{Justify the expected value given in the Output field}
+ \textbf{Test Case Derivation:} Allows for the client to read simple data from the server
 
-% How test will be performed: 
+ \textbf{How test will be performed:} Puzzle manager will be created and BytesToObject will be called with the bytes
 
-% \item{...\\}
-    
-% \end{enumerate}
+  \item{Test-PM4\\}
 
-% \subsubsection{Module 2}
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} N/A
+					
+ \textbf{Input:} Complex vector of bytes created
+					
+ \textbf{Output:} Data correctly deserialized into bytes
 
+ \textbf{Test Case Derivation:} Allows for the client to read complex data from the server
+
+ \textbf{How test will be performed:} Puzzle manager will be created and BytesToObject will be called with the bytes
+
+ \item{Test-PM5\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} N/A
+					
+ \textbf{Input:} Vector of data created
+					
+ \textbf{Output:} Data the same after full cycle of serialization and deserialization
+
+ \textbf{Test Case Derivation:} Simulates full cycle of the server and the client communicating with each other
+
+ \textbf{How test will be performed:} Puzzle manager will be created and objectToBytes, then BytesToObject will be called with the bytes
+ 
+ \end{enumerate}
+
+ \subsubsection{MazePuzzle Module}
+The Maze Puzzle Module tests deal with testing the non-multiplayer portions of the code that are crucial to the helping the module perform all the required actions. This module is separated from the other modules, and the functions in the module are not decencies from other modules.
+
+ \begin{enumerate}
+
+ \item{Test-MP1\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} Empty scene, no objects spawned
+					
+ \textbf{Input:} Spawn in the maze puzzle
+					
+ \textbf{Output:} The maze puzzle is successfully spawned in, and mazePuzzle.activeSelf is true. 
+
+ \textbf{Test Case Derivation:} When we spawn in a given game object, we should expect them to be available for use for the user/code, and this test will test if when we create an object we can interact with it, and it is active on the scene.
+
+ \textbf{How test will be performed:} In an NUnit test case, create an empty scene, and instantiate the maze puzzle using a pre-loaded maze puzzle prefab, and check if the maze puzzle is active using the mazePuzzle.activeSelf attribute. 
+					
+ \item{Test-MP2\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} Empty scene, no objects spawned
+					
+ \textbf{Input:} Instantiate maze puzzle at (0,0,0) with rotation (0,0,0)
+					
+ \textbf{Output:} The maze puzzle object is not null
+
+ \textbf{Test Case Derivation:} Checking that the object is non-null implies that the object exists in the scene at the location and rotation specified when spawning it in. 
+
+ \textbf{How test will be performed:} In an NUnit test case, create an empty scene, and instantiate the maze puzzle using a pre-loaded maze puzzle prefab. Set the object location and rotation at spawn to (0,0,0), and (0,0,0) respectively. Then Assert that the object instance is not null.
+
+ \item{Test-MP3\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} N/A
+					
+ \textbf{Input:}  A two dimensional array of size nxn, where $1\leq n$, $n\in \mathbb{Z}$ input into the To1DArray function
+					
+ \textbf{Output:} A one dimensional array arranged row by row containing all the elements from the two dimensional array input
+
+ \textbf{Test Case Derivation:} This method is used in the code to convert a two dimensional array to a one dimensional array so it can be transmitted over the server/client RPC
+
+ \textbf{How test will be performed:} In an NUnit test case, create a random 2D array and another 1D array with the same elements, and then call the To1DArray with the 2D array as input, and test to see if the output is the same as our 1D array. Test with successful cases and unsuccessful cases.
+
+ \item{Test-MP4\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} N/A
+					
+ \textbf{Input:}  A one dimensional array of size $n^2$, where $1\leq n$, $n\in \mathbb{Z}$ input into the Make2DArray function
+					
+ \textbf{Output:} A two dimensional array of size nxn containing all the elements from the one dimensional array input row by row.
+
+ \textbf{Test Case Derivation:} This method is used in the code to convert a one dimensional array to a two dimensional array so it can take the one dimensional array given by the clientRPC and convert it to a useable format. 
+
+ \textbf{How test will be performed:} In an NUnit test case, create a random 2D array and another 1D array with the same elements, and then call the Make2DArry with the 1D array as input, and test to see if the output is the same as our 2D array. Test with successful cases and unsuccessful cases.
+
+ \item{Test-MP5\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} N/A
+					
+ \textbf{Input:}  Two adjacent maze cube are input into the ClearWalls function
+					
+ \textbf{Output:} Both walls have their adjacent walls removed i.e. the wall closest to each other
+
+ \textbf{Test Case Derivation:} The maze generation algorithm uses a wall clearing method to generate the random maze every time, so the wall clearing needs to be validated to ensure the correct walls are being cleared. 
+
+ \textbf{How test will be performed:} In an NUnit test case, create two walls adjacent to each other by Instantiating two maze cells with different positions. Then call the ClearWalls function with both the cells as input, and check the walls properties on the maze cells to see if they have been removed.
+
+ \item{Test-MP6\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} N/A
+					
+ \textbf{Input:}  A random array of size 100 with elements between 0 and 3 input into the convertLayoutToGrid function
+					
+ \textbf{Output:} A maze that matches the removed elements
+
+ \textbf{Test Case Derivation:} To synchronize each user's maze, a maze layout array is sent to each user, and this function takes the array and converts it into the maze grid, so this function is very crucial to ensuring consistency between users.
+
+ \textbf{How test will be performed:} In an NUnit test case, create an array of size 100, and fill each elements with a random integer between 0 and 3, and then set the size of the maze grid to 10x10 and call the convertLayoutToGrid function with the array, then compare the output to the array to ensure the correct maze was generated.
+
+ \item{Test-MP7\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} N/A
+					
+ \textbf{Input:}  A completely filled maze is massed into the GetUnvisitedCells function
+					
+ \textbf{Output:} No unvisited cells found / empty list
+
+ \textbf{Test Case Derivation:} The maze generation algorithm guarantees that every single maze cell will be visited, so GetUnvisitedCells should give an empty list after the maze has been generated. 
+
+ \textbf{How test will be performed:} In an NUnit test case, create an array of size 100, and fill each elements with a random integer between 0 and 3, and then set the size of the maze grid to 10x10 and call the convertLayoutToGrid function with the array. Then call GetUnvisitedCells and check to see if it's an empty list.
+ 
+ \end{enumerate}
+
+ \subsubsection{IsometricPuzzle Module}
+ 
+ \begin{enumerate}
+ 
+\item{Test-IP1\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Empty scene, no objects spawned
+
+\textbf{Input:} Spawn in Isometric Puzzle
+
+\textbf{Output:} Isometric successfully spawns in
+
+\textbf{Test Case Derivation:} When the Isometric is spawned, users should see the Isometric puzzle in the scene
+
+\textbf{How test will be performed:} NUnit test that instantiates the Isometric puzzle prefab into the scene and checks if it is active using the activeSelf attribute of the GameObject
+
+\item{Test-IP2\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Empty scene, no objects spawned
+
+\textbf{Input:} Spawn in Isometric Puzzle
+
+\textbf{Output:} Isometric Puzzle object is not null
+
+\textbf{Test Case Derivation:} When Isometric puzzle is spawned, need to make sure that the GameObject exists
+
+\textbf{How test will be performed:} NUnit test that instantiates the Isometric Puzzle prefab into the scene and checks that GameObject is not null
+
+\item{Test-IP3\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Isometric puzzle is spawned
+
+\textbf{Input:} Call isometric puzzle InitializePuzzle without first setting up a multiplayer environment
+
+\textbf{Output:} Null Reference Exception
+
+\textbf{Test Case Derivation:} When there is no multiplayer element, the puzzles should not work, as they depend on the multiplayer module
+
+\textbf{How test will be performed:} Nunit test will spawn the Isometric puzzle and call the Initialize function and when it catches the NullReferenceException, it will succeed the test case
+
+\item{Test-IP4\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Isometric puzzle is spawned
+
+\textbf{Input:} Set the cube layout of the isometric puzzle to one of the letter-number combinations
+
+\textbf{Output:} Cube layout changes to match the input combination
+
+\textbf{Test Case Derivation:} When we switch between Isometric cubes, we want to ensure the right cubes are showing
+
+\textbf{How test will be performed:} Nunit test will spawn the Isometric puzzle and call a helper function called TestingSetup to setup the class for testing executions, and then call setCubes with one of the letter-number combinations. 
+
+\end{enumerate}
+
+ \subsubsection{SimonSaysPuzzle Module}
+ 
+ \begin{enumerate}
+ 
+\item{Test-SP1\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Empty scene, no objects spawned
+
+\textbf{Input:} Spawn in Simon Says Puzzle
+
+\textbf{Output:} Simon Says Puzzle successfully spawns in
+
+\textbf{Test Case Derivation:} When the Simon Says puzzle is spawned, users should see the puzzle prefab present in the scene
+
+\textbf{How test will be performed:} NUnit test that instantiates the SimonSaysPuzzle prefab into the scene and checks if it is active using the activeSelf attribute of the GameObject
+
+\item{Test-SP2\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Empty scene, no objects spawned
+
+\textbf{Input:} Spawn in Simon Says Puzzle
+
+\textbf{Output:} Simon Says Puzzle object is not null
+
+\textbf{Test Case Derivation:} When Simon Says puzzle is spawned, need to make sure that the GameObject exists
+
+\textbf{How test will be performed:} NUnit test that instantiates the SimonSaysPuzzle prefab into the scene and checks that GameObject is not null
+
+\item{Test-SP3\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Spawn in Simon Says Puzzle
+
+\textbf{Input:} Increment level function called
+
+\textbf{Output:} Simon Says Puzzle level increases by 1
+
+\textbf{Test Case Derivation:} Important to test that the IncrementLevel() function called in the Simon Says Puzzle is working correctly
+
+\textbf{How test will be performed:} NUnit test that calls IncrementLevel() function and checks that level increases from 1 to 2
+
+\item{Test-SP4\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Spawn in Simon Says Puzzle
+
+\textbf{Input:} Colour sequence list contains blue. TrackUserInput(blue) is called which represents user pressing blue button
+
+\textbf{Output:} Colour sequence list and Player Sequence list are equal
+
+\textbf{Test Case Derivation:} Important to test that the TrackUserInput function is working as its purpose is to store what button the user has pressed
+
+\textbf{How test will be performed:} NUnit test that adds blue to the Simon Says Puzzle colour sequence list, then calls TrackUserInput on blue button and checks that the colour sequence list and the player input match
+
+\item{Test-SP5\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Spawn in Simon Says Puzzle
+
+\textbf{Input:} Player input list contains colour values. BeginSimonSays() function is called.
+
+\textbf{Output:} Player input list is cleared
+
+\textbf{Test Case Derivation:} Important to test that each time the BeginSimonSays() function is called, the current player input list is cleared since a new colour sequence will be generated.
+
+\textbf{How test will be performed:} NUnit test that adds colour values to the player input list, then calls BeginSimonSays(). Tests confirms that player sequence list is empty.
+
+\item{Test-SP6\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Spawn in Simon Says Puzzle
+
+\textbf{Input:} Colour sequence list contains colour values. BeginSimonSays() function is called.
+
+\textbf{Output:} Colour sequence list is cleared
+
+\textbf{Test Case Derivation:} Important to test that each time the BeginSimonSays() function is called, the current colour sequence is cleared since a new colour sequence will be generated.
+
+\textbf{How test will be performed:} NUnit test that adds colour values to the colour sequence list, then calls BeginSimonSays(). Tests confirms that colour sequence list is empty.
+
+\end{enumerate}
+% ...
+\subsubsection{WiresPuzzle Module}
+The Wires Puzzle Module tests deal with testing the wires puzzle and all of its constituent components.
+
+\begin{enumerate}
+
+ \item{Test-WI1\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} Puzzle Spawned
+					
+ \textbf{Input:} Wires initialized with trivial sequence of wires and nodes
+					
+ \textbf{Output:} Puzzle is updated to save the new expected wire sequence
+
+ \textbf{Test Case Derivation:} Important to test that the puzzle can be properly initialized with a given code
+
+ \textbf{How test will be performed:} Automated NUnit test that will construct a trivial 1:1 list of wire and node connections, and then call Init with the list as a parameter
+
+ \item{Test-WI2\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} Puzzle Spawned
+					
+ \textbf{Input:} Wires initialized with complex sequence of wires and nodes
+					
+ \textbf{Output:} Puzzle is updated to save the new expected wire sequence
+
+ \textbf{Test Case Derivation:} Important to test that the puzzle can be properly initialized with a complex code
+
+ \textbf{How test will be performed:} Automated NUnit test that will construct a complex list associating wires and nodes, and then call Init with the list as a parameter
+
+ \item{Test-WI3\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} Puzzle Spawned
+					
+ \textbf{Input:} Init is called
+					
+ \textbf{Output:} Puzzle automatically initializes with impossible connections, indicating that no connections are currently formed
+
+ \textbf{Test Case Derivation:} Important to remove the risk of a default array initialization causing the puzzle to automatically complete
+
+ \textbf{How test will be performed:} Automated NUnit test that spawn in the puzzle and check it's values upon initialization
+
+  \item{Test-WI4\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} Puzzle spawned and initialized
+					
+ \textbf{Input:} New connection is created
+					
+ \textbf{Output:} Puzzle state updates to reflect the new connection
+
+ \textbf{Test Case Derivation:} Simulates the proccess of the user working their way through the puzzle, ensuring state changes are saved
+
+ \textbf{How test will be performed:} Automated NUnit test that spawn in the puzzle, initialize it, then call UpdateSequence with a new connection to check that it saves
+
+ \item{Test-WI5\\}
+
+ \textbf{Type:} Automatic
+					
+ \textbf{Initial State:} Puzzle spawned and initialized
+					
+ \textbf{Input:} Single new connection is created
+					
+ \textbf{Output:} Puzzle is marked as incomplete
+
+ \textbf{Test Case Derivation:} Important to ensure that only the correct sequence will complete the puzzle
+
+ \textbf{How test will be performed:} Automated NUnit test that spawn in the puzzle, initialize it, then call UpdateSequence with a new connection that doesn't fully match the final set of connections
+ 
+ \end{enumerate}
+
+ \subsubsection{CombinationPuzzle Module}
+ 
+ \begin{enumerate}
+ 
+\item{Test-CP1\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Empty scene, no objects spawned
+
+\textbf{Input:} Spawn in Combination Puzzle
+
+\textbf{Output:} Combination Puzzle successfully spawns in
+
+\textbf{Test Case Derivation:} When the Combination puzzle is spawned, users should see the puzzle prefab present in the scene
+
+\textbf{How test will be performed:} NUnit test that instantiates the CombinationPuzzle prefab into the scene and checks if it is active using the activeSelf attribute of the GameObject
+
+\item{Test-CP2\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Empty scene, no objects spawned
+
+\textbf{Input:} Spawn in Combination Puzzle
+
+\textbf{Output:} Combination Puzzle object is not null
+
+\textbf{Test Case Derivation:} When Combination puzzle is spawned, need to make sure that the GameObject exists
+
+\textbf{How test will be performed:} NUnit test that instantiates the CombinationPuzzle prefab into the scene and checks that GameObject is not null
+
+\item{Test-CP3\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Combination puzzle has been spawned and initialized
+
+\textbf{Input:} Simulate pressing the "3" button on the keypad
+
+\textbf{Output:} The first character of the current code is returned as "3"
+
+\textbf{Test Case Derivation:} When a button corresponding to the correct digit of the combination is pressed, the current code should update accordingly storing that correct entry.
+
+\textbf{How test will be performed:} NUnit test that calls the KeyPadPress function with an input of "3" and checks the updated currentCode first digit value against the character "3" to check that they are equal
+
+\item{Test-CP4\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Combination puzzle has been spawned and initialized
+
+\textbf{Input:} Simulate pressing the "4" button on the keypad
+
+\textbf{Output:} The first character of the current code is returned as "\_"
+
+\textbf{Test Case Derivation:} When a button not corresponding to the current current combination digit is pressed the currentCode value should reset to it's default as the users must restart their entry of the combination
+
+\textbf{How test will be performed:} NUnit test that calls the KeyPadPress function with an input of "4" and checks the updated currentCode first digit value against the character "\_" to check that they are equal
+
+\item{Test-CP5\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Combination puzzle has been spawned and initialized
+
+\textbf{Input:} Simulate pressing the buttons corresponding to the correct code
+
+\textbf{Output:} The completePuzzle value is returned as True
+
+\textbf{Test Case Derivation:} When the correct combination is entered the puzzle should be marked as complete in order to proceed in the room.
+
+\textbf{How test will be performed:} NUnit test that calls the KeyPadPress function for each of the four digits corresponding to the correct code. Then assert that the value of completePuzzle is True
+
+\item{Test-CP6\\}
+
+\textbf{Type:} Automatic
+ 
+\textbf{Initial State:} Empty scene, no objects spawned
+
+\textbf{Input:} Spawn in and initialize the Combination Puzzle
+
+\textbf{Output:} Instruction page text is not the default value
+
+\textbf{Test Case Derivation:} When the combination puzzle is spawned in and initialized the instruction page should be populated with the instruction information for the corresponding user. If the page still contains the default information after initializing the puzzle, the test has failed.
+
+\textbf{How test will be performed:} NUnit test that instantiates and initializes the CombinationPuzzle prefab and checks that the text field of the instruction page game object does not still only contain the test "Instructions" which is the default value.
+
+\end{enumerate}
 % ...
 
 \subsection{Tests for Nonfunctional Requirements}
-TBD
+Due to constraints with the Unity environment, all non-functional are to be performed manually. 
 % \wss{If there is a module that needs to be independently assessed for
 %   performance, those test cases can go here.  In some projects, planning for
 %   nonfunctional tests of units will not be that relevant.}
@@ -1829,7 +2218,143 @@ TBD
 % ...
 
 \subsection{Traceability Between Test Cases and Modules}
-TBD
+Module descriptions can be found in section 5 of the MG. Module M10 (Math Puzzle module) will not be implemented, and therefore does not have any traceability to tests. In the future, documents will be revised to update module numbering.
+
+\begin{table}[H]
+\centering
+\begin{adjustwidth}{-0.3in}{-0.5in}
+\scalebox{0.6}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-15}
+                                     & \textbf{M1} & \textbf{M2} & \textbf{M3} & \textbf{M4} & \textbf{M5} & 
+                                     \textbf{M6} &
+                                     \textbf{M7} &
+                                     \textbf{M8} &
+                                     \textbf{M9} &
+                                     \textbf{M10} &
+                                     \textbf{M11} & \textbf{M12} & \textbf{M13} & \textbf{M14} \\ \hline
+\multicolumn{1}{|l|}{{Test-CR1}}   &             &         X    &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CR2}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CR3}}   &             &        X     &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CR4}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CR5}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CR6}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-JR1}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-JR2}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-JR3}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-JR4}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-RS1}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-RS2}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-RS3}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ER1}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ER2}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ER3}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ST1}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ST2}}   &             &         X    &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ST3}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ST4}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ST5}}   &             &             &             &             &      X       &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI1}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI2}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI3}}   &             &             &             &             &      X       &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI4}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI5}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI6}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI7}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI8}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI9}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI10}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI11}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI12}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS1}}   &             &             &   X          &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS2}}   &             &             &         X    &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS3}}   &             &             &      X       &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS4}}   &             &             &      X       &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS5}}   &             &             &    X         &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS6}}   &             &             &    X         &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PM1}}   &             &             &             &             &    X         &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PM2}}   &             &             &             &             &      X       &             &             &             &              &              &              &             &  &                    \\ \hline
+\end{tabular}}
+\caption{Module Traceability Matrix}
+    \label{tab:matrix4}
+\end{adjustwidth}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\begin{adjustwidth}{-0.3in}{-0.5in}
+\scalebox{0.6}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-15}
+                                     & \textbf{M1} & \textbf{M2} & \textbf{M3} & \textbf{M4} & \textbf{M5} & 
+                                     \textbf{M6} &
+                                     \textbf{M7} &
+                                     \textbf{M8} &
+                                     \textbf{M9} &
+                                     \textbf{M10} &
+                                     \textbf{M11} & \textbf{M12} & \textbf{M13} & \textbf{M14} \\ \hline
+\multicolumn{1}{|l|}{{Test-PM3}}   &             &             &             &             &    X         &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PM4}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PM5}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP1}}   &             &             &             &             &             &             &             &             &         X     &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP2}}   &             &             &            &             &             &             &             &             &         X    &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP3}}   &             &             &             &             &             &             &             &             &          X    &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP4}}   &             &             &             &             &             &             &             &             &           X   &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP5}}   &             &             &             &             &             &             &             &             &          X    &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP6}}   &             &             &             &             &             &             &             &             &         X    &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP7}}   &             &             &             &             &             &             &             &             &         X     &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP1}}   &             &             &             &             &             &        X     &             &             &              &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP2}}   &             &             &             &             &             &       X      &             &             &              &            &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP3}}   &             &             &             &             &             &        X     &             &             &              &            &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP4}}   &             &             &             &             &             &         X    &             &             &              &            &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP5}}   &             &             &             &             &             &       X      &             &             &              &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP6}}   &             &             &             &             &             &       X      &            &             &              &             &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI1}}   &             &             &             &             &             &             &             &     X        &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI2}}   &             &             &             &             &             &             &             &    X         &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI3}}   &             &             &             &             &             &             &             &    X         &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI4}}   &             &             &             &             &             &             &             &    X         &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI5}}   &             &             &             &             &             &             &             &    X         &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-IP1}}   &             &             &             &             &             &             &      X       &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-IP2}}   &             &             &             &             &             &             &       X      &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-IP3}}   &             &             &             &             &             &             &       X      &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-IP4}}   &             &             &             &             &             &             &       X      &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP1}}   &             &             &             &             &             &             &             &             &              &             &       X       &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP2}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP3}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP4}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP5}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP6}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-LF1}}   &             &         X    &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-LF2}}   &             &        X     &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-LF3}}   &             &           X  &             &             &    X         &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-LF4}}   &             &         X    &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH1}}   &             &        X     &             &             &             &             &             &             &              &              &              &              & X &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH2}}   &             &       X      &             &             &             &             &             &             &              &              &              &             & X &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH3}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  X &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH4}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH5}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH6}}   &             &        X     &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH7}}   &             &        X     &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH8}}   &             &        X     &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PR1}}   &             &       X      &             &             &             &             &             &             &              &              &              &       X      &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PR2}}   &             &        X     &      X       &   X          &             &             &             &             &              &              &              &      X       &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PR3}}   &             &       X      &      X       &        X     &             &             &             &             &              &              &              &      X       &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PR4}}   &             &       X      &      X       &        X     &             &             &             &             &              &              &              &      X       &  X &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MT1}}   &             &             &             &             &             &             &             &             &              &              &              &             &  & X                   \\ \hline
+\multicolumn{1}{|l|}{{Test-MT2}}   &             &             &             &             &             &             &             &             &              &              &              &             &  &    X                \\ \hline
+\multicolumn{1}{|l|}{{Test-SR1}}   &             &             &             &             &             &             &             &             &              &              &              &      X       &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SR2}}   &             &             &             &             &             &             &             &             &              &              &              &       X      &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CU1}}   &             &             &             &             &             &             &             &             &              &              &              &             &  &    X                \\ \hline
+\multicolumn{1}{|l|}{{Test-CU2}}   &             &             &             &             &             &             &             &             &              &              &              &             &  &  X                  \\ \hline
+\multicolumn{1}{|l|}{{Test-CU3}}   &             &             &             &             &             &             &             &             &              &              &              &             &  &  X                  \\ \hline
+\multicolumn{1}{|l|}{{Test-LR1}}   &             &             &             &             &             &             &             &             &              &              &              &             &  & X                   \\ \hline
+\multicolumn{1}{|l|}{{Test-HS1}}   &             &          X   &             &             &             &             &             &             &              &              &              &             & X &                    \\ \hline
+\end{tabular}}
+\caption{Module Traceability Matrix Pt. 2}
+    \label{tab:matrix5}
+\end{adjustwidth}
+\end{table}
 
 % \wss{Provide evidence that all of the modules have been considered.}
 				

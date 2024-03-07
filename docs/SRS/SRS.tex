@@ -164,6 +164,7 @@
             November 3, 2023 & Ethan & Updated SRS to include Hazard Analysis requirements\\
             January 4, 2024 & Ethan & Updated SRS to include requirement for notifying user to update to latest version of application\\
             March 1, 2024 & Ethan & Updated SRS to remove Save/Load/Delete Requirements\\
+            March 6, 2024 & Sam & Updated PI7 to be more explicit about progress bar\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -180,7 +181,7 @@ Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobert
 This section will give a general overview of the motivation behind creating Mac-AR, along with what constraints it needs to be created within. 
 
 \subsection{The Purpose of the Project}
-In the modern world, it has become increasingly harder to meet new people and form connections with others. This has become especially true in recent years, with the pandemic isolating people even further. Mac-AR aims to solve this by providing a fun, interactive means to cooperate with others and form new connections. As a team, users will be able to work alongside people they already know and strangers around the world to solve interesting puzzles, either outside or from the comfort of their own home. 
+In the modern world, it has become increasingly harder to meet new people and form connections with others. This has become especially true in recent years, with the pandemic isolating people even further. Mac-AR aims to solve this by providing a fun, interactive means to cooperate with others and form new connections. As a team, users will be able to work alongside people either co-located or remotely at places they prefer, to solve interesting puzzles and bond with each other.
 
 \subsection{The Stakeholders}
 The following groups and individuals are the reason for the existence of Mac-AR. 
@@ -226,7 +227,7 @@ The following off-the-shelf software will be utilized:
 \end{itemize}
 
 \subsubsection{Anticipated Workplace Environment}
-The anticipated workplace environment will be intentionally broad. The product can be used from anywhere the user has access to a mobile device and internet to run the application, with no limits on being indoors or outdoors. 
+The anticipated workplace environment will be intentionally broad. The product can be used from anywhere the user has access to a mobile device and internet to run the application, with no limits on being indoors. 
 
 \subsubsection{Schedule Constraints}
 The general document and development milestone constraints are as follows:
@@ -314,17 +315,16 @@ The product will be developed under the following assumptions.
 
 \subsubsection{User Assumptions}
 \begin{itemize}
-    \item [A1] Users will have a connection to the internet for the duration of the time that they are actively using the app. 
-    \item [A2] The user will provide consent for the app to access the camera on the device which is running the app. 
-    \item [A3] The user will provide the app to access locations services and track where the user is while actively using the app. 
+    \item [A1] The user will provide consent for the app to access the camera on the device which is running the app. 
+    \item [A2] The user will provide the app to access locations services and track where the user is while actively using the app. 
 \end{itemize}
 
 \subsubsection{Device Assumptions}
 \begin{itemize}
-    \item [A4] Devices will only have a maximum of one instance of the app running at any given time. 
-    \item [A5] The device that the app is running on will have a functional camera. 
-    \item [A6] The device that the app is running on will have a functional gyroscope, or equivalent technology to measure device tilt. 
-    \item [A7] The device that the app is running on will have a functional GPS, or equivalent technology to measure device location. 
+    \item [A3] Devices will only have a maximum of one instance of the app running at any given time. 
+    \item [A4] The device that the app is running on will have a functional camera. 
+    \item [A5] The device that the app is running on will have a functional gyroscope, or equivalent technology to measure device tilt. 
+    \item [A6] The device that the app is running on will have a functional GPS, or equivalent technology to measure device location. 
 \end{itemize}
 
 \section{Functional Requirements}
@@ -357,7 +357,7 @@ external systems and services.
 \textbf{Outcome:}
 \begin{enumerate}
 	\item The system links the user to the game room, and decreases the available capacity in the room
-    \item The server retrieves the data from the game room and updates the game room for all the users with the new user's name, and decreases the visible room capacity
+    \item The server retrieves the data from the game room and updates the game room for all the users with the newly joined user's name, and decreases the visible room capacity
 \end{enumerate}
 \textbf{Use Case \#3:} User edits the game room settings\\
 \textbf{Trigger:} The user of the game room clicks the edit game settings button\\
@@ -383,7 +383,7 @@ external systems and services.
 \end{enumerate}
 \textbf{Use Case \#5:} User starts the game\\
 \textbf{Trigger:} The users in a game room click the start game button\\
-\textbf{Pre-condition:} The game room has enough available group members\\
+\textbf{Pre-condition:} The game room has all group members present\\
 \textbf{Outcome:}
 \begin{enumerate}
 	\item The server launches the game and synchronizes the user and group member data. 
@@ -473,8 +473,6 @@ external systems and services.
     \textbf{Rationale:} The user should be able to see all the settings that are able to be changed
     \item The system shall allow the user to change the password of the room\newline 
     \textbf{Rationale:} The user should be able to change the password of the room to ensure security
-    \item The system shall allow the user to change the capacity of the room\newline 
-    \textbf{Rationale:} If the user was planning on having a set number of users and decides they want more or less users, they are able to change the capacity
     \item The system shall allow the user to remove group members from the game room\newline 
     \textbf{Rationale:} If the host user decides a group member should not be in the game room, they can remove them instead of making a new room
     \item The system shall display the updated settings to the game members in the game room\newline 
@@ -520,7 +518,7 @@ external systems and services.
         \textbf{Rationale}: When multiple group members are cooperating on a puzzle they must be able to see updates caused by the actions of one another
         \item The system shall notify the user when they have completed a puzzle\\
         \textbf{Rationale}: Users should know when they've completed a puzzle so they know they can move on. A notification at the end of a puzzle can also make completing it more satisfying for the user
-        \item The system shall update the overall room progress when a puzzle is completed\\
+        \item The system shall update the overall room progress and progress bar when a puzzle is completed\\
         \textbf{Rationale}: The overall room progress must be continuously updated as puzzles are completed so the game can detect when all the puzzles have been completed and the users have accomplished their goal
     \end{enumerate}
 \subsubsection{Hint Request}
@@ -593,14 +591,12 @@ The following section will describe the non-functional requirements of the appli
     \textit{Fit criterion: The system shall abide by the WCAG 2.1 AA standard~\citep{WCAG2.1}  for accessibility}
     \item The system shall prompt the user to re-enter an area with internet connection when it detects there is no network\newline
     \textit{Fit criterion: The system should produce a notification when network connection is lost}
-    \item The system shall prompt the user if it detects that the existing network connection is weak\newline
-    \textit{Fit criterion: The system should produce a notification when network connection is weak}
+    \item %The system shall prompt the user if it detects that the existing network connection is weak\newline
+    %\textit{Fit criterion: The system should produce a notification when network connection is weak}
     \item The system shall prompt the user if their current environment is unsuitable to use the application\newline
-    \textit{Fit criterion: The system will produce a pop up notification during calibration setup to let user know of issues with their environment, as well as if after calibration the user environment becomes unsuitable}
+    \textit{Fit criterion: The system will produce a pop up notification during startup to let user know of issues with their environment, as well as if after startup the user environment becomes unsuitable. This may include lighting or distance to spawned puzzles}
     \item The system shall allow users to reconnect to their game session if they become disconnected\newline
     \textit{Fit criterion: The system will prompt the user to reconnect to their game session through a reconnect button, which upon pressing will reconnect to the user's previous session}
-    \item The system shall alert users of potentially dangerous conditions \newline
-    \textit{Fit criterion: The system will notify the user about incoming dangerous weather when it is detected}
     \item The system shall inform users who are using an old version of the application to check for updates and use the latest version
     \newline
     \textit{Fit criterion: The system will produce a notification to let the user know to update their application to the latest version, in order to play online}
@@ -628,7 +624,7 @@ The following section will describe the non-functional requirements of the appli
 \subsection{Security Requirements}
 \begin{enumerate}[SR\arabic*.]
     \item The system shall keep user data private\newline
-    \textit{Fit criterion: User passwords or IP addresses should not be displayed and should only be accessible to the internal system functions. No external data queries to the database or the system should be able to retrieve this information.}
+    \textit{Fit criterion: Game room passwords or IP addresses should not be displayed and should only be accessible to the internal system functions. No external data queries to the database or the system should be able to retrieve this information.}
     \item The users will only be allowed to see limited data. Unnecessary data will not be displayed to the user\newline
     \textit{Fit criterion: The system shall only show users any data required in order to play the game}
 \end{enumerate}
@@ -755,7 +751,7 @@ The application will affect the way people who are isolated/remote are able to c
 The application will not have any effect on the mobile devices it is installed on. It will act as a standalone application on the device and should not affect any other parts of the device.
 
 \subsubsection{Potential User Problems}
-A potential user problem may be the difficulty in solving in-game puzzles/tasks. If tasks are too difficult to complete, it may result in users wanting to quit the game, and therefore resulting in a decreased level of social interaction. Additionally, if the tasks are too easy to solve, this may also reduce the level of social interaction as users will not need to communicate as much. This may also result in users not enjoying the gameplay.
+A potential user problem may be the difficulty in solving in-game puzzles/tasks. If tasks are too difficult to complete, it may result in users wanting to quit the game, and therefore resulting in a decreased level of social interaction. Additionally, if the tasks are too easy to solve, this may also reduce the level of social interaction as users will not need to communicate as much. This may also result in users not enjoying the play.
 
 \subsubsection{Limitations in the Anticipated Implementation Environment That May Inhibit the New Product}
 It is assumed that users will be able to use the application in an area with internet connection, however, it is not unusual that people may have Internet issues, which may cause them to lose connection to the Internet. This results in a problem as without Internet connection users will disconnect from the host server, causing them to not be able to play the game or interact with their partner.
