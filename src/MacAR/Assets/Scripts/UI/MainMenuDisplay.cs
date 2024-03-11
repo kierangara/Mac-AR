@@ -18,6 +18,7 @@ public class MainMenuDisplay : MonoBehaviour
     [SerializeField] private TMP_InputField lobbyNameInputField;
     [SerializeField] private TMP_InputField passwordInputField;
     [SerializeField] private Slider sliderInput;
+    private bool isHosting = false;
 
 
     private async void Start()
@@ -25,6 +26,7 @@ public class MainMenuDisplay : MonoBehaviour
         try
         {
             await UnityServices.InitializeAsync();
+            
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             //Debug.Log($"Player Id: {AuthenticationService.Instance.PlayerId}");
         }
@@ -40,6 +42,11 @@ public class MainMenuDisplay : MonoBehaviour
 
     public async void StartHost()
     {
+        if(isHosting)
+        {
+            return;
+        }
+        isHosting = true;
         HostManager.Instance.setConnections((int)Math.Min(Math.Max(2.0, Mathf.RoundToInt(sliderInput.value * 10)), 10));
         HostManager.Instance.setLobbyName(lobbyNameInputField.text);
         if(passwordInputField != null ) 
@@ -48,6 +55,7 @@ public class MainMenuDisplay : MonoBehaviour
         }
 
         await HostManager.Instance.StartHost();
+        isHosting = false;
     }
 
     public async void StartClient()

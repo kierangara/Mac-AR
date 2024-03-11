@@ -19,6 +19,7 @@ public class LobbyItem : MonoBehaviour
 
     private LobbiesList lobbiesList;
     private Lobby lobby;
+    private bool isJoining = false;
 
     public void Initialise(LobbiesList lobbiesList, Lobby lobby)
     {
@@ -32,6 +33,11 @@ public class LobbyItem : MonoBehaviour
 
     public void Join()
     {
+        if(isJoining)
+        {
+            return;
+        }
+        isJoining = true;
         //Debug.Log(passwordEnter.text);
         try
         {
@@ -57,6 +63,8 @@ public class LobbyItem : MonoBehaviour
         {
             LogHandlerSettings.Instance.SpawnErrorPopup($"Error joining lobby : Password Mismatch issue");
         }
+
+        isJoining=false;
         
 
         
