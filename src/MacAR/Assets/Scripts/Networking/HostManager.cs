@@ -129,7 +129,6 @@ public class HostManager : MonoBehaviour
 
         ClientData = new Dictionary<ulong, ClientData>();
 
-        
 
         NetworkManager.Singleton.StartHost();
         return;
