@@ -44,10 +44,10 @@ public class PlayerList : NetworkBehaviour
         Debug.Log("Voice " + voiceToggle.isOn);
         if (voiceToggle.isOn)
         {
-            client.AudioInputDevices.Muted = false; 
+            client.AudioInputDevices.Muted = true; 
         } else
         {
-            client.AudioInputDevices.Muted = true;
+            client.AudioInputDevices.Muted = false;
         }
     }
 
