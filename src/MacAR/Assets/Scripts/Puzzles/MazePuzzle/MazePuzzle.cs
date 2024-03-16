@@ -83,6 +83,7 @@ public class MazePuzzle : PuzzleBase
         {
             RequestMazeServerRpc();
         }
+        setColumns();
 
 
     }
@@ -171,6 +172,37 @@ public class MazePuzzle : PuzzleBase
         trackingZRot = 0;
     }
 
+    private void setColumns()
+    {
+        for (int x = 0; x < _mazeWidth; x++)
+        {
+            for (int z = 0; z < _mazeLength; z++)
+            {
+                if(x==0)
+                {
+                    _mazeGrid[x, z].ShowColumnFL();
+                }
+                if(z==0)
+                {
+                    _mazeGrid[x,z].ShowColumnBL();
+                }
+                if(z==_mazeWidth-1)
+                {
+                    _mazeGrid[x,z].ShowColumnBR();
+                }
+                if(x!=0)
+                {
+                    _mazeGrid[x,z].ClearLeftWall();
+                }
+                if(z!=0)
+                {
+                    _mazeGrid[x, z].ClearRearWall();
+                }
+            }
+        }
+    }
+
+
     public bool returnCompletionStatus()
     {
         return puzzleComplete;
@@ -238,6 +270,7 @@ public class MazePuzzle : PuzzleBase
                 }
             }
         }
+        setColumns();
 
     }
 
