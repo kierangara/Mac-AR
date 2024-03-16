@@ -58,7 +58,7 @@ public class MainMenuDisplay : MonoBehaviour
         HostManager.Instance.setLobbyName(lobbyNameInputField.text);
         if(passwordInputField != null ) 
         {
-            while(passwordInputField.text.Length<8)
+            while((passwordInputField.text.Length!=0)&&(passwordInputField.text.Length<8))
             {
                 passwordInputField.text = passwordInputField.text + " ";
             }
