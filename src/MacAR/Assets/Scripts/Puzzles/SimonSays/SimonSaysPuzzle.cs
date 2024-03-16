@@ -14,6 +14,14 @@ public class SimonSaysPuzzle : PuzzleBase
     [SerializeField] private GameObject component1;
     [SerializeField] private GameObject component2;
     [SerializeField] private TMP_Text debugText;
+
+    [SerializeField] private Material redMaterial;
+    [SerializeField] private Material blueMaterial;
+    [SerializeField] private Material yellowMaterial;
+    [SerializeField] private Material greenMaterial;
+    [SerializeField] private Material blackMaterial;
+
+
     public static SimonSaysPuzzle instance;
 
     public SimonButton[] simonButtons;
@@ -60,7 +68,26 @@ public class SimonSaysPuzzle : PuzzleBase
     [ClientRpc]
     public void UpdateCubeClientRpc(Color colour)
     {
-        cube.GetComponent<Renderer>().material.SetColor("_Color", colour);
+        if(colour==Color.black)
+        {
+            cube.GetComponent<Renderer>().material=blackMaterial;
+        }
+        else if(colour==Color.red) 
+        {
+            cube.GetComponent<Renderer>().material = redMaterial;
+        }
+        else if (colour == Color.blue)
+        {
+            cube.GetComponent<Renderer>().material = blueMaterial;
+        }
+        else if (colour == Color.green)
+        {
+            cube.GetComponent<Renderer>().material = greenMaterial;
+        }
+        else if (colour == Color.yellow)
+        {
+            cube.GetComponent<Renderer>().material = yellowMaterial;
+        }
 
     }
 

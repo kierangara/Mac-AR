@@ -77,6 +77,11 @@ MonoBehaviour:
   component1: {fileID: 4454781244648668468}
   component2: {fileID: 1363606692220904201}
   debugText: {fileID: 5706319024995129737}
+  redMaterial: {fileID: 2100000, guid: 697b2b55826d48148829d1bf658e41d7, type: 2}
+  blueMaterial: {fileID: 2100000, guid: cb403a28b07f54446b1b2993b738f023, type: 2}
+  yellowMaterial: {fileID: 2100000, guid: 0e2a75699fef3dd4f9d358798f78054c, type: 2}
+  greenMaterial: {fileID: 2100000, guid: aaf68e1b953bd444f869e6ee6484f1c0, type: 2}
+  blackMaterial: {fileID: 2100000, guid: efe2682db1593024994c9217eed5b2a1, type: 2}
   simonButtons:
   - {fileID: 5332547936850876260}
   - {fileID: 4034987436233721280}
