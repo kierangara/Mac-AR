@@ -6,6 +6,7 @@ public class SimonButton : MonoBehaviour
 {
     public int id;
     public static SimonButton instance;
+    [SerializeField] private Material blackMaterial;
 
     private void OnMouseDown()
     {
@@ -27,10 +28,14 @@ public class SimonButton : MonoBehaviour
     private IEnumerator Wait()
     {
         Color buttonColour = gameObject.GetComponent<Renderer>().material.GetColor("_Color");
+        Material mat = gameObject.GetComponent<Renderer>().material;
         Debug.Log("Waiting");
         gameObject.GetComponent<Renderer>().material.SetColor("_Color", Color.black);
+        gameObject.GetComponent<Renderer>().material = blackMaterial;
+        Debug.Log("Set colour black" + gameObject.GetComponent<Renderer>().material.GetColor("_Color"));
         yield return new WaitForSeconds(0.3f);
         gameObject.GetComponent<Renderer>().material.SetColor("_Color", buttonColour);
+        gameObject.GetComponent<Renderer>().material = mat;
         Debug.Log("Done Waiting");
     }
     // Start is called before the first frame update
