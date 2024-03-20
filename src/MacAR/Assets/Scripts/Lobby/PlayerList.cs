@@ -37,6 +37,7 @@ public class PlayerList : NetworkBehaviour
         players = new NetworkList<PlayerData>();
         VoiceToggle.onValueChanged.AddListener(delegate 
             { VivoxToggle(VoiceToggle,mainClient); });
+        mainClient.AudioInputDevices.Muted = true;
     }
 
     void VivoxToggle(Toggle voiceToggle, VivoxUnity.Client client)
