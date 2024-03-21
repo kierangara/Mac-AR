@@ -77,11 +77,11 @@ MonoBehaviour:
   component1: {fileID: 4454781244648668468}
   component2: {fileID: 1363606692220904201}
   debugText: {fileID: 5706319024995129737}
-  redMaterial: {fileID: 2100000, guid: 697b2b55826d48148829d1bf658e41d7, type: 2}
-  blueMaterial: {fileID: 2100000, guid: cb403a28b07f54446b1b2993b738f023, type: 2}
-  yellowMaterial: {fileID: 2100000, guid: 0e2a75699fef3dd4f9d358798f78054c, type: 2}
-  greenMaterial: {fileID: 2100000, guid: aaf68e1b953bd444f869e6ee6484f1c0, type: 2}
-  blackMaterial: {fileID: 2100000, guid: efe2682db1593024994c9217eed5b2a1, type: 2}
+  redMaterial: {fileID: 2100000, guid: 802a0e341a87e8b4494f5903c3cf9bf6, type: 2}
+  blueMaterial: {fileID: 2100000, guid: ec05436127b02414cbc165ed8af2ead8, type: 2}
+  yellowMaterial: {fileID: 2100000, guid: 0d401c53c6a3f9c4c831b653904a441b, type: 2}
+  greenMaterial: {fileID: 2100000, guid: ae2b3835c37b2be49bc27d8a16cb5470, type: 2}
+  blackMaterial: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
   simonButtons:
   - {fileID: 5332547936850876260}
   - {fileID: 4034987436233721280}
@@ -395,6 +395,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8084511361942777209, guid: 870d82780c22ef7438f54f9bfab1c5fd,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084511361942777209, guid: 870d82780c22ef7438f54f9bfab1c5fd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084511361942777209, guid: 870d82780c22ef7438f54f9bfab1c5fd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8084511361942777209, guid: 870d82780c22ef7438f54f9bfab1c5fd,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
       objectReference: {fileID: 0}
@@ -435,6 +450,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6368725146372195561}
     m_Modifications:
+    - target: {fileID: 474467090852283944, guid: d702786e099974a43b9aa1f96833ec1d,
+        type: 3}
+      propertyPath: blackMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
     - target: {fileID: 702778510465669350, guid: d702786e099974a43b9aa1f96833ec1d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -460,6 +480,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2646703192118260979, guid: d702786e099974a43b9aa1f96833ec1d,
+        type: 3}
+      propertyPath: blackMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
     - target: {fileID: 2994122328783137655, guid: d702786e099974a43b9aa1f96833ec1d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -530,6 +555,11 @@ PrefabInstance:
       propertyPath: networkObject
       value: 
       objectReference: {fileID: 1684098041296157334}
+    - target: {fileID: 6069359993848250757, guid: d702786e099974a43b9aa1f96833ec1d,
+        type: 3}
+      propertyPath: blackMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
     - target: {fileID: 6807226405597491781, guid: d702786e099974a43b9aa1f96833ec1d,
         type: 3}
       propertyPath: m_Name
@@ -545,6 +575,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8893350219048031372, guid: d702786e099974a43b9aa1f96833ec1d,
+        type: 3}
+      propertyPath: blackMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
     - target: {fileID: 8942577403199093459, guid: d702786e099974a43b9aa1f96833ec1d,
         type: 3}
       propertyPath: networkObject

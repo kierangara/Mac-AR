@@ -8,6 +8,7 @@ public class DisplayChat : MonoBehaviour
     CanvasGroup canvasGroup;
     public Sprite textChatLogo;
     public Sprite xLogo;
+    public Button dispButton;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class DisplayChat : MonoBehaviour
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
             GameObject.Find("DisplayChat").GetComponent<Image>().overrideSprite = xLogo;
+            dispButton.interactable = false;
         }
     }
 
@@ -37,6 +39,7 @@ public class DisplayChat : MonoBehaviour
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
             GameObject.Find("DisplayChat").GetComponent<Image>().overrideSprite = textChatLogo;
+            dispButton.interactable = true;
         }
     }
 }
