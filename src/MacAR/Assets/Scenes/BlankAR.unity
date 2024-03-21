@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -362,6 +362,24 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &581277411 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 634722527712501559, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2111837404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &581277416
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 581277411}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &656880745
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +440,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &695597461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4897585286003410740, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2111837404}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &849898826 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2042718642698331533, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
@@ -1074,6 +1098,11 @@ PrefabInstance:
       propertyPath: m_HorizontalFit
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1767191638332500283, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1905106635469661098, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1217,7 +1246,7 @@ PrefabInstance:
     - target: {fileID: 5935844316141068891, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1355.4456
+      value: 1355.4457
       objectReference: {fileID: 0}
     - target: {fileID: 6225658175442129298, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
@@ -1417,7 +1446,7 @@ PrefabInstance:
     - target: {fileID: 8044229500975310936, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DisplayChat, Assembly-CSharp
+      value: DisplayChat, MainAssembly
       objectReference: {fileID: 0}
     - target: {fileID: 8044229500975310936, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
@@ -1477,6 +1506,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 210639883}
+    - targetCorrespondingSourceObject: {fileID: 4897585286003410740, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2113113432}
+    - targetCorrespondingSourceObject: {fileID: 634722527712501559, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 581277416}
   m_SourcePrefab: {fileID: 100100000, guid: 9b5d47bbf1120954eb2f6c9381fc622d, type: 3}
 --- !u!114 &2113113427 stripped
 MonoBehaviour:
@@ -1484,12 +1521,29 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 2111837404}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 695597461}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2113113432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695597461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
