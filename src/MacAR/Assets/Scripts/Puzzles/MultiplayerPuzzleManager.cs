@@ -20,11 +20,14 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     {
         Debug.Log("Multiplayer Puzzle Manager called");
 
-        SpawnPuzzleServerRpc();
+        SpawnPuzzleServerRpc(puzzleIndex);
+        
+        // Increment
+        puzzleIndex += 1;
     }
 
     [ServerRpc]
-    private void SpawnPuzzleServerRpc()
+    private void SpawnPuzzleServerRpc(int curPuzzleIndex)
     {
         
         if(!IsServer)
@@ -47,20 +50,17 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         }
 
         // Serialize
-        byte[] bytes = objectToBytes(clients);
+        byte[] bytes = ObjectToBytes(clients);
 
         // Instantiate 
-        Debug.Log("Spawn: " + puzzleIndex);
-        puzzleInstance = Instantiate(puzzles[puzzleIndex]); 
+        Debug.Log("Spawn: " + curPuzzleIndex);
+        puzzleInstance = Instantiate(puzzles[curPuzzleIndex]); 
 
         // Spawn
         puzzleInstance.SpawnWithOwnership(OwnerClientId);
 
         // Initialize
         InitializeClientRpc(puzzleInstance, bytes);
-
-        // Increment
-        puzzleIndex += 1;
     }
 
     [ClientRpc]
@@ -69,7 +69,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         if (puzzleRef.TryGet(out NetworkObject puzzle))
         {
             // Deserialize
-            List<ulong> clients = bytesToObject(clientBytes);
+            List<ulong> clients = BytesToObject(clientBytes);
 
             puzzle.GetComponentInChildren<PuzzleData>().cam = cam;
             puzzle.GetComponentInChildren<PuzzleData>().completePuzzle = this;
@@ -128,7 +128,10 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         puzzleInstance = null;
 
         Debug.Log("Spawn New");
-        SpawnPuzzleServerRpc();
+        SpawnPuzzleServerRpc(puzzleIndex);
+
+        // Increment
+        puzzleIndex += 1;
     }
 
     // Update is called once per frame
@@ -137,14 +140,14 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
-    public byte[] objectToBytes(List<ulong> clients) 
+    public byte[] ObjectToBytes(List<ulong> clients) 
     {
         return clients
             .SelectMany(BitConverter.GetBytes)
             .ToArray();
     }
 
-    public List<ulong> bytesToObject(byte[] bytes) 
+    public List<ulong> BytesToObject(byte[] bytes) 
     {
         // TODO: Add ulong size check that changes Uint64/ UInt32
         var size = sizeof(ulong);
