@@ -33,7 +33,7 @@ public class IsometricPuzzleManager : PuzzleBase
             {
                 for (int z = 0; z < _cubeLength; z++)
                 {
-                    _cubesCollection[x,y,z] = Instantiate(_cubePrefab, new Vector3((float)(x * 0.2 + this.transform.position.x - 0.5), (float)(y * 0.2 +this.transform.position.y - 0.5), (float)(z * 0.2 + this.transform.position.z - 0.5)), Quaternion.identity);
+                    _cubesCollection[x,y,z] = Instantiate(_cubePrefab, new Vector3((float)(x * 0.1 + this.transform.position.x - 0.25), (float)(y * 0.1 +this.transform.position.y - 0.25), (float)(z * 0.1 + this.transform.position.z - 0.25)), Quaternion.identity);
                     _cubesCollection[x,y,z].transform.parent = this.transform;
                 }
             }
