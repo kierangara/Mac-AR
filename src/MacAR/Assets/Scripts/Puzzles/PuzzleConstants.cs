@@ -15,15 +15,15 @@ public static class PuzzleConstants
     // Puzzle Locations
     public static readonly Vector3 ISO_SPAWN_POS = new Vector3(0, 0, 0);
     public static readonly Vector3 COMBINATION_SPAWN_POS = new Vector3(0, 0, 0);
-    public static readonly Vector3 WIRE_SPAWN_POS = new Vector3(0, 0, 0);
-    public static readonly Vector3 SIMON_SPAWN_POS = new Vector3(0, 0, 0);
+    public static readonly Vector3 WIRE_SPAWN_POS = new Vector3(0, 0, -5);
+    public static readonly Vector3 SIMON_SPAWN_POS = new Vector3(-10, 0, -5);
     public static readonly Vector3 MAZE_SPAWN_POS = new Vector3(0, 0, 0);
 
     // Puzzle  Rotations
     public static readonly Quaternion ISO_ROTATION = Quaternion.identity;
     public static readonly Quaternion COMBINATION_ROTATION = Quaternion.identity;
-    public static readonly Quaternion WIRE_ROTATION = Quaternion.identity;
-    public static readonly Quaternion SIMON_ROTATION = Quaternion.identity;
+    public static readonly Quaternion WIRE_ROTATION = Quaternion.Euler(0, 180, 0);
+    public static readonly Quaternion SIMON_ROTATION = Quaternion.Euler(0, 90, 0);
     public static readonly Quaternion MAZE_ROTATION = Quaternion.identity;
 
     // Puzzle Batches (Not all puzzles work on screen together, split into batches)

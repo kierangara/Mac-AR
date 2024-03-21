@@ -123,7 +123,7 @@ public class SimonSaysPuzzle : PuzzleBase
             string texter = "Congrats you completed the puzzle!";
             UpdateTextServerRpc(texter);
             yield return new WaitForSeconds(3.0f);
-            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0, PuzzleConstants.SIMON_ID);
             yield break;
         }
         string text = "Level = " + level;
