@@ -107,12 +107,12 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     [ServerRpc]
     public void CompletePuzzleServerRpc(ulong clientId)
     {
-        puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().active = false;
+        puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(false);
         activePuzzleIndex += 1;
 
         if(activePuzzleIndex < PuzzleConstants.puzzleBatches[activePuzzleBatchIndex].Count)
         {
-            puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().active = true;
+            puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(true);
         }
         else 
         {

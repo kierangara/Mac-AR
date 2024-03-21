@@ -5,8 +5,8 @@ using Unity.Netcode;
 
 public class WireBehaviour : PuzzleBase
 {
-    public PassiveWires passive;
-    public ActiveWires active;
+    public PassiveWires passiveWire;
+    public ActiveWires activeWire;
     public GameObject passiveObj;
     public GameObject activeObj;
     public PuzzleData puzzleData;
@@ -26,8 +26,8 @@ public class WireBehaviour : PuzzleBase
                                             new List<uint>{3, 2}, 
                                             new List<uint>{2, 1}};
 
-        passive.Init(testSequence);
-        active.Init(testSequence);
+        passiveWire.Init(testSequence);
+        activeWire.Init(testSequence);
 
         if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
@@ -36,6 +36,16 @@ public class WireBehaviour : PuzzleBase
         else 
         {
             activeObj.transform.localScale = new Vector3(0, 0, 0);
+        }
+    }
+
+    public override void SetActive(bool status)
+    {
+        active = status;
+
+        if(status == true)
+        {
+            activeWire.SetActive();
         }
     }
 
