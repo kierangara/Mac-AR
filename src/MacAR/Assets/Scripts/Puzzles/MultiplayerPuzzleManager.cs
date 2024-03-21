@@ -12,7 +12,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     private int activePuzzleBatchIndex = 0;
     private int activePuzzleIndex = 0;
     public Camera cam; 
-    List<NetworkObject> puzzleInstances = new List<NetworkObject>();
+    public List<NetworkObject> puzzleInstances = new List<NetworkObject>();
     List<int> spawnedPuzzles = new List<int>();
 
     //Start is called before the first frame update
@@ -97,6 +97,11 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
+    public void SkipPuzzle()
+    {
+        CompletePuzzleServerRpc(0);
+    }
+
     // TODO: Will need to take in puzzle ID too to allow anyone to call (not just host) while also
     // making sure to ignore duplicate requests to complete the same puzzle
     [ServerRpc]
@@ -125,10 +130,11 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             puzzleInstance.Despawn();
         }
 
-        puzzleInstances.RemoveAll(item => item == null);
+        puzzleInstances.Clear();
         
         // Spawn next batch
         activePuzzleBatchIndex += 1;
+        activePuzzleIndex = 0;
 
         if(activePuzzleBatchIndex < PuzzleConstants.puzzleBatches.Count)
         {

@@ -954,6 +954,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 263841582161723309, guid: d9b276c2d24b2ee4f82d9f22a9586745,
+        type: 3}
+      propertyPath: puzzleManager
+      value: 
+      objectReference: {fileID: 1527853314}
     - target: {fileID: 4730431327066627047, guid: d9b276c2d24b2ee4f82d9f22a9586745,
         type: 3}
       propertyPath: m_Name
