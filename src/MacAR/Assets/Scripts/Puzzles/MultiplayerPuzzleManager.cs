@@ -8,30 +8,40 @@ using UnityEngine.SceneManagement;
 
 public class MultiplayerPuzzleManager : NetworkBehaviour
 {
-    // private List<GameObject> puzzles = new List<GameObject>();
-    // [SerializeField] private NetworkObject puzzle;
     [SerializeField] private List<NetworkObject> puzzles;
-    private int puzzleIndex = 0;
+    private int activePuzzleBatchIndex = 0;
+    private int activePuzzleIndex = 0;
     public Camera cam; 
-    NetworkObject puzzleInstance;
+    public List<NetworkObject> puzzleInstances = new List<NetworkObject>();
+    List<int> spawnedPuzzles = new List<int>();
 
     //Start is called before the first frame update
     void Start()
     {
         Debug.Log("Multiplayer Puzzle Manager called");
 
-        SpawnPuzzleServerRpc();
+        SpawnPuzzleBatch();
+    }
+
+    private void SpawnPuzzleBatch()
+    {
+        Debug.Log("Puzzle Batch Size: " + PuzzleConstants.puzzleBatches[activePuzzleBatchIndex].Count);
+        foreach(var puzzle in PuzzleConstants.puzzleBatches[activePuzzleBatchIndex])
+        {
+            Debug.Log("Currently Spawning: " + puzzle.Item1);
+            SpawnPuzzleServerRpc(puzzle.Item1, puzzle.Item2, puzzle.Item3);
+        }
     }
 
     [ServerRpc]
-    private void SpawnPuzzleServerRpc()
+    private void SpawnPuzzleServerRpc(int puzzleIndex, Vector3 puzzlePosition, Quaternion puzzleRotation)
     {
         
         if(!IsServer)
         {
             return;
         }
-        if(puzzleInstance!=null)
+        if(spawnedPuzzles.Contains(puzzleIndex))
         {
             return;
         }
@@ -47,20 +57,21 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         }
 
         // Serialize
-        byte[] bytes = objectToBytes(clients);
+        byte[] bytes = ObjectToBytes(clients);
 
         // Instantiate 
         Debug.Log("Spawn: " + puzzleIndex);
-        puzzleInstance = Instantiate(puzzles[puzzleIndex]); 
+        var puzzleInstance = Instantiate(puzzles[puzzleIndex], puzzlePosition, puzzleRotation); 
 
         // Spawn
         puzzleInstance.SpawnWithOwnership(OwnerClientId);
 
+        // Save Instance
+        puzzleInstances.Add(puzzleInstance);
+        spawnedPuzzles.Add(puzzleIndex);
+
         // Initialize
         InitializeClientRpc(puzzleInstance, bytes);
-
-        // Increment
-        puzzleIndex += 1;
     }
 
     [ClientRpc]
@@ -69,7 +80,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         if (puzzleRef.TryGet(out NetworkObject puzzle))
         {
             // Deserialize
-            List<ulong> clients = bytesToObject(clientBytes);
+            List<ulong> clients = BytesToObject(clientBytes);
 
             puzzle.GetComponentInChildren<PuzzleData>().cam = cam;
             puzzle.GetComponentInChildren<PuzzleData>().completePuzzle = this;
@@ -86,65 +97,69 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
+    public void SkipPuzzle()
+    {
+        CompletePuzzleServerRpc(0);
+    }
+
     // TODO: Will need to take in puzzle ID too to allow anyone to call (not just host) while also
     // making sure to ignore duplicate requests to complete the same puzzle
     [ServerRpc]
     public void CompletePuzzleServerRpc(ulong clientId)
     {
-        Debug.Log("Despawn");
-        try 
+        puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().active = false;
+        activePuzzleIndex += 1;
+
+        if(activePuzzleIndex < PuzzleConstants.puzzleBatches[activePuzzleBatchIndex].Count)
         {
-            puzzleInstance.Despawn();
-        }
-        catch 
-        {
-            Debug.Log("No object to despawn");
-        }
-        
-        if(puzzleIndex < puzzles.Count)
-        {
-            CompletePuzzleClientRpc();
+            puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().active = true;
         }
         else 
         {
-            SceneManager.LoadScene(0);
+            CompletePuzzleBatchServerRpc();
         }
         
     }
 
-    [ClientRpc]
-    public void CompletePuzzleClientRpc()
+    [ServerRpc]
+    private void CompletePuzzleBatchServerRpc()
     {
-        Debug.Log("Despawn");
-        try
+        // Despawn all puzzles
+        foreach(var puzzleInstance in puzzleInstances)
         {
             puzzleInstance.Despawn();
         }
-        catch 
-        {
-            Debug.Log("No object to despawn");
-        }
-    
-        puzzleInstance = null;
 
-        Debug.Log("Spawn New");
-        SpawnPuzzleServerRpc();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        puzzleInstances.Clear();
         
+        // Spawn next batch
+        activePuzzleBatchIndex += 1;
+        activePuzzleIndex = 0;
+
+        if(activePuzzleBatchIndex < PuzzleConstants.puzzleBatches.Count)
+        {
+            SpawnPuzzleBatch();
+        }
+        else 
+        {
+            CompleGameClientRpc();
+        }
     }
 
-    public byte[] objectToBytes(List<ulong> clients) 
+    [ClientRpc]
+    private void CompleGameClientRpc()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public byte[] ObjectToBytes(List<ulong> clients) 
     {
         return clients
             .SelectMany(BitConverter.GetBytes)
             .ToArray();
     }
 
-    public List<ulong> bytesToObject(byte[] bytes) 
+    public List<ulong> BytesToObject(byte[] bytes) 
     {
         // TODO: Add ulong size check that changes Uint64/ UInt32
         var size = sizeof(ulong);

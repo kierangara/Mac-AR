@@ -18,7 +18,7 @@ public class PuzzleManagerTests
                                                   3, 0, 0, 0, 0, 0, 0, 0, 
                                                   4, 0, 0, 0, 0, 0, 0, 0};
 
-        byte[] actualBytes = manager.objectToBytes(numbers);
+        byte[] actualBytes = manager.ObjectToBytes(numbers);
 
         Assert.AreEqual(actualBytes.Length, expectedBytes.Count);
 
@@ -40,7 +40,7 @@ public class PuzzleManagerTests
                                                   0xCC, 0xD9, 0, 0, 0, 0, 0, 0, 
                                                   0, 0, 0, 0, 0, 0, 0, 0};
 
-        byte[] actualBytes = manager.objectToBytes(numbers);
+        byte[] actualBytes = manager.ObjectToBytes(numbers);
 
         Assert.AreEqual(actualBytes.Length, expectedBytes.Count);
 
@@ -62,7 +62,7 @@ public class PuzzleManagerTests
                                                3, 0, 0, 0, 0, 0, 0, 0, 
                                                4, 0, 0, 0, 0, 0, 0, 0};
 
-        List<ulong> actualNumbers = manager.bytesToObject(givenBytes.ToArray());
+        List<ulong> actualNumbers = manager.BytesToObject(givenBytes.ToArray());
 
         Assert.AreEqual(actualNumbers.Count, expectedNumbers.Count);
 
@@ -84,7 +84,7 @@ public class PuzzleManagerTests
                                                   0xCC, 0xD9, 0, 0, 0, 0, 0, 0, 
                                                   0, 0, 0, 0, 0, 0, 0, 0};
 
-        List<ulong> actualNumbers = manager.bytesToObject(givenBytes.ToArray());
+        List<ulong> actualNumbers = manager.BytesToObject(givenBytes.ToArray());
 
         Assert.AreEqual(actualNumbers.Count, expectedNumbers.Count);
 
@@ -102,7 +102,7 @@ public class PuzzleManagerTests
 
         List<ulong> expectedNumbers = new List<ulong>{9999999999, 100, 55756, 0};
 
-        List<ulong> actualNumbers = manager.bytesToObject(manager.objectToBytes(expectedNumbers));
+        List<ulong> actualNumbers = manager.BytesToObject(manager.ObjectToBytes(expectedNumbers));
 
         Assert.AreEqual(actualNumbers.Count, expectedNumbers.Count);
 
