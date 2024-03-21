@@ -65,7 +65,7 @@ public class ActiveWires : MonoBehaviour
                 lights[i].color = Color.green;
             }
 
-            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0, PuzzleConstants.WIRE_ID);
         }
 
         return correctSequence;

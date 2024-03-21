@@ -99,14 +99,19 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
 
     public void SkipPuzzle()
     {
-        CompletePuzzleServerRpc(0);
+        CompletePuzzleServerRpc(0, PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1);
     }
 
     // TODO: Will need to take in puzzle ID too to allow anyone to call (not just host) while also
     // making sure to ignore duplicate requests to complete the same puzzle
     [ServerRpc]
-    public void CompletePuzzleServerRpc(ulong clientId)
+    public void CompletePuzzleServerRpc(ulong clientId, int puzzleId)
     {
+        if(puzzleId != PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1)
+        {
+            return;
+        }
+
         puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(false);
         activePuzzleIndex += 1;
 

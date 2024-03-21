@@ -76,7 +76,7 @@ public class CombinationPuzzle : PuzzleBase
             //Puzzle complete
             else{
                 temp = "Correct";
-                puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+                puzzleData.completePuzzle.CompletePuzzleServerRpc(0, PuzzleConstants.COMBINATION_ID);
             }
             Debug.Log(temp);
             currentCode = temp;

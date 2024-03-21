@@ -425,7 +425,7 @@ public class MazePuzzle : PuzzleBase
 
     public void BallHitsGoal()
     {
-        puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+        puzzleData.completePuzzle.CompletePuzzleServerRpc(0, PuzzleConstants.MAZE_ID);
         puzzleComplete = true;
 
     }

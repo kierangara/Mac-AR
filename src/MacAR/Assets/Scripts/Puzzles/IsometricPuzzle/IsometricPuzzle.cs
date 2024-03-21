@@ -288,7 +288,7 @@ public class IsometricPuzzleManager : PuzzleBase
         }
         if (solutionField.text.ToUpper() == "TWILIGHT")
         {
-            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0, PuzzleConstants.ISO_ID);
         }
 
     }
