@@ -1046,6 +1046,16 @@ MonoBehaviour:
   currentSequence: 
   wireMain: {fileID: 0}
   puzzleData: {fileID: 0}
+  lightFixtures:
+  - {fileID: 2621679450270740463}
+  - {fileID: 5192561489527949855}
+  - {fileID: 2195824698086607090}
+  - {fileID: 8895526423141896116}
+  lights:
+  - {fileID: 2255118277672232455}
+  - {fileID: 4098985542053149516}
+  - {fileID: 8180464546632580448}
+  - {fileID: 6749267558165295399}
 --- !u!1 &6723346732623958290
 GameObject:
   m_ObjectHideFlags: 0

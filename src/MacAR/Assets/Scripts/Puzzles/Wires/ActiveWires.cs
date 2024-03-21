@@ -8,6 +8,8 @@ public class ActiveWires : MonoBehaviour
     public List<int> currentSequence = new List<int>();
     public WireBehaviour wireMain;
     public PuzzleData puzzleData;
+    public List<GameObject> lightFixtures;
+    public List<Light> lights;
 
     public void Init(List<List<uint>> sequence)
     {
@@ -16,6 +18,20 @@ public class ActiveWires : MonoBehaviour
         for(int i = 0; i < 4; i++)
         {
             currentSequence.Add(-1);
+        }
+    }
+
+    public void SetActive()
+    {
+        for(int i = 0; i < lightFixtures.Count; i++)
+        {
+            lightFixtures[i].GetComponent<Renderer>().material.color = Color.red;
+        }
+
+        for(int i = 0; i < lights.Count; i++)
+        {
+            lights[i].color = Color.red;
+            lights[i].intensity = 1;
         }
     }
 
@@ -39,6 +55,16 @@ public class ActiveWires : MonoBehaviour
         if(correctSequence)
         {
             Debug.Log("Correct Wires");
+            for(int i = 0; i < lightFixtures.Count; i++)
+            {
+                lightFixtures[i].GetComponent<Renderer>().material.color = Color.green;
+            }
+
+            for(int i = 0; i < lights.Count; i++)
+            {
+                lights[i].color = Color.green;
+            }
+
             puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
         }
 
