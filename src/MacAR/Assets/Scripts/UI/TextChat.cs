@@ -21,6 +21,7 @@ public class TextChat : MonoBehaviour
     public Button EnterButton;
     public InputField MessageInputField;
     CanvasGroup notif;
+    CanvasGroup chatWindow;
 
     private void Awake()
     {
@@ -182,7 +183,7 @@ public class TextChat : MonoBehaviour
             return;
         }
         notif = GameObject.Find("Notification").GetComponent<CanvasGroup>();
-        notif.alpha = 1;
+        chatWindow = GameObject.Find("ChatWindow").GetComponent<CanvasGroup>();
         var newMessageObj = Instantiate(MessageObject, ChatContentObj.transform);
         _messageObjPool.Add(newMessageObj);
         Text newMessageText = newMessageObj.GetComponent<Text>();
@@ -196,6 +197,9 @@ public class TextChat : MonoBehaviour
         }
         else
         {
+            if(chatWindow.alpha == 0){
+                notif.alpha = 1;
+            }
             newMessageText.alignment = TextAnchor.MiddleLeft;
             //newMessageText.text = string.Format($"<color=green>{sender} </color>: {channelTextMessage.Message}\n<color=white><size=10>{channelTextMessage.ReceivedTime}</size></color>");
             newMessageText.text = string.Format($"<color=green>{sender} </color>\n{channelTextMessage.Message}\n");
