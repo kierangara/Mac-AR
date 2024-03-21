@@ -11,23 +11,27 @@ public class WireBehaviour : PuzzleBase
     public GameObject activeObj;
     public PuzzleData puzzleData;
 
-    private List<List<uint>> testSequence;
+    private List<List<uint>> initSequence = new List<List<uint>>();
 
     // Start is called before the first frame update
     void Start()
     {   
-        // InitializePuzzle();
+        //InitializePuzzle();
     }
 
     public override void InitializePuzzle()
     {
-        testSequence = new List<List<uint>>{new List<uint>{1, 3}, 
-                                            new List<uint>{0, 0}, 
-                                            new List<uint>{3, 2}, 
-                                            new List<uint>{2, 1}};
+        var rootOrder = RandomList();
+        var wireOrder = RandomList();
 
-        passiveWire.Init(testSequence);
-        activeWire.Init(testSequence);
+        for(int i = 0; i < rootOrder.Count; i++)
+        {
+            List<uint> inner = new List<uint>{rootOrder[i], wireOrder[i]};
+            initSequence.Add(inner);
+        }
+
+        passiveWire.Init(initSequence);
+        activeWire.Init(initSequence);
 
         if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
@@ -37,6 +41,24 @@ public class WireBehaviour : PuzzleBase
         {
             activeObj.transform.localScale = new Vector3(0, 0, 0);
         }
+    }
+
+    public List<uint> RandomList()  
+    {  
+        var baseList = new List<uint>{0, 1, 2, 3};
+        var random = new System.Random();  
+        int n = baseList.Count;  
+
+        for(int i = baseList.Count - 1; i > 1; i--)
+        {
+            int rnd = random.Next(i + 1);  
+
+            uint value = baseList[rnd];  
+            baseList[rnd] = baseList[i];  
+            baseList[i] = value;
+        }
+
+        return baseList;
     }
 
     public override void SetActive(bool status)
