@@ -11,7 +11,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     // private List<GameObject> puzzles = new List<GameObject>();
     // [SerializeField] private NetworkObject puzzle;
     [SerializeField] private List<NetworkObject> puzzles;
-    private int puzzleIndex = 0;
+    private int puzzleIndex = 2;
     public Camera cam; 
     NetworkObject puzzleInstance;
 
@@ -54,7 +54,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
 
         // Instantiate 
         Debug.Log("Spawn: " + curPuzzleIndex);
-        puzzleInstance = Instantiate(puzzles[curPuzzleIndex]); 
+        puzzleInstance = Instantiate(puzzles[curPuzzleIndex], PuzzleConstants.PUZZLE_SPAWN_POS, Quaternion.identity); 
 
         // Spawn
         puzzleInstance.SpawnWithOwnership(OwnerClientId);

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class PuzzleConstants
 {
-    public const int WIRES_PUZZLE_ID = 0;
+    public static readonly Vector3 PUZZLE_SPAWN_POS = new Vector3(0, 100, 0);
 }
