@@ -5,6 +5,6 @@ using Unity.Netcode;
 
 public abstract class PuzzleBase : NetworkBehaviour
 {
-    bool active = false;
+    public bool active = false;
     public abstract void InitializePuzzle();
 }
