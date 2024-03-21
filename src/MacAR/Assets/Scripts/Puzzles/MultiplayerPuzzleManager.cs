@@ -28,7 +28,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         Debug.Log("Puzzle Batch Size: " + PuzzleConstants.puzzleBatches[activePuzzleBatchIndex].Count);
         foreach(var puzzle in PuzzleConstants.puzzleBatches[activePuzzleBatchIndex])
         {
-            Debug.Log("Currently Spawning: " + puzzle.Item1);
+            Debug.Log("Currently Spawning: " + puzzle.Item3);
             SpawnPuzzleServerRpc(puzzle.Item1, puzzle.Item2, puzzle.Item3);
         }
     }
