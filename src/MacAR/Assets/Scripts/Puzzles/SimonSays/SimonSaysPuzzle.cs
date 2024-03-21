@@ -55,6 +55,15 @@ public class SimonSaysPuzzle : PuzzleBase
                 //component1.transform.position = new Vector3(10, 10, 10);
             }
  
+            //StartCoroutine(BeginSimonSays());
+        }
+    }
+    public override void SetActive(bool status)
+    {
+        active = status;
+
+        if (status == true)
+        {
             StartCoroutine(BeginSimonSays());
         }
     }
