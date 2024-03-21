@@ -9,7 +9,7 @@ public class PuzzleData : MonoBehaviour
     public int maxPlayers = 0;
     
     // Populated by Manager
-    [HideInInspector] public Camera cam;
+    public Camera cam;
     [HideInInspector] public MultiplayerPuzzleManager completePuzzle;
     [HideInInspector] public List<ulong> connectedClients;
 }
