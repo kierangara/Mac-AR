@@ -47,10 +47,22 @@ public class MainMenuDisplay : MonoBehaviour
             return;
         }
         isHosting = true;
+        if(lobbyNameInputField.text.Length<3)
+        {
+            LogHandlerSettings.Instance.SpawnErrorPopup($"Error creating lobby : Lobby name not correct length, needs to be between 3 and 64 characters");
+            isHosting=false;
+            return;
+        }
+
         HostManager.Instance.setConnections((int)Math.Min(Math.Max(2.0, Mathf.RoundToInt(sliderInput.value * 10)), 10));
         HostManager.Instance.setLobbyName(lobbyNameInputField.text);
         if(passwordInputField != null ) 
         {
+            while((passwordInputField.text.Length!=0)&&(passwordInputField.text.Length<8))
+            {
+                passwordInputField.text = passwordInputField.text + " ";
+            }
+
             HostManager.Instance.setPassword(passwordInputField.text);
         }
 
