@@ -20,6 +20,7 @@ public class TextChat : MonoBehaviour
     public GameObject MessageObject;
     public Button EnterButton;
     public InputField MessageInputField;
+    CanvasGroup notif;
 
     private void Awake()
     {
@@ -180,7 +181,8 @@ public class TextChat : MonoBehaviour
             // Such messages denote opening/closing or requesting the open status of multiplayer matches.
             return;
         }
-
+        notif = GameObject.Find("Notification").GetComponent<CanvasGroup>();
+        notif.alpha = 1;
         var newMessageObj = Instantiate(MessageObject, ChatContentObj.transform);
         _messageObjPool.Add(newMessageObj);
         Text newMessageText = newMessageObj.GetComponent<Text>();
