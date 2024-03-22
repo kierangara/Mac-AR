@@ -11,8 +11,10 @@ public class HintButtons : MonoBehaviour
     public TextMeshProUGUI hintTexter;
     public TextMeshProUGUI hintCounter;
     List<string> hintList = new List<string>();
+    public MultiplayerPuzzleManager multi;
     int counter = 0;
     int hintCount = 0;
+    int activePuzzIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +29,51 @@ public class HintButtons : MonoBehaviour
         forBtn.onClick.AddListener(forwardClick);
         backBtn.onClick.AddListener(backwardClick);
         dispBtn.onClick.AddListener(initialClick);
+
+        //puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(false);
     }
 
     void initialClick()
     {
+        hintList.Clear();
+        Debug.Log("Count of multi puzzle instances" + multi.puzzleInstances.Count);
+        if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 1)
+        {
+            Debug.Log("in 0");
+            hintList.Add("combo puzzle hint 1");
+            hintList.Add("combo puzzle hint 2");
+
+        }
+        else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 2)
+        {
+            Debug.Log("in 1");
+            hintList.Add("wires puzzle hint 1");
+            hintList.Add("wires puzzle hint 2");
+  
+        }
+        else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 3)
+        {
+            Debug.Log("in 2");
+            hintList.Add("simon puzzle hint 1");
+            hintList.Add("simon puzzle hint 2");
+
+        }
+        else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 0)
+        {
+            Debug.Log("in 3");
+            hintList.Add("iso puzzle hint 1");
+            hintList.Add("iso puzzle hint 2");
+
+        }
+        else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 4)
+        {
+            Debug.Log("in 4");
+            hintList.Add("maze puzzle hint 1");
+            hintList.Add("maze puzzle hint 2");
+
+        }
+
+
         counter = 0;
         hintTexter.text = hintList[counter];
         hintCount = counter + 1;
@@ -54,7 +97,7 @@ public class HintButtons : MonoBehaviour
             backButton.gameObject.SetActive(false);
         }
 
-        if (counter == 2)
+        if (counter == 1)
         {
             forwardButton.gameObject.SetActive(false);
         }
@@ -81,7 +124,7 @@ public class HintButtons : MonoBehaviour
             backButton.gameObject.SetActive(false);
         }
 
-        if (counter < 2)
+        if (counter < 1)
         {
             forwardButton.gameObject.SetActive(true);
         }

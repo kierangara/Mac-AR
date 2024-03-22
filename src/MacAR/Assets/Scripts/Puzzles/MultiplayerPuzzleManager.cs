@@ -9,8 +9,8 @@ using UnityEngine.SceneManagement;
 public class MultiplayerPuzzleManager : NetworkBehaviour
 {
     [SerializeField] private List<NetworkObject> puzzles;
-    private int activePuzzleBatchIndex = 0;
-    private int activePuzzleIndex = 0;
+    public int activePuzzleBatchIndex = 0;
+    public int activePuzzleIndex = 0;
     public Camera cam; 
     public List<NetworkObject> puzzleInstances = new List<NetworkObject>();
     List<int> spawnedPuzzles = new List<int>();
