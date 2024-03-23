@@ -4,10 +4,12 @@ using TMPro;
 using Unity.Netcode;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
+using Unity.Services.Lobbies;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class MainMenuDisplay : MonoBehaviour
 {
@@ -18,8 +20,11 @@ public class MainMenuDisplay : MonoBehaviour
     [SerializeField] private TMP_InputField lobbyNameInputField;
     [SerializeField] private TMP_InputField passwordInputField;
     [SerializeField] private Slider sliderInput;
+    [SerializeField] private GameObject reconnectPopUp;
     private bool isHosting = false;
-
+    public int startCount = 0;
+    public DataCollection data;
+    private const string dataFileName = "PlayerData";
 
     private async void Start()
     {
@@ -27,7 +32,11 @@ public class MainMenuDisplay : MonoBehaviour
         {
             await UnityServices.InitializeAsync();
             
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            if(!AuthenticationService.Instance.IsSignedIn)
+            {
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            }
+            
             //Debug.Log($"Player Id: {AuthenticationService.Instance.PlayerId}");
         }
         catch (Exception e)
@@ -38,9 +47,63 @@ public class MainMenuDisplay : MonoBehaviour
 
         //connectingPanel.SetActive(false);
         menuPanel.SetActive(true);
+        if(startCount == 0) 
+        {
+            Load();
+            startCount++;
+        }
+        else
+        {
+            data = SaveSystem.SaveExists(dataFileName) ? SaveSystem.LoadData<DataCollection>(dataFileName) : new DataCollection();
+        }
+        if(data.lobbyId != "")
+        {
+            //reconnectPopUp.SetActive(true);
+        }
+
+        
+
+    }
+    public async void StartReconnect()
+    {
+        await Reconnect();
     }
 
-    public async void StartHost()
+
+    public async Task Reconnect()
+    {
+        try
+        {
+            await LobbyService.Instance.ReconnectToLobbyAsync(PlayerPrefs.GetString("lobbyID", ""));
+
+        }
+        catch (LobbyServiceException e)
+        {
+            LogHandlerSettings.Instance.SpawnErrorPopup($"Error Joining Lobby : \n Lobby Does not Exist");
+            Debug.Log(e);
+            RemoveLobby();
+        }
+
+    }
+
+    public void RemoveLobby()
+    {
+        PlayerPrefs.SetString("lobbyID", "");
+    }
+
+
+    public void Load()
+    {
+        data.lobbyId = PlayerPrefs.GetString("lobbyID","");
+    }
+
+    public void Save()
+    {
+        PlayerPrefs.SetString("lobbyID", data.lobbyId);
+    }
+
+
+        public async void StartHost()
     {
         if(isHosting)
         {

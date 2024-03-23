@@ -154,7 +154,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     [ClientRpc]
     private void CompleGameClientRpc()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+        PlayerPrefs.SetString("lobbyID", "");
     }
 
     public byte[] ObjectToBytes(List<ulong> clients) 
