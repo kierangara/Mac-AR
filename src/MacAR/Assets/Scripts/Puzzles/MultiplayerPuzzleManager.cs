@@ -57,7 +57,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         }
 
         // Serialize
-        byte[] bytes = ObjectToBytes(clients);
+        byte[] bytes = ULongListToBytes(clients);
 
         // Instantiate 
         Debug.Log("Spawn: " + puzzleIndex);
@@ -71,16 +71,17 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         spawnedPuzzles.Add(puzzleIndex);
 
         // Initialize
-        InitializeClientRpc(puzzleInstance, bytes);
+        var seed = Guid.NewGuid().GetHashCode();
+        InitializeClientRpc(puzzleInstance, bytes, seed);
     }
 
     [ClientRpc]
-    private void InitializeClientRpc(NetworkObjectReference puzzleRef, byte[] clientBytes)
+    private void InitializeClientRpc(NetworkObjectReference puzzleRef, byte[] clientBytes, int seed)
     {
         if (puzzleRef.TryGet(out NetworkObject puzzle))
         {
             // Deserialize
-            List<ulong> clients = BytesToObject(clientBytes);
+            List<ulong> clients = BytesToULongList(clientBytes);
 
             puzzle.GetComponentInChildren<PuzzleData>().cam = cam;
             puzzle.GetComponentInChildren<PuzzleData>().completePuzzle = this;
@@ -91,8 +92,11 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             {
                 puzzle.GetComponentInChildren<PuzzleData>().connectedClients.Add(client);
             }
-            
-            puzzle.GetComponentInChildren<PuzzleBase>().InitializePuzzle();
+
+            var puzzleScript = puzzle.GetComponentInChildren<PuzzleBase>();
+
+            puzzleScript.seed = seed;
+            puzzleScript.InitializePuzzle();
         }
         
     }
@@ -158,14 +162,14 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         PlayerPrefs.SetString("lobbyID", "");
     }
 
-    public byte[] ObjectToBytes(List<ulong> clients) 
+    public byte[] ULongListToBytes(List<ulong> clients) 
     {
         return clients
             .SelectMany(BitConverter.GetBytes)
             .ToArray();
     }
 
-    public List<ulong> BytesToObject(byte[] bytes) 
+    public List<ulong> BytesToULongList(byte[] bytes) 
     {
         // TODO: Add ulong size check that changes Uint64/ UInt32
         var size = sizeof(ulong);
