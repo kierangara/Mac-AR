@@ -158,7 +158,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     [ClientRpc]
     private void CompleGameClientRpc()
     {
-        SceneManager.LoadScene(1);
+        ReturnToMain exitGame = new ReturnToMain();
+        exitGame.returnToMain();
         PlayerPrefs.SetString("lobbyID", "");
     }
 
