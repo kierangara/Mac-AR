@@ -21,8 +21,8 @@ public class WireBehaviour : PuzzleBase
 
     public override void InitializePuzzle()
     {
-        var rootOrder = RandomList();
-        var wireOrder = RandomList();
+        var rootOrder = RandomList(this.seed);
+        var wireOrder = RandomList(this.seed-1);
 
         for(int i = 0; i < rootOrder.Count; i++)
         {
@@ -43,19 +43,31 @@ public class WireBehaviour : PuzzleBase
         }
     }
 
-    public List<uint> RandomList()  
+    public List<uint> RandomList(int seed)  
     {  
-        var baseList = new List<uint>{0, 1, 2, 3};
-        var random = new System.Random();  
-        int n = baseList.Count;  
-
-        for(int i = baseList.Count - 1; i > 1; i--)
+        // Absolute Value
+        if(seed < 0)
         {
-            int rnd = random.Next(i + 1);  
+            seed *= -1;
+        }
 
-            uint value = baseList[rnd];  
-            baseList[rnd] = baseList[i];  
-            baseList[i] = value;
+        //Debug.Log("Seed: " + seed);
+        var baseList = new List<uint>{0, 1, 2, 3}; 
+        
+        // Switch Random Indices
+        for(int i = 0; i < (seed % 10); i++)
+        {
+            (baseList[seed%2], baseList[seed%3]) = (baseList[seed%3], baseList[seed%2]);
+            (baseList[0], baseList[seed%4]) = (baseList[seed%4], baseList[0]);
+            (baseList[i%4], baseList[seed%2]) = (baseList[seed%2], baseList[i%4]);
+            //Debug.Log("Switch: " + (seed%3) + (seed%2));
+        }
+
+        // Rotate
+        for(int i = 0; i < (seed%3); i++)
+        {
+            (baseList[0], baseList[1], baseList[2], baseList[3]) =
+                (baseList[3], baseList[0], baseList[1], baseList[2]);
         }
 
         return baseList;

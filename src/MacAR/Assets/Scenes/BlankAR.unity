@@ -1000,6 +1000,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -222
       objectReference: {fileID: 0}
+    - target: {fileID: 2691414210432694967, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: puzzleManager
+      value: 
+      objectReference: {fileID: 1527853314}
     - target: {fileID: 2736245001420305482, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1606,7 +1611,42 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 581277416}
+    - targetCorrespondingSourceObject: {fileID: 197258810473774070, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2111837407}
   m_SourcePrefab: {fileID: 100100000, guid: 9b5d47bbf1120954eb2f6c9381fc622d, type: 3}
+--- !u!1 &2111837405 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 197258810473774070, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2111837404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2111837406 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8189309892758848892, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2111837404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111837405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2111837407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111837405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88a6a6d424e73f1449c7b5d3388df3ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VoiceToggle: {fileID: 2111837406}
 --- !u!114 &2113113432
 MonoBehaviour:
   m_ObjectHideFlags: 0

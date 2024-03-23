@@ -1,11 +1,13 @@
 using System;
+using Unity.Collections;
 using Unity.Netcode;
 using Unity.VisualScripting.FullSerializer;
-
+[System.Serializable]
 public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
 {
     public ulong ClientId;
     public bool ReadyState;
+// NativeString playerName;
 
     public PlayerData(ulong clientId, bool readyState = false)
     {
