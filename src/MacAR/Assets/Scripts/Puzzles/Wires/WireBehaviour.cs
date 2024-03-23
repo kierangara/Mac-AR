@@ -22,7 +22,7 @@ public class WireBehaviour : PuzzleBase
     public override void InitializePuzzle()
     {
         var rootOrder = RandomList(this.seed);
-        var wireOrder = RandomList(this.seed/17);
+        var wireOrder = RandomList(this.seed-1);
 
         for(int i = 0; i < rootOrder.Count; i++)
         {
@@ -45,6 +45,12 @@ public class WireBehaviour : PuzzleBase
 
     public List<uint> RandomList(int seed)  
     {  
+        // Absolute Value
+        if(seed < 0)
+        {
+            seed *= -1;
+        }
+
         //Debug.Log("Seed: " + seed);
         var baseList = new List<uint>{0, 1, 2, 3}; 
         
