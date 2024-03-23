@@ -14,6 +14,7 @@ public class PlayerList : NetworkBehaviour
 {
     [SerializeField] Button readyButton;
     [SerializeField] private Toggle VoiceToggle;
+    [SerializeField] public Toggle inGameVoiceToggle;
     [SerializeField] private Transform playerItemParent;
     [SerializeField] private PlayerItem playerItemPrefab;
     [SerializeField] public TMP_Text joinCodeText;
