@@ -4,38 +4,17 @@ using UnityEngine;
 
 public class ActiveWires : MonoBehaviour
 {
-    public List<List<uint>> m_sequence;
-    public List<int> currentSequence = new List<int>();
+    private List<List<uint>> m_sequence;
+    private List<int> currentSequence = new List<int>();
     public WireBehaviour wireMain;
     public PuzzleData puzzleData;
-    public List<GameObject> lightFixtures;
-    public List<Light> lights;
 
     public void Init(List<List<uint>> sequence)
     {
         m_sequence = sequence;
-
-        for(int i = 0; i < 4; i++)
-        {
-            currentSequence.Add(-1);
-        }
     }
 
-    public void SetActive()
-    {
-        for(int i = 0; i < lightFixtures.Count; i++)
-        {
-            lightFixtures[i].GetComponent<Renderer>().material.color = Color.red;
-        }
-
-        for(int i = 0; i < lights.Count; i++)
-        {
-            lights[i].color = Color.red;
-            lights[i].intensity = 1;
-        }
-    }
-
-    public bool UpdateSequence(int wire, int anchor)
+    public void UpdateSequence(int wire, int anchor)
     {
         currentSequence[wire] = anchor;
 
@@ -55,26 +34,17 @@ public class ActiveWires : MonoBehaviour
         if(correctSequence)
         {
             Debug.Log("Correct Wires");
-            for(int i = 0; i < lightFixtures.Count; i++)
-            {
-                lightFixtures[i].GetComponent<Renderer>().material.color = Color.green;
-            }
-
-            for(int i = 0; i < lights.Count; i++)
-            {
-                lights[i].color = Color.green;
-            }
-
-            puzzleData.completePuzzle.CompletePuzzleServerRpc(0, PuzzleConstants.WIRE_ID);
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
         }
-
-        return correctSequence;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-    
+        for(int i = 0; i < 4; i++)
+        {
+            currentSequence.Add(-1);
+        }
     }
 
     // Update is called once per frame

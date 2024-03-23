@@ -5,33 +5,29 @@ using Unity.Netcode;
 
 public class WireBehaviour : PuzzleBase
 {
-    public PassiveWires passiveWire;
-    public ActiveWires activeWire;
+    public PassiveWires passive;
+    public ActiveWires active;
     public GameObject passiveObj;
     public GameObject activeObj;
     public PuzzleData puzzleData;
 
-    private List<List<uint>> initSequence = new List<List<uint>>();
+    private List<List<uint>> testSequence;
 
     // Start is called before the first frame update
     void Start()
     {   
-        //InitializePuzzle();
+        // InitializePuzzle();
     }
 
     public override void InitializePuzzle()
     {
-        var rootOrder = RandomList();
-        var wireOrder = RandomList();
+        testSequence = new List<List<uint>>{new List<uint>{1, 3}, 
+                                            new List<uint>{0, 0}, 
+                                            new List<uint>{3, 2}, 
+                                            new List<uint>{2, 1}};
 
-        for(int i = 0; i < rootOrder.Count; i++)
-        {
-            List<uint> inner = new List<uint>{rootOrder[i], wireOrder[i]};
-            initSequence.Add(inner);
-        }
-
-        passiveWire.Init(initSequence);
-        activeWire.Init(initSequence);
+        passive.Init(testSequence);
+        active.Init(testSequence);
 
         if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
@@ -40,34 +36,6 @@ public class WireBehaviour : PuzzleBase
         else 
         {
             activeObj.transform.localScale = new Vector3(0, 0, 0);
-        }
-    }
-
-    public List<uint> RandomList()  
-    {  
-        var baseList = new List<uint>{0, 1, 2, 3};
-        var random = new System.Random();  
-        int n = baseList.Count;  
-
-        for(int i = baseList.Count - 1; i > 1; i--)
-        {
-            int rnd = random.Next(i + 1);  
-
-            uint value = baseList[rnd];  
-            baseList[rnd] = baseList[i];  
-            baseList[i] = value;
-        }
-
-        return baseList;
-    }
-
-    public override void SetActive(bool status)
-    {
-        active = status;
-
-        if(status == true)
-        {
-            activeWire.SetActive();
         }
     }
 

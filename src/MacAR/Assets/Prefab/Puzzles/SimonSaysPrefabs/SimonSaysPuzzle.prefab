@@ -69,7 +69,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798d8ebde23b17a4c902ad15347f1871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
   cube: {fileID: 1746543972651647516}
   redButton: {fileID: 4188545521774443886}
   blueButton: {fileID: 4919992002250495847}
@@ -78,11 +77,6 @@ MonoBehaviour:
   component1: {fileID: 4454781244648668468}
   component2: {fileID: 1363606692220904201}
   debugText: {fileID: 5706319024995129737}
-  redMaterial: {fileID: 2100000, guid: 802a0e341a87e8b4494f5903c3cf9bf6, type: 2}
-  blueMaterial: {fileID: 2100000, guid: ec05436127b02414cbc165ed8af2ead8, type: 2}
-  yellowMaterial: {fileID: 2100000, guid: 0d401c53c6a3f9c4c831b653904a441b, type: 2}
-  greenMaterial: {fileID: 2100000, guid: ae2b3835c37b2be49bc27d8a16cb5470, type: 2}
-  blackMaterial: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
   simonButtons:
   - {fileID: 5332547936850876260}
   - {fileID: 4034987436233721280}
@@ -231,7 +225,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -294, y: 597}
+  m_AnchoredPosition: {x: -294, y: 633}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8990153501019943558
@@ -262,7 +256,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Level = 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -396,21 +390,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8084511361942777209, guid: 870d82780c22ef7438f54f9bfab1c5fd,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084511361942777209, guid: 870d82780c22ef7438f54f9bfab1c5fd,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084511361942777209, guid: 870d82780c22ef7438f54f9bfab1c5fd,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8084511361942777209, guid: 870d82780c22ef7438f54f9bfab1c5fd,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
       objectReference: {fileID: 0}
@@ -451,11 +430,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6368725146372195561}
     m_Modifications:
-    - target: {fileID: 474467090852283944, guid: d702786e099974a43b9aa1f96833ec1d,
-        type: 3}
-      propertyPath: blackMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
     - target: {fileID: 702778510465669350, guid: d702786e099974a43b9aa1f96833ec1d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -481,11 +455,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2646703192118260979, guid: d702786e099974a43b9aa1f96833ec1d,
-        type: 3}
-      propertyPath: blackMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
     - target: {fileID: 2994122328783137655, guid: d702786e099974a43b9aa1f96833ec1d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -556,11 +525,6 @@ PrefabInstance:
       propertyPath: networkObject
       value: 
       objectReference: {fileID: 1684098041296157334}
-    - target: {fileID: 6069359993848250757, guid: d702786e099974a43b9aa1f96833ec1d,
-        type: 3}
-      propertyPath: blackMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
     - target: {fileID: 6807226405597491781, guid: d702786e099974a43b9aa1f96833ec1d,
         type: 3}
       propertyPath: m_Name
@@ -576,11 +540,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8893350219048031372, guid: d702786e099974a43b9aa1f96833ec1d,
-        type: 3}
-      propertyPath: blackMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: b2e82af8224815341b4e0927588ad817, type: 2}
     - target: {fileID: 8942577403199093459, guid: d702786e099974a43b9aa1f96833ec1d,
         type: 3}
       propertyPath: networkObject

@@ -27,7 +27,7 @@ public class TestPuzzleBehaviour : ClickableObjectBase
         // Check for Completion
         if(newColor == Color.white)
         {
-            puzzleData.completePuzzle.CompletePuzzleServerRpc(0, -1);
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
         }
     }
 

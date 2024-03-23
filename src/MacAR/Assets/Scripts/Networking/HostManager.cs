@@ -22,7 +22,7 @@ public class HostManager : MonoBehaviour
     private string lobbyName;
     [SerializeField] private string characterSelectSceneName = "CharacterSelect";
     [SerializeField] private string gameplaySceneName = "Gameplay";
-    //[SerializeField] private string mainMenuName = "MainMenu";
+    [SerializeField] private string mainMenuName = "MainMenu";
 
     public static HostManager Instance { get; private set; }
 
@@ -60,7 +60,7 @@ public class HostManager : MonoBehaviour
         this.lobbyName = name;
     }
 
-    public async Task StartHost()
+    public async void StartHost()
     {
         //Debug.Log(lobbyName);
         //Debug.Log(lobbyPassword);
@@ -129,9 +129,9 @@ public class HostManager : MonoBehaviour
 
         ClientData = new Dictionary<ulong, ClientData>();
 
+        
 
         NetworkManager.Singleton.StartHost();
-        return;
     }
 
     public async Task ChangeLobbySettings()

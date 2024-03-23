@@ -16,7 +16,7 @@ public class PopUpUI : MonoBehaviour
 
     private void Awake()
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -26,10 +26,9 @@ public class PopUpUI : MonoBehaviour
     {
         Debug.Log(gameObject.activeSelf);
         if (!gameObject.activeSelf)
-        {
+        {   m_currentText.Clear();
             gameObject.SetActive(true);
         }
-        m_currentText.Clear();
         m_currentText.AppendLine(newText);
         m_popupText.SetTextWithoutNotify(m_currentText.ToString());
         DisableButton();

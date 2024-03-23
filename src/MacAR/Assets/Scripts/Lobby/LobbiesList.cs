@@ -78,10 +78,6 @@ public class LobbiesList : MonoBehaviour
             JoinLobbyByIdOptions options = new JoinLobbyByIdOptions();
             if (password.Length != 0)
             {
-                while(password.Length < 8)
-                {
-                    password = password + " ";
-                }
                 options = new JoinLobbyByIdOptions
                 { Password = password };
                 var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id, options);
