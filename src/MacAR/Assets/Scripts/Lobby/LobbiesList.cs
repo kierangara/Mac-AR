@@ -89,6 +89,7 @@ public class LobbiesList : MonoBehaviour
                 //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode; 
                 await ClientManager.Instance.StartClient(joinCode);
                 GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
+                PlayerPrefs.SetString("lobbyID", lobby.Id);
             }
             else
             {
@@ -97,6 +98,7 @@ public class LobbiesList : MonoBehaviour
                 //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode;
                 await ClientManager.Instance.StartClient(joinCode);
                 GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
+                PlayerPrefs.SetString("lobbyID", lobby.Id);
             }
             //GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setLobby(lobby);
             

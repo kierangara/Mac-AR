@@ -29,6 +29,7 @@ public class PlayerList : NetworkBehaviour
     private Color readyColor = Color.green;
     private bool isRefreshing;
     private Lobby lobby;
+    public static bool muted;
     //private string playerName = "Spencer Smith";
 
     private void Awake()
@@ -38,6 +39,7 @@ public class PlayerList : NetworkBehaviour
         VoiceToggle.onValueChanged.AddListener(delegate 
             { VivoxToggle(VoiceToggle,mainClient); });
         mainClient.AudioInputDevices.Muted = true;
+        muted = true;
     }
 
     void VivoxToggle(Toggle voiceToggle, VivoxUnity.Client client)
@@ -45,10 +47,12 @@ public class PlayerList : NetworkBehaviour
         Debug.Log("Voice " + voiceToggle.isOn);
         if (voiceToggle.isOn)
         {
-            client.AudioInputDevices.Muted = true; 
+            client.AudioInputDevices.Muted = true;
+            muted = true;
         } else
         {
             client.AudioInputDevices.Muted = false;
+            muted = false;
         }
     }
 

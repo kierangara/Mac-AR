@@ -117,6 +117,7 @@ public class HostManager : MonoBehaviour
             lobbyId = lobby.Id;
             StartCoroutine(HeartbeatLobbyCoroutine(15));
             GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setLobby(lobby);
+            PlayerPrefs.SetString("lobbyID", lobby.Id);
         }
         catch (LobbyServiceException e)
         {

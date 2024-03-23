@@ -593,6 +593,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6001476809297100252}
+  - {fileID: 4365484551962266986}
   - {fileID: 971940997214535948}
   - {fileID: 1604106358848824367}
   m_Father: {fileID: 0}
@@ -682,6 +683,7 @@ MonoBehaviour:
   dispButton: {fileID: 7103649493490243974}
   hintTexter: {fileID: 5816637842696202893}
   hintCounter: {fileID: 5739377353451134419}
+  multi: {fileID: 0}
 --- !u!1 &5291436116924945991
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,11 +717,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 971940997214535948}
+  m_Father: {fileID: 8551684078404357582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 55, y: -91}
+  m_AnchoredPosition: {x: 107.04555, y: -145.64719}
   m_SizeDelta: {x: 207.22144, y: 182.382}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2761372216551665157
@@ -1020,7 +1022,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4365484551962266986}
   - {fileID: 7433718928616237125}
   - {fileID: 261903434110758975}
   - {fileID: 7234301988414089016}
