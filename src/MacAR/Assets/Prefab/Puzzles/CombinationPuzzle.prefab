@@ -261,9 +261,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc22ab06374b8c4c84b8bb9bf8a9533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seed: 0
+  active: 0
   codeInputField: {fileID: 3479107768904138502}
   combinationPuzzle: {fileID: 1539032670121321862}
   instructionPage: {fileID: 2074332256210681869}
+  wrongKeypadMat: {fileID: 2100000, guid: 1bbd2e5ce289c5f46b7f2f66365fddc8, type: 2}
+  keypadMat: {fileID: 2100000, guid: 8df8ea51a7428614daee5efc3c092589, type: 2}
+  keypad: {fileID: 1762245551838057335}
   puzzleData: {fileID: 3296016383363581492}
 --- !u!1 &5269139122275047875
 GameObject:

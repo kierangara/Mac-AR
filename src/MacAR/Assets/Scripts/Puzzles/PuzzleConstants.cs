@@ -16,7 +16,7 @@ public static class PuzzleConstants
     public static readonly Vector3 ISO_SPAWN_POS = new Vector3(0, 0, 0);
     public static readonly Vector3 COMBINATION_SPAWN_POS = new Vector3(0, 0, 0);
     public static readonly Vector3 WIRE_SPAWN_POS = new Vector3(0, 0, -5);
-    public static readonly Vector3 SIMON_SPAWN_POS = new Vector3(-10, 0, -5);
+    public static readonly Vector3 SIMON_SPAWN_POS = new Vector3(-14, 0, 5f);
     public static readonly Vector3 MAZE_SPAWN_POS = new Vector3(0, 0, 0);
 
     // Puzzle  Rotations

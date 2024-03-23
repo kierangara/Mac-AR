@@ -13,20 +13,28 @@ public class CombinationPuzzle : PuzzleBase
     [SerializeField] GameObject combinationPuzzle;
 
     [SerializeField] TextMeshProUGUI instructionPage;
+
+    [SerializeField] Material wrongKeypadMat;
+
+    [SerializeField] Material keypadMat;
+
+    [SerializeField] GameObject keypad;
     public PuzzleData puzzleData;
 
     private string[] codeCombo;
     private string currentCode;
     private int currentDigit;
+
+    private int wrongInputTimer;
     // Start is called before the first frame update
     void Start()
     {
         //Read initial placeholder code
         Debug.Log("Combo Puzzle Started");
-        
     }
 
     public override void InitializePuzzle(){
+        wrongInputTimer = -1;
         foreach(char j in codeInputField.text){
             currentCode+=j;
         }
@@ -56,7 +64,12 @@ public class CombinationPuzzle : PuzzleBase
     // Update is called once per frame
     void Update()
     {
-        
+        if(wrongInputTimer!=-1){
+            wrongInputTimer+=1;
+            if(wrongInputTimer>=10){
+                keypad.GetComponent<Renderer>().material = keypadMat;
+            }
+        }
     }
 
     //Button reaction
@@ -85,6 +98,8 @@ public class CombinationPuzzle : PuzzleBase
         }
         //Incorrect digit entered, reset.
         else{
+            keypad.GetComponent<Renderer>().material = wrongKeypadMat;
+            wrongInputTimer = 0;
             currentDigit = 0;
             currentCode = "_ _ _ _";
             codeInputField.text = "_ _ _ _";
