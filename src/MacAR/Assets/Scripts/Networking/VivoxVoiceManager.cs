@@ -189,15 +189,14 @@ public class VivoxVoiceManager : MonoBehaviour
     {
         m_Account = new Account(accountName);
         PlayerName = accountName;
+        PlayerPrefs.SetString("PlayerName", PlayerName);
+        print(PlayerName);
     }
 
 
     public void Login(string displayName = null)
     {
-        if(m_Account == null) 
-        {
-            m_Account = new Account("SpencerSmith");
-        }
+        m_Account = new Account(PlayerPrefs.GetString("PlayerName", "SpencerSmith"));
         // print(displayName);
         LoginSession = _client.GetLoginSession(m_Account);
         LoginSession.PropertyChanged += OnLoginSessionPropertyChanged;

@@ -21,6 +21,7 @@ public class MainMenuDisplay : MonoBehaviour
     [SerializeField] private TMP_InputField passwordInputField;
     [SerializeField] private Slider sliderInput;
     [SerializeField] private GameObject reconnectPopUp;
+    [SerializeField] private TMP_InputField userNameInputField;
     private bool isHosting = false;
     public int startCount = 0;
     public DataCollection data;
@@ -61,7 +62,9 @@ public class MainMenuDisplay : MonoBehaviour
             //reconnectPopUp.SetActive(true);
         }
 
-        
+        userNameInputField.text=PlayerPrefs.GetString("PlayerName","SpencerSmith");
+
+
 
     }
     public async void StartReconnect()
@@ -69,7 +72,10 @@ public class MainMenuDisplay : MonoBehaviour
         await Reconnect();
     }
 
-
+    public void SetAccountName()
+    {
+        PlayerPrefs.SetString("PlayerName", userNameInputField.text);
+    }
     public async Task Reconnect()
     {
         try
