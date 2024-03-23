@@ -55,7 +55,7 @@ public class ReturnToMain : MonoBehaviour
             {
                 NetworkManager.Singleton.ConnectionApprovalCallback = null;
             }
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(4);
             NetworkManager.Singleton.Shutdown();
 
         }
