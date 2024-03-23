@@ -54,22 +54,22 @@ public class HintButtons : MonoBehaviour
         else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 3)
         {
             Debug.Log("in 2");
-            hintList.Add("simon puzzle hint 1");
-            hintList.Add("simon puzzle hint 2");
+            hintList.Add("Communicate regarding the different colours you see");
+            hintList.Add("Try to remember the cube colour sequence");
 
         }
         else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 0)
         {
             Debug.Log("in 3");
-            hintList.Add("iso puzzle hint 1");
-            hintList.Add("iso puzzle hint 2");
+            hintList.Add("Look at the cubes from different angles, they might resemble something familiar");
+            hintList.Add("Each set of cubes has one letter and one number, which creates a word");
 
         }
         else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 4)
         {
             Debug.Log("in 4");
-            hintList.Add("maze puzzle hint 1");
-            hintList.Add("maze puzzle hint 2");
+            hintList.Add("One user has the ability to rotate their phone to rotate the maze");
+            hintList.Add("Try to communicate to get the ball to reach the stone plate at the end of the maze");
 
         }
 
