@@ -151,12 +151,12 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         }
         else 
         {
-            CompleGameClientRpc();
+            ExitGameClientRpc();
         }
     }
 
     [ClientRpc]
-    private void CompleGameClientRpc()
+    public void ExitGameClientRpc()
     {
         ReturnToMain exitGame = new ReturnToMain();
         exitGame.returnToMain();
