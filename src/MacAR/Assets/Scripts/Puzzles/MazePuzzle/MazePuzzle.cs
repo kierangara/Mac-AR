@@ -83,6 +83,7 @@ public class MazePuzzle : PuzzleBase
         {
             RequestMazeServerRpc();
         }
+        setColumns();
 
 
     }
@@ -171,8 +172,44 @@ public class MazePuzzle : PuzzleBase
         trackingZRot = 0;
     }
 
+    private void setColumns()
+    {
+        for (int x = 0; x < _mazeWidth; x++)
+        {
+            for (int z = 0; z < _mazeLength; z++)
+            {
+                if(x==0)
+                {
+                    _mazeGrid[x, z].ShowColumnFL();
+                }
+                if(z==0)
+                {
+                    _mazeGrid[x,z].ShowColumnBL();
+                }
+                if(z==_mazeWidth-1)
+                {
+                    _mazeGrid[x,z].ShowColumnBR();
+                }
+                if(x!=0)
+                {
+                    _mazeGrid[x,z].ClearLeftWall();
+                }
+                if(z!=0)
+                {
+                    _mazeGrid[x, z].ClearRearWall();
+                }
+            }
+        }
+    }
 
-    static int[] To1DArray(int[,] input)
+
+    public bool returnCompletionStatus()
+    {
+        return puzzleComplete;
+    }
+
+
+    private int[] To1DArray(int[,] input)
     {
         // Step 1: get total size of 2D array, and allocate 1D array.
         int size = input.Length;
@@ -191,6 +228,15 @@ public class MazePuzzle : PuzzleBase
         return result;
     }
 
+    private void setMazeDimensions()
+    {
+        _mazeLength = 10;
+        _mazeWidth = 10;
+        maze = Resources.Load<GameObject>("MazePuzzle");
+        maze=GameObject.Instantiate(maze, new Vector3(0, 0, 0), Quaternion.identity);
+        _mazeCellPrefab = Resources.Load<MazeCell>("MazeCell");
+    }
+
 
     private void convertLayoutToGrid(int[] mazeLayouts)
     {
@@ -203,34 +249,35 @@ public class MazePuzzle : PuzzleBase
                 _mazeGrid[x, z].transform.parent = maze.transform;
             }
         }
-        mazeLayout = Make2DArray<int>(mazeLayouts, _mazeWidth, _mazeLength);
+        mazeLayout = Make2DArray(mazeLayouts, _mazeWidth, _mazeLength);
 
 
-        for (int x = 0; x < _mazeWidth*_mazeLength; x++)
+        for (int x = 0; x < _mazeWidth; x++)
         {
             for (int z = 0; z < _mazeLength; z++)
             {
                 _mazeGrid[x, z].Visit();
-                if (mazeLayout[x,z]%2==1)
+                if ((mazeLayout[x,z]%2==1)&&(x<_mazeWidth-1))
                 {
                     _mazeGrid[x, z].ClearRightWall();
                     _mazeGrid[x+1,z].ClearLeftWall();
 
                 }
-                if (mazeLayout[x,z]>=2)
+                if ((mazeLayout[x,z]>=2) && (z < _mazeLength-1))
                 {
                     _mazeGrid[x, z].ClearFrontWall();
                     _mazeGrid[x,z+1].ClearRearWall();
                 }
             }
         }
+        setColumns();
 
     }
 
 
-    private static T[,] Make2DArray<T>(T[] input, int height, int width)
+    private int[,] Make2DArray(int[] input, int height, int width)
     {
-        T[,] output = new T[height, width];
+        int[,] output = new int[height, width];
         for (int i = 0; i < height; i++)
         {
             for (int j = 0; j < width; j++)
@@ -378,7 +425,7 @@ public class MazePuzzle : PuzzleBase
 
     public void BallHitsGoal()
     {
-        puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+        puzzleData.completePuzzle.CompletePuzzleServerRpc(0, PuzzleConstants.MAZE_ID);
         puzzleComplete = true;
 
     }

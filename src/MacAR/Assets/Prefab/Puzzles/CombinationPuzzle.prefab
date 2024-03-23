@@ -328,7 +328,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -879,6 +879,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name
@@ -1028,6 +1033,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name
@@ -1177,6 +1187,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name
@@ -1326,6 +1341,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name
@@ -1475,6 +1495,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name
@@ -1619,6 +1644,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name
@@ -1904,6 +1934,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name
@@ -2053,6 +2088,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name
@@ -2202,6 +2242,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name
@@ -2366,6 +2411,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5257440657432028407, guid: a56ce0fee549a764ab191f651393365d,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c3e66316c51303f4b80c41269be6212f, type: 2}
     - target: {fileID: 6553283448989986264, guid: a56ce0fee549a764ab191f651393365d,
         type: 3}
       propertyPath: m_Name

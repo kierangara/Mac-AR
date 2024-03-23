@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class DisplayChat : MonoBehaviour
 {
     CanvasGroup canvasGroup;
+    CanvasGroup notif;
     public Sprite textChatLogo;
     public Sprite xLogo;
+    public Button dispButton;
     // Start is called before the first frame update
     void Start()
     {
         canvasGroup = GameObject.Find("ChatWindow").GetComponent<CanvasGroup>();
+        notif = GameObject.Find("Notification").GetComponent<CanvasGroup>();
     }
 
     public void ToggleChat(){
@@ -28,6 +31,8 @@ public class DisplayChat : MonoBehaviour
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
             GameObject.Find("DisplayChat").GetComponent<Image>().overrideSprite = xLogo;
+            dispButton.interactable = false;
+            notif.alpha = 0;
         }
     }
 
@@ -37,6 +42,7 @@ public class DisplayChat : MonoBehaviour
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
             GameObject.Find("DisplayChat").GetComponent<Image>().overrideSprite = textChatLogo;
+            dispButton.interactable = true;
         }
     }
 }
