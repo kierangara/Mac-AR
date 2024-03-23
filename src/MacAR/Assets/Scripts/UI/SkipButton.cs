@@ -16,6 +16,6 @@ public class SkipButton : MonoBehaviour
 
 	void SkipButtonClick()
     {
-		puzzleManager.SkipPuzzle();
+		puzzleManager.SkipPuzzleServerRpc();
 	}
 }

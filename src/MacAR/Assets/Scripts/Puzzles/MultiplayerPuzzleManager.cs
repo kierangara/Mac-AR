@@ -101,22 +101,20 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
-    public void SkipPuzzle()
+    [ServerRpc(RequireOwnership = false)]
+    public void SkipPuzzleServerRpc()
     {
-        Debug.Log("Skip 1");
         CompletePuzzleServerRpc(0, PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1);
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void CompletePuzzleServerRpc(ulong clientId, int puzzleId)
     {
-        Debug.Log("Skip 2");
         // Make sure the user is attempting to skip the current puzzle
         if(puzzleId != PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1)
         {
             return;
         }
-        Debug.Log("Skip 3");
 
         puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(false);
         activePuzzleIndex += 1;
