@@ -11,17 +11,6 @@ public class LogHandlerSettings : MonoBehaviour
     [SerializeField]
     private PopUpUI m_popUp;
 
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-        InvokeRepeating(nameof(CheckNetwork), 5.0f, 5.0f);
-    }
-    public void CheckNetwork() {
-        if(Application.internetReachability == NetworkReachability.NotReachable)
-        {
-            SpawnErrorPopup("Error not connected to the internet");
-        }
-    }
 
     public static LogHandlerSettings Instance
     {

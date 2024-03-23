@@ -123,19 +123,9 @@ public class VivoxPlayer : MonoBehaviour
         lobbyer = lobby.Data["JoinCode"].Value;
     }
 
-    public string getLobby()
-    {
-        return lobbyer;
-    }
-
     public void setJoinCode(string lobbyCode)
     {
         this.lobbyer = lobbyCode;
-    }
-
-    public void SignOutOfVivox()
-    {
-        OnUserLoggedOut();
     }
 
 

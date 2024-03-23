@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae69ba19533e3484597e26db54b00633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  passiveWire: {fileID: 6254114196836464254}
-  activeWire: {fileID: 6550417040165743648}
+  passive: {fileID: 6254114196836464254}
+  active: {fileID: 6550417040165743648}
   passiveObj: {fileID: 771072797074027937}
   activeObj: {fileID: 3464993664287916546}
   puzzleData: {fileID: 5909900628129956897}
