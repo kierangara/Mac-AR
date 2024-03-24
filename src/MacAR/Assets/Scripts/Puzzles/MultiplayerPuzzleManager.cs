@@ -119,6 +119,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(false);
         activePuzzleIndex += 1;
 
+        UpdateActivePuzzleClientRpc(activePuzzleIndex);
+
         if(activePuzzleIndex < PuzzleConstants.puzzleBatches[activePuzzleBatchIndex].Count)
         {
             puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(true);
@@ -145,6 +147,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         activePuzzleBatchIndex += 1;
         activePuzzleIndex = 0;
 
+        UpdateActiveBatchClientRpc(activePuzzleBatchIndex);
+
         if(activePuzzleBatchIndex < PuzzleConstants.puzzleBatches.Count)
         {
             SpawnPuzzleBatch();
@@ -154,6 +158,20 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             ExitGameClientRpc();
         }
     }
+
+    [ClientRpc]
+    public void UpdateActivePuzzleClientRpc(int puzzleIndex)
+    {
+        activePuzzleIndex = puzzleIndex;
+    }
+
+    [ClientRpc]
+    public void UpdateActiveBatchClientRpc(int batchIndex)
+    {
+        activePuzzleIndex = 0;
+        activePuzzleBatchIndex = batchIndex;
+    }
+
 
     [ClientRpc]
     public void ExitGameClientRpc()
