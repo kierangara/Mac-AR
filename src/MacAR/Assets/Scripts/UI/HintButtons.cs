@@ -40,15 +40,15 @@ public class HintButtons : MonoBehaviour
         if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 1)
         {
             Debug.Log("in 0");
-            hintList.Add("combo puzzle hint 1");
-            hintList.Add("combo puzzle hint 2");
+            hintList.Add("Your combination entry resets every time you enter an incorrect number");
+            hintList.Add("Make sure to coordinate who's entering the combination");
 
         }
         else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 2)
         {
             Debug.Log("in 1");
-            hintList.Add("wires puzzle hint 1");
-            hintList.Add("wires puzzle hint 2");
+            hintList.Add("The wires should be connected to the correct coloured nodes");
+            hintList.Add("The power will be turned on when the lights turn green");
   
         }
         else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 3)
