@@ -49,7 +49,9 @@ public class CombinationPuzzle : PuzzleBase
         //string instr2 = "The second number is the only number in the first column\n";
         //string instr3 = "The first number is two greater than the second number\n";
         //string instr4 = "The fourth number is the only number in the third row\n";
-        GenerateCodeServerRpc();
+        if(NetworkManager.Singleton.LocalClientId==puzzleData.connectedClients[0]){
+            GenerateCodeServerRpc();
+        }
         for(int i = 0; i<puzzleData.connectedClients.Count; i++){
             if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[i])
             {
@@ -111,7 +113,7 @@ public class CombinationPuzzle : PuzzleBase
     }
 
 
-    private void generateCode(int numPosibilities, int randNum){
+    private void GenerateCode(int numPosibilities, int randNum){
         codeCombo = GenerateInstructionSet()[randNum];
     }
 
@@ -165,7 +167,7 @@ public class CombinationPuzzle : PuzzleBase
     }
     [ClientRpc]
     public void GenerateCodeClientRpc(int randomNum){
-        generateCode(numPosibilities,randomNum);
+        GenerateCode(numPosibilities,randomNum);
     }
 
     private string[][] GenerateInstructionSet(){
