@@ -163,6 +163,43 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         PlayerPrefs.SetString("lobbyID", "");
     }
 
+    [ServerRpc(RequireOwnership = false)]
+    public void RefreshPuzzlePositionsServerRpc(ulong clientId)
+    {
+        ClientRpcParams clientRpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new ulong[]{clientId}
+            }
+        };
+
+        foreach(var puzzle in puzzleInstances)
+        {
+
+            RefreshPuzzlePositionClientRpc(puzzle, clientRpcParams);
+        }
+    }
+
+    [ClientRpc]
+    private void RefreshPuzzlePositionClientRpc(NetworkObjectReference puzzleRef, ClientRpcParams clientRpcParams = default)
+    {
+        var posLookup = new Dictionary<int, Vector3>{
+            {PuzzleConstants.ISO_ID, PuzzleConstants.ISO_SPAWN_POS},
+            {PuzzleConstants.MAZE_ID, PuzzleConstants.MAZE_SPAWN_POS},
+            {PuzzleConstants.WIRE_ID, PuzzleConstants.WIRE_SPAWN_POS},
+            {PuzzleConstants.COMBINATION_ID, PuzzleConstants.COMBINATION_SPAWN_POS},
+            {PuzzleConstants.SIMON_ID, PuzzleConstants.SIMON_SPAWN_POS}
+        };
+
+        if (puzzleRef.TryGet(out NetworkObject puzzle))
+        {
+            var puzzleId = puzzle.GetComponentInChildren<PuzzleBase>().puzzleId;
+
+            puzzle.gameObject.transform.position = cam.transform.position + posLookup[puzzleId];
+        }
+    }
+
     public byte[] ULongListToBytes(List<ulong> clients) 
     {
         return clients

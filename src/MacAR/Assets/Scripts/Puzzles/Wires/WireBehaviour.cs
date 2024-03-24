@@ -21,6 +21,8 @@ public class WireBehaviour : PuzzleBase
 
     public override void InitializePuzzle()
     {
+        puzzleId = PuzzleConstants.WIRE_ID;
+
         var rootOrder = RandomList(this.seed);
         var wireOrder = RandomList(this.seed-1);
 
