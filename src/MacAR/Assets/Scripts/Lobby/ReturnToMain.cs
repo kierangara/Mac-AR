@@ -16,7 +16,7 @@ public class ReturnToMain : MonoBehaviour
     [SerializeField] private string mainMenuName = "Gameplay";
 
     // Start is called before the first frame update
-    public async void returnToMain()
+    public async void returnToMain(int nextScene=1)
     {
         
         try
@@ -55,7 +55,7 @@ public class ReturnToMain : MonoBehaviour
             {
                 NetworkManager.Singleton.ConnectionApprovalCallback = null;
             }
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(nextScene);
             NetworkManager.Singleton.Shutdown();
 
         }
