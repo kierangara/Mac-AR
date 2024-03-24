@@ -181,8 +181,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         PlayerPrefs.SetString("lobbyID", "");
     }
 
-    [ClientRpc]
-    public void ButtonExitGameClientRpc()
+    public void ButtonExitGame()
     {
         ReturnToMain exitGame = new ReturnToMain();
         exitGame.returnToMain(1);
