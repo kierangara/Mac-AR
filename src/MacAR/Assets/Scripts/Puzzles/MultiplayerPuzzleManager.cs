@@ -101,16 +101,16 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
-    public void SkipPuzzle()
+    [ServerRpc(RequireOwnership = false)]
+    public void SkipPuzzleServerRpc()
     {
         CompletePuzzleServerRpc(0, PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1);
     }
 
-    // TODO: Will need to take in puzzle ID too to allow anyone to call (not just host) while also
-    // making sure to ignore duplicate requests to complete the same puzzle
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void CompletePuzzleServerRpc(ulong clientId, int puzzleId)
     {
+        // Make sure the user is attempting to skip the current puzzle
         if(puzzleId != PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1)
         {
             return;
