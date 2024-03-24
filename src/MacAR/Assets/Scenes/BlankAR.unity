@@ -1180,6 +1180,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DisplayChat
       objectReference: {fileID: 0}
+    - target: {fileID: 5022308240702373768, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
+        type: 3}
+      propertyPath: puzzleManager
+      value: 
+      objectReference: {fileID: 1527853314}
     - target: {fileID: 5289059938702909120, guid: 9b5d47bbf1120954eb2f6c9381fc622d,
         type: 3}
       propertyPath: puzzleManager
@@ -1709,3 +1714,5 @@ SceneRoots:
   - {fileID: 133649111}
   - {fileID: 2111837404}
   - {fileID: 1527853315}
+  - {fileID: 0}
+  - {fileID: 0}

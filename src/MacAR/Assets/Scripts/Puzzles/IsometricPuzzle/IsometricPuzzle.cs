@@ -23,7 +23,7 @@ public class IsometricPuzzleManager : PuzzleBase
     private int cubeIndex;
     public override void InitializePuzzle()
     {
-        
+        puzzleId = PuzzleConstants.ISO_ID;
 
         _cubesCollection = new IsometricCube[_cubeWidth,_cubeHeight ,_cubeLength];
         activeGrid = new bool[_cubeWidth, _cubeHeight, _cubeLength];

@@ -39,6 +39,8 @@ public class SimonSaysPuzzle : PuzzleBase
 
     public override void InitializePuzzle()
     {
+        puzzleId = PuzzleConstants.SIMON_ID;
+
         if (instance != this && instance != null)
         {
             Destroy(this.gameObject);
