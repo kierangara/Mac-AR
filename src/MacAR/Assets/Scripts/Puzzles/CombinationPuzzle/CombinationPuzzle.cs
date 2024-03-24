@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using TMPro;
 using Unity.Netcode;
 using System.Linq;
+using System;
 
 
 public class CombinationPuzzle : PuzzleBase
@@ -110,8 +111,7 @@ public class CombinationPuzzle : PuzzleBase
     }
 
 
-    private void generateCode(int numPosibilities){
-        int randNum = Random.Range(0,numPosibilities);
+    private void generateCode(int numPosibilities, int randNum){
         codeCombo = GenerateInstructionSet()[randNum];
     }
 
@@ -159,11 +159,13 @@ public class CombinationPuzzle : PuzzleBase
 
     [ServerRpc]
     public void GenerateCodeServerRpc(){
-        GenerateCodeClientRpc();
+        UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
+        int randNum = UnityEngine.Random.Range(0,numPosibilities);
+        GenerateCodeClientRpc(randNum);
     }
     [ClientRpc]
-    public void GenerateCodeClientRpc(){
-        generateCode(numPosibilities);
+    public void GenerateCodeClientRpc(int randomNum){
+        generateCode(numPosibilities,randomNum);
     }
 
     private string[][] GenerateInstructionSet(){
