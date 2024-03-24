@@ -44,6 +44,8 @@ public class MazePuzzle : PuzzleBase
 
     public override void InitializePuzzle()
     {
+        puzzleId = PuzzleConstants.MAZE_ID;
+
         Debug.Log("Maze Initializing");
         //puzzleData =GameObject.Find("PuzzleInit").GetComponent<PuzzleData>();
         if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])

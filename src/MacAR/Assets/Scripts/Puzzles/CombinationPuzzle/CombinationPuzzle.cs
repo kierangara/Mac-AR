@@ -32,7 +32,10 @@ public class CombinationPuzzle : PuzzleBase
         Debug.Log("Combo Puzzle Started");
     }
 
-    public override void InitializePuzzle(){
+    public override void InitializePuzzle()
+    {
+        puzzleId = PuzzleConstants.COMBINATION_ID;
+        
         wrongInputTimer = -1;
         foreach(char j in codeInputField.text){
             currentCode+=j;

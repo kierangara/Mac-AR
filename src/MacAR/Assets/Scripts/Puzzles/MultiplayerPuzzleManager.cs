@@ -101,16 +101,16 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         
     }
 
-    public void SkipPuzzle()
+    [ServerRpc(RequireOwnership = false)]
+    public void SkipPuzzleServerRpc()
     {
         CompletePuzzleServerRpc(0, PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1);
     }
 
-    // TODO: Will need to take in puzzle ID too to allow anyone to call (not just host) while also
-    // making sure to ignore duplicate requests to complete the same puzzle
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void CompletePuzzleServerRpc(ulong clientId, int puzzleId)
     {
+        // Make sure the user is attempting to skip the current puzzle
         if(puzzleId != PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1)
         {
             return;
@@ -118,6 +118,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
 
         puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(false);
         activePuzzleIndex += 1;
+
+        UpdateActivePuzzleClientRpc(activePuzzleIndex);
 
         if(activePuzzleIndex < PuzzleConstants.puzzleBatches[activePuzzleBatchIndex].Count)
         {
@@ -145,6 +147,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         activePuzzleBatchIndex += 1;
         activePuzzleIndex = 0;
 
+        UpdateActiveBatchClientRpc(activePuzzleBatchIndex);
+
         if(activePuzzleBatchIndex < PuzzleConstants.puzzleBatches.Count)
         {
             SpawnPuzzleBatch();
@@ -154,6 +158,20 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             ExitGameClientRpc();
         }
     }
+
+    [ClientRpc]
+    public void UpdateActivePuzzleClientRpc(int puzzleIndex)
+    {
+        activePuzzleIndex = puzzleIndex;
+    }
+
+    [ClientRpc]
+    public void UpdateActiveBatchClientRpc(int batchIndex)
+    {
+        activePuzzleIndex = 0;
+        activePuzzleBatchIndex = batchIndex;
+    }
+
 
     [ClientRpc]
     public void ExitGameClientRpc()
@@ -169,6 +187,43 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         ReturnToMain exitGame = new ReturnToMain();
         exitGame.returnToMain(1);
         PlayerPrefs.SetString("lobbyID", "");
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void RefreshPuzzlePositionsServerRpc(ulong clientId)
+    {
+        ClientRpcParams clientRpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new ulong[]{clientId}
+            }
+        };
+
+        foreach(var puzzle in puzzleInstances)
+        {
+
+            RefreshPuzzlePositionClientRpc(puzzle, clientRpcParams);
+        }
+    }
+
+    [ClientRpc]
+    private void RefreshPuzzlePositionClientRpc(NetworkObjectReference puzzleRef, ClientRpcParams clientRpcParams = default)
+    {
+        var posLookup = new Dictionary<int, Vector3>{
+            {PuzzleConstants.ISO_ID, PuzzleConstants.ISO_SPAWN_POS},
+            {PuzzleConstants.MAZE_ID, PuzzleConstants.MAZE_SPAWN_POS},
+            {PuzzleConstants.WIRE_ID, PuzzleConstants.WIRE_SPAWN_POS},
+            {PuzzleConstants.COMBINATION_ID, PuzzleConstants.COMBINATION_SPAWN_POS},
+            {PuzzleConstants.SIMON_ID, PuzzleConstants.SIMON_SPAWN_POS}
+        };
+
+        if (puzzleRef.TryGet(out NetworkObject puzzle))
+        {
+            var puzzleId = puzzle.GetComponentInChildren<PuzzleBase>().puzzleId;
+
+            puzzle.gameObject.transform.position = cam.transform.position + posLookup[puzzleId];
+        }
     }
 
     public byte[] ULongListToBytes(List<ulong> clients) 

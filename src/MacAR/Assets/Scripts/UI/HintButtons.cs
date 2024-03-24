@@ -40,36 +40,36 @@ public class HintButtons : MonoBehaviour
         if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 1)
         {
             Debug.Log("in 0");
-            hintList.Add("combo puzzle hint 1");
-            hintList.Add("combo puzzle hint 2");
+            hintList.Add("Your combination entry resets every time you enter an incorrect number");
+            hintList.Add("Make sure to coordinate who's entering the combination");
 
         }
         else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 2)
         {
             Debug.Log("in 1");
-            hintList.Add("wires puzzle hint 1");
-            hintList.Add("wires puzzle hint 2");
+            hintList.Add("The wires should be connected to the correct coloured nodes");
+            hintList.Add("The power will be turned on when the lights turn green");
   
         }
         else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 3)
         {
             Debug.Log("in 2");
-            hintList.Add("simon puzzle hint 1");
-            hintList.Add("simon puzzle hint 2");
+            hintList.Add("Communicate regarding the different colours you see");
+            hintList.Add("Try to remember the cube colour sequence");
 
         }
         else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 0)
         {
             Debug.Log("in 3");
-            hintList.Add("iso puzzle hint 1");
-            hintList.Add("iso puzzle hint 2");
+            hintList.Add("Look at the cubes from different angles, they might resemble something familiar");
+            hintList.Add("Each set of cubes has one letter and one number, which creates a word");
 
         }
         else if (PuzzleConstants.puzzleBatches[multi.activePuzzleBatchIndex][multi.activePuzzleIndex].Item1 == 4)
         {
             Debug.Log("in 4");
-            hintList.Add("maze puzzle hint 1");
-            hintList.Add("maze puzzle hint 2");
+            hintList.Add("One user has the ability to rotate their phone to rotate the maze");
+            hintList.Add("Try to communicate to get the ball to reach the stone plate at the end of the maze");
 
         }
 
