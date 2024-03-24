@@ -16,6 +16,6 @@ public class ExitButton : MonoBehaviour
 
 	void ExitButtonClick()
     {
-		puzzleManager.ExitGameClientRpc();
+		puzzleManager.ButtonExitGameClientRpc();
 	}
 }

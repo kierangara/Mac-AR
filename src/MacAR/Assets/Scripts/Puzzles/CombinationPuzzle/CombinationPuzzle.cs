@@ -20,7 +20,6 @@ public class CombinationPuzzle : PuzzleBase
 
     [SerializeField] GameObject keypad;
     public PuzzleData puzzleData;
-
     private string[] codeCombo;
     private string currentCode;
     private int currentDigit;
@@ -40,12 +39,13 @@ public class CombinationPuzzle : PuzzleBase
         }
         currentDigit = 0;
         //Create code and instructions
-        string code = "3159";
-        string instr1 = "The second row and column each contain one number\n";
-        string instr2 = "The second number is the only number in the first column\n";
-        string instr3 = "The first number is two greater than the second number\n";
-        string instr4 = "The fourth number is the only number in the third row\n";
-        codeCombo = new string[]{code,instr1, instr2, instr3, instr4};
+        //string code = "3159";
+        //string instr1 = "The second row and column each contain one number\n";
+        //string instr2 = "The second number is the only number in the first column\n";
+        //string instr3 = "The first number is two greater than the second number\n";
+        //string instr4 = "The fourth number is the only number in the third row\n";
+        string[][] instructionSet = GenerateInstructionSet();
+        codeCombo = instructionSet[1];
         for(int i = 0; i<puzzleData.connectedClients.Count; i++){
             if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[i])
             {
@@ -106,6 +106,10 @@ public class CombinationPuzzle : PuzzleBase
         }
     }
 
+    private void generateCode(){
+        int randNum = Random.Range(0,4);
+    }
+
     [ServerRpc(RequireOwnership = false)]
     public void RequestPuzzleDataServerRpc()
     {
@@ -146,5 +150,28 @@ public class CombinationPuzzle : PuzzleBase
     public void KeyPressedClientRpc(string number)
     {
         KeyPadPress(number);
+    }
+
+    private string[][] GenerateInstructionSet(){
+        string[][] instructionSet = new string[5][];
+        string code = "3159";
+        string instr1 = "The second row and column each contain one number\n";
+        string instr2 = "The second number is the only number in the first column\n";
+        string instr3 = "The first number is two greater than the second number\n";
+        string instr4 = "The fourth number is the only number in the third row\n";
+        instructionSet[0] = new string[]{code,instr1, instr2, instr3, instr4};
+        code = "6194";
+        instr1 = "The second number of the combination is just above the fourth number of the combination on the keypad\n";
+        instr2 = "The third number of the combination is 9, and it is 5 more than the 4th number of the combination\n";
+        instr3 = "The third number of the combination is two less than the fourth number\n";
+        instr4 = "The first number of the combination is in the third column\n";
+        instructionSet[1] = new string[]{code,instr1, instr2, instr3, instr4};
+        code = "6194";
+        instr1 = "The second number of the combination is just above the fourth number of the combination on the keypad\n";
+        instr2 = "The third number of the combination is 9, and it is 5 more than the 4th number of the combination\n";
+        instr3 = "The third number of the combination is two less than the fourth number\n";
+        instr4 = "The first number of the combination is in the third column\n";
+        instructionSet[2] = new string[]{code,instr1, instr2, instr3, instr4};
+        return instructionSet;
     }
 }
