@@ -3205,7 +3205,9 @@ PrefabInstance:
       value: TitleScreen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1221167433134424818, guid: a91d6ed9c3f493b48938ae25652b9225, type: 3}
+    - {fileID: 6603345505874930178, guid: a91d6ed9c3f493b48938ae25652b9225, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a91d6ed9c3f493b48938ae25652b9225, type: 3}
