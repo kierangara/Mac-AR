@@ -1,13 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Mail;
 using TMPro;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
-//using Unity.Tutorials.Core.Editor;
-//using UnityEditor.Build.Reporting;
 using UnityEngine;
-using UnityEngine.UIElements;
 using System;
 
 public class LobbyItem : MonoBehaviour

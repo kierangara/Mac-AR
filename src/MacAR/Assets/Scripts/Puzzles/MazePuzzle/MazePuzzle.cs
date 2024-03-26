@@ -1,16 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.UIElements;
-using System;
-using System.ComponentModel;
 using Unity.Netcode;
-
-
-
-
 public class MazePuzzle : PuzzleBase
 {
     //Vector3 BallPosition=new Vector3(0,0,0);

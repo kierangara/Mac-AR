@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PassiveWires : MonoBehaviour
 {
     public GameObject root1;

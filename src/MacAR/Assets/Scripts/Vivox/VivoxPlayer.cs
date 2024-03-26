@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Unity.Services.Vivox;
 using VivoxUnity;
 using UnityEngine.Android;
-using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
-
 public class VivoxPlayer : MonoBehaviour
 {
     // Start is called before the first frame update

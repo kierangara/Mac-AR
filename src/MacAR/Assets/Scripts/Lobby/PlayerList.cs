@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Unity.Netcode;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.Services.Vivox;
-using VivoxUnity;
 
 public class PlayerList : NetworkBehaviour
 {

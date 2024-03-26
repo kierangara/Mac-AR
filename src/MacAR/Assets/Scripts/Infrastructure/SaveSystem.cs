@@ -1,11 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using static DataCollection;
+
 public class SaveSystem : MonoBehaviour
 {
     private const string FileType = ".txt";

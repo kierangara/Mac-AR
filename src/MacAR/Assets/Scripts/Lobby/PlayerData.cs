@@ -1,8 +1,6 @@
 using System;
-using Unity.Collections;
 using Unity.Netcode;
-using Unity.VisualScripting.FullSerializer;
-[System.Serializable]
+[Serializable]
 public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
 {
     public ulong ClientId;

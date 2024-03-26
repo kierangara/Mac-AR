@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public static class PuzzleConstants
 {
     // Puzzle IDs (Should match index of MultiplayerPuzzleManger list for now)

@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ActiveWires : MonoBehaviour
 {
     public List<List<uint>> m_sequence;

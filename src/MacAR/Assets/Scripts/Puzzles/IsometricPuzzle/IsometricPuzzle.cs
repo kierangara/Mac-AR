@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using System.Linq;
-using static Unity.VisualScripting.Member;
 using System;
-using Unity.Collections.LowLevel.Unsafe;
 
 public class IsometricPuzzleManager : PuzzleBase
 {
