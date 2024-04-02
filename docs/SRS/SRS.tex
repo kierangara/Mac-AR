@@ -473,8 +473,6 @@ external systems and services.
     \textbf{Rationale:} The user should be able to see all the settings that are able to be changed
     \item The system shall allow the user to change the password of the room\newline 
     \textbf{Rationale:} The user should be able to change the password of the room to ensure security
-    \item The system shall allow the user to remove group members from the game room\newline 
-    \textbf{Rationale:} If the host user decides a group member should not be in the game room, they can remove them instead of making a new room
     \item The system shall display the updated settings to the game members in the game room\newline 
     \textbf{Rationale:} When a setting changes the other users in the game room should be able to see the changes in case they will affect them
 \end{enumerate}
@@ -498,18 +496,12 @@ external systems and services.
     \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay
     \item The system shall determine an order of the puzzles, and which group members can see which parts of the puzzles\newline 
     \textbf{Rationale:} In games with more than one puzzle, there needs to be an order to solve the questions. The system will determine a logical order, and assign which group members can see which parts of the puzzles
-    \item The system shall display a progress bar based on the current progress on the screen\newline 
-    \textbf{Rationale:} The group members should have some indicator how close they are to finishing the game
     \item The system shall reveal the available puzzles to the group members and commence the game\newline 
     \textbf{Rationale:} The group members should be able to view the puzzles they have access to
 \end{enumerate}
 
 \subsubsection{Puzzle Interaction}
     \begin{enumerate}[label=PI\arabic*., series=PuzzleInteract]
-        \item The system shall allow the user to select a puzzle to attempt from the main scene\\
-        \textbf{Rationale}: The user is shown multiple puzzles on the main scene and must be able to select the one they would like to attempt
-        \item The system shall present the user with an enlarged version of the puzzle once they've selected it\\
-        \textbf{Rationale}: For full scale versions of all puzzles to visible on the main scene, too much of the scene would be obscured. This is resolved by forcing the user to select the puzzle to see the full size puzzle
         \item The system shall allow users to perform all necessary actions on the puzzle to complete the puzzle\\
         \textbf{Rationale}: The user must be able to complete the puzzles in order to progress in the game
         \item The system shall display the new puzzle state after a user performs an action on a puzzle\\
@@ -518,8 +510,6 @@ external systems and services.
         \textbf{Rationale}: When multiple group members are cooperating on a puzzle they must be able to see updates caused by the actions of one another
         \item The system shall notify the user when they have completed a puzzle\\
         \textbf{Rationale}: Users should know when they've completed a puzzle so they know they can move on. A notification at the end of a puzzle can also make completing it more satisfying for the user
-        \item The system shall update the overall room progress and progress bar when a puzzle is completed\\
-        \textbf{Rationale}: The overall room progress must be continuously updated as puzzles are completed so the game can detect when all the puzzles have been completed and the users have accomplished their goal
     \end{enumerate}
 \subsubsection{Hint Request}
     \begin{enumerate}[label=HR\arabic*., series=HintRequest]
@@ -561,6 +551,59 @@ external systems and services.
         \item The system shall allow users to close a message\\
         \textbf{Rationale}: Users must be able to return to the mains scene after viewing a message to continue game play
     \end{enumerate}
+\subsubsection{Simon Says Puzzle}
+    \begin{enumerate}[label=SS\arabic*., series=SimonSays]
+        \item The system shall display the coloured buttons to the host user at the start of the game\\
+        \textbf{Rationale}: Users must be able to see puzzle assets that they need to interact with
+        \item The system shall display the colour cube to all users other than the host at the start of the game\\
+        \textbf{Rationale}: Users must be able to see puzzle assets that they need to interact with
+        \item The system shall display the current Simon Says level to all users while the puzzle is active\\
+        \textbf{Rationale}: The level indicates the current number of correct sequences the group has inputted, and shows progression through the puzzle
+        \item The system shall display a sequence of colours on the colour cube when the puzzle is active\\
+        \textbf{Rationale}: The sequence of colours must be shown in order so than the users can communicate and the individual with the coloured buttons can enter the correct sequence
+        \item The system shall increase the Simon Says level once the user inputs colour sequence using the coloured buttons\\
+        \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle
+        \item The system shall display the puzzle as completed once level 3 is completed\\
+        \textbf{Rationale}: The puzzle should be able to be completed in order for users to be able to progress through the escape room. Additionally, level 3 is the highest level since the puzzle is supposed to take several minutes to solve and the time it takes to reach this level is in accordance to that
+    \end{enumerate}
+\subsubsection{Maze Puzzle}
+\begin{enumerate}[label=MP\arabic*., series=MazePuzzle ]
+        \item The system shall randomly create a maze with a starting location, an end goal, and a ball that falls with gravity. \\
+        \textbf{Rationale}: The puzzle should be highly re-playable, providing a different experience for users each time, and the maze needs an end goal to reach
+        \item The system shall choose a user to be in control of rotating the maze \\
+        \textbf{Rationale}: The goal of the puzzle is to have one person rotate the maze, and the rest of the users to guide the person in charge of rotating
+        \item The system shall make the inside of the maze only visible to users that can't rotate the maze \\
+        \textbf{Rationale}: If the user in charge of rotating could see inside the maze, it would defeat the whole purpose
+        \item When the user in charge of rotating rotates their phone, the maze should rotate proportionally \\
+        \textbf{Rationale}: The user should be able to rotate the maze easily and have a reasonable amount of positive feedback
+        \item The system shall complete the puzzle when the ball reaches the end goal\\
+        \textbf{Rationale}: The users should have a way to finish the maze
+\end{enumerate}
+\subsubsection{Isometric Puzzle}
+
+\begin{enumerate}[label=IP\arabic*., series=IsometricPuzzle ]
+        \item The system shall randomly assign letter and number combinations to every user in the game, based on a word the system chooses \\
+        \textbf{Rationale}: Each user needs to have their own respective puzzle elements they can interact with, and there needs to be an end goal word. 
+        \item The system shall generate arrangements of blocks for each user that resemble letters and numbers based on the angle the user views them, and based on the letter and number combos each user was assigned \\
+        \textbf{Rationale}: The goal of the puzzle is to complete a word based on letters in positions, the position given by the number they see, and the letter given by the letter they see
+        \item The system shall have left and right buttons to switch between letter and number combinations \\
+        \textbf{Rationale}: For groups of users with a size less than the amount of letters in the word, they need a way to switch between the available letters and numbers they have
+        \item The system shall have an input field for users to enter their final guess into \\
+        \textbf{Rationale}: The users need to way to guess what the word is to complete the puzzle
+        \item When the word entered into the input field is the same as the word the system drew letter and number combinations from, the puzzle completes\\
+        \textbf{Rationale}: There needs to be a puzzle completion condition
+\end{enumerate}
+\subsubsection{Combination Puzzle}
+    \begin{enumerate}[label=CP\arabic*., series=CombinationPuzzle]
+        \item The system shall randomly select a select a set of instructions and associated four digit combination from the available set of instruction-combination pairings\\
+        \textbf{Rationale}: The puzzle should be highly re-playable, providing a different experience for users each time
+        \item The combination associated with each instruction set shall be the only possible four digit combination given the associated instructions\\
+        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle in order for users to be able to solve it using the instructions.
+        \item The combination associated with each instruction set shall be the only possible four digit combination given the associated instructions\\
+        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle in order for users to be able to solve it using the instructions.
+        
+    \end{enumerate}
+
 \subsection{Formal Specification}
 $(\forall r \in rooms  | (\sum\limits_{user \in r} 1)  \leq r.roomCapacity)$\\
 
@@ -711,6 +754,25 @@ The following section will describe the non-functional requirements of the appli
 \multicolumn{1}{|l|}{\textbf{RM1}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
 \multicolumn{1}{|l|}{\textbf{RM2}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
 \multicolumn{1}{|l|}{\textbf{RM3}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS1}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS2}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS3}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS4}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS5}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS6}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP1}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP2}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP3}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP4}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP5}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP1}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP2}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP3}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP4}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP5}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{CP1}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{CP2}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\multicolumn{1}{|l|}{\textbf{CP3}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
 \end{tabular}
 
 }
