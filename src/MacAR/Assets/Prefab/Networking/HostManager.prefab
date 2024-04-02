@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8950656886617044266}
-  - component: {fileID: 879499277}
+  - component: {fileID: 7853074167075535955}
   m_Layer: 0
   m_Name: HostManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &879499277
+--- !u!114 &7853074167075535955
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59fff3cffaaf904cadd63b35f8767c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSelectSceneName: CharacterSelect
-  gameplaySceneName: Gameplay
+  characterSelectSceneName: Lobby
+  gameplaySceneName: BlankAR

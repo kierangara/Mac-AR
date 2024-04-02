@@ -2,12 +2,9 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using VivoxUnity;
 using System.Collections.Generic;
 using System.Collections;
-
-
 public class TextChat : MonoBehaviour
 {
     private VivoxVoiceManager _vivoxVoiceManager;

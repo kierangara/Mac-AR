@@ -1,7 +1,5 @@
 ﻿using System;
 using Unity.Netcode;
-
-
 public struct PlayerLobbyState : INetworkSerializable, IEquatable<PlayerLobbyState>
 {
     public ulong ClientId;

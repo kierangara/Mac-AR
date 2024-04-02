@@ -458,7 +458,7 @@
     },
     "com.unity.xr.arkit": {
       "version": "5.1.0",
-      "depth": 0,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.editorcoroutines": "1.0.0",

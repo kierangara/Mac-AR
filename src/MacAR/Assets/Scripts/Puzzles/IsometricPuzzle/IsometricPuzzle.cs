@@ -1,16 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using System.Linq;
-using static Unity.VisualScripting.Member;
 using System;
-using Unity.Collections.LowLevel.Unsafe;
 
 public class IsometricPuzzleManager : PuzzleBase
 {
-    // Start is called before the first frame update
     [SerializeField] private TMP_InputField solutionField;
     [SerializeField] private IsometricCube _cubePrefab;
     [SerializeField] private int _cubeWidth;
@@ -21,6 +16,8 @@ public class IsometricPuzzleManager : PuzzleBase
     private bool[,,] activeGrid;
     private string[] _cubeNames;
     private int cubeIndex;
+    //--------------------------------------------------------------------//
+    //This function is called upon creating the puzzle to initialize default values
     public override void InitializePuzzle()
     {
         puzzleId = PuzzleConstants.ISO_ID;
