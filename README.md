@@ -14,6 +14,8 @@ This project is our McMaster University Software Engineering Capstone Project. W
 
 The game is developed in Unity and uses the Vivox voice and text chat system to enable remote communication.
 
+https://www.youtube.com/watch?v=DcXwwI4MOdI&t=1s&ab_channel=creepdefeater
+
 <p float="left" align="center">
     <img src="https://github.com/SammyG7/Mac-AR/assets/93633486/238d9eab-897e-4430-852e-797e2a8d5099" width="200"/>
     <img src="https://github.com/SammyG7/Mac-AR/assets/93633486/395e64d9-1651-4ab2-9315-909af66dec25" width="200"/>
