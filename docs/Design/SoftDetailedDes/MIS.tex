@@ -60,6 +60,7 @@ January 15 & 1.1 & Module Definitions\\
 January 16 & 1.2 & Module Details\\
 January 17 & 1.3 & Appendix\\
 January 18 & 1.4 & Revision 0\\
+April 2 & 1.5 & Adding new modules and removing old ones\\
 \bottomrule
 \end{tabularx}
 
@@ -163,10 +164,9 @@ The following table is taken directly from the Module Guide document for this pr
 & Voice Communication Module\\
 & Multiplayer Puzzle Module\\
 & Simon Says Puzzle Module\\
-& Code Puzzle Module\\
+& Isometric Puzzle Module\\
 & Wires Puzzle Module\\
 & Maze Puzzle Module\\
-& Math Puzzle Module\\
 & Bomb Puzzle Module\\
 \midrule
 
@@ -182,7 +182,7 @@ The following table is taken directly from the Module Guide document for this pr
 
 \newpage
 
-\section{MIS of {Hardware Module}} \label{HardwareModule} 
+\section{MIS of {Hardware Module}} \label{sec:HardwareModule} 
 
 \subsection{Module}
 
@@ -221,7 +221,7 @@ Implemented by operating system
 
 \newpage
 
-\section{MIS of Game Room Module} \label{GameRoomModule} 
+\section{MIS of Game Room Module} \label{sec:GameRoomModule} 
 \subsection{Module}
 
 GameRoomModule
@@ -334,7 +334,7 @@ None
 
 \newpage
 
-\section{MIS of Text Communication Module} \label{text} 
+\section{MIS of Text Communication Module} \label{sec:text} 
 
   This module uses the built in Unity library called Vivox to implement text chat.
 
@@ -441,7 +441,7 @@ $channelTextMessage.FromSelf == 0 => sender.color = white \land SendScrollRectTo
 
 \newpage
 
-\section{MIS of Voice Communication Module} \label{text} 
+\section{MIS of Voice Communication Module} \label{sec:voice} 
 This module uses the built in Unity library called Vivox to implement voice chat.
 
 \subsection{Module}
@@ -477,7 +477,8 @@ VivoxToggle  & - & - & - \\
 
 \subsubsection{State Variables}
 
-VoiceToggleIsOn : $\mathds{B}$
+VoiceToggleIsOn : $\mathds{B}$\\
+\_vvm : Vivox voice manager instance
 
 \subsubsection{Environment Variables}
 
@@ -490,13 +491,6 @@ Device screen
 None\\
 
 \subsubsection{Access Routine Semantics}
-
-
-\noindent Start():
-\begin{itemize}
-\item transition: $\_vvm :=$ Vivox voice manager instance
-\item exception: None
-\end{itemize}
 
 \noindent isMicPermissionGranted():
 \begin{itemize}
@@ -537,7 +531,7 @@ None
 
 \newpage
 
-\section{MIS of {Multiplayer Puzzle Module}} \label{DocModule} 
+\section{MIS of {Multiplayer Puzzle Module}} \label{sec:Puzzle} 
 
 The base module that all other puzzle modules will inherit from. The module will handle all of the common behaviour shared between the puzzle implementations. This consists of the puzzle hint system, the puzzle skip system, and the coordination between users working on the same puzzle instance. 
 
@@ -617,9 +611,9 @@ None
 
 \newpage
 
-\section{MIS of Simon Says Puzzle Module} \label{Simon}
+\section{MIS of Simon Says Puzzle Module} \label{sec:Simon}
 
-\noindent The Simon Says Puzzle Module implements functionality for the Simon Says puzzle that is present in the application. This puzzle involves two users. User 1 has a 4 buttons of different colours (red, blue, green, yellow) in their game environment and User 2 has a area in their environment that flashes with different colours. User 2 must remember the pattern of colours that was shown and communicate with User 1 to let them know the order to press the coloured buttons in.
+\noindent The Simon Says Puzzle Module implements functionality for the Simon Says puzzle that is present in the application. This puzzle involves two users. User 1 has a 4 buttons of different colours (red, blue, green, yellow) in their game environment and User 2 has a cube in their environment that flashes with different colours. User 2 must remember the pattern of colours that was shown and communicate with User 1 to let them know the order to press the coloured buttons in.
 
 \subsection{Module}
 SimonSaysPuzzle
@@ -642,11 +636,12 @@ None
 GenerateColourSequence & - & Array of $\mathds{N}$ & - \\
 DisableInteractionWithButtons & - & - & - \\
 EnableInteractionWithButtons & - & - & - \\
-ButtonClickOrder & - & - & - \\
+TrackUserInput & - & - & - \\
 CheckIfSuccess & Array of $\mathds{N}$ & $\mathds{B}$ & - \\
-ColourBlink & - & - & - \\
-IncreaseLevel & - & - & - \\
-Reset & - & - & - \\
+IncrementLevel & - & - & - \\
+ResetLevel & - & - & - \\
+UpdateCubeServerRpc & Colour & - & - \\
+UpdateTextServerRpc & string & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -654,8 +649,11 @@ Reset & - & - & - \\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-
-None
+level := 1 $\{1<=\mathbb{N}<4\}$\\
+success : $\mathds{B}$\\
+colourSequenceArray : Array of $\mathds{N}$\\
+buttonsArray := \{0, 1, 2, 3\}\\
+%colourDictionary := $\{Red -> 0, Blue -> 1, Green -> 2, Yellow -> 3\}$
 
 \subsubsection{Environment Variables}
 
@@ -678,17 +676,17 @@ None
 
 \noindent DisableInteractionWithButtons():
 \begin{itemize}
-\item transition: $ \forall i: 0 <= i < 4 : \newline buttons[i].interactable = False$
+\item transition: $ \forall i: 0 <= i < 4 :$ \newline buttonsArray[i].interactable = False
 \item exception: None
 \end{itemize}
 
 \noindent EnableInteractionWithButtons():
 \begin{itemize}
-\item transition: $ \forall i: 0 <= i < 4 : \newline buttons[i].interactable = True$
+\item transition: $ \forall i: 0 <= i < 4 :$ \newline buttonsArray[i].interactable = True
 \item exception: None
 \end{itemize}
 
-\noindent ButtonClickOrder():
+\noindent TrackUserInput():
 \begin{itemize}
 \item transition: Detect and store user input order of buttons in game environment
 \item exception: None
@@ -701,9 +699,15 @@ None
 \item exception: None
 \end{itemize}
 
-\noindent ColourBlink():
+\noindent UpdateCubeServerRpc(colour):
 \begin{itemize}
-\item transition: $success == True =>$ screen flash green $\: | \: else =>$ screen flash red
+\item transition: Cube flashes colour present in input for all users besides player 1
+\item exception: None
+\end{itemize}
+
+\noindent UpdateTextServerRpc(text):
+\begin{itemize}
+\item transition: Simon Says level text updated amongst all users when correct or incorrect sequence inputted
 \item exception: None
 \end{itemize}
 
@@ -722,18 +726,14 @@ None
 \subsubsection{Local Functions}
 None
 \subsubsection{Local Variables}
-level := 1 $\{1<=\mathbb{N}<10\}$\\
-success : $\mathds{B}$\\
-colourSequenceArray : Array of $\mathds{N}$\\
-buttonsArray := \{0, 1, 2, 3\}\\
-colourDictionary := $\{Red -> 0, Blue -> 1, Green -> 2, Yellow -> 3\}$
+None
 \newpage
 
-\section{MIS of Code Puzzle Module} \label{Code}
-\noindent The Decipher Code Puzzle Module implements functionality for the Decipher Code puzzle that is present in the application. This puzzle involves two users. User 1 has a group of symbols located next to each other in a row. User 2 has a cipher that shows the correlation between English letters and the symbols. User 1 must describe to User 2 the symbols they are seeing in order to crack the cipher. Once the symbols have been mapped to English letters, User 1 must enter the code to solve the puzzle.
+\section{MIS of Isometric Puzzle Module} \label{sec:Code}
+\noindent The Isometric Puzzle Module implements functionality for the Isometric puzzle that is present in the application. This puzzle involves 2-8 players. Each player has an equally distributed amount of letters. e.g with 2 players, each player will receive 4 letters. The players will look at the arrangement of cubes from different angles, and it will appear to be a letter from one angle, and a number from the other angle. The players must put together all their letters at their respective index indicated by the number they see to complete the final word.
 
 \subsection{Module}
-CodePuzzle
+IsometricPuzzle
 
 \subsection{Uses}
 Multiplayer Puzzle Module
@@ -741,7 +741,13 @@ Multiplayer Puzzle Module
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-CodeLength = 6
+SOLUTION = "TWILIGHT"
+
+\noindent $\_cubeWidth=5$
+
+\noindent $\_cubeLength=5$
+
+\noindent $\_cubeHeight=5$
 
 \subsubsection{Exported Access Programs}
 
@@ -750,12 +756,10 @@ CodeLength = 6
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-GenerateCode & - & string & - \\
-MapLettersToSymbols & string & string & - \\
-StoreUserInput & - & - & - \\
-CheckIfSuccess & string & $\mathds{B}$ & - \\
-ColourBlink & - & - & - \\
-ResetInput & - & - & - \\
+setCubes & string & \{$\mathds{B}$,$\mathds{B}$,$\mathds{B}$\} & - \\
+SendPuzzleDataServerRpc & $\mathds{I}$ & $\mathds{I}$ & - \\
+UpdateTextServerRpc & string & string & - \\
+SetIsometricPuzzlesServerRpc & string & string & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -763,12 +767,13 @@ ResetInput & - & - & - \\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-SymbolsArray $:= \{symbol0,symbol1,symbol2,…,symbol25\}$
+
+puzzleData.connectedClients : Tuple\textlangle$\mathds{Z}$, Array\textlangle$\mathds{Z}$\textrangle\textrangle
 
 \subsubsection{Environment Variables}
 
 Device screen\\
-This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
+This module has external interaction with an input field called solutionField, which has a property called "text" which allows characters to be pulled from it, as well as printed to the screen. There are also two buttons that call prevIsometric, and nextIsometric.
 
 \subsubsection{Assumptions}
 
@@ -776,60 +781,65 @@ None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent GenerateCode():
+\noindent setCubes(key):
 \begin{itemize}
-\item output: code := randString(CodeLength)
+\item output: $\forall x,y,z \in key => activeGrid[x,y,z]=true|activeGrid[x,y,z]=false$
 \item exception: None
 \end{itemize}
 
-\noindent MapLettersToSymbols(code):
+\noindent SendPuzzleDataServerRpc(p[]):
 \begin{itemize}
-\item output: symbolCode :=  \{$0 <= i < length(code)   :   \newline code[i] \: \longrightarrow SymbolsArray[lettersToNumberDictionary[code[i]]]\}$
+\item output: puzzleData.connectedClients := p
 \item exception: None
 \end{itemize}
 
-\noindent StoreUserInput():
+\noindent UpdateTextServerRpc(text):
 \begin{itemize}
-\item transition: Detect and store user input of buttons in game environment
+\item transition: If text=solution, transition to next puzzle
+\item output: solutionField.text=text to all users in the lobby
 \item exception: None
 \end{itemize}
 
-
-\noindent CheckIfSuccess(code):
+\noindent SetIsometricPuzzlesServerRpc(word):
 \begin{itemize}
-\item output: success := $ \forall i: 0 <= i < length(code) : \newline code[i] = userInput[i] => True  \: | \: else => False$
-\item exception: None
-\end{itemize}
-
-\noindent ColourBlink():
-\begin{itemize}
-\item transition: $success == True =>$ screen flash green $\: | \: else =>$ screen flash red
-\item exception: None
-\end{itemize}
-
-\noindent ResetInput():
-\begin{itemize}
-\item transition: Clear user input entry
+\item output: every player's $\_cubeNames$ is updated to have a random assortment of letter-number pairs from word, with each player having unique letter-number pairs. 
 \item exception: None
 \end{itemize}
 
 
 \subsubsection{Local Functions}
 
-randString(codeLength): Generate random string of length CodeLength
+nextIsometric(): Change the viewable letter-number pair to the next one in the list
 \begin{itemize}
-    \item output: code := newCode
+    \item output: cubeIndex=cubeIndex+1\\
+    setCubes($\_cubeNames[cubeIndex])$
+    \item exception: None
+\end{itemize}
+
+prevIsometric(): Change the viewable letter-number pair to the previous one in the list
+\begin{itemize}
+    \item output: cubeIndex=cubeIndex-1\\
+    setCubes($\_cubeNames[cubeIndex])$
+    \item exception: None
+\end{itemize}
+
+solutionFieldChanged(): Called when user hits enter on the inputfield on the screen, updates the inputfield on each user's screen
+\begin{itemize}
+    \item output: UpdateTextServerRpc(solutionField.text)
     \item exception: None
 \end{itemize}
 
 \subsubsection{Local Variables}
-success : $\mathds{B}$\\
-code : string\\
-letterToNumberDictionary := $\{A -> 0, B -> 1, C -> 2, ..., Z -> 25\}$
+
+activeGrid : Array\textlangle $\mathds{B}$\textrangle
+
+\_cubeNames : Array\textlangle string\textrangle
+
+cubeIndex : $\mathds{I}$
 
 \newpage
 
-\section{MIS of {Wires Puzzle Module}} \label{WiresModule} 
+\section{MIS of {Wires Puzzle Module}} \label{sec:WiresModule} 
 
 Puzzle module to be interacted with by two or more users. The module will generate a set of interactable wires for one user, and provide information on the correct order of wires to other users.
  
@@ -910,7 +920,7 @@ None
 
 \newpage
 
-\section{MIS of Maze Puzzle Module} \label{MazeModule} 
+\section{MIS of Maze Puzzle Module} \label{sec:MazeModule} 
 
 \subsection{Module}
 
@@ -921,18 +931,22 @@ Multiplayer Puzzle Module
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-None
+\noindent $\_mazeWidth=10$
+
+\noindent $\_mazeLength=10$
 \subsubsection{Exported Access Programs}
 
 \begin{center}
-\begin{tabular}{p{3cm} p{4cm} p{4cm} p{2cm}}
+\begin{tabular}{p{5cm} p{4cm} p{4cm} p{2cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
 GenerateMaze & $\mathbb{N}$ & $\mathbb{Z}$ & - \\
 RotateMaze & $\mathbb{R}$, $\mathbb{R}$, $\mathbb{R}$ & - & - \\
-BallHitsHole & - & - & - \\
 BallHitsGoal & - & - & - \\
+SendPuzzleDataServerRpc & $\mathds{I}$ & $\mathds{I}$ & - \\
+GenerateMazeServerRpc & Array\textlangle$\mathds{I}$\textrangle & Array\textlangle$\mathds{I}$\textrangle & -\\
+resetRotationPress & - & - & -\\
 \hline
 \end{tabular}
 \end{center}
@@ -945,9 +959,17 @@ BallPosition : {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
 
 \noindent MazeRotation : {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
 
+\noindent mazeLayout : Array\textlangle$\mathds{I}$,$\mathds{I}$\textrangle
+
+\noindent puzzleData.connectedClients : Tuple\textlangle$\mathds{Z}$, Array\textlangle$\mathds{Z}$\textrangle\textrangle
+
+
+
 \subsubsection{Environment Variables}
 
 The phone's gyroscope rotation triggers the RotateMaze function. 
+
+\noindent A button is on the screen that calls resetRotationPress
 
 \subsubsection{Assumptions}
 
@@ -966,103 +988,78 @@ The phone's gyroscope rotation triggers the RotateMaze function.
 \item exception: None
 \end{itemize}
 
-\noindent {BallHitsHole}():
-\begin{itemize}
-\item transition: BallPosition := (0,0,0)
-\item exception: None 
-\end{itemize}
-
 \noindent {BallHitsGoal}():
 \begin{itemize}
 \item transition: CompletePuzzle()
 \item exception: None
 \end{itemize}
 
+\noindent SendPuzzleDataServerRpc(p[]):
+\begin{itemize}
+\item output: puzzleData.connectedClients := p
+\item exception: None
+\end{itemize}
+
+\noindent GenerateMazeServerRpc(Array\textlangle$\mathds{I}$,$\mathds{I}$\textrangle  mazeLayouts):
+\begin{itemize}
+\item output: mazeLayouts of all connected clients becomes mazeLayouts
+\item exception: None
+\end{itemize}
+
+\noindent resetRotationPress():
+\begin{itemize}
+\item output: MazeRotation = 0,0,0
+\item exception: None
+\end{itemize}
+
+
 \subsubsection{Local Functions}
 
 BallMovement: BallPosition x MazeRotation $\implies$ BallPosition $\equiv$ Based on current BallPosition and Maze Rotation, the current Position of the Ball changes to reflect the effect of gravity on the ball as it rolls downwards. 
 
+\noindent To1DArray(input): Takes in a 2D int array and converts it to a 1D array
+\begin{itemize}
+    \item output: result := input to 1d array
+    \item exception: None
+\end{itemize}
+
+\noindent convertLayoutToGrid(mazeLayouts): Takes in an array of integers between 0 and 3 and converts them to a maze grid.
+\begin{itemize}
+    \item transition:\_mazeGrid := Make2DArray(mazeLayouts)
+    \item exception: None
+\end{itemize}
+
+\noindent Make2DArray(input,height,width): Takes in a 1D array and outputs a 2D array.
+\begin{itemize}
+    \item output: result := input to 2d array with height and width
+    \item exception: None
+\end{itemize}
+
+\noindent GetNextUnvisitedCell(MazeCell currentcell): Helper function for generating the maze, gets an unvisited cell based off adjacent cells
+\begin{itemize}
+    \item output: cell := random(currentcell.adjacent)
+    \item exception: None
+\end{itemize}
+
+\noindent ClearWalls(MazeCell previousCell, MazeCell currentCell): Removes two walls of the maze, based on relative location of the two cells.
+\begin{itemize}
+    \item transition: if(previousCell.x<currentCell.x) then previousCell.ClearRightWall() currentCell.ClearLeftWall()\\
+    if (previousCell.transform.position.x >currentCell.transform.position.x) then previousCell.ClearLeftWall() currentCell.ClearRightWall()\\
+    if (previousCell.transform.position.z < currentCell.transform.position.z)then  previousCell.ClearFrontWall() currentCell.ClearRearWall()\\
+    if (previousCell.transform.position.z > currentCell.transform.position.z) then previousCell.ClearRearWall() currentCell.ClearFrontWall()
+    \item exception: None
+\end{itemize}
+
+
 \subsubsection{Local Variables}
 
-Hole Locations : {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}{}
+Goal Location : {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
 
 \noindent ControllingPlayerIndex : $0<\mathbb{N}<10$
 
-
-
-\newpage 
-
-\section{MIS of {Math Puzzle Module}} \label{MathModule} 
-Puzzle module to be interacted with by two or more users. The module will split an equation into multiple sections and distribute the sections to each user.
-
-\subsection{Module}
-MathPuzzle Module
-\subsection{Uses}
-Multiplayer Puzzle Module
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-None
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-\begin{tabular}{p{4cm} p{3cm} p{3cm} p{3cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-GenerateSolution & - & $\mathds{R}$ & - \\
-GenerateSections & - & - & - \\
-CompareSolution & $\mathds{R}$ & $\mathds{B}$ & - \\
-\hline
-\end{tabular}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-
-Solution : $\mathds{R}$
-
-\subsubsection{Environment Variables}
-
-Device Screen\\
-This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
-
-\subsubsection{Assumptions}
-
-None
-
-\subsubsection{Access Routine Semantics}
-
-\noindent {GenerateSolution}():
-\begin{itemize}
-\item output: out := Solution
-\item exception: None
-\end{itemize}
-
-\noindent {GenerateSections}():
-\begin{itemize}
-\item transition: Split the puzzle into equal sections based on the amount of users assigned to the puzzle 
-\end{itemize}
-
-\noindent {CompareSolutions}(attemptedSolution):
-\begin{itemize}
-\item output: out := Solution == attemptedSolution
-\item exception: None
-\end{itemize}
-
-\subsubsection{Local Functions}
-
-None
-
-\subsubsection{Local Variables}
-
-None
-
 \newpage
 
-\section{MIS of Bomb Puzzle Module} \label{Combination} 
+\section{MIS of Bomb Puzzle Module} \label{sec:Combination} 
 
 \noindent The Bomb Puzzle Module implements functionality for the combination discovery puzzle that is present in the application. This puzzle involves two to 4 users. An instruction card is generated for each user that only they can see, giving a subset of the instructions to solve a number combination. All users must communicate to combine their instructions to solve the combination.
 
@@ -1160,7 +1157,7 @@ success : $\mathds{B}$\\
 comboArray := Array of arrays of strings of length 5. The first element of these subarrays is the combination of length COMBO\_LENGTH. The next 4 elements are the 4 instructions associated with this combo.\\
 \newpage
 
-\section{MIS of Database/Network Manager Module} \label{DatabaseNetworkModule} 
+\section{MIS of Database/Network Manager Module} \label{sec:DatabaseNetworkModule} 
 
 \subsection{Module}
 
@@ -1238,7 +1235,7 @@ None
 \newpage
 
 
-\section{MIS of {Error Manager Module}} \label{ErrorModule} 
+\section{MIS of {Error Manager Module}} \label{sec:ErrorModule} 
 
 \subsection{Module}
 
@@ -1317,7 +1314,7 @@ None
 
 \newpage 
 
-\section{MIS of {Documentation Module}} \label{DocModule} 
+\section{MIS of {Documentation Module}} \label{sec:DocModule} 
 Module used to map requirements that are related to user documentation. 
 \subsection{Module}
 
