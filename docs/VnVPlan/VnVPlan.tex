@@ -225,7 +225,7 @@ Refer to \href{https://github.com/SammyG7/Mac-AR/blob/main/docs/DevelopmentPlan/
 
 \subsection{Software Validation Plan}
 
-Weekly meetings with the project supervisor, Dr. Irene Yuan, will serve to validate the software and its driving requirements (See section \ref{SRSVerification}). The meetings will serve to iteratively check that new software follows what was expected from the project.
+Weekly meetings with the project supervisor, Dr. Irene Yuan, will serve to validate the software and its driving requirements (See section \ref{SRSVerification}). The meetings will serve to iteratively check that new software follows what was expected from the project. The team will also consider peer feedback, and TA feedback from usability testing and demonstrations to consider whether the software is valid and accomplishes the goal of the project.
 
 \section{System Test Description}
 	
@@ -1005,6 +1005,121 @@ When a user receives a message they should be able to press the notification to 
 Tester presses the notification for the received message. The test is successful if the message is displayed, the notification is removed and the message matches the message that was originally sent. This test will be run on a test database with existing lobbies, and on another test database without other existing lobbies, each scenario tested 50\% of the time.
 
 \textbf{Requirements being verified: } RM1 RM2 SM3
+
+\end{enumerate}
+
+\subsubsection{Individual Puzzles}
+The following section will go over tests related to individual puzzle functionality. The functional requirements that are covered by this section are SS1-SS6, MP1-MP5, IP1-IP5, CP1-CP6, and WP1-WP10.
+
+\begin{enumerate}
+
+\item{\textbf{Name:} Maze Generation} \label{itm:Test-FRMP1}
+
+\textbf{Id:} Test-FRMP1
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} Users reach the maze puzzle
+
+\textbf{Input:} N/A
+
+\textbf{Output:} A random maze with an end goal and a ball should be visible to the user in control of viewing
+
+\textbf{Test Case Derivation:} The Maze puzzle should have random generation, and all elements of the maze should be visible to the observing user, while those elements are not visible to the controlling user. 
+
+\textbf{How test will be performed:} Two users enter the maze puzzle together, one will be assigned the task to rotate the maze the other the task to view the maze. The viewer will take note of the maze layout, and if there is a ball, an end goal, and that the maze is not the same as a maze they have previously seen. This test can be performed multiple times to determine that it is in fact random. The non-viewer must also confirm that they can't see into the maze. 
+
+\textbf{Requirements being verified: } MP1, MP2, MP3
+
+\item{\textbf{Name:} Maze Rotation} \label{itm:Test-FRMP2}
+
+\textbf{Id:} Test-FRMP2
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} Users reach the maze puzzle
+
+\textbf{Input:} Phone rotation by the controlling user
+
+\textbf{Output:} The maze visibly rotates on the controlling user's screen as well as the viewer's screen. The ball should also be observed to move in the direction of gravity. 
+
+\textbf{Test Case Derivation:} The controlling user should be able to rotate the maze to guide the ball towards the end goal
+
+\textbf{How test will be performed:} Two users enter the maze puzzle together, one will be assigned the task to rotate the maze the other the task to view the maze. The viewer will take note of the maze layout, and if there is a ball, an end goal, and that the maze is not the same as a maze they have previously seen. The controlling user shall rotate their phone and both users should observe the maze rotating, and the viewing user should be able to see the ball moving downwards with gravity. Can be run in conjunction with \ref{itm:Test-FRMP1}.
+
+\textbf{Requirements being verified: } MP1, MP2, MP3, MP4
+
+\item{\textbf{Name:} Maze Completion} \label{itm:Test-FRMP3}
+
+\textbf{Id:} Test-FRMP3
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} Users reach the maze puzzle
+
+\textbf{Input:} Phone rotation by the controlling user, guiding the ball to the end goal
+
+\textbf{Output:} When the ball reaches the end goal, the puzzle should complete
+
+\textbf{Test Case Derivation:} The puzzle needs to be completed when the end goal is reached
+
+\textbf{How test will be performed:} Two users enter the maze puzzle together, one will be assigned the task to rotate the maze the other the task to view the maze. The viewer will take note of the maze layout, and if there is a ball, an end goal, and that the maze is not the same as a maze they have previously seen. The controlling user shall rotate their phone and both users should observe the maze rotating, and the viewing user should be able to see the ball moving downwards with gravity. The controlling user shall rotate their phone until the ball reaches the end goal. Both users shall observe the puzzle being completed. Can be run in conjunction with \ref{itm:Test-FRMP1} and \ref{itm:Test-FRMP2}.
+
+\textbf{Requirements being verified: } MP1, MP2, MP3, MP4, MP5
+
+\item{\textbf{Name:} Isometric Generation} \label{itm:Test-FRIP1}
+
+\textbf{Id:} Test-FRIP1
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} Users reach the isometric puzzle
+
+\textbf{Input:} N/A
+
+\textbf{Output:} Each user is given randomly assigned letter and number combinations displayed on cubes. 
+
+\textbf{Test Case Derivation:} The Isometric puzzle should be capable of distributing the letter and number combinations to all the users. 
+
+\textbf{How test will be performed:} Multiple users enter the Isometric puzzle together, they will confirm they all have unique letter number combinations that add up to the total number of letters in the input field by looking at the arrangement of block, and using the left and right buttons. 
+
+\textbf{Requirements being verified: } IP1, IP2, IP3, IP4
+
+\item{\textbf{Name:} Isometric InputField} \label{itm:Test-FRIP2}
+
+\textbf{Id:} Test-FRIP2
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} Users reach the isometric puzzle
+
+\textbf{Input:} Enter the code into the input field.
+
+\textbf{Output:} Each user observes the puzzle completing
+
+\textbf{Test Case Derivation:} The Isometric puzzle should be capable of being completed when the correct code is entered.
+
+\textbf{How test will be performed:} Multiple users enter the Isometric puzzle together, they will confirm they all have unique letter number combinations that add up to the total number of letters in the input field by looking at the arrangement of block, and using the left and right buttons. The users will then enter in the correct answer based on the letter and number combinations they observed. Can be run in conjunction with \ref{itm:Test-FRIP1}.
+
+\textbf{Requirements being verified: } IP1, IP2, IP3, IP4, IP5
+
+\item{\textbf{Name:} Isometric Incorrect Code} \label{itm:Test-FRIP3}
+
+\textbf{Id:} Test-FRIP3
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} Users reach the isometric puzzle
+
+\textbf{Input:} Enter an incorrect code into the input field.
+
+\textbf{Output:} Each user sees the incorrect code on their screen, the puzzle does not complete.
+
+\textbf{Test Case Derivation:} The Isometric puzzle should not complete when the incorrect code is entered
+
+\textbf{How test will be performed:} Multiple users enter the Isometric puzzle together, one user enters a random code into the input field
+
+\textbf{Requirements being verified: } IP4, IP5
 
 \end{enumerate}
 
