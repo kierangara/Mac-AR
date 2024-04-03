@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
-using System;
 public class LobbiesList : MonoBehaviour
 {
     [SerializeField] private Transform lobbyItemParent;
@@ -78,6 +76,10 @@ public class LobbiesList : MonoBehaviour
             JoinLobbyByIdOptions options = new JoinLobbyByIdOptions();
             if (password.Length != 0)
             {
+                while(password.Length < 8)
+                {
+                    password = password + " ";
+                }
                 options = new JoinLobbyByIdOptions
                 { Password = password };
                 var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id, options);
@@ -85,6 +87,7 @@ public class LobbiesList : MonoBehaviour
                 //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode; 
                 await ClientManager.Instance.StartClient(joinCode);
                 GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
+                PlayerPrefs.SetString("lobbyID", lobby.Id);
             }
             else
             {
@@ -93,6 +96,7 @@ public class LobbiesList : MonoBehaviour
                 //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode;
                 await ClientManager.Instance.StartClient(joinCode);
                 GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
+                PlayerPrefs.SetString("lobbyID", lobby.Id);
             }
             //GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setLobby(lobby);
             

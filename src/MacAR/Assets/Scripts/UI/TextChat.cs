@@ -2,12 +2,9 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using VivoxUnity;
 using System.Collections.Generic;
 using System.Collections;
-
-
 public class TextChat : MonoBehaviour
 {
     private VivoxVoiceManager _vivoxVoiceManager;
@@ -20,6 +17,8 @@ public class TextChat : MonoBehaviour
     public GameObject MessageObject;
     public Button EnterButton;
     public InputField MessageInputField;
+    CanvasGroup notif;
+    CanvasGroup chatWindow;
 
     private void Awake()
     {
@@ -180,7 +179,8 @@ public class TextChat : MonoBehaviour
             // Such messages denote opening/closing or requesting the open status of multiplayer matches.
             return;
         }
-
+        notif = GameObject.Find("Notification").GetComponent<CanvasGroup>();
+        chatWindow = GameObject.Find("ChatWindow").GetComponent<CanvasGroup>();
         var newMessageObj = Instantiate(MessageObject, ChatContentObj.transform);
         _messageObjPool.Add(newMessageObj);
         Text newMessageText = newMessageObj.GetComponent<Text>();
@@ -189,14 +189,17 @@ public class TextChat : MonoBehaviour
         {
             newMessageText.alignment = TextAnchor.MiddleLeft;
             //newMessageText.text = string.Format($"<color=white>{channelTextMessage.Message} </color> :<color=white>{sender} </color>\n<color=white><size=15>{channelTextMessage.ReceivedTime}</size></color>");
-            newMessageText.text = string.Format($"<color=white>{sender} </color>\n<color=white>{channelTextMessage.Message} </color>\n");
+            newMessageText.text = string.Format($"<color=white><size=40>{sender}</size></color>\n<color=white>{channelTextMessage.Message} </color>\n");
             StartCoroutine(SendScrollRectToBottom());
         }
         else
         {
+            if(chatWindow.alpha == 0){
+                notif.alpha = 1;
+            }
             newMessageText.alignment = TextAnchor.MiddleLeft;
             //newMessageText.text = string.Format($"<color=green>{sender} </color>: {channelTextMessage.Message}\n<color=white><size=10>{channelTextMessage.ReceivedTime}</size></color>");
-            newMessageText.text = string.Format($"<color=green>{sender} </color>\n{channelTextMessage.Message}\n");
+            newMessageText.text = string.Format($"<color=green><size=40>{sender}</size></color>\n<color=white>{channelTextMessage.Message} </color>\n");
         }
     }
 }

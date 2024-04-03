@@ -1,37 +1,44 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Unity.Netcode;
-using UnityEngine.SceneManagement;
-
 public class MultiplayerPuzzleManager : NetworkBehaviour
 {
-    // private List<GameObject> puzzles = new List<GameObject>();
-    // [SerializeField] private NetworkObject puzzle;
     [SerializeField] private List<NetworkObject> puzzles;
-    private int puzzleIndex = 0;
+    public int activePuzzleBatchIndex = 0;
+    public int activePuzzleIndex = 0;
     public Camera cam; 
-    NetworkObject puzzleInstance;
+    public List<NetworkObject> puzzleInstances = new List<NetworkObject>();
+    List<int> spawnedPuzzles = new List<int>();
 
     //Start is called before the first frame update
     void Start()
     {
         Debug.Log("Multiplayer Puzzle Manager called");
 
-        SpawnPuzzleServerRpc();
+        SpawnPuzzleBatch();
+    }
+
+    private void SpawnPuzzleBatch()
+    {
+        Debug.Log("Puzzle Batch Size: " + PuzzleConstants.puzzleBatches[activePuzzleBatchIndex].Count);
+        foreach(var puzzle in PuzzleConstants.puzzleBatches[activePuzzleBatchIndex])
+        {
+            Debug.Log("Currently Spawning: " + puzzle.Item3);
+            SpawnPuzzleServerRpc(puzzle.Item1, puzzle.Item2, puzzle.Item3);
+        }
     }
 
     [ServerRpc]
-    private void SpawnPuzzleServerRpc()
+    private void SpawnPuzzleServerRpc(int puzzleIndex, Vector3 puzzlePosition, Quaternion puzzleRotation)
     {
         
         if(!IsServer)
         {
             return;
         }
-        if(puzzleInstance!=null)
+        if(spawnedPuzzles.Contains(puzzleIndex))
         {
             return;
         }
@@ -47,29 +54,31 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         }
 
         // Serialize
-        byte[] bytes = objectToBytes(clients);
+        byte[] bytes = ULongListToBytes(clients);
 
         // Instantiate 
         Debug.Log("Spawn: " + puzzleIndex);
-        puzzleInstance = Instantiate(puzzles[puzzleIndex]); 
+        var puzzleInstance = Instantiate(puzzles[puzzleIndex], puzzlePosition, puzzleRotation); 
 
         // Spawn
         puzzleInstance.SpawnWithOwnership(OwnerClientId);
 
-        // Initialize
-        InitializeClientRpc(puzzleInstance, bytes);
+        // Save Instance
+        puzzleInstances.Add(puzzleInstance);
+        spawnedPuzzles.Add(puzzleIndex);
 
-        // Increment
-        puzzleIndex += 1;
+        // Initialize
+        var seed = Guid.NewGuid().GetHashCode();
+        InitializeClientRpc(puzzleInstance, bytes, seed);
     }
 
     [ClientRpc]
-    private void InitializeClientRpc(NetworkObjectReference puzzleRef, byte[] clientBytes)
+    private void InitializeClientRpc(NetworkObjectReference puzzleRef, byte[] clientBytes, int seed)
     {
         if (puzzleRef.TryGet(out NetworkObject puzzle))
         {
             // Deserialize
-            List<ulong> clients = bytesToObject(clientBytes);
+            List<ulong> clients = BytesToULongList(clientBytes);
 
             puzzle.GetComponentInChildren<PuzzleData>().cam = cam;
             puzzle.GetComponentInChildren<PuzzleData>().completePuzzle = this;
@@ -80,71 +89,147 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             {
                 puzzle.GetComponentInChildren<PuzzleData>().connectedClients.Add(client);
             }
-            
-            puzzle.GetComponentInChildren<PuzzleBase>().InitializePuzzle();
+
+            var puzzleScript = puzzle.GetComponentInChildren<PuzzleBase>();
+
+            puzzleScript.seed = seed;
+            puzzleScript.InitializePuzzle();
         }
         
     }
 
-    // TODO: Will need to take in puzzle ID too to allow anyone to call (not just host) while also
-    // making sure to ignore duplicate requests to complete the same puzzle
-    [ServerRpc]
-    public void CompletePuzzleServerRpc(ulong clientId)
+    [ServerRpc(RequireOwnership = false)]
+    public void SkipPuzzleServerRpc()
     {
-        Debug.Log("Despawn");
-        try 
+        CompletePuzzleServerRpc(0, PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1);
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void CompletePuzzleServerRpc(ulong clientId, int puzzleId)
+    {
+        // Make sure the user is attempting to skip the current puzzle
+        if(puzzleId != PuzzleConstants.puzzleBatches[activePuzzleBatchIndex][activePuzzleIndex].Item1)
         {
-            puzzleInstance.Despawn();
+            return;
         }
-        catch 
+
+        puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(false);
+        activePuzzleIndex += 1;
+
+        UpdateActivePuzzleClientRpc(activePuzzleIndex);
+
+        if(activePuzzleIndex < PuzzleConstants.puzzleBatches[activePuzzleBatchIndex].Count)
         {
-            Debug.Log("No object to despawn");
-        }
-        
-        if(puzzleIndex < puzzles.Count)
-        {
-            CompletePuzzleClientRpc();
+            puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(true);
         }
         else 
         {
-            SceneManager.LoadScene(0);
+            CompletePuzzleBatchServerRpc();
         }
         
     }
 
-    [ClientRpc]
-    public void CompletePuzzleClientRpc()
+    [ServerRpc]
+    private void CompletePuzzleBatchServerRpc()
     {
-        Debug.Log("Despawn");
-        try
+        // Despawn all puzzles
+        foreach(var puzzleInstance in puzzleInstances)
         {
             puzzleInstance.Despawn();
         }
-        catch 
-        {
-            Debug.Log("No object to despawn");
-        }
-    
-        puzzleInstance = null;
 
-        Debug.Log("Spawn New");
-        SpawnPuzzleServerRpc();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        puzzleInstances.Clear();
         
+        // Spawn next batch
+        activePuzzleBatchIndex += 1;
+        activePuzzleIndex = 0;
+
+        UpdateActiveBatchClientRpc(activePuzzleBatchIndex);
+
+        if(activePuzzleBatchIndex < PuzzleConstants.puzzleBatches.Count)
+        {
+            SpawnPuzzleBatch();
+        }
+        else 
+        {
+            ExitGameClientRpc();
+        }
     }
 
-    private byte[] objectToBytes(List<ulong> clients) 
+    [ClientRpc]
+    public void UpdateActivePuzzleClientRpc(int puzzleIndex)
+    {
+        activePuzzleIndex = puzzleIndex;
+    }
+
+    [ClientRpc]
+    public void UpdateActiveBatchClientRpc(int batchIndex)
+    {
+        activePuzzleIndex = 0;
+        activePuzzleBatchIndex = batchIndex;
+    }
+
+
+    [ClientRpc]
+    public void ExitGameClientRpc()
+    {
+        ReturnToMain exitGame = new ReturnToMain();
+        exitGame.returnToMain(4);
+        PlayerPrefs.SetString("lobbyID", "");
+    }
+
+    public void ButtonExitGame()
+    {
+        ReturnToMain exitGame = new ReturnToMain();
+        exitGame.returnToMain(1);
+        PlayerPrefs.SetString("lobbyID", "");
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void RefreshPuzzlePositionsServerRpc(ulong clientId)
+    {
+        ClientRpcParams clientRpcParams = new ClientRpcParams
+        {
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new ulong[]{clientId}
+            }
+        };
+
+        foreach(var puzzle in puzzleInstances)
+        {
+
+            RefreshPuzzlePositionClientRpc(puzzle, clientRpcParams);
+        }
+    }
+
+    [ClientRpc]
+    private void RefreshPuzzlePositionClientRpc(NetworkObjectReference puzzleRef, ClientRpcParams clientRpcParams = default)
+    {
+        var posLookup = new Dictionary<int, Vector3>{
+            {PuzzleConstants.ISO_ID, PuzzleConstants.ISO_SPAWN_POS},
+            {PuzzleConstants.MAZE_ID, PuzzleConstants.MAZE_SPAWN_POS},
+            {PuzzleConstants.WIRE_ID, PuzzleConstants.WIRE_SPAWN_POS},
+            {PuzzleConstants.COMBINATION_ID, PuzzleConstants.COMBINATION_SPAWN_POS},
+            {PuzzleConstants.SIMON_ID, PuzzleConstants.SIMON_SPAWN_POS}
+        };
+
+        if (puzzleRef.TryGet(out NetworkObject puzzle))
+        {
+            var puzzleId = puzzle.GetComponentInChildren<PuzzleBase>().puzzleId;
+
+            puzzle.gameObject.transform.position = cam.transform.position + posLookup[puzzleId];
+        }
+    }
+
+    public byte[] ULongListToBytes(List<ulong> clients) 
     {
         return clients
             .SelectMany(BitConverter.GetBytes)
             .ToArray();
     }
 
-    private List<ulong> bytesToObject(byte[] bytes) 
+    public List<ulong> BytesToULongList(byte[] bytes) 
     {
         // TODO: Add ulong size check that changes Uint64/ UInt32
         var size = sizeof(ulong);

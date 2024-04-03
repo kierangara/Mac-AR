@@ -1,19 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Unity.Netcode;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.Services.Vivox;
-using VivoxUnity;
 
 public class PlayerList : NetworkBehaviour
 {
     [SerializeField] Button readyButton;
     [SerializeField] private Toggle VoiceToggle;
+    [SerializeField] public Toggle inGameVoiceToggle;
     [SerializeField] private Transform playerItemParent;
     [SerializeField] private PlayerItem playerItemPrefab;
     [SerializeField] public TMP_Text joinCodeText;
@@ -29,7 +25,8 @@ public class PlayerList : NetworkBehaviour
     private Color readyColor = Color.green;
     private bool isRefreshing;
     private Lobby lobby;
-    private string playerName = "Spencer Smith";
+    public static bool muted;
+    //private string playerName = "Spencer Smith";
 
     private void Awake()
     {
@@ -37,6 +34,8 @@ public class PlayerList : NetworkBehaviour
         players = new NetworkList<PlayerData>();
         VoiceToggle.onValueChanged.AddListener(delegate 
             { VivoxToggle(VoiceToggle,mainClient); });
+        mainClient.AudioInputDevices.Muted = true;
+        muted = true;
     }
 
     void VivoxToggle(Toggle voiceToggle, VivoxUnity.Client client)
@@ -44,10 +43,12 @@ public class PlayerList : NetworkBehaviour
         Debug.Log("Voice " + voiceToggle.isOn);
         if (voiceToggle.isOn)
         {
-            client.AudioInputDevices.Muted = false; 
+            client.AudioInputDevices.Muted = true;
+            muted = true;
         } else
         {
-            client.AudioInputDevices.Muted = true;
+            client.AudioInputDevices.Muted = false;
+            muted = false;
         }
     }
 
