@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Dynamic;
 using System.Linq;
-using System.Runtime;
 using UnityEngine;
 using VivoxUnity;
 using Unity.Services.Core;
@@ -189,15 +185,14 @@ public class VivoxVoiceManager : MonoBehaviour
     {
         m_Account = new Account(accountName);
         PlayerName = accountName;
+        PlayerPrefs.SetString("PlayerName", PlayerName);
+        print(PlayerName);
     }
 
 
     public void Login(string displayName = null)
     {
-        if(m_Account == null) 
-        {
-            m_Account = new Account("SpencerSmith");
-        }
+        m_Account = new Account(PlayerPrefs.GetString("PlayerName", "SpencerSmith"));
         // print(displayName);
         LoginSession = _client.GetLoginSession(m_Account);
         LoginSession.PropertyChanged += OnLoginSessionPropertyChanged;

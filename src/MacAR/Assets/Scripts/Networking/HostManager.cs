@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking.Transport.Relay;
-using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
-//using UnityEditor.MemoryProfiler;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +20,7 @@ public class HostManager : MonoBehaviour
     private string lobbyName;
     [SerializeField] private string characterSelectSceneName = "CharacterSelect";
     [SerializeField] private string gameplaySceneName = "Gameplay";
-    [SerializeField] private string mainMenuName = "MainMenu";
+    //[SerializeField] private string mainMenuName = "MainMenu";
 
     public static HostManager Instance { get; private set; }
 
@@ -60,7 +58,7 @@ public class HostManager : MonoBehaviour
         this.lobbyName = name;
     }
 
-    public async void StartHost()
+    public async Task StartHost()
     {
         //Debug.Log(lobbyName);
         //Debug.Log(lobbyPassword);
@@ -117,6 +115,7 @@ public class HostManager : MonoBehaviour
             lobbyId = lobby.Id;
             StartCoroutine(HeartbeatLobbyCoroutine(15));
             GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setLobby(lobby);
+            PlayerPrefs.SetString("lobbyID", lobby.Id);
         }
         catch (LobbyServiceException e)
         {
@@ -129,9 +128,9 @@ public class HostManager : MonoBehaviour
 
         ClientData = new Dictionary<ulong, ClientData>();
 
-        
 
         NetworkManager.Singleton.StartHost();
+        return;
     }
 
     public async Task ChangeLobbySettings()
