@@ -143,8 +143,6 @@
 
 \tableofcontents
 
-~\newpage
-
 \begin{table}[hp]
 	\caption{Revision History} \label{TblRevisionHistory}
 	\begin{tabularx}{\textwidth}{llX}
@@ -175,11 +173,12 @@
             April 4, 2024 & Kieran & Added Phase-In Plan\\
             April 4, 2024 & Kieran & Defined missing terminology from NFRs and VnV\\
             April 4, 2024 & Kieran & Resolved minor grammar issues and latex quotation marks\\
+            April 4, 2024 & Kieran & Fixed off-the-shelf solution and current environment sections based on TA feedback\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
 
-\newpage
+~\newpage
 
 \pagenumbering{arabic}
 
@@ -197,6 +196,8 @@ Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobert
     \item (Modified) Modified overall section nesting and numbering for more logical grouping
     \item (Modified) Section 5.5: Replaced ``Migration to the New Product" with ``Requirements Phase-In Plan"
 \end{itemize}
+
+\newpage
 
 \section{Project Drivers}
 
@@ -235,21 +236,17 @@ The project will be developed and released within the following constraints.
 \end{itemize}
 
 \subsubsection{Implementation Environment of the Current System}
-As outlined in section \ref{SolutionConstraints}, the tool will need to be developed for execution on modern mobile devices. There are currently no constraints on the server side of the project, although that may need to be revised as the tool grows in scope. 
+Not applicable as the system is not being built off of an existing solution. 
 
 \subsubsection{Partner or Collaborative Applications}
 In the current design of the product, there are no partner or collaborative applications that will
 work along with the product. Therefore, there are no partner or collaborative constraints.
 
 \subsubsection{Off-the-Shelf Software}
-The following off-the-shelf software will be utilized:
-\begin{itemize}
-	\item Unity, along with its available libraries for AR app development and communication 
-        \item Visual Studio, for development
-\end{itemize}
+There is no current solution off of which the system is being built or constraints regarding any such software. 
 
 \subsubsection{Anticipated Workplace Environment}
-The anticipated workplace environment will be intentionally broad. The product can be used from anywhere the user has access to a mobile device and internet to run the application, with no limits on being indoors. 
+The anticipated workplace environment will be intentionally broad. The product can be used from anywhere the user has access to a mobile device and an internet connection to run the application, with no limits on being indoors. 
 
 \subsubsection{Schedule Constraints}
 The general document and development milestone constraints are as follows:
@@ -489,21 +486,40 @@ external systems and services.
 \subsubsection{Create Game Room}
 \begin{enumerate}[label=CG\arabic*., series=CreateGame]
     \item The system shall allow the user to create a game room \newline 
-    \textbf{Rationale:} The user must be able to group together with other users, creating the game room will allow the users to organize the group
+    \textbf{Rationale:} The user must be able to group together with other users, creating the game room will allow the users to organize the group\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, UH1, UH2, UH3, UH4, PR1, PR2, OE1, SR1, SR2, CR2
+    
     \item The system shall allow the user to enter a name for the game room \newline
-    \textbf{Rationale:} The users must be able to uniquely identify the game rooms to allow the other users to find the room they want to join in case they have a group they wanted to solve the puzzles with
+    \textbf{Rationale:} The users must be able to uniquely identify the game rooms to allow the other users to find the room they want to join in case they have a group they wanted to solve the puzzles with\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, SR1, SR2, CR1, CR2
+    
     \item The system shall allow the user to set the size of the game room to a value between 1 and 10 \newline
-    \textbf{Rationale:} The user may want to play with a smaller or larger group. The values of 1 and 10 are the minimum and maximum expected number of players
+    \textbf{Rationale:} The user may want to play with a smaller or larger group. The values of 1 and 10 are the minimum and maximum expected number of players\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, SR1, SR2, CR2
     \item The system shall allow the user to put a password on the game room \newline
-    \textbf{Rationale:} The user should be able to allow or disallow any other users from joining except the ones they want in the case they are playing with friends
+    \textbf{Rationale:} The user should be able to allow or disallow any other users from joining except the ones they want in the case they are playing with friends\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, SR1, SR2, CR2
+    
     \item The system shall redirect the user to a new screen when in a game room displaying the users in the room\newline
-    \textbf{Rationale: } The user can use this screen to wait for others to join the room and see who joins
+    \textbf{Rationale: } The user can use this screen to wait for other users to join the room and see which users join\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, LF2, PR1, PR2, UH1, UH3, OE1, SR1, SR2, CR2
 \end{enumerate}
 \subsubsection{Join Game Room}
 \begin{enumerate}[label=JG\arabic*., series=JoinGame]
 	\item The system shall allow the user to join an existing game room with available capacity \newline 
-    \textbf{Rationale:} The user must be able to group up with other users
-    \item The system shall not allow the user to join an existing game room without available capacity 
+    \textbf{Rationale:} The user must be able to group up with other users\\
+    \textbf{Related Use Cases:} Use Case 2\\
+    \textbf{Related Requirements:} LF1, LF2, PR1, PR2, UH1, UH2, UH3, UH4, OE1, SR1, SR2, CR2
+    
+    \item The system shall not allow the user to join an existing game room without available capacity\\
+    \textbf{Related Use Cases:} Use Case 2\\
+    \textbf{Related Requirements:} LF1, LF2, PR1, PR2, UH1, UH2, UH3, UH4, OE1, SR1, SR2, CR2
+    
     \item The system shall allow the user to enter a password for the room if another user set a password for the room 
     \item When a user joins the game room the system shall update the game room information to add another member, and decrease the available capacity\newline 
     \textbf{Rationale:} This provides users with an accurate representation of how much availability rooms have
