@@ -174,7 +174,15 @@
 \pagenumbering{arabic}
 
 This document describes the requirements for Mac-AR. The template for the Software Requirements
-Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012} with the .
+Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012} with the following modifications:
+\begin{itemize}
+    \item (Added) Section 3.9: Health and Safety Requirements
+    \item (Added) Section 4: Traceability matrix
+    \item (Added) Section 5.5: Cutover section replaced with ``Migration to the New Product"
+    \item (Added) Section 6: Appendix
+    \item (Merged) Section 1.2: ``Stakeholders" and ``Users of the Product" sections merged under ``Stakeholders" section
+    \item (Modified) Modified overall section nesting and numbering for more logical grouping
+\end{itemize}
 
 \section{Project Drivers}
 
@@ -599,10 +607,40 @@ external systems and services.
         \textbf{Rationale}: The puzzle should be highly re-playable, providing a different experience for users each time
         \item The combination associated with each instruction set shall be the only possible four digit combination given the associated instructions\\
         \textbf{Rationale}: There must be exactly one solution for each version of the puzzle in order for users to be able to solve it using the instructions.
-        \item The combination associated with each instruction set shall be the only possible four digit combination given the associated instructions\\
-        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle in order for users to be able to solve it using the instructions.
-        
+        \item The system shall update the current combination display field for all users in the room with the correct digit when a user presses a button corresponding to the correct digit of the combination\\
+        \textbf{Rationale}: When a user enters a correct digit of the combination, all users should see this reflected on the keypad interface so that they know that number was correct and can progress in the puzzle
+        \item The system shall indicate to all users when a user has pressed a keypad button associated with an incorrect digit of the combination\\
+        \textbf{Rationale}: Users must be able to tell when they've entered an incorrect digit so that they do not continue trying this digit 
+        \item The system shall reset the combination display field for all users when a user has pressed a keypad button associated with an incorrect digit of the combination\\
+        \textbf{Rationale}: Resetting the combination entry on each incorrect input encourages more communication as there is a greater penalty for incorrect inputs. It also helps prevent spam guessing all possible combinations
+        \item The system shall complete the puzzle once all four digits of the combination have been entered correctly, displaying a "Correct" message on the keypad interface\\
+        \textbf{Rationale}: When the puzzle has been succesfully completed users must be able to move on to the next puzzle. The puzzle should have a visual indicator of this so users know to start looking for the next task.
     \end{enumerate}
+
+\subsubsection{Wires Puzzle}
+
+\begin{enumerate}[label=WP\arabic*., series=WiresPuzzle ]
+        \item The puzzle shall display a box of four coloured wires to the user designated at the active user \\
+        \textbf{Rationale}: A single user must be able to see the puzzle asset that they can interact with
+        \item A set of four pairs of coloured dots shall be displayed for all users not designated as the active user \\
+        \textbf{Rationale}: The remaining users must be able to see the puzzle asset containing the solution to the puzzle
+        \item The four coloured wires must be able to be manipulated by the user such that their tip follows the movement of the users finger while they are dragged across the screen \\
+        \textbf{Rationale}: To complete the puzzle, the wires must be able to be dragged into their designated positions
+        \item When a wire tip is dragged by a user, the position of the wire must remain in place when the wire is released \\
+        \textbf{Rationale}: When the user stops dragging, the wires must not reset to their original positions to allow the puzzle to be completed
+        \item  The four pairs of coloured dots shall match  up with the proper solution to the wires puzzle. Each pair of dots shall indicate a correct connection, with the colour of the node as the dot on top and the colour of the wire as the dot on the bottom\\
+        \textbf{Rationale}: The active part of the puzzle must align with the hint given to the other users for the puzzle to be able to be completed 
+        \item  When the wires are connected to the nodes in an improper sequence, no change occurs \\
+        \textbf{Rationale}: The puzzle must only be able to be completed with a single correct sequence
+        \item  When the wires are connected to the nodes in the correct sequence, the puzzle completes \\
+        \textbf{Rationale}: The correct sequence must complete the puzzle
+        \item When the puzzle is spawned and inactive, its lights will be off \\
+        \textbf{Rationale}: The initial state of the puzzle will have its lights off to indicate to the user not to interact with it yet
+        \item When the puzzle is set to become active, its lights will turn red \\
+        \textbf{Rationale}: The lights will turn red to indicate that the puzzle is active but not yet completed
+        \item When the puzzle is completed, its lights will turn green \\
+        \textbf{Rationale}: The lights will turn green to indicate to the user that the puzzle has been completed
+\end{enumerate}
 
 \subsection{Formal Specification}
 $(\forall r \in rooms  | (\sum\limits_{user \in r} 1)  \leq r.roomCapacity)$\\
