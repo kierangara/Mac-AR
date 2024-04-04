@@ -1,5 +1,6 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{geometry}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -58,7 +59,7 @@ All  symbols, abbreviations, and acronyms can be found in section 1.4 of the  \h
 
 \pagenumbering{arabic}
 
-This document outlines the results of implementing the verification and validation plan. Included is a summary of all manual and automated tests performed on the project, along with their outputs. Any tests marked with "TBD"
+This document outlines the results of implementing the verification and validation plan. Included is a summary of all manual and automated tests performed on the project, along with their outputs. Any tests marked with "TBD" are not feasible, and will be implemented in the future. 
 
 \section{Functional Requirements Evaluation}
 
@@ -141,7 +142,7 @@ Test-ST2 & Manual & User starts game & First puzzle GameObject is instantiated a
 \hline
 Test-ST3 & Automated & User starts game & Order of puzzles is determined and each user is assigned a part of the puzzle & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-ST4 & Automated &  User starts game & Progress bar displayed on screen to let user know current progress & TBD & \textcolor{Red}{TBD} \\
+Test-ST4 & Automated &  User starts game & Progress bar displayed on screen to let user know current progress & No longer a requirement & \textcolor{Red}{Fail} \\
 \hline
 Test-ST5 & Automated & User starts game  & Puzzle is displayed to each user and game commences & Same as expected & \textcolor{Green}{Pass} \\
 \hline
@@ -159,7 +160,7 @@ The following section goes over tests related to interacting with the puzzle UI 
 \hline
 \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
 \hline
-Test-PI1 & Manual & User Selects Puzzle & Puzzle Enlarges On UI & TBD & \textcolor{Red}{TBD} \\
+Test-PI1 & Manual & User Selects Puzzle & Puzzle Enlarges On UI & No Longer a requirement & \textcolor{Red}{Fail} \\
 \hline
 Test-PI2 & Manual & User taps a key on the Combination Puzzle & If the digit was correct, the digit appears on the screen, if it was not, the combination puzzle turns red & Same as expected & \textcolor{Green}{Pass} \\
 \hline
@@ -179,9 +180,9 @@ Test-PI5 & Manual & Multiple users perform actions to complete puzzle & All user
 \hline
 Test-PI6 & Manual & Single user performs actions to complete puzzle & All users notified puzzle that has been completed and game room progresses & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI7 & Manual & User requests a hint & Hint for active puzzle is displayed & TBD & \textcolor{Red}{TBD} \\
+Test-PI7 & Manual & User requests a hint & Hint for active puzzle is displayed & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI8 & Manual & User presses button to close hint & Hint display is removed & TBD & \textcolor{Red}{TBD} \\
+Test-PI8 & Manual & User presses button to close hint & Hint display is removed & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 Test-PI9 & Manual & User presses skip puzzle button & Game room progresses & Same as expected & \textcolor{Green}{Pass} \\
 \hline
@@ -242,6 +243,17 @@ Test-FRIP2 & Manual & Users enter the correct code for the isometric puzzle & Ea
 \hline
 Test-FRIP3 & Manual & Users enter the incorrect code for the isometric puzzle & Each user sees the incorrect code on their input field, the puzzle does not complete & Same as expected & \textcolor{Green}{Pass} \\
 \hline
+Test-FRWP1 & Manual & User drags coloured wire object across screen with finger & The tip of the wire is in the final location of the users finger
+upon release & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRWP2 & Manual & The Wires Puzzle object is spawned in for a non-host user & The user observes four pairs of dots. The top and bottom rows of dots all contain the colours red, yellow, green, and blue exactly once & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRWP3 & Manual & The wires are connected to the coloured nodes in an order that doesn’t match the given code & The lights don’t change colour & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRWP4 & Manual & The wires are connected to the coloured nodes in an order that matches the given code & The lights turn green & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRWP5 & Manual & The puzzle is set to be active & The lights turn red & Same as expected & \textcolor{Green}{Pass} \\
+\hline
 \end{tabular}}
 \label{table:MS1}
 \end{table}
@@ -301,12 +313,12 @@ Test-UH4 & Manual & Users below the age of 20 will install and use the app &  Th
 \hline
 Test-UH5 & Manual & Users between the ages of 20 and 30 will install and use the app & The user determines that the app is easy to navigate & Same as expected (as shown through results of the usability survey) & \textcolor{Green}{Pass} \\
 \hline
-Test-UH6 & Manual & Users over the age of 30 will install and use the app & The user determines that the app is easy to navigate & TBD. No usability tests involving individuals over the age of 30 have been conducted yet. They will be conducted in the future  & \textcolor{Red}{TBD} \\
+Test-UH6 & Manual & Users over the age of 30 will install and use the app & The user determines that the app is easy to navigate & No usability tests involving individuals over the age of 30 have been conducted yet. They will be conducted in the future  & \textcolor{Red}{Fail} \\
 \hline
 Test-UH7 & Manual & The user disconnects from the internet then reconnect & The user should be prompted to rejoin the game after their
 connection is restore & User is not prompted  & \textcolor{Red}{Fail} \\
 \hline
-Test-UH8 & Manual & Users have completed playing the game & Average rating of usability survey is 3.5/5 or higher & \nameref{table:US1}  & \textcolor{Green}{Pass} \\
+Test-UH8 & Manual & Users have completed playing the game & Average rating of usability survey is 3.5/5 or higher & \nameref{table:US1} as shown in this table, every result has an average of above 3.5.  & \textcolor{Green}{Pass} \\
 \hline
 \end{tabular}}
 \label{table:UH1}
@@ -438,6 +450,8 @@ Table \ref{table:HS1} below demonstrate the non-functional requirements evaluati
 \hline
 Test-HS1 & Manual & Game Started & The system will prompt the user to check their environment
 and make sure its suitable for playing the game & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-HS1 & Manual & Game Started & Usability Question "I do not care to check events that are happening in the real world during the game." has a average score below 4. & \nameref{fig:RealWorld} shows that the average score is 4.15 & \textcolor{Red}{Fail} \\
 \hline
 \end{tabular}}
 \label{table:HS1}
@@ -957,11 +971,12 @@ The main difference between the original plan and how the validation and verific
 
 Table \ref{table:US1} below showing the results of the Usability survey
 
-\begin{table}[H]
+\newgeometry{left=2cm,bottom=0.1cm}
+\begin{table}[htbp]
 \caption{\bf Results of Usability Survey}
-\resizebox{6in}{!}{\begin{tabular}{|l|p{0.3\linewidth}|p{0.4\linewidth}|p{0.4\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
+\resizebox{6.5in}{!}{\begin{tabular}{|p{0.4\linewidth}|p{0.3\linewidth}|p{0.7\linewidth}|}
 \hline
-\multicolumn{1}{|l|}{\bfseries Question} & \multicolumn{1}{|l|}{\bfseries Average Rating (out of 5)}& \multicolumn{1}{|l|}{\bfseries Analysis}\\
+{\bfseries Question} & {\bfseries Average Rating (out of 5)}& {\bfseries Analysis}\\
 \hline
 I find the controls of the game to be straightforward & 3.9 & 10\% of users rated this category a 2, which means we focus on guiding the user when they get stuck on a puzzle, or have more affordance with our overall design. \\
 \hline

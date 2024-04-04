@@ -1121,6 +1121,96 @@ The following section will go over tests related to individual puzzle functional
 
 \textbf{Requirements being verified: } IP4, IP5
 
+\item{\textbf{Name:} Wire Active Drag} \label{itm:Test-FRWP1}
+
+\textbf{Id:} Test-FRWP1
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} User is the host and Wires Puzzle object is spawned in.
+
+\textbf{Input:} User drags coloured wire object across screen with finger. 
+
+\textbf{Output:} The tip of the wire is in the final location of the users finger upon release.
+
+\textbf{Test Case Derivation:} The wires should be able to be moved by the user to allow the puzzle to be completed. 
+
+\textbf{How test will be performed:} One user will create a lobby and spawn in the Wires Puzzle object. They will then interact with their device screen, ensuring that the wire can be dragged around with physical input. 
+
+\textbf{Requirements being verified: } WP1, WP3, WP4
+
+\item{\textbf{Name:} Wire Passive Solution} \label{itm:Test-FRWP2}
+
+\textbf{Id:} Test-FRWP2
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} User is not the host.
+
+\textbf{Input:} The Wires Puzzle object is spawned in.
+
+\textbf{Output:} The user observes four pairs of dots. The top and bottom rows of dots all contain the colours red, yellow, green, and blue exactly once. 
+
+\textbf{Test Case Derivation:} The wires should reveal the correct code to every user who is not the host for the puzzle to be able to be completed. 
+
+\textbf{How test will be performed:} Two users will enter a lobby and spawn in the Wires Puzzle object. The user who is not the host of the lobby will confirm that the expected output of the test is what they see.
+
+\textbf{Requirements being verified: } WP2
+
+\item{\textbf{Name:} Wire Incorrect Solution} \label{itm:Test-FRWP3}
+
+\textbf{Id:} Test-FRWP3
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} The Wires Puzzle object is spawned in for multiple users, one of which is the host.
+
+\textbf{Input:} The wires are connected to the coloured nodes in an order that doesn't match the given code. 
+
+\textbf{Output:} The lights don't change colour. 
+
+\textbf{Test Case Derivation:} Only one sequence is considered correct, and improper sequences cannot complete the puzzle. 
+
+\textbf{How test will be performed:} Two users will enter a lobby and spawn in the Wires Puzzle object. The user who is the host will connect the wires to the coloured nodes in an order that doesn't match up with the provided solution. They will then confirm that nothing has changed. 
+
+\textbf{Requirements being verified: } WP6
+
+\item{\textbf{Name:} Wire Correct Solution} \label{itm:Test-FRWP4}
+
+\textbf{Id:} Test-FRWP4
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} The Wires Puzzle object is spawned in for multiple users, one of which is the host.
+
+\textbf{Input:} The wires are connected to the coloured nodes in an order that matches the given code. 
+
+\textbf{Output:} The lights turn green.
+
+\textbf{Test Case Derivation:} When the correct sequence is input, the puzzle should be completed. 
+
+\textbf{How test will be performed:} Two users will enter a lobby and spawn in the Wires Puzzle object. The user who is the host will connect the wires to the coloured nodes in an order that matches up with the provided solution. They will then confirm that the lights have turned green.
+
+\textbf{Requirements being verified: } WP5, WP7, WP10
+
+\item{\textbf{Name:} Wire Active Lights} \label{itm:Test-FRWP5}
+
+\textbf{Id:} Test-FRWP5
+
+\textbf{Type}: Manual
+
+\textbf{Initial State:} The Wires Puzzle object is spawned in and the lights are off.
+
+\textbf{Input:} The puzzle is set to be active.
+
+\textbf{Output:} The lights turn red.
+
+\textbf{Test Case Derivation:} The puzzle needs to indicate when it has been set to active so users know to interact with it. 
+
+\textbf{How test will be performed:} The host will spawn the Wires Puzzle object and confirm that its lights are off. They will then set the puzzle to be active and confirm that its lights turn red.
+
+\textbf{Requirements being verified: } WP8, WP9
+
 \end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
@@ -1355,7 +1445,9 @@ Tests for usability and humanity requirements.
 					
 \textbf{Initial State:} Users have completed playing the game
 
-\textbf{Output:} Average rating of usability survey is 3/5 or higher
+\textbf{Output:} Average rating of usability survey is 3.5/5 or higher
+
+\textbf{Rationale:} IGN ~\citep{IGNGameScoring} in this article describes that a "good" game is given a 7/10. Given the time constraint of the project, a good rating would be reasonably achievable by our group, so down scaling the 7/10 to 3.5/5 is a good target for our usability survey. 
 
 \textbf{How test will be performed:}  The usability survey \ref{subsec:UsabilitySurvey}, is given to the users that have completed the game to fill out to provide feedback on the game-play experience.
 
@@ -1583,7 +1675,7 @@ Tests for health and safety requirements.
 
 \begin{enumerate}
 
-\item{\textbf{Name:} App warms user to be aware of their environment} \label{itm:Test-HS1}
+\item{\textbf{Name:} App warns user to be aware of their environment} \label{itm:Test-HS1}
 
 \textbf{Id:} Test-HS1
 
@@ -1596,6 +1688,20 @@ Tests for health and safety requirements.
 \textbf{Output:} The system will prompt the user to check their environment and make sure its suitable for playing the game
 					
 \textbf{How test will be performed:} The script to join a lobby will be called, and check that an element has been created with a message to be aware of surroundings. 
+
+\textbf{Requirements being verified:} HS1
+
+\item{\textbf{Name:} Users are unaware of their surroundings} \label{itm:Test-HS1}
+
+\textbf{Id:} Test-HS2
+
+\textbf{Type:} Non-Functional, Dynamic, Manual
+					
+\textbf{Initial State:} Users have completed playing the game
+
+\textbf{Output:} Usability Question "I do not care to check events that are happening in the real world during the game." has a average score below 4.
+					
+\textbf{How test will be performed:} The usability survey \ref{subsec:UsabilitySurvey}, is given to the users that have completed the game to fill out to provide feedback on the game-play experience. 
 
 \textbf{Requirements being verified:} HS1
 \end{enumerate}
@@ -2505,6 +2611,7 @@ This list will include all of the survey questions we are going to ask users for
     \item I enjoy the game's graphics
     \item I think the game is visually appealing
 \end{itemize}
+
 
 \newpage{}
 \section*{Appendix --- Reflection}
