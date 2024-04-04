@@ -460,59 +460,55 @@ external systems and services.
     \item The system shall allow the user to enter a name for the game room \newline
     \textbf{Rationale:} The users must be able to uniquely identify the game rooms to allow the other users to find the room they want to join in case they have a group they wanted to solve the puzzles with
     \item The system shall allow the user to set the size of the game room \newline
-    \textbf{Rationale:} The user should be allowed to limit the number of group members in the game room in case they want a small amount of group members or large amount of group members
+    \textbf{Rationale:} The user may want to play with a smaller or larger group
     \item The system shall allow the user to put a password on the game room \newline
     \textbf{Rationale:} The user should be able to allow or disallow any other users from joining except the ones they want in the case they are playing with friends
-    \item The system shall redirect the user to a new screen when in a game room \newline
-    \textbf{Rationale: } The users in the room should have a display of the game room and the amount of group members in the room etc. 
+    \item The system shall redirect the user to a new screen when in a game room displaying the users in the room\newline
+    \textbf{Rationale: } The user can use this screen to wait for others to join the room and see who joins
 \end{enumerate}
 \subsubsection{Join Game Room}
 \begin{enumerate}[label=JG\arabic*., series=JoinGame]
 	\item The system shall allow the user to join an existing game room with available capacity \newline 
-    \textbf{Rationale:} The user should be able to join a room to group up with other users 
-    \item The system shall allow the user to enter a password for the room if another user set a password for the room \newline 
-    \textbf{Rationale:} In the case of a game room having a password, the user should be able to have a space to enter the password
+    \textbf{Rationale:} The user must be able to group up with other users
+    \item The system shall allow the user to enter a password for the room if another user set a password for the room 
     \item When a user joins the game room the system shall update the game room information to add another member, and decrease the available capacity\newline 
-    \textbf{Rationale:} When a user joins a game room, that information should be updated to let the users users see the status of the room to inform them on which game room to join
-    \item The system shall redirect the user to a new screen upon successfully connecting to a room\newline 
-    \textbf{Rationale:} When a user joins the room, they should get redirected to a new page where they can see the information on the current game room and wait for the host to start the game
+    \textbf{Rationale:} This provides users with an accurate representation of how much availability rooms have
+    \item The system shall redirect the user to a new screen upon successfully connecting to a room where they can see the other users in the room\newline 
+    \textbf{Rationale:} This provides feedback to the user that they've successfully joined the room while they wait for the host to start the game
     \item The system shall not allow a user to join a game room that is at max capacity\newline
-    \textbf{Rationale:} If the game room is full, the room should not be able to take in more users because it is at max capacity
 \end{enumerate}
 
 \subsubsection{Edit Room Settings}
 \begin{enumerate}[label=RS\arabic*., series=EditRoom]
 	\item The system shall allow the user that created the game room to edit the settings of the game room\newline 
-    \textbf{Rationale:} If a user input the incorrect settings when making a room, the user will have the ability to edit the settings 
+    \textbf{Rationale:} Allows a user to fix mistakes in the initial settings or accommodate unanticipated changes
     \item The system shall populate all the changeable settings on the user's screen\newline 
-    \textbf{Rationale:} The user should be able to see all the settings that are able to be changed
+    \textbf{Rationale:} The user must know what they can change
     \item The system shall allow the user to change the password of the room\newline 
-    \textbf{Rationale:} The user should be able to change the password of the room to ensure security
+    \textbf{Rationale:} Allows the user to ensure room security if the password is accidentally shared with an unintended source
     \item The system shall display the updated settings to the game members in the game room\newline 
-    \textbf{Rationale:} When a setting changes the other users in the game room should be able to see the changes in case they will affect them
+    \textbf{Rationale:} Other users in the game room should know what changed in case it will affect them
 \end{enumerate}
 
 \subsubsection{Exit Room}
 \begin{enumerate}[label=ER\arabic*., series=ExitRoom]
     \item The system shall allow the user to leave the existing game room\newline 
-    \textbf{Rationale:} If the user does not wish to stay in a game room, the user should be able to leave
+    \textbf{Rationale:} The user might decide they no longer wish to play the game
     \item When a group member leaves the room the system shall update the game room and display the one less user\newline 
-    \textbf{Rationale:} The system should update based on the current number of users
-    \item When the a group member leaves the room the server shall update the screens of all group member's remaining in the room to show the new amount of users and the updated capacity\newline 
-    \textbf{Rationale:} The server should update all the other users on the current capacity and number of users in the game room to inform them of any possible changes
+    \textbf{Rationale:} This provides users outside the room with an accurate representation of how much availability the room has
+    \item When a group member leaves the room the server shall update the screens of all group members remaining in the room to show the new amount of users and the updated capacity\newline 
+    \textbf{Rationale:} This provides users in the room with an accurate representation of who is in the room
 \end{enumerate}
 
 
 \subsubsection{Start Game}
 \begin{enumerate}[label=ST\arabic*., series=StartGame]
 	\item The system shall allow the user to start the game\newline 
-    \textbf{Rationale:} The users should be able to start the game to play the puzzles
     \item The system shall load all the assets used to play the game\newline 
     \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay
     \item The system shall determine an order of the puzzles, and which group members can see which parts of the puzzles\newline 
-    \textbf{Rationale:} In games with more than one puzzle, there needs to be an order to solve the questions. The system will determine a logical order, and assign which group members can see which parts of the puzzles
+    \textbf{Rationale:} This allows variability in puzzle order and user roles in each puzzle
     \item The system shall reveal the available puzzles to the group members and commence the game\newline 
-    \textbf{Rationale:} The group members should be able to view the puzzles they have access to
 \end{enumerate}
 
 \subsubsection{Puzzle Interaction}
@@ -522,25 +518,22 @@ external systems and services.
         \item The system shall display the new puzzle state after a user performs an action on a puzzle\\
         \textbf{Rationale}: The user must be able to see the results of their actions in order to decide how to proceed with the puzzle
         \item The system shall update the puzzle state of group members cooperating on an updated puzzle\\
-        \textbf{Rationale}: When multiple group members are cooperating on a puzzle they must be able to see updates caused by the actions of one another
+        \textbf{Rationale}: The results of the actions of one user affect the decisions necessary for other group members
         \item The system shall notify the user when they have completed a puzzle\\
-        \textbf{Rationale}: Users should know when they've completed a puzzle so they know they can move on. A notification at the end of a puzzle can also make completing it more satisfying for the user
+        \textbf{Rationale}: Informs users that they can move on from the puzzle. A notification at the end of a puzzle can also make completing it more satisfying for the user
     \end{enumerate}
 \subsubsection{Hint Request}
     \begin{enumerate}[label=HR\arabic*., series=HintRequest]
         \item The system shall have two hints for each puzzle\\
         \textbf{Rationale}: If a user gets stuck on a puzzle they should have an alternative to giving up on the puzzle
         \item The system shall have a means of requesting a hint for the puzzle to be displayed\\
-        \textbf{Rationale}: The user must be able to request the hint for the puzzle
         \item The system shall allow the user to close the hint display\\
-        \textbf{Rationale}: The user should not have to keep the hint on the screen, as it may obstruct other functions
+        \textbf{Rationale}: Keeping the hint on the screen may obstruct other functions
     \end{enumerate}
 \subsubsection{Skip Puzzle}
     \begin{enumerate}[label=SP\arabic*., series=SkipPuzzle]
-        \item The system shall allow the user to skip a puzzle and return to the main scene\\
-        \textbf{Rationale}: The user should not have to complete a puzzle to attempt a different one. They should be able to leave a puzzle and return to it later
-        \item The system shall save the users progress on a skipped puzzle\\
-        \textbf{Rationale}: If a user skips a puzzle they should be able to return to it without having to start over
+        \item The system shall allow the user to skip a puzzle, progressing to the next puzzle\\
+        \textbf{Rationale}: As this game is being created primarily for the study, the skip option may be needed for time purposes or if a puzzle cannot be solved
         \item The system shall notify any group members cooperating on the skipped puzzle that it has been skipped\\
         \textbf{Rationale}: A group members work on a puzzle will typically depend on another group members work on the puzzle. They must be notified the puzzle has been skipped so they are not waiting on an action from the group member
     \end{enumerate}
@@ -557,12 +550,12 @@ external systems and services.
     \end{enumerate}
 \subsubsection{Read Message}
     \begin{enumerate}[label=RM\arabic*., series=ReadMessage]
-        \item The system shall notify the user when a new message is received\\
+        \item The system shall notify the user when a new text message is received\\
         \textbf{Rationale}: Communication is core to the game. If a user doesn't know when they receive a message good communication will not be maintained
-        \item The system shall allow the user to view messages\\
+        \item The system shall allow the user to view text messages\\
         \textbf{Rationale}: Users must be able to see what other users are trying to communicate to them for social purposes and to complete puzzles
-        \item The system shall allow users to close a message\\
-        \textbf{Rationale}: Users must be able to return to the mains scene after viewing a message to continue game play
+        \item The system shall allow users to close the message display\\
+        \textbf{Rationale}: The message display can block other functions if left open
     \end{enumerate}
 \subsubsection{Voice Communication}
     \begin{enumerate}[label=VM\arabic*., series=VoiceMessage]
@@ -580,7 +573,7 @@ external systems and services.
         \item The system shall display the current Simon Says level to all users while the puzzle is active\\
         \textbf{Rationale}: The level indicates the current number of correct sequences the group has inputted, and shows progression through the puzzle
         \item The system shall display a sequence of colours on the colour cube when the puzzle is active\\
-        \textbf{Rationale}: The sequence of colours must be shown in order so than the users can communicate and the individual with the coloured buttons can enter the correct sequence
+        \textbf{Rationale}: The sequence of colours must be shown in order so that the users can communicate and the individual with the coloured buttons can enter the correct sequence
         \item The system shall increase the Simon Says level once the user inputs colour sequence using the coloured buttons\\
         \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle
         \item The system shall display the puzzle as completed once level 3 is completed\\
@@ -615,10 +608,10 @@ external systems and services.
 \end{enumerate}
 \subsubsection{Combination Puzzle}
     \begin{enumerate}[label=CP\arabic*., series=CombinationPuzzle]
-        \item The system shall randomly select a select a set of instructions and associated four digit combination from the available set of instruction-combination pairings\\
+        \item The system shall randomly select a select a set of instructions and associated four-digit combination from the available set of instruction-combination pairings\\
         \textbf{Rationale}: The puzzle should be highly re-playable, providing a different experience for users each time
-        \item The combination associated with each instruction set shall be the only possible four digit combination given the associated instructions\\
-        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle in order for users to be able to solve it using the instructions.
+        \item The combination associated with each instruction set shall be the only possible four-digit combination given the associated instructions\\
+        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle for users to be able to solve it using the instructions.
         \item The system shall update the current combination display field for all users in the room with the correct digit when a user presses a button corresponding to the correct digit of the combination\\
         \textbf{Rationale}: When a user enters a correct digit of the combination, all users should see this reflected on the keypad interface so that they know that number was correct and can progress in the puzzle
         \item The system shall indicate to all users when a user has pressed a keypad button associated with an incorrect digit of the combination\\
@@ -626,7 +619,7 @@ external systems and services.
         \item The system shall reset the combination display field for all users when a user has pressed a keypad button associated with an incorrect digit of the combination\\
         \textbf{Rationale}: Resetting the combination entry on each incorrect input encourages more communication as there is a greater penalty for incorrect inputs. It also helps prevent spam guessing all possible combinations
         \item The system shall complete the puzzle once all four digits of the combination have been entered correctly, displaying a "Correct" message on the keypad interface\\
-        \textbf{Rationale}: When the puzzle has been succesfully completed users must be able to move on to the next puzzle. The puzzle should have a visual indicator of this so users know to start looking for the next task.
+        \textbf{Rationale}: When the puzzle has been successfully completed users must be able to move on to the next puzzle. The puzzle should have a visual indicator of this so users know to start looking for the next task.
     \end{enumerate}
 
 \subsubsection{Wires Puzzle}
@@ -640,7 +633,7 @@ external systems and services.
         \textbf{Rationale}: To complete the puzzle, the wires must be able to be dragged into their designated positions
         \item When a wire tip is dragged by a user, the position of the wire must remain in place when the wire is released \\
         \textbf{Rationale}: When the user stops dragging, the wires must not reset to their original positions to allow the puzzle to be completed
-        \item  The four pairs of coloured dots shall match  up with the proper solution to the wires puzzle. Each pair of dots shall indicate a correct connection, with the colour of the node as the dot on top and the colour of the wire as the dot on the bottom\\
+        \item  The four pairs of coloured dots shall match up with the proper solution to the wires puzzle. Each pair of dots shall indicate a correct connection, with the colour of the node as the dot on top and the colour of the wire as the dot on the bottom\\
         \textbf{Rationale}: The active part of the puzzle must align with the hint given to the other users for the puzzle to be able to be completed 
         \item  When the wires are connected to the nodes in an improper sequence, no change occurs \\
         \textbf{Rationale}: The puzzle must only be able to be completed with a single correct sequence
