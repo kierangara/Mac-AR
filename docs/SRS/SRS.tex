@@ -173,6 +173,8 @@
             April 4, 2024 & Kieran & Reworked all functional requirement rationale to remove redundancy\\
             April 4, 2024 & Kieran & Added/modified requirements for room capacity JG2 and CG3\\
             April 4, 2024 & Kieran & Added Phase-In Plan\\
+            April 4, 2024 & Kieran & Defined missing terminology from NFRs and VnV\\
+            April 4, 2024 & Kieran & Resolved minor grammar issues and latex quotation marks\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -305,27 +307,50 @@ The project currently has no enterprise constraints.
   Asset & Any game object that appears in the game\\
   A & Assumption\\
   AR & Augmented Reality\\
+  CI/CD & Continuous Integration/Continuous Development\\
+  CR & Cultural Requirements\\
   DD & Data Definition\\
+  ESRB & Entertainment Software Ratings Guide\\
   GD & General Definition\\
   GPS & Global Positioning System\\
   GS & Goal Statement\\
   HA & Hazard Analysis\\
+  HS & Health and Safety Requirements\\
   IM & Instance Model\\
+  iOS & iPhone Operating System\\
   LC & Likely Change\\
+  LF & Look and Feel Requirements\\
+  LR & Legal Requirements\\
   MG & Module Guide\\
   MIS & Module Interface Specification\\
+  MS & Maintainability and Support Requirements\\
+  NUnit & C\# unit testing module\\
+  OE & Operational and Environmental Requirements\\
   PoC & Proof of Concept \\ 
+  PR & Performance Requirements\\
   PS & Physical System Description\\
   Puzzle State & The current variable values and UI appearance of the puzzle\\
   R & Requirement\\
   Rev & Revision\\
   RS & Required Skill\\
   Scene & The area of the game visible on the device\\
+  SR & Security Requirements\\
   SRS & Software Requirements Specification\\
+    \bottomrule
+\end{tabular}\\
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{Symbol} & \textbf{description}\\
+  \midrule 
   \progname{} & Software Engineering\\
   TA & Teaching Assistant\\
   TM & Theoretical Model\\
+  UH & Usability and Humanity Requirements\\
   UI & User Interface\\
+  Unity & Game Development Engine\\
+  Vivox & Text and Voice Communication module for Unity\\
   VR & Virtual Reality\\
   VnV & Verification and Validation \\
   WCAG & Web Content Accessibility Guidelines \\
@@ -628,7 +653,7 @@ external systems and services.
         \textbf{Rationale}: Users must be able to tell when they've entered an incorrect digit so that they do not continue trying this digit 
         \item The system shall reset the combination display field for all users when a user has pressed a keypad button associated with an incorrect digit of the combination\\
         \textbf{Rationale}: Resetting the combination entry on each incorrect input encourages more communication as there is a greater penalty for incorrect inputs. It also helps prevent spam guessing all possible combinations
-        \item The system shall complete the puzzle once all four digits of the combination have been entered correctly, displaying a "Correct" message on the keypad interface\\
+        \item The system shall complete the puzzle once all four digits of the combination have been entered correctly, displaying a ``Correct" message on the keypad interface\\
         \textbf{Rationale}: When the puzzle has been successfully completed users must be able to move on to the next puzzle. The puzzle should have a visual indicator of this so users know to start looking for the next task.
     \end{enumerate}
 
@@ -749,7 +774,7 @@ The following section will describe the non-functional requirements of the appli
 \end{enumerate}
 \subsection{Cultural Requirements}
 \begin{enumerate}[CR\arabic*]
-    \item The system shall not use any offensive images, text, or sound that could offend any religious or culture groups
+    \item The system shall not use any offensive images, text, or sound that could offend any religious or cultural groups
     \textit{Fit criterion: The game shall comply with the Entertainment Software Rating Board (ESRB) ``E for Everyone" rating standards~\citep{ESRB}}
     \item The system shall use Canadian English
 \end{enumerate}
@@ -1108,7 +1133,7 @@ The following section will go over any training and documentation that is needed
 The users will have a user help document available to them within the application in the form of a gameplay menu. It will contain information on how to use the application, as well as any instructions regarding interacting with puzzles/tasks.
 
 \subsubsection{Training Requirements}
-The users will have a "tutorial" when they first start the game that will teach them how to use the application. It will show the users how to use AR technology, and give them a simple puzzle to solve.
+The users will have a ``tutorial" when they first start the game that will teach them how to use the application. It will show the users how to use AR technology, and give them a simple puzzle to solve.
 
 \subsection{Waiting Room}
 There are currently no requirements or functionalities that are not being included in the initial release. Future ones may be added later on.
