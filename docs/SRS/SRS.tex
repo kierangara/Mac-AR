@@ -165,7 +165,13 @@
             January 4, 2024 & Ethan & Updated SRS to include requirement for notifying user to update to latest version of application\\
             March 1, 2024 & Ethan & Updated SRS to remove Save/Load/Delete Requirements\\
             March 6, 2024 & Sam & Updated PI7 to be more explicit about progress bar\\
-            April 3, 2024 & Kieran & Revision 1 updates complete\\
+            April 1, 2024 & All & Added puzzle specific Requirements\\
+            April 3, 2024 & Kieran & Added statement of template modifications\\
+            April 3, 2024 & Kieran & Added likely changes section\\
+            April 3, 2024 & Kieran & Defined ambiguous terms based on peer feedback\\
+            April 4, 2024 & Kieran & Added fit criterion for CR1, LR1\\
+            April 4, 2024 & Kieran & Reworked all functional requirement rationale to remove redundancy\\
+            April 4, 2024 & Kieran & Added/modified requirements for room capacity JG2 and CG3\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -459,8 +465,8 @@ external systems and services.
     \textbf{Rationale:} The user must be able to group together with other users, creating the game room will allow the users to organize the group
     \item The system shall allow the user to enter a name for the game room \newline
     \textbf{Rationale:} The users must be able to uniquely identify the game rooms to allow the other users to find the room they want to join in case they have a group they wanted to solve the puzzles with
-    \item The system shall allow the user to set the size of the game room \newline
-    \textbf{Rationale:} The user may want to play with a smaller or larger group
+    \item The system shall allow the user to set the size of the game room to a value between 1 and 10 \newline
+    \textbf{Rationale:} The user may want to play with a smaller or larger group. The values of 1 and 10 are the minimum and maximum expected number of players
     \item The system shall allow the user to put a password on the game room \newline
     \textbf{Rationale:} The user should be able to allow or disallow any other users from joining except the ones they want in the case they are playing with friends
     \item The system shall redirect the user to a new screen when in a game room displaying the users in the room\newline
@@ -470,6 +476,7 @@ external systems and services.
 \begin{enumerate}[label=JG\arabic*., series=JoinGame]
 	\item The system shall allow the user to join an existing game room with available capacity \newline 
     \textbf{Rationale:} The user must be able to group up with other users
+    \item The system shall not allow the user to join an existing game room without available capacity 
     \item The system shall allow the user to enter a password for the room if another user set a password for the room 
     \item When a user joins the game room the system shall update the game room information to add another member, and decrease the available capacity\newline 
     \textbf{Rationale:} This provides users with an accurate representation of how much availability rooms have
@@ -503,12 +510,12 @@ external systems and services.
 
 \subsubsection{Start Game}
 \begin{enumerate}[label=ST\arabic*., series=StartGame]
-	\item The system shall allow the user to start the game\newline 
+	\item The system shall allow the user to start the game
     \item The system shall load all the assets used to play the game\newline 
     \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay
     \item The system shall determine an order of the puzzles, and which group members can see which parts of the puzzles\newline 
     \textbf{Rationale:} This allows variability in puzzle order and user roles in each puzzle
-    \item The system shall reveal the available puzzles to the group members and commence the game\newline 
+    \item The system shall reveal the available puzzles to the group members and commence the game 
 \end{enumerate}
 
 \subsubsection{Puzzle Interaction}
@@ -526,7 +533,7 @@ external systems and services.
     \begin{enumerate}[label=HR\arabic*., series=HintRequest]
         \item The system shall have two hints for each puzzle\\
         \textbf{Rationale}: If a user gets stuck on a puzzle they should have an alternative to giving up on the puzzle
-        \item The system shall have a means of requesting a hint for the puzzle to be displayed\\
+        \item The system shall have a means of requesting a hint for the puzzle to be displayed
         \item The system shall allow the user to close the hint display\\
         \textbf{Rationale}: Keeping the hint on the screen may obstruct other functions
     \end{enumerate}
@@ -575,6 +582,8 @@ external systems and services.
         \item The system shall display a sequence of colours on the colour cube when the puzzle is active\\
         \textbf{Rationale}: The sequence of colours must be shown in order so that the users can communicate and the individual with the coloured buttons can enter the correct sequence
         \item The system shall increase the Simon Says level once the user inputs colour sequence using the coloured buttons\\
+        \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle
+        \item The system shall put the Simon Says level to one if the user inputs the incorrect colour sequence using the coloured buttons\\
         \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle
         \item The system shall display the puzzle as completed once level 3 is completed\\
         \textbf{Rationale}: The puzzle should be able to be completed in order for users to be able to progress through the escape room. Additionally, level 3 is the highest level since the puzzle is supposed to take several minutes to solve and the time it takes to reach this level is in accordance to that
@@ -625,7 +634,7 @@ external systems and services.
 \subsubsection{Wires Puzzle}
 
 \begin{enumerate}[label=WP\arabic*., series=WiresPuzzle ]
-        \item The puzzle shall display a box of four coloured wires to the user designated at the active user \\
+        \item The puzzle shall display a box of four coloured wires to the user designated as the active user \\
         \textbf{Rationale}: A single user must be able to see the puzzle asset that they can interact with
         \item A set of four pairs of coloured dots shall be displayed for all users not designated as the active user \\
         \textbf{Rationale}: The remaining users must be able to see the puzzle asset containing the solution to the puzzle
@@ -663,7 +672,7 @@ For all the puzzles in the room, if puzzle b depends on a, b will come after a
     \hline
          Likely & Unlikely \\
          \hline
-         CG4, JG2, RS3, HR1, HR2, HR3, SP1, SP2, SP3, SS1, SS2, SS3, SS4, SS5, SS6, MP1, MP2, MP3, MP4, MP5, IP1, IP2, IP3, IP4, IP5, CP1, CP2, CP3, CP4, CP5, CP6, WP1, WP2, WP3, WP4, WP5, WP6, WP7, WP8, WP9, WP10 & CG1, CG2, CG3, CG5, JG1, JG3, JG4, JG5, RS1, RS2, RS4, ST1, ST2, ST3, ST4, PI1, PI2, PI3, PI4, SM1, SM2, SM3, SM4, RM1, RM2, RM3, VM1, VM2, Formal Specification   \\
+         CG4, JG3, RS3, HR1, HR2, HR3, SP1, SP2, SS1, SS2, SS3, SS4, SS5, SS6, MP1, MP2, MP3, MP4, MP5, IP1, IP2, IP3, IP4, IP5, CP1, CP2, CP3, CP4, CP5, CP6, WP1, WP2, WP3, WP4, WP5, WP6, WP7, WP8, WP9, WP10 & CG1, CG2, CG3, CG5, JG1, JG2, JG4, JG5, JG6 RS1, RS2, RS4, ST1, ST2, ST3, ST4, PI1, PI2, PI3, PI4, SM1, SM2, SM3, SM4, RM1, RM2, RM3, VM1, VM2, Formal Specification   \\
          \hline
     \end{tabular}
     \caption{Non-Functional Likely/Unlikely to Change Table}
@@ -671,12 +680,12 @@ For all the puzzles in the room, if puzzle b depends on a, b will come after a
 \end{table}
 \begin{itemize}
     \item CG1, CG2, CG3, CG5 are all unlikely to change as they are basic properties/needs of a game room that users are able to join
-    \item JG1, JG3, JG4, JG5 are all unlikely to change as capacity updates and scene changes when joining a room will always be necessary features
+    \item JG1, JG2, JG4, JG5, JG6 are all unlikely to change as capacity updates and scene changes when joining a room will always be necessary features
     \item RS1, RS2, RS3 are all unlikely to change as the capability to edit room settings after creating a room adds convenience to the game that will be useful when performing the study and for casual players of the game
-    \item CG4, JG2, RS3 are fairly likely to change as it is not necessary that a game room have a password. It may be decided that this requirement is not needed
-    \item ST1, ST2, ST3, ST4 are all unlikely to change as the game start procedure is core to the identity of the game as a multiplayer augmented reality communication based game
-    \item PI1, PI2, PI3, PI4 are all unlikely to change as it is unlikely the game will be modified such that users do not need to be able to interact with their puzzles and see the result of these interaction
-    \item HR1, HR2, HR3, SP1, SP2, SP3 are all likely to change as hints and skips have been primarily implemented to facilitate the study. If the game changes to become more time-based and competitive these features may change or be removed
+    \item CG4, JG3, RS3 are fairly likely to change as it is not necessary that a game room have a password. It may be decided that this requirement is not needed
+    \item ST1, ST2, ST3, ST4 are all unlikely to change as the game start procedure is core to the identity of the game as a multiplayer augmented reality communication-based game
+    \item PI1, PI2, PI3, PI4 are all unlikely to change as it is unlikely the game will be modified such that users do not need to be able to interact with their puzzles and see the result of these interactions
+    \item HR1, HR2, HR3, SP1, SP2 are all likely to change as hints and skips have been primarily implemented to facilitate the study. If the game changes to become more time-based and competitive these features may change or be removed
     \item SM1, SM2, SM3, SM4, RM1, RM2, RM3, VM1, VM2 are all unlikely to change as they are the core properties of text and voice communication which are fundamental to the game which is based on communication. Requirements may however be added to these sections if these features are expanded upon in the future
     \item All individual puzzle requirements (SS, MP, IP, CP, WP) are likely to changes as the puzzles in the game may be swapped out or heavily modified in the future. The individual puzzles are the most variable part of this game and could easily be changed without altering the identity and purpose of the game
     \item The formal specification is unlikely to change as a room should never exceed its capacity
