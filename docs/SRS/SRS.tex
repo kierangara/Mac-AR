@@ -172,6 +172,7 @@
             April 4, 2024 & Kieran & Added fit criterion for CR1, LR1\\
             April 4, 2024 & Kieran & Reworked all functional requirement rationale to remove redundancy\\
             April 4, 2024 & Kieran & Added/modified requirements for room capacity JG2 and CG3\\
+            April 4, 2024 & Kieran & Added Phase-In Plan\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -192,6 +193,7 @@ Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobert
     \item (Added) Section 6: Appendix
     \item (Merged) Section 1.2: ``Stakeholders" and ``Users of the Product" sections merged under ``Stakeholders" section
     \item (Modified) Modified overall section nesting and numbering for more logical grouping
+    \item (Modified) Section 5.5: Replaced ``Migration to the New Product" with ``Requirements Phase-In Plan"
 \end{itemize}
 
 \section{Project Drivers}
@@ -482,7 +484,6 @@ external systems and services.
     \textbf{Rationale:} This provides users with an accurate representation of how much availability rooms have
     \item The system shall redirect the user to a new screen upon successfully connecting to a room where they can see the other users in the room\newline 
     \textbf{Rationale:} This provides feedback to the user that they've successfully joined the room while they wait for the host to start the game
-    \item The system shall not allow a user to join a game room that is at max capacity\newline
 \end{enumerate}
 
 \subsubsection{Edit Room Settings}
@@ -672,7 +673,7 @@ For all the puzzles in the room, if puzzle b depends on a, b will come after a
     \hline
          Likely & Unlikely \\
          \hline
-         CG4, JG3, RS3, HR1, HR2, HR3, SP1, SP2, SS1, SS2, SS3, SS4, SS5, SS6, MP1, MP2, MP3, MP4, MP5, IP1, IP2, IP3, IP4, IP5, CP1, CP2, CP3, CP4, CP5, CP6, WP1, WP2, WP3, WP4, WP5, WP6, WP7, WP8, WP9, WP10 & CG1, CG2, CG3, CG5, JG1, JG2, JG4, JG5, JG6 RS1, RS2, RS4, ST1, ST2, ST3, ST4, PI1, PI2, PI3, PI4, SM1, SM2, SM3, SM4, RM1, RM2, RM3, VM1, VM2, Formal Specification   \\
+         CG4, JG3, RS3, HR1, HR2, HR3, SP1, SP2, SS1, SS2, SS3, SS4, SS5, SS6, SS7, MP1, MP2, MP3, MP4, MP5, IP1, IP2, IP3, IP4, IP5, CP1, CP2, CP3, CP4, CP5, CP6, WP1, WP2, WP3, WP4, WP5, WP6, WP7, WP8, WP9, WP10 & CG1, CG2, CG3, CG5, JG1, JG2, JG4, JG5, RS1, RS2, RS4, ST1, ST2, ST3, ST4, PI1, PI2, PI3, PI4, SM1, SM2, SM3, SM4, RM1, RM2, RM3, VM1, VM2, Formal Specification   \\
          \hline
     \end{tabular}
     \caption{Non-Functional Likely/Unlikely to Change Table}
@@ -680,7 +681,7 @@ For all the puzzles in the room, if puzzle b depends on a, b will come after a
 \end{table}
 \begin{itemize}
     \item CG1, CG2, CG3, CG5 are all unlikely to change as they are basic properties/needs of a game room that users are able to join
-    \item JG1, JG2, JG4, JG5, JG6 are all unlikely to change as capacity updates and scene changes when joining a room will always be necessary features
+    \item JG1, JG2, JG4, JG5, are all unlikely to change as capacity updates and scene changes when joining a room will always be necessary features
     \item RS1, RS2, RS3 are all unlikely to change as the capability to edit room settings after creating a room adds convenience to the game that will be useful when performing the study and for casual players of the game
     \item CG4, JG3, RS3 are fairly likely to change as it is not necessary that a game room have a password. It may be decided that this requirement is not needed
     \item ST1, ST2, ST3, ST4 are all unlikely to change as the game start procedure is core to the identity of the game as a multiplayer augmented reality communication-based game
@@ -983,14 +984,111 @@ The initial development of the application will take the design of the PoC and i
 
 The refinement will take all the user feedback and improve on the initial design. There is no expectation for major features to be developed at this stage, just improvements on the existing system and the addition of potential stretch goals. 
 
-\subsection{Migration to the New Product}
-The following section will go everything required for migration to the application.
+\subsection{Requirements Phase-In Plan}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|ll}
+\cline{1-3}
+\textbf{Requirements} & \textbf{Priority} & \textbf{Deadline} &  &  \\ \cline{1-3}
+CG1          & High     & Nov. 1, 2023      &  &  \\ \cline{1-3}
+CG2          & Medium      & Dec. 31, 2023     &  &  \\ \cline{1-3}
+CG3         & Medium     & Dec. 31, 2023      &  &  \\ \cline{1-3}
+CG4          & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+CG5          & High      & Nov. 13, 2023      &  &  \\ \cline{1-3}
+JG1          & High     & Nov. 8, 2023     &  &  \\ \cline{1-3}
+JG2          & Medium     & Dec. 31, 2023     &  &  \\ \cline{1-3}
+JG3         &  Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+JG4          & High      & Nov, 13, 2023     &  &  \\ \cline{1-3}
+JG5         & High      & Nov. 8, 2023      &  &  \\ \cline{1-3}
+RS1         & Medium     & Feb. 5, 2024     &  &  \\ \cline{1-3}
+RS2        & Medium     & Feb. 5, 2024     &  &  \\ \cline{1-3}
+RS3        & Low     & Mar. 18, 2024     &  &  \\ \cline{1-3}
+RS4        & Medium     & Feb. 5, 2024      &  &  \\ \cline{1-3}
+ER1         & Medium     & Feb. 5, 2024     &  &  \\ \cline{1-3}
+ER2         & Medium      & Feb. 5, 2024      &  &  \\ \cline{1-3}
+ER3         & Medium     & Feb. 5, 2024      &  &  \\ \cline{1-3}
+ST1         & High     & Nov. 1, 2023     &  &  \\ \cline{1-3}
+ST2         & High     & Nov. 13, 2023     &  &  \\ \cline{1-3}
+ST3        & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+ST4         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+PI1         & Medium     & Dec. 31, 2023      &  &  \\ \cline{1-3}
+PI2         & Medium     & Dec. 31, 2023     &  &  \\ \cline{1-3}
+PI3         & Medium     & Dec. 31, 2023     &  &  \\ \cline{1-3}
+PI4         & Medium   & Dec. 31, 2023      &  &  \\ \cline{1-3}
+HR1         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+HR2         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+HR3         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+SP1         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+SP2         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+\end{tabular}
+\caption{Requirements Phase-In Plan Part 1}
+\end{table}
 
-\subsubsection{Requirements for Migration to the New Product}
-There are no requirements for migration for the application.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|ll}
+\cline{1-3}
+\textbf{Requirements} & \textbf{Priority} & \textbf{Deadline} &  &  \\ \cline{1-3}
+SM1         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+SM2         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+SM3         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+SM4         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+RM1         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+RM2        & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+RM3         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+VM1         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+VM2         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+SS1         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS2         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS3         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS4         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS5         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS6         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS7         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP1         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP2         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP3         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP4         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP5         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+IP1         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+IP2         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+IP3         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+IP4         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+IP5         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+CP1         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP2         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP3         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP4         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP5         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP6         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+\end{tabular}
+\caption{Requirements Phase-In Plan Part 2}
+\end{table}
 
-\subsubsection{Data That Has to Be Modified or Translated for the New System}
-No data needs to be modified or translated for the application.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|ll}
+\cline{1-3}
+\textbf{Requirements} & \textbf{Priority} & \textbf{Deadline} &  &  \\ \cline{1-3}
+WP1         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP2         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP3         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP4         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP5         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP6         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP7         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP8         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+WP9         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+WP10         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+\end{tabular}
+\caption{Requirements Phase-In Plan Part 2}
+\end{table}
+
+High priority requirements make up the core components of the game, without which the game would not be playable. These are also requirements the development team was most concerned about implementing for the proof of concept.
+
+Medium priority requirements are game mechanics that create the structure of the game and make it fun to play by creating the flow of the game and adding puzzle variability.
+
+Low priority requirements are add-ons that contribute to ease-of-use of the game and quality of life. They're not strictly necessary, hence the lowest priority.
 
 \subsection{Risks}
 The main risks of the project are:
