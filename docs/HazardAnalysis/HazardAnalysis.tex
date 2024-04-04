@@ -55,6 +55,11 @@
 2023/10/17 & Ethan & Worked on all sections of document \\
 2023/11/03 & Ethan & Removed SAR and added HS requirement \\
 2024/01/04 & Ethan & Updated FMEA for server crash and other issues\\
+2024/04/03 & Ethan & Updated definition of hazard to include where they originate from\\
+2024/04/03 & Ethan & No updates for adding a hazard for saving user data required since no data from the user is being saved\\
+2024/04/03 & Ethan & Updated failure effects restatement of failure mode for H4-1 and H4-2\\
+2024/04/03 & Ethan & Fixed grammar issues and updated recommended actions and reference numbers to be labelled by "a." if there are multiple of them for the same failure mode.\\
+2024/04/03 & Ethan & Modified recommended action for H2-1 and H2-2 to make them similar recommended actions. Progress will not be saved, user will join current game state when they rejoin the game room. \\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -74,10 +79,10 @@
 
 %\wss{You can include your definition of what a hazard is here.}
 
-In order to make an application that is usable and safe for users, common hazards need to be thought about beforehand and ways for mitigating them need to be developed. A hazard is anything that fails or modifies the intended functionalities of the Mac AR application, as well as anything that could pose a danger to the user or cause system failure.
+In order to make an application that is usable and safe for users, common hazards need to be thought about beforehand and ways for mitigating them need to be developed. A hazard is anything that fails or modifies the intended functionalities of the Mac AR application, as well as anything that could pose a danger to the user or cause system failure. Hazards originate from a variety of sources such as issues with third-part dependencies, environmental conditions, and unstable user connection to the application. 
 
 \section{Scope and Purpose of Hazard Analysis}
-The purpose of the hazard analysis is to document potential hazards that may arise when the application is being used and find ways to prevent or mitigate them. The scope of the hazard analysis will involve outlining the system boundaries and components, and potential hazards related to the system itself as well as user interaction with the system. Additionally, it will include the mitigation methods that will be implemented to prevent these potential hazards along with the safety and security requirements that relate to each hazard. Accounting for every single combination of user hardware should not be possible, so the analysis will be generalized for all mobile devices that are able to properly run our intended product.
+The purpose of the hazard analysis is to document potential hazards that may arise when the application is being used and find ways to prevent or mitigate them. The scope of the hazard analysis will involve outlining the system boundaries and components, and potential hazards related to the system itself as well as user interaction with the system. Additionally, it will include the mitigation methods that will be implemented to prevent these potential hazards along with the safety and security requirements that relate to each hazard. Accounting for every single combination of user hardware is not be possible, so the analysis will be generalized for all mobile devices that are able to properly run our intended product.
 
 %The purpose of the hazard analysis is to think about all potential hazards within the bounds of the software and hardware used, how hazard mitigation is to be implemented, and the safety and security requirements associated with these hazards. The scope of the document will include but be not limited to: potential hazards with the environment for users, potential hazards with the application itself, and mitigation methods within the application to prevent potential hazards. Accounting for every single combination of user hardware should not be possible, so the analysis will be generalized for all mobile devices that are able to properly run our intended product. 
 
@@ -96,7 +101,7 @@ The system will be divided into the following components:
         \end{itemize}
 \end{itemize}
 
-The backend server will be responsible for connecting users together in a room, and associating puzzles with the users. Additionally, the server will store the current game state of the user's puzzle. The user interface is responsible for providing the user with an interact-able game, and handling all the user's inputs. The physical device that the user will run the application on is a Smartphone.
+The backend server will be responsible for connecting users together in a room, and associating puzzles with the users. The user interface is responsible for providing the user with an interact-able game, and handling all the user's inputs. The physical device that the user will run the application on is a Smartphone.
 
 \section{Critical Assumptions}
 \begin{itemize}
@@ -117,17 +122,17 @@ The Failure Mode and Effect Analysis table breaks down the potential hazards/fai
     \centering
     
 
-    \begin{tabular}{|p{0.20\linewidth} | p{0.30\linewidth} | p{0.20\linewidth}|  p{0.20\linewidth}|  p{0.30\linewidth}|  p{0.07\linewidth}|  p{0.07\linewidth}|p{0.12\linewidth}| }
+    \begin{tabular}{|p{0.20\linewidth} | p{0.30\linewidth} | p{0.20\linewidth}|  p{0.20\linewidth}|  p{0.30\linewidth}|  p{0.07\linewidth}|  p{0.09\linewidth}|p{0.12\linewidth}| }
     \hline
          \textbf{Design Functions} & \textbf{Failure Modes} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{SR} & \textbf{Ref} & \textbf{Severity}\\
          \hline
-        Internet connectivity      &      Loss of internet connection           &       The user is unable to send or receive data from the server.                      &                The user's device has lost connection to the internet.            &                  Notify the user that they have lost internet connection. &UH2&H1-1&Medium\\&&&& Prompt the user to play the game in an area with good internet connection, and if they get disconnected, prompt the user to reconnect before play can resume.           & UH4            &           &                  \\
+        Internet connectivity      &      Loss of internet connection           &       The user is unable to send or receive data from the server.                      &                The user's device has lost connection to the internet.            &                  a. Notify the user that they have lost internet connection. &UH2&H1-1a&Medium\\&&&& b. Prompt the user to play the game in an area with good internet connection, and if they get disconnected, prompt the user to reconnect before play can resume.           & UH4            &    H1-1b       &      Medium            \\&&&&&&& \\
                                    &     Unstable Internet Connection     &  The user is not able to keep up-to date with the server and the other users. &  The user's internet connection is poor/weak.    &        Prompt the user when poor connection is detected to connect to a more stable internet network.           &  UH5           &  H1-2           &    Medium              \\
           \hline
-        General                    &      System Powerdown     &          The user's phone has shutdown.                   &     Some failure from the user's phone/device caused the device to shutdown.        &     The user should turn their phone back on and when they launch our app again, they should be allowed to rejoin the room and continue playing the game.       & UH7            &   H2-1           &        High          \\
-                                   &       Application Crash     &      The application has crashed on the user's device.         &     A bug in the code or an issue with the user's device.     &     The user can relaunch the application and reconnect to their game room.    &  UH7           &   H2-2          &   High               \\
+        General                    &      System Powerdown     &          The user's phone has shutdown resulting in the user being unable to use the app until their phone is online and the app is reopened.                   &     Some failure from the user's phone/device caused the device to shutdown.        &     The user should turn their phone back on and when they launch our app again, they should be allowed to rejoin the ongoing game and continue playing the game. Since this is a multiplayer game, users will be joining the game room in its current state (ie. if a members of the game room complete a puzzle and begin working on a new one while the user was disconnected, when the user joins back they will be in the same state as the other users.)         & UH7            &   H2-1           &        High          \\&&&&&&&  \\
+                                   &       Application Crash     &      User's app closes and needs to be manually reopened by the user.         &     A bug in the code or an issue with the user's device.     &     The user can relaunch the application and rejoin the ongoing game and continue playing the game (same as in System Powerdown).    &  UH7           &   H2-2          &   High               \\
           \hline
-          Backend Server                   &    Server cannot respond within a reasonable time         &     Possible loss of data from users, status of game rooms not clear.    &    Too many user's sending and receiving data from the server at the same time.    &     Limit the amount of users to ensure the server always has enough time to handle requests.      &   PR1          &  H3-1            &      Low            \\
+          Backend Server                   &    Server cannot respond within a reasonable time         &     Possible loss of data from users, status of game rooms not clear.    &    Too many user's sending and receiving data from the server at the same time.    &     Limit the amount of users to ensure the server always has enough time to handle requests.      &   PR1          &  H3-1            &      Low            \\&&&&&&&  \\
                                    &     Server Crash                   & Server has crashed resulting in users being unable to send and receive data from the server.                          &   A failure in the backend server causes it to become unresponsive/crash.                       &  Limit users from playing the game until server has become responsive.                               &  PR2           &  H3-2             &  High                 \\
           \hline
     \end{tabular}
@@ -141,13 +146,13 @@ The Failure Mode and Effect Analysis table breaks down the potential hazards/fai
     \centering
     
 
-    \begin{tabular}{|p{0.20\linewidth} | p{0.30\linewidth} | p{0.20\linewidth}|  p{0.20\linewidth}|  p{0.30\linewidth}|  p{0.07\linewidth}|  p{0.07\linewidth}|p{0.12\linewidth}| }
+    \begin{tabular}{|p{0.20\linewidth} | p{0.30\linewidth} | p{0.20\linewidth}|  p{0.20\linewidth}|  p{0.30\linewidth}|  p{0.07\linewidth}|  p{0.09\linewidth}|p{0.12\linewidth}| }
     \hline
          \textbf{Design Functions} & \textbf{Failure Modes} & \textbf{Effects of Failure} & \textbf{Causes of Failure} & \textbf{Recommended Action} & \textbf{SR} & \textbf{Ref} & \textbf{Severity}\\
          \hline
-          User Interface                   &           User Exits the game room             &           The user is too far from the puzzles to complete them.           &                The user leaves the pre-defined area set by calibration.            &           Inform the user before they leave the area to not leave, and if they leave, inform the user to return.                  &   UH6          &   H4-1           &   Low               \\
-            &    User is injured     &    The user has sustained an injury during the use of our application.      &  The user was not aware of their surrounding during the use of the application and injured themselves from their surroundings. \newline                 &    Prompt the user before the game starts to be aware of their surroundings, and play in an open area with no visible hazards.    &  HS1           &   H4-2     & High\\&&& User was using application in dangerous conditions. \newline & Warn the user about potentially dangerous weather and to exit the area if outside. &   UH8   &  H4-3 & Low                \\
-                                   &    User calibration setup fails   &   User is unable to start puzzle due to calibration setup not being able to map real life room into AR environment. & Room is too bright resulting in camera not being able to accurately map environment, User exits room during calibration setup, User attempts to play game in unsuitable environment (ex. moving car). & Prompt the user before the game starts to let them know the suitable environments for playing the game. &UH6&H4-4& Medium\\&&&& Prompt user through pop up warning during calibration to let user know that their current environment is not suitable and they must change their environment before they can resume play.   & UH6   & H4-5 & Medium   \\
+          User Interface                   &           User exits current area after game has begun.            &           The user is too far from the puzzles to complete them.           &                The user leaves the pre-defined area set by calibration.            &           Inform the user before they leave the area to not leave, and if they leave, inform the user to return.                  &   UH6          &   H4-1           &   Low               \\&&&&&&&  \\
+            &    User physically collides with an object while using the application.    &    The user has sustained an injury during the use of our application.      &  The user was not aware of their surrounding during the use of the application and injured themselves from their surroundings. \newline                 &    Prompt the user before the game starts to be aware of their surroundings, and play in an open area with no visible hazards.    &  HS1           &   H4-2     & High\\&&&&&&&               \\
+                                   &    User calibration setup fails   &   User is unable to start puzzle due to calibration setup not being able to map real life room into AR environment. & Room is too bright resulting in camera not being able to accurately map environment, User exits room during calibration setup, User attempts to play game in unsuitable environment (ex. moving car). & a. Prompt the user before the game starts to let them know the suitable environments for playing the game. &UH6&H4-3a& Medium\\&&&& b. Prompt user through pop up warning during calibration to let user know that their current environment is not suitable and they must change their environment before they can resume play.   & UH6   & H4-3b & Medium   \\
           \hline
     \end{tabular}
     \end{adjustbox}
@@ -190,8 +195,6 @@ Specification Document and have been written in \textbf{bold}.
     \textit{Fit criterion: The system will produce a pop up notification during calibration setup to let user know of issues with their environment, as well as if after calibration the user environment becomes unsuitable}
     \item[UH7] \textbf{The system shall allow users to reconnect to their game session if they become disconnected}\newline
     \textit{Fit criterion: The system will prompt the user to reconnect to their game session through a reconnect button, which upon pressing will reconnect to the user's previous session}
-    \item[UH8] \textbf{The system shall alert users of potentially dangerous conditions} \newline
-    \textit{Fit criterion: The system will notify the user about incoming dangerous weather when it is detected}
 \end{enumerate}
 
 %\subsection{Access Requirements}
@@ -200,8 +203,8 @@ Specification Document and have been written in \textbf{bold}.
 %\end{enumerate}
 \subsection{Performance Requirements}
 \begin{enumerate}
-    \item[PR1] The system shall respond to user interaction instantaneously as perceived by the user\newline
-    \textit{Fit criterion: The system shall respond within 100ms of user interaction}
+    \item[PR1] The system shall respond to user interaction within 5 seconds\newline
+    \textit{Fit criterion: The system shall respond within a reasonable amount of time to a user's request}
     \item[PR2] The system shall be available for users at any time or display the reasoning for the system outage \newline
     \textit{Fit criterion: The system will be accessible 24 hours a day unless the server is under-going maintenance or experiencing an outage. If there is maintenance or an outage an error message is displayed stating the respective issue}
 \end{enumerate}
