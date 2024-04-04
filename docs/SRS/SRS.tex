@@ -735,23 +735,25 @@ The following section will describe the non-functional requirements of the appli
     \item The system shall be well documented and kept up to date, and have updated design documents\newline
     \textit{Fit criterion: All changes in the system design are to be reflected in the documents in the GitHub}
     \item The source code shall be well commented for future developers\newline
-    \textit{Fit criterion: The system will have author names and dates present in developer code, as well as descriptions of every system module}
+    \textit{Fit criterion: The system will have author names and dates present in developer code, as well as descriptions of what every system module and function do. An external developer must be able to understand the function of any part of the code from the comments.}
 \end{enumerate}
 \subsection{Security Requirements}
 \begin{enumerate}[SR\arabic*.]
     \item The system shall keep user data private\newline
     \textit{Fit criterion: Game room passwords or IP addresses should not be displayed and should only be accessible to the internal system functions. No external data queries to the database or the system should be able to retrieve this information.}
-    \item The users will only be allowed to see limited data. Unnecessary data will not be displayed to the user\newline
+    \item The users will only be allowed to see limited data. Unnecessary data will not be displayed to the user as providing the user with data related to implementation or other users could leave other users or the system vulnerable to malicious attacks\newline
     \textit{Fit criterion: The system shall only show users any data required in order to play the game}
 \end{enumerate}
 \subsection{Cultural Requirements}
 \begin{enumerate}[CR\arabic*]
     \item The system shall not use any offensive images, text, or sound that could offend any religious or culture groups
+    \textit{Fit criterion: The game shall comply with the Entertainment Software Rating Board (ESRB) ``E for Everyone" rating standards~\citep{ESRB}}
     \item The system shall use Canadian English
 \end{enumerate}
 \subsection{Legal Requirements}
 \begin{enumerate}[LR\arabic*]
     \item The system shall not infringe on the rights of any person(s), and shall not use any assets that infringe on copyright claims. When using open source resources, the developers shall give appropriate credit
+    \textit{Fit criterion: All assets used are open source with credit provided to authors or free access. No copyrighted assets are used}
 \end{enumerate}
 \subsection{Health and Safety Requirements}
 \begin{enumerate}[HS\arabic*]
