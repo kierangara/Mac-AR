@@ -143,8 +143,6 @@
 
 \tableofcontents
 
-~\newpage
-
 \begin{table}[hp]
 	\caption{Revision History} \label{TblRevisionHistory}
 	\begin{tabularx}{\textwidth}{llX}
@@ -165,16 +163,41 @@
             January 4, 2024 & Ethan & Updated SRS to include requirement for notifying user to update to latest version of application\\
             March 1, 2024 & Ethan & Updated SRS to remove Save/Load/Delete Requirements\\
             March 6, 2024 & Sam & Updated PI7 to be more explicit about progress bar\\
+            April 1, 2024 & All & Added puzzle specific Requirements\\
+            April 3, 2024 & Kieran & Added statement of template modifications\\
+            April 3, 2024 & Kieran & Added likely changes section\\
+            April 3, 2024 & Kieran & Defined ambiguous terms based on peer feedback\\
+            April 4, 2024 & Kieran & Added fit criterion for CR1, LR1\\
+            April 4, 2024 & Kieran & Reworked all functional requirement rationale to remove redundancy\\
+            April 4, 2024 & Kieran & Added/modified requirements for room capacity JG2 and CG3\\
+            April 4, 2024 & Kieran & Added Phase-In Plan\\
+            April 4, 2024 & Kieran & Defined missing terminology from NFRs and VnV\\
+            April 4, 2024 & Kieran & Resolved minor grammar issues and latex quotation marks\\
+            April 4, 2024 & Kieran & Fixed off-the-shelf solution and current environment sections based on TA feedback\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
 
-\newpage
+~\newpage
 
 \pagenumbering{arabic}
 
 This document describes the requirements for Mac-AR. The template for the Software Requirements
-Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012} with the .
+Specification (SRS) is a subset of the Volere template~\citep{RobertsonAndRobertson2012} with the following modifications:
+\begin{itemize}
+    \item (Added) Section 2.3: Formal Specification
+    \item (Added) Section 2.4: Functional Requirements That Are Likely/Unlikely to Change
+    \item (Added) Section 3.9: Health and Safety Requirements
+    \item (Added) Section 3.10: Non-Functional Requirements That Are Likely/Unlikely to Change
+    \item (Added) Section 4: Traceability matrix
+    \item (Added) Section 5.5: Cutover section replaced with ``Migration to the New Product"
+    \item (Added) Section 6: Appendix
+    \item (Merged) Section 1.2: ``Stakeholders" and ``Users of the Product" sections merged under ``Stakeholders" section
+    \item (Modified) Modified overall section nesting and numbering for more logical grouping
+    \item (Modified) Section 5.5: Replaced ``Migration to the New Product" with ``Requirements Phase-In Plan"
+\end{itemize}
+
+\newpage
 
 \section{Project Drivers}
 
@@ -213,21 +236,17 @@ The project will be developed and released within the following constraints.
 \end{itemize}
 
 \subsubsection{Implementation Environment of the Current System}
-As outlined in section \ref{SolutionConstraints}, the tool will need to be developed for execution on modern mobile devices. There are currently no constraints on the server side of the project, although that may need to be revised as the tool grows in scope. 
+Not applicable as the system is not being built off of an existing solution. 
 
 \subsubsection{Partner or Collaborative Applications}
 In the current design of the product, there are no partner or collaborative applications that will
 work along with the product. Therefore, there are no partner or collaborative constraints.
 
 \subsubsection{Off-the-Shelf Software}
-The following off-the-shelf software will be utilized:
-\begin{itemize}
-	\item Unity, along with its available libraries for AR app development and communication 
-        \item Visual Studio, for development
-\end{itemize}
+There is no current solution off of which the system is being built or constraints regarding any such software. 
 
 \subsubsection{Anticipated Workplace Environment}
-The anticipated workplace environment will be intentionally broad. The product can be used from anywhere the user has access to a mobile device and internet to run the application, with no limits on being indoors. 
+The anticipated workplace environment will be intentionally broad. The product can be used from anywhere the user has access to a mobile device and an internet connection to run the application, with no limits on being indoors. 
 
 \subsubsection{Schedule Constraints}
 The general document and development milestone constraints are as follows:
@@ -282,27 +301,53 @@ The project currently has no enterprise constraints.
   \toprule		
   \textbf{Symbol} & \textbf{description}\\
   \midrule 
+  Asset & Any game object that appears in the game\\
   A & Assumption\\
   AR & Augmented Reality\\
+  CI/CD & Continuous Integration/Continuous Development\\
+  CR & Cultural Requirements\\
   DD & Data Definition\\
+  ESRB & Entertainment Software Ratings Guide\\
   GD & General Definition\\
   GPS & Global Positioning System\\
   GS & Goal Statement\\
   HA & Hazard Analysis\\
+  HS & Health and Safety Requirements\\
   IM & Instance Model\\
+  iOS & iPhone Operating System\\
   LC & Likely Change\\
+  LF & Look and Feel Requirements\\
+  LR & Legal Requirements\\
   MG & Module Guide\\
   MIS & Module Interface Specification\\
+  MS & Maintainability and Support Requirements\\
+  NUnit & C\# unit testing module\\
+  OE & Operational and Environmental Requirements\\
   PoC & Proof of Concept \\ 
+  PR & Performance Requirements\\
   PS & Physical System Description\\
+  Puzzle State & The current variable values and UI appearance of the puzzle\\
   R & Requirement\\
   Rev & Revision\\
   RS & Required Skill\\
+  Scene & The area of the game visible on the device\\
+  SR & Security Requirements\\
   SRS & Software Requirements Specification\\
+    \bottomrule
+\end{tabular}\\
+
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{l l} 
+  \toprule		
+  \textbf{Symbol} & \textbf{description}\\
+  \midrule 
   \progname{} & Software Engineering\\
   TA & Teaching Assistant\\
   TM & Theoretical Model\\
+  UH & Usability and Humanity Requirements\\
   UI & User Interface\\
+  Unity & Game Development Engine\\
+  Vivox & Text and Voice Communication module for Unity\\
   VR & Virtual Reality\\
   VnV & Verification and Validation \\
   WCAG & Web Content Accessibility Guidelines \\
@@ -441,63 +486,78 @@ external systems and services.
 \subsubsection{Create Game Room}
 \begin{enumerate}[label=CG\arabic*., series=CreateGame]
     \item The system shall allow the user to create a game room \newline 
-    \textbf{Rationale:} The user must be able to group together with other users, creating the game room will allow the users to organize the group
+    \textbf{Rationale:} The user must be able to group together with other users, creating the game room will allow the users to organize the group\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, UH1, UH2, UH3, UH4, PR1, PR2, OE1, SR1, SR2, CR2
+    
     \item The system shall allow the user to enter a name for the game room \newline
-    \textbf{Rationale:} The users must be able to uniquely identify the game rooms to allow the other users to find the room they want to join in case they have a group they wanted to solve the puzzles with
-    \item The system shall allow the user to set the size of the game room \newline
-    \textbf{Rationale:} The user should be allowed to limit the number of group members in the game room in case they want a small amount of group members or large amount of group members
+    \textbf{Rationale:} The users must be able to uniquely identify the game rooms to allow the other users to find the room they want to join in case they have a group they wanted to solve the puzzles with\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, SR1, SR2, CR1, CR2
+    
+    \item The system shall allow the user to set the size of the game room to a value between 1 and 10 \newline
+    \textbf{Rationale:} The user may want to play with a smaller or larger group. The values of 1 and 10 are the minimum and maximum expected number of players\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, SR1, SR2, CR2
     \item The system shall allow the user to put a password on the game room \newline
-    \textbf{Rationale:} The user should be able to allow or disallow any other users from joining except the ones they want in the case they are playing with friends
-    \item The system shall redirect the user to a new screen when in a game room \newline
-    \textbf{Rationale: } The users in the room should have a display of the game room and the amount of group members in the room etc. 
+    \textbf{Rationale:} The user should be able to allow or disallow any other users from joining except the ones they want in the case they are playing with friends\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, SR1, SR2, CR2
+    
+    \item The system shall redirect the user to a new screen when in a game room displaying the users in the room\newline
+    \textbf{Rationale: } The user can use this screen to wait for other users to join the room and see which users join\\
+    \textbf{Related Use Cases:} Use Case 1\\
+    \textbf{Related Requirements:} LF1, LF2, PR1, PR2, UH1, UH3, OE1, SR1, SR2, CR2
 \end{enumerate}
 \subsubsection{Join Game Room}
 \begin{enumerate}[label=JG\arabic*., series=JoinGame]
 	\item The system shall allow the user to join an existing game room with available capacity \newline 
-    \textbf{Rationale:} The user should be able to join a room to group up with other users 
-    \item The system shall allow the user to enter a password for the room if another user set a password for the room \newline 
-    \textbf{Rationale:} In the case of a game room having a password, the user should be able to have a space to enter the password
+    \textbf{Rationale:} The user must be able to group up with other users\\
+    \textbf{Related Use Cases:} Use Case 2\\
+    \textbf{Related Requirements:} LF1, LF2, PR1, PR2, UH1, UH2, UH3, UH4, OE1, SR1, SR2, CR2
+    
+    \item The system shall not allow the user to join an existing game room without available capacity\\
+    \textbf{Related Use Cases:} Use Case 2\\
+    \textbf{Related Requirements:} LF1, LF2, PR1, PR2, UH1, UH2, UH3, UH4, OE1, SR1, SR2, CR2
+    
+    \item The system shall allow the user to enter a password for the room if another user set a password for the room 
     \item When a user joins the game room the system shall update the game room information to add another member, and decrease the available capacity\newline 
-    \textbf{Rationale:} When a user joins a game room, that information should be updated to let the users users see the status of the room to inform them on which game room to join
-    \item The system shall redirect the user to a new screen upon successfully connecting to a room\newline 
-    \textbf{Rationale:} When a user joins the room, they should get redirected to a new page where they can see the information on the current game room and wait for the host to start the game
-    \item The system shall not allow a user to join a game room that is at max capacity\newline
-    \textbf{Rationale:} If the game room is full, the room should not be able to take in more users because it is at max capacity
+    \textbf{Rationale:} This provides users with an accurate representation of how much availability rooms have
+    \item The system shall redirect the user to a new screen upon successfully connecting to a room where they can see the other users in the room\newline 
+    \textbf{Rationale:} This provides feedback to the user that they've successfully joined the room while they wait for the host to start the game
 \end{enumerate}
 
 \subsubsection{Edit Room Settings}
 \begin{enumerate}[label=RS\arabic*., series=EditRoom]
 	\item The system shall allow the user that created the game room to edit the settings of the game room\newline 
-    \textbf{Rationale:} If a user input the incorrect settings when making a room, the user will have the ability to edit the settings 
+    \textbf{Rationale:} Allows a user to fix mistakes in the initial settings or accommodate unanticipated changes
     \item The system shall populate all the changeable settings on the user's screen\newline 
-    \textbf{Rationale:} The user should be able to see all the settings that are able to be changed
+    \textbf{Rationale:} The user must know what they can change
     \item The system shall allow the user to change the password of the room\newline 
-    \textbf{Rationale:} The user should be able to change the password of the room to ensure security
+    \textbf{Rationale:} Allows the user to ensure room security if the password is accidentally shared with an unintended source
     \item The system shall display the updated settings to the game members in the game room\newline 
-    \textbf{Rationale:} When a setting changes the other users in the game room should be able to see the changes in case they will affect them
+    \textbf{Rationale:} Other users in the game room should know what changed in case it will affect them
 \end{enumerate}
 
 \subsubsection{Exit Room}
 \begin{enumerate}[label=ER\arabic*., series=ExitRoom]
     \item The system shall allow the user to leave the existing game room\newline 
-    \textbf{Rationale:} If the user does not wish to stay in a game room, the user should be able to leave
+    \textbf{Rationale:} The user might decide they no longer wish to play the game
     \item When a group member leaves the room the system shall update the game room and display the one less user\newline 
-    \textbf{Rationale:} The system should update based on the current number of users
-    \item When the a group member leaves the room the server shall update the screens of all group member's remaining in the room to show the new amount of users and the updated capacity\newline 
-    \textbf{Rationale:} The server should update all the other users on the current capacity and number of users in the game room to inform them of any possible changes
+    \textbf{Rationale:} This provides users outside the room with an accurate representation of how much availability the room has
+    \item When a group member leaves the room the server shall update the screens of all group members remaining in the room to show the new amount of users and the updated capacity\newline 
+    \textbf{Rationale:} This provides users in the room with an accurate representation of who is in the room
 \end{enumerate}
 
 
 \subsubsection{Start Game}
 \begin{enumerate}[label=ST\arabic*., series=StartGame]
-	\item The system shall allow the user to start the game\newline 
-    \textbf{Rationale:} The users should be able to start the game to play the puzzles
+	\item The system shall allow the user to start the game
     \item The system shall load all the assets used to play the game\newline 
     \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay
     \item The system shall determine an order of the puzzles, and which group members can see which parts of the puzzles\newline 
-    \textbf{Rationale:} In games with more than one puzzle, there needs to be an order to solve the questions. The system will determine a logical order, and assign which group members can see which parts of the puzzles
-    \item The system shall reveal the available puzzles to the group members and commence the game\newline 
-    \textbf{Rationale:} The group members should be able to view the puzzles they have access to
+    \textbf{Rationale:} This allows variability in puzzle order and user roles in each puzzle
+    \item The system shall reveal the available puzzles to the group members and commence the game 
 \end{enumerate}
 
 \subsubsection{Puzzle Interaction}
@@ -507,33 +567,28 @@ external systems and services.
         \item The system shall display the new puzzle state after a user performs an action on a puzzle\\
         \textbf{Rationale}: The user must be able to see the results of their actions in order to decide how to proceed with the puzzle
         \item The system shall update the puzzle state of group members cooperating on an updated puzzle\\
-        \textbf{Rationale}: When multiple group members are cooperating on a puzzle they must be able to see updates caused by the actions of one another
+        \textbf{Rationale}: The results of the actions of one user affect the decisions necessary for other group members
         \item The system shall notify the user when they have completed a puzzle\\
-        \textbf{Rationale}: Users should know when they've completed a puzzle so they know they can move on. A notification at the end of a puzzle can also make completing it more satisfying for the user
+        \textbf{Rationale}: Informs users that they can move on from the puzzle. A notification at the end of a puzzle can also make completing it more satisfying for the user
     \end{enumerate}
 \subsubsection{Hint Request}
     \begin{enumerate}[label=HR\arabic*., series=HintRequest]
-        \item The system shall have at least one hint for each puzzle\\
+        \item The system shall have two hints for each puzzle\\
         \textbf{Rationale}: If a user gets stuck on a puzzle they should have an alternative to giving up on the puzzle
-        \item The system shall have a means of requesting a hint for the puzzle to be displayed\\
-        \textbf{Rationale}: The user must be able to request the hint for the puzzle
+        \item The system shall have a means of requesting a hint for the puzzle to be displayed
         \item The system shall allow the user to close the hint display\\
-        \textbf{Rationale}: The user should not have to keep the hint on the screen, as it may obstruct other functions
+        \textbf{Rationale}: Keeping the hint on the screen may obstruct other functions
     \end{enumerate}
 \subsubsection{Skip Puzzle}
     \begin{enumerate}[label=SP\arabic*., series=SkipPuzzle]
-        \item The system shall allow the user to skip a puzzle and return to the main scene\\
-        \textbf{Rationale}: The user should not have to complete a puzzle to attempt a different one. They should be able to leave a puzzle and return to it later
-        \item The system shall save the users progress on a skipped puzzle\\
-        \textbf{Rationale}: If a user skips a puzzle they should be able to return to it without having to start over
+        \item The system shall allow the user to skip a puzzle, progressing to the next puzzle\\
+        \textbf{Rationale}: As this game is being created primarily for the study, the skip option may be needed for time purposes or if a puzzle cannot be solved
         \item The system shall notify any group members cooperating on the skipped puzzle that it has been skipped\\
         \textbf{Rationale}: A group members work on a puzzle will typically depend on another group members work on the puzzle. They must be notified the puzzle has been skipped so they are not waiting on an action from the group member
     \end{enumerate}
-\subsubsection{Send Message}
+\subsubsection{Send Text Message}
     \begin{enumerate}[label=SM\arabic*., series=SendMessage]
-        \item The system shall allow the user to view all group members in the current game room\\
-        \textbf{Rationale}: For the communication system the user must be able to see all the group members in the game room to choose who to contact
-        \item The system shall contain an interface that allows the user to compose a message\\
+        \item The system shall contain an interface that allows the user to compose text messages\\
         \textbf{Rationale}: The user must be able to create their own custom messages to allow for optimal communication in puzzles and to create the most realistic social experience
         \item The system shall allow the user to send a message to the users in the game room\\
         \textbf{Rationale}: The primary goal of the game is to allow users to have social interaction from a remote setting. All users in the game must be able to interact with one another to complete this goal
@@ -544,12 +599,19 @@ external systems and services.
     \end{enumerate}
 \subsubsection{Read Message}
     \begin{enumerate}[label=RM\arabic*., series=ReadMessage]
-        \item The system shall notify the user when a new message is received\\
+        \item The system shall notify the user when a new text message is received\\
         \textbf{Rationale}: Communication is core to the game. If a user doesn't know when they receive a message good communication will not be maintained
-        \item The system shall allow the user to view messages\\
+        \item The system shall allow the user to view text messages\\
         \textbf{Rationale}: Users must be able to see what other users are trying to communicate to them for social purposes and to complete puzzles
-        \item The system shall allow users to close a message\\
-        \textbf{Rationale}: Users must be able to return to the mains scene after viewing a message to continue game play
+        \item The system shall allow users to close the message display\\
+        \textbf{Rationale}: The message display can block other functions if left open
+    \end{enumerate}
+\subsubsection{Voice Communication}
+    \begin{enumerate}[label=VM\arabic*., series=VoiceMessage]
+        \item The system shall allow users to communicate with one another through a voice chat\\
+        \textbf{Rationale}: To allow more fluid and more complex communication users should be able to communicate through a voice chat in addition to the text messaging.
+        \item The system shall allow users to mute themselves in the voice chat at any time while they are in the game room\\
+        \textbf{Rationale}: Users should not be forced to utilise the voice communication system as they may be in a location with unwanted background noise or where they cannot speak freely
     \end{enumerate}
 \subsubsection{Simon Says Puzzle}
     \begin{enumerate}[label=SS\arabic*., series=SimonSays]
@@ -560,8 +622,10 @@ external systems and services.
         \item The system shall display the current Simon Says level to all users while the puzzle is active\\
         \textbf{Rationale}: The level indicates the current number of correct sequences the group has inputted, and shows progression through the puzzle
         \item The system shall display a sequence of colours on the colour cube when the puzzle is active\\
-        \textbf{Rationale}: The sequence of colours must be shown in order so than the users can communicate and the individual with the coloured buttons can enter the correct sequence
+        \textbf{Rationale}: The sequence of colours must be shown in order so that the users can communicate and the individual with the coloured buttons can enter the correct sequence
         \item The system shall increase the Simon Says level once the user inputs colour sequence using the coloured buttons\\
+        \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle
+        \item The system shall put the Simon Says level to one if the user inputs the incorrect colour sequence using the coloured buttons\\
         \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle
         \item The system shall display the puzzle as completed once level 3 is completed\\
         \textbf{Rationale}: The puzzle should be able to be completed in order for users to be able to progress through the escape room. Additionally, level 3 is the highest level since the puzzle is supposed to take several minutes to solve and the time it takes to reach this level is in accordance to that
@@ -595,14 +659,44 @@ external systems and services.
 \end{enumerate}
 \subsubsection{Combination Puzzle}
     \begin{enumerate}[label=CP\arabic*., series=CombinationPuzzle]
-        \item The system shall randomly select a select a set of instructions and associated four digit combination from the available set of instruction-combination pairings\\
+        \item The system shall randomly select a select a set of instructions and associated four-digit combination from the available set of instruction-combination pairings\\
         \textbf{Rationale}: The puzzle should be highly re-playable, providing a different experience for users each time
-        \item The combination associated with each instruction set shall be the only possible four digit combination given the associated instructions\\
-        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle in order for users to be able to solve it using the instructions.
-        \item The combination associated with each instruction set shall be the only possible four digit combination given the associated instructions\\
-        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle in order for users to be able to solve it using the instructions.
-        
+        \item The combination associated with each instruction set shall be the only possible four-digit combination given the associated instructions\\
+        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle for users to be able to solve it using the instructions.
+        \item The system shall update the current combination display field for all users in the room with the correct digit when a user presses a button corresponding to the correct digit of the combination\\
+        \textbf{Rationale}: When a user enters a correct digit of the combination, all users should see this reflected on the keypad interface so that they know that number was correct and can progress in the puzzle
+        \item The system shall indicate to all users when a user has pressed a keypad button associated with an incorrect digit of the combination\\
+        \textbf{Rationale}: Users must be able to tell when they've entered an incorrect digit so that they do not continue trying this digit 
+        \item The system shall reset the combination display field for all users when a user has pressed a keypad button associated with an incorrect digit of the combination\\
+        \textbf{Rationale}: Resetting the combination entry on each incorrect input encourages more communication as there is a greater penalty for incorrect inputs. It also helps prevent spam guessing all possible combinations
+        \item The system shall complete the puzzle once all four digits of the combination have been entered correctly, displaying a ``Correct" message on the keypad interface\\
+        \textbf{Rationale}: When the puzzle has been successfully completed users must be able to move on to the next puzzle. The puzzle should have a visual indicator of this so users know to start looking for the next task.
     \end{enumerate}
+
+\subsubsection{Wires Puzzle}
+
+\begin{enumerate}[label=WP\arabic*., series=WiresPuzzle ]
+        \item The puzzle shall display a box of four coloured wires to the user designated as the active user \\
+        \textbf{Rationale}: A single user must be able to see the puzzle asset that they can interact with
+        \item A set of four pairs of coloured dots shall be displayed for all users not designated as the active user \\
+        \textbf{Rationale}: The remaining users must be able to see the puzzle asset containing the solution to the puzzle
+        \item The four coloured wires must be able to be manipulated by the user such that their tip follows the movement of the users finger while they are dragged across the screen \\
+        \textbf{Rationale}: To complete the puzzle, the wires must be able to be dragged into their designated positions
+        \item When a wire tip is dragged by a user, the position of the wire must remain in place when the wire is released \\
+        \textbf{Rationale}: When the user stops dragging, the wires must not reset to their original positions to allow the puzzle to be completed
+        \item  The four pairs of coloured dots shall match up with the proper solution to the wires puzzle. Each pair of dots shall indicate a correct connection, with the colour of the node as the dot on top and the colour of the wire as the dot on the bottom\\
+        \textbf{Rationale}: The active part of the puzzle must align with the hint given to the other users for the puzzle to be able to be completed 
+        \item  When the wires are connected to the nodes in an improper sequence, no change occurs \\
+        \textbf{Rationale}: The puzzle must only be able to be completed with a single correct sequence
+        \item  When the wires are connected to the nodes in the correct sequence, the puzzle completes \\
+        \textbf{Rationale}: The correct sequence must complete the puzzle
+        \item When the puzzle is spawned and inactive, its lights will be off \\
+        \textbf{Rationale}: The initial state of the puzzle will have its lights off to indicate to the user not to interact with it yet
+        \item When the puzzle is set to become active, its lights will turn red \\
+        \textbf{Rationale}: The lights will turn red to indicate that the puzzle is active but not yet completed
+        \item When the puzzle is completed, its lights will turn green \\
+        \textbf{Rationale}: The lights will turn green to indicate to the user that the puzzle has been completed
+\end{enumerate}
 
 \subsection{Formal Specification}
 $(\forall r \in rooms  | (\sum\limits_{user \in r} 1)  \leq r.roomCapacity)$\\
@@ -613,6 +707,31 @@ $ (\forall a,b \in puzzles  |  (a \subset b) \implies (a \implies b))$
  
 For all the puzzles in the room, if puzzle b depends on a, b will come after a
 
+\subsection{Functional Requirements That Are Likely/Unlikely to Change}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|p{0.40\linewidth} | p{0.40\linewidth}|}
+    \hline
+         Likely & Unlikely \\
+         \hline
+         CG4, JG3, RS3, HR1, HR2, HR3, SP1, SP2, SS1, SS2, SS3, SS4, SS5, SS6, SS7, MP1, MP2, MP3, MP4, MP5, IP1, IP2, IP3, IP4, IP5, CP1, CP2, CP3, CP4, CP5, CP6, WP1, WP2, WP3, WP4, WP5, WP6, WP7, WP8, WP9, WP10 & CG1, CG2, CG3, CG5, JG1, JG2, JG4, JG5, RS1, RS2, RS4, ST1, ST2, ST3, ST4, PI1, PI2, PI3, PI4, SM1, SM2, SM3, SM4, RM1, RM2, RM3, VM1, VM2, Formal Specification   \\
+         \hline
+    \end{tabular}
+    \caption{Non-Functional Likely/Unlikely to Change Table}
+    \label{tab:my_label2}
+\end{table}
+\begin{itemize}
+    \item CG1, CG2, CG3, CG5 are all unlikely to change as they are basic properties/needs of a game room that users are able to join
+    \item JG1, JG2, JG4, JG5, are all unlikely to change as capacity updates and scene changes when joining a room will always be necessary features
+    \item RS1, RS2, RS3 are all unlikely to change as the capability to edit room settings after creating a room adds convenience to the game that will be useful when performing the study and for casual players of the game
+    \item CG4, JG3, RS3 are fairly likely to change as it is not necessary that a game room have a password. It may be decided that this requirement is not needed
+    \item ST1, ST2, ST3, ST4 are all unlikely to change as the game start procedure is core to the identity of the game as a multiplayer augmented reality communication-based game
+    \item PI1, PI2, PI3, PI4 are all unlikely to change as it is unlikely the game will be modified such that users do not need to be able to interact with their puzzles and see the result of these interactions
+    \item HR1, HR2, HR3, SP1, SP2 are all likely to change as hints and skips have been primarily implemented to facilitate the study. If the game changes to become more time-based and competitive these features may change or be removed
+    \item SM1, SM2, SM3, SM4, RM1, RM2, RM3, VM1, VM2 are all unlikely to change as they are the core properties of text and voice communication which are fundamental to the game which is based on communication. Requirements may however be added to these sections if these features are expanded upon in the future
+    \item All individual puzzle requirements (SS, MP, IP, CP, WP) are likely to changes as the puzzles in the game may be swapped out or heavily modified in the future. The individual puzzles are the most variable part of this game and could easily be changed without altering the identity and purpose of the game
+    \item The formal specification is unlikely to change as a room should never exceed its capacity
+\end{itemize}
 
 \section{Non-functional Requirements}
 The following section will describe the non-functional requirements of the application.
@@ -630,12 +749,10 @@ The following section will describe the non-functional requirements of the appli
     \textit{Fit criterion: The system should allow the application to be launched displaying the initial menu screen on the devices listed in solution constraint 1.3.1 with an operating system satisfying OE1}
     \item The system shall notify the user if there is no network, or they get disconnected\newline
     \textit{Fit criterion: The system should produce a notification when network connection is lost}
-    \item The system shall be able to be navigated by any user\newline
+    \item The system shall reasonably be able to be navigated\newline
     \textit{Fit criterion: The system shall abide by the WCAG 2.1 AA standard~\citep{WCAG2.1}  for accessibility}
     \item The system shall prompt the user to re-enter an area with internet connection when it detects there is no network\newline
     \textit{Fit criterion: The system should produce a notification when network connection is lost}
-    \item %The system shall prompt the user if it detects that the existing network connection is weak\newline
-    %\textit{Fit criterion: The system should produce a notification when network connection is weak}
     \item The system shall prompt the user if their current environment is unsuitable to use the application\newline
     \textit{Fit criterion: The system will produce a pop up notification during startup to let user know of issues with their environment, as well as if after startup the user environment becomes unsuitable. This may include lighting or distance to spawned puzzles}
     \item The system shall allow users to reconnect to their game session if they become disconnected\newline
@@ -647,8 +764,8 @@ The following section will describe the non-functional requirements of the appli
 \end{enumerate}
 \subsection{Performance Requirements}
 \begin{enumerate}[PR\arabic*.]
-	\item The system shall respond to user interaction instantaneously as perceived by the user\newline
-    \textit{Fit criterion: The system shall respond within 100ms of user interaction}
+	\item The system shall respond to user interaction within 5 seconds\newline
+    \textit{Fit criterion: The system shall respond within a reasonable amount of time to a user's request}
     \item The system shall be available for users at any time or display the reasoning for the system outage\newline
     \textit{Fit criterion: The system will be accessible 24 hours a day unless the server is undergoing maintenance or experiencing an outage. If there is maintenance or an outage an error message is displayed stating the respective issue }
 \end{enumerate}
@@ -662,28 +779,57 @@ The following section will describe the non-functional requirements of the appli
     \item The system shall be well documented and kept up to date, and have updated design documents\newline
     \textit{Fit criterion: All changes in the system design are to be reflected in the documents in the GitHub}
     \item The source code shall be well commented for future developers\newline
-    \textit{Fit criterion: The system will have author names and dates present in developer code, as well as descriptions of every system module}
+    \textit{Fit criterion: The system will have author names and dates present in developer code, as well as descriptions of what every system module and function do. An external developer must be able to understand the function of any part of the code from the comments.}
 \end{enumerate}
 \subsection{Security Requirements}
 \begin{enumerate}[SR\arabic*.]
     \item The system shall keep user data private\newline
     \textit{Fit criterion: Game room passwords or IP addresses should not be displayed and should only be accessible to the internal system functions. No external data queries to the database or the system should be able to retrieve this information.}
-    \item The users will only be allowed to see limited data. Unnecessary data will not be displayed to the user\newline
+    \item The users will only be allowed to see limited data. Unnecessary data will not be displayed to the user as providing the user with data related to implementation or other users could leave other users or the system vulnerable to malicious attacks\newline
     \textit{Fit criterion: The system shall only show users any data required in order to play the game}
 \end{enumerate}
 \subsection{Cultural Requirements}
 \begin{enumerate}[CR\arabic*]
-    \item The system shall not use any offensive images, text, or sound that could offend any religious or culture groups
+    \item The system shall not use any offensive images, text, or sound that could offend any religious or cultural groups
+    \textit{Fit criterion: The game shall comply with the Entertainment Software Rating Board (ESRB) ``E for Everyone" rating standards~\citep{ESRB}}
     \item The system shall use Canadian English
 \end{enumerate}
 \subsection{Legal Requirements}
 \begin{enumerate}[LR\arabic*]
     \item The system shall not infringe on the rights of any person(s), and shall not use any assets that infringe on copyright claims. When using open source resources, the developers shall give appropriate credit
+    \textit{Fit criterion: All assets used are open source with credit provided to authors or free access. No copyrighted assets are used}
 \end{enumerate}
 \subsection{Health and Safety Requirements}
 \begin{enumerate}[HS\arabic*]
     \item The system shall give a warning to the user to be aware of their surroundings while using the system, and to not bump into any objects or obstacles in their path
 \end{enumerate}
+\subsection{Non-Functional Requirements That Are Likely/Unlikely to Change}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|p{0.40\linewidth} | p{0.40\linewidth}|}
+    \hline
+         Likely & Unlikely \\
+         \hline
+         PR1, OE1, CR2 & LF1, LF2, UH1, UH2, UH3, UH4, UH5, UH6, UH7, PR2, MS1, MS2, SR1, SR2, CR1, LR1, HS1   \\
+         \hline
+    \end{tabular}
+    \caption{Non-Functional Likely/Unlikely to Change Table}
+    \label{tab:my_label2}
+\end{table}
+\begin{itemize}
+    \item LF1 and LF2 are unlikely to change as they are basic visual requirements to make the app usable
+    \item UH1, UH2, UH3, UH4, UH5, UH6, UH7 are unlikely to change as they are navigation, environment and network based requirements that are required for reasonable usability of the game
+    \item PR1 is likely to change. As game systems improve the maximum response time should be able to be reduced significantly
+    \item PR2 is unlikely to change as users should always be notified when the game is not available
+    \item OE1 is likely to change as newer devices come out and the system evolves to meet those specifications
+    \item MS1 and MS2 are unlikely to change as documentation should always remain up to date to facilitate maintainability
+    \item SR1 and SR2 are unlikely to change as user data confidentiality and protection should always remain in place
+    \item CR1 is unlikely to change as the game should never contain offensive content
+    \item CR2 is likely to change as the game may be expanded to include more languages
+    \item LR1 is unlikely to change as the game must remain legally viable
+    \item HS1 is unlikely to change as this warning is needed to protect users
+    
+\end{itemize}
 
 \section{Traceability Matrix}
 
@@ -879,14 +1025,111 @@ The initial development of the application will take the design of the PoC and i
 
 The refinement will take all the user feedback and improve on the initial design. There is no expectation for major features to be developed at this stage, just improvements on the existing system and the addition of potential stretch goals. 
 
-\subsection{Migration to the New Product}
-The following section will go everything required for migration to the application.
+\subsection{Requirements Phase-In Plan}
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|ll}
+\cline{1-3}
+\textbf{Requirements} & \textbf{Priority} & \textbf{Deadline} &  &  \\ \cline{1-3}
+CG1          & High     & Nov. 1, 2023      &  &  \\ \cline{1-3}
+CG2          & Medium      & Dec. 31, 2023     &  &  \\ \cline{1-3}
+CG3         & Medium     & Dec. 31, 2023      &  &  \\ \cline{1-3}
+CG4          & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+CG5          & High      & Nov. 13, 2023      &  &  \\ \cline{1-3}
+JG1          & High     & Nov. 8, 2023     &  &  \\ \cline{1-3}
+JG2          & Medium     & Dec. 31, 2023     &  &  \\ \cline{1-3}
+JG3         &  Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+JG4          & High      & Nov, 13, 2023     &  &  \\ \cline{1-3}
+JG5         & High      & Nov. 8, 2023      &  &  \\ \cline{1-3}
+RS1         & Medium     & Feb. 5, 2024     &  &  \\ \cline{1-3}
+RS2        & Medium     & Feb. 5, 2024     &  &  \\ \cline{1-3}
+RS3        & Low     & Mar. 18, 2024     &  &  \\ \cline{1-3}
+RS4        & Medium     & Feb. 5, 2024      &  &  \\ \cline{1-3}
+ER1         & Medium     & Feb. 5, 2024     &  &  \\ \cline{1-3}
+ER2         & Medium      & Feb. 5, 2024      &  &  \\ \cline{1-3}
+ER3         & Medium     & Feb. 5, 2024      &  &  \\ \cline{1-3}
+ST1         & High     & Nov. 1, 2023     &  &  \\ \cline{1-3}
+ST2         & High     & Nov. 13, 2023     &  &  \\ \cline{1-3}
+ST3        & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+ST4         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+PI1         & Medium     & Dec. 31, 2023      &  &  \\ \cline{1-3}
+PI2         & Medium     & Dec. 31, 2023     &  &  \\ \cline{1-3}
+PI3         & Medium     & Dec. 31, 2023     &  &  \\ \cline{1-3}
+PI4         & Medium   & Dec. 31, 2023      &  &  \\ \cline{1-3}
+HR1         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+HR2         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+HR3         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+SP1         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+SP2         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+\end{tabular}
+\caption{Requirements Phase-In Plan Part 1}
+\end{table}
 
-\subsubsection{Requirements for Migration to the New Product}
-There are no requirements for migration for the application.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|ll}
+\cline{1-3}
+\textbf{Requirements} & \textbf{Priority} & \textbf{Deadline} &  &  \\ \cline{1-3}
+SM1         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+SM2         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+SM3         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+SM4         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+RM1         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+RM2        & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+RM3         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+VM1         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+VM2         & High   & Nov. 13, 2023      &  &  \\ \cline{1-3}
+SS1         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS2         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS3         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS4         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS5         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS6         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+SS7         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP1         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP2         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP3         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP4         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+MP5         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+IP1         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+IP2         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+IP3         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+IP4         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+IP5         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+CP1         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP2         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP3         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP4         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP5         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+CP6         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+\end{tabular}
+\caption{Requirements Phase-In Plan Part 2}
+\end{table}
 
-\subsubsection{Data That Has to Be Modified or Translated for the New System}
-No data needs to be modified or translated for the application.
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|l|l|ll}
+\cline{1-3}
+\textbf{Requirements} & \textbf{Priority} & \textbf{Deadline} &  &  \\ \cline{1-3}
+WP1         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP2         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP3         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP4         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP5         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP6         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP7         & Medium   & Feb. 5, 2024      &  &  \\ \cline{1-3}
+WP8         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+WP9         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+WP10         & Low   & Mar. 18, 2024      &  &  \\ \cline{1-3}
+\end{tabular}
+\caption{Requirements Phase-In Plan Part 2}
+\end{table}
+
+High priority requirements make up the core components of the game, without which the game would not be playable. These are also requirements the development team was most concerned about implementing for the proof of concept.
+
+Medium priority requirements are game mechanics that create the structure of the game and make it fun to play by creating the flow of the game and adding puzzle variability.
+
+Low priority requirements are add-ons that contribute to ease-of-use of the game and quality of life. They're not strictly necessary, hence the lowest priority.
 
 \subsection{Risks}
 The main risks of the project are:
@@ -906,7 +1149,7 @@ The following section will go over any training and documentation that is needed
 The users will have a user help document available to them within the application in the form of a gameplay menu. It will contain information on how to use the application, as well as any instructions regarding interacting with puzzles/tasks.
 
 \subsubsection{Training Requirements}
-The users will have a "tutorial" when they first start the game that will teach them how to use the application. It will show the users how to use AR technology, and give them a simple puzzle to solve.
+The users will have a ``tutorial" when they first start the game that will teach them how to use the application. It will show the users how to use AR technology, and give them a simple puzzle to solve.
 
 \subsection{Waiting Room}
 There are currently no requirements or functionalities that are not being included in the initial release. Future ones may be added later on.
