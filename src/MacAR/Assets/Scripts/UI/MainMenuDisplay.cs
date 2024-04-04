@@ -1,3 +1,5 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using System;
 using System.Runtime.CompilerServices;
 using TMPro;
@@ -7,7 +9,7 @@ using Unity.Services.Lobbies;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
-
+//Main Menu Display is in charge of controlling the main menu screen
 public class MainMenuDisplay : MonoBehaviour
 {
     [Header("References")]
@@ -23,7 +25,7 @@ public class MainMenuDisplay : MonoBehaviour
     public int startCount = 0;
     public DataCollection data;
     private const string dataFileName = "PlayerData";
-
+    //Signs into the authentication service when started, loads saved data from memory
     private async void Start()
     {
         try
@@ -68,11 +70,12 @@ public class MainMenuDisplay : MonoBehaviour
     {
         await Reconnect();
     }
-
+    //Input field activates this function, changes the account name of the user
     public void SetAccountName()
     {
         PlayerPrefs.SetString("PlayerName", userNameInputField.text);
     }
+    //Unimplemented, attempts to connect the user
     public async Task Reconnect()
     {
         try
@@ -88,25 +91,25 @@ public class MainMenuDisplay : MonoBehaviour
         }
 
     }
-
+    //Clears the lobby string when called
     public void RemoveLobby()
     {
         PlayerPrefs.SetString("lobbyID", "");
     }
 
-
+    //Loads the lobby id from memory
     public void Load()
     {
         data.lobbyId = PlayerPrefs.GetString("lobbyID","");
     }
-
+    //Saves user data
     public void Save()
     {
         PlayerPrefs.SetString("lobbyID", data.lobbyId);
     }
 
-
-        public async void StartHost()
+    //Starts the host when the button is pressed, error handles for incorrect lobby name size and password size
+    public async void StartHost()
     {
         if(isHosting)
         {
@@ -120,8 +123,8 @@ public class MainMenuDisplay : MonoBehaviour
             return;
         }
 
-        HostManager.Instance.setConnections((int)Math.Min(Math.Max(2.0, Mathf.RoundToInt(sliderInput.value * 10)), 10));
-        HostManager.Instance.setLobbyName(lobbyNameInputField.text);
+        HostManager.Instance.SetConnections((int)Math.Min(Math.Max(2.0, Mathf.RoundToInt(sliderInput.value * 10)), 10));
+        HostManager.Instance.SetLobbyName(lobbyNameInputField.text);
         if(passwordInputField != null ) 
         {
             while((passwordInputField.text.Length!=0)&&(passwordInputField.text.Length<8))
@@ -129,13 +132,13 @@ public class MainMenuDisplay : MonoBehaviour
                 passwordInputField.text = passwordInputField.text + " ";
             }
 
-            HostManager.Instance.setPassword(passwordInputField.text);
+            HostManager.Instance.SetPassword(passwordInputField.text);
         }
 
         await HostManager.Instance.StartHost();
         isHosting = false;
     }
-
+    //Button click that starts the client to join a lobby
     public async void StartClient()
     {
 

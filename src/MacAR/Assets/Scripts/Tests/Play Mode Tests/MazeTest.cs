@@ -1,17 +1,15 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
+//Tests the maze puzzle
 using System;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Unity.Netcode;
 using UnityEditor;
-using NUnit.Framework.Constraints;
 
 public class MazeTest : InputTestFixture
 {
@@ -167,7 +165,7 @@ public class MazeTest : InputTestFixture
 
     }
     [Test]
-    public void convertLayoutToGridSuccess()
+    public void ConvertLayoutToGridSuccess()
     {
         int[] mazeLayout=new int[100];
         for(int i =0;i<100;i++)
@@ -177,7 +175,7 @@ public class MazeTest : InputTestFixture
         MazePuzzle m_MazePuzzle = new MazePuzzle();
         PrivateObject privateObjectMazePuzzle = new PrivateObject(m_MazePuzzle); 
         privateObjectMazePuzzle.Invoke("setMazeDimensions");
-        privateObjectMazePuzzle.Invoke("convertLayoutToGrid", new object[] {mazeLayout });
+        privateObjectMazePuzzle.Invoke("ConvertLayoutToGrid", new object[] {mazeLayout });
         NUnit.Framework.Assert.True(true);
     }
 
@@ -197,7 +195,7 @@ public class MazeTest : InputTestFixture
         MazePuzzle m_MazePuzzle = new MazePuzzle();
         PrivateObject privateObjectMazePuzzle = new PrivateObject(m_MazePuzzle);
         privateObjectMazePuzzle.Invoke("setMazeDimensions");
-        privateObjectMazePuzzle.Invoke("convertLayoutToGrid", new object[] { mazeLayout });
+        privateObjectMazePuzzle.Invoke("ConvertLayoutToGrid", new object[] { mazeLayout });
         NUnit.Framework.CollectionAssert.AreEqual(new List<MazeCell>(), (IEnumerable<MazeCell>)privateObjectMazePuzzle.Invoke("GetUnvisitedCells", new object[] { cell }));
     }
 }

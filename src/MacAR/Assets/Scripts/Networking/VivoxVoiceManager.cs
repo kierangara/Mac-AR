@@ -1,3 +1,5 @@
+//Created by Ethan K
+//Last Updated: 2024/04/04
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -181,6 +183,7 @@ public class VivoxVoiceManager : MonoBehaviour
             _client.Uninitialize();
         }
     }
+    //Sets the account name for the user
     public void SetAccountName(string accountName)
     {
         m_Account = new Account(accountName);
@@ -252,7 +255,7 @@ public class VivoxVoiceManager : MonoBehaviour
             VivoxLogError("Cannot join a channel when not logged in.");
         }
     }
-
+    //Sends a message using vivox to all users in the vivox channel. 
     public void SendTextMessage(string messageToSend, ChannelId channel, string applicationStanzaNamespace = null, string applicationStanzaBody = null)
     {
         if (ChannelId.IsNullOrEmpty(channel))
@@ -294,7 +297,7 @@ public class VivoxVoiceManager : MonoBehaviour
     }
 
 #region Vivox Callbacks
-
+    //When messages are recieved, updates the message log
     private void OnMessageLogRecieved(object sender, QueueItemAddedEventArgs<IChannelTextMessage> textMessage)
     {
         ValidateArgs(new object[] { sender, textMessage });

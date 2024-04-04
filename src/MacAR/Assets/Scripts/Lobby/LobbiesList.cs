@@ -1,3 +1,5 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using System.Collections.Generic;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
@@ -14,7 +16,7 @@ public class LobbiesList : MonoBehaviour
     {
         RefreshList();
     }
-
+    //This refreashes the list of available lobbies
     public async void RefreshList()
     {
         if (isRefreshing) { return; }
@@ -60,21 +62,17 @@ public class LobbiesList : MonoBehaviour
 
         isRefreshing = false;
     }
-
+    //This fucntion allows the user to join a lobby that may or may not require a password
     public async void JoinAsync(Lobby lobby, string password = null)
     {
-        //Debug.Log(password);
         if (isJoining) { return; }
 
         isJoining = true;
-        //password = "12345678";
-        //try
-        //{
         
         try
         {
             JoinLobbyByIdOptions options = new JoinLobbyByIdOptions();
-            if (password.Length != 0)
+            if (password.Length != 0)//Tries to join a lobby that has a password
             {
                 while(password.Length < 8)
                 {
@@ -84,36 +82,23 @@ public class LobbiesList : MonoBehaviour
                 { Password = password };
                 var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id, options);
                 string joinCode = joiningLobby.Data["JoinCode"].Value;
-                //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode; 
                 await ClientManager.Instance.StartClient(joinCode);
                 GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
                 PlayerPrefs.SetString("lobbyID", lobby.Id);
             }
-            else
+            else//Tries to join a lobby that does not have a password
             {
                 var joiningLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobby.Id);
                 string joinCode = joiningLobby.Data["JoinCode"].Value;
-                //GameObject.Find("Lobby").GetComponent<PlayerList>().joinCodeText.text = joinCode;
                 await ClientManager.Instance.StartClient(joinCode);
                 GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setJoinCode(joinCode);
                 PlayerPrefs.SetString("lobbyID", lobby.Id);
             }
-            //GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().setLobby(lobby);
-            
         }
-        
         catch
-        {
+        {//Spawns a popup on the screen if joining the lobby fails.
             LogHandlerSettings.Instance.SpawnErrorPopup($"Error joining lobby : Password Mismatch issue");
         }
-            
-        //}
-        //catch (LobbyServiceException e)
-       /* {
-            Debug.Log(e);
-            isJoining = false;
-            throw;
-        }*/
 
         isJoining = false;
     }

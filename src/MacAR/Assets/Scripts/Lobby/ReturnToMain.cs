@@ -1,3 +1,5 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using Unity.Netcode;
 using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
@@ -5,60 +7,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ReturnToMain : MonoBehaviour
 {
-
-    
-
-    // Start is called before the first frame update
-    public async void returnToMain(int nextScene=1)
+    //Returns the user to the main menu by signing them out of vivox, the lobby, and the authenication services.
+    public async void ReturnToMainMenu(int nextScene=1)
     {
-        
         try
         {
-            //Ensure you sign-in before calling Authentication Instance
-            //See IAuthenticationService interface
             string playerId = AuthenticationService.Instance.PlayerId;
             await LobbyService.Instance.RemovePlayerAsync(PlayerPrefs.GetString("lobbyID", ""), playerId);
             GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>()._vvm.Logout();
             print(PlayerPrefs.GetString("lobbyID", ""));
-            //AuthenticationService.Instance.SignOut();
-
-
-            //Ensure you sign-in before calling Authentication Instance
-            //See IAuthenticationService interface
-
-            //NetworkManager.Shutdown();
-            //GameObject networkManager = GameObject.Find("NetworkManager");
-
-            //string playerId = AuthenticationService.Instance.PlayerId;
-            /*
-            
-            //await LobbyService.Instance.RemovePlayerAsync(lobbyID, playerId);
-            //NetworkManager.Singleton.Shutdown();
-            //Destroy(networkManager);
-            //NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
-            //NetworkManager.Singleton.SceneManager.LoadScene(mainMenuName, LoadSceneMode.Single);
-            if(NetworkManager.Singleton.IsHost)
-            {
-                NetworkManager.Singleton.ConnectionApprovalCallback = null;
-            }
-           
-            NetworkManager.Singleton.Shutdown();
-            */
             if (NetworkManager.Singleton.IsHost)
             {
                 NetworkManager.Singleton.ConnectionApprovalCallback = null;
             }
             SceneManager.LoadScene(nextScene);
             NetworkManager.Singleton.Shutdown();
-
         }
         catch (LobbyServiceException e)
         {
             Debug.Log(e);
         }
     }
-
-
-    
-
 }

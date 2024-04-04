@@ -1,3 +1,5 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,31 +45,28 @@ public class HostManager : MonoBehaviour
         }
     }
 
-    public void setConnections(int maxSize)
+    public void SetConnections(int maxSize)
     {
         this.maxConnections = maxSize;
     }
 
-    public void setPassword(string password)
+    public void SetPassword(string password)
     {
         this.lobbyPassword = password;
     }
 
-    public void setLobbyName(string name)
+    public void SetLobbyName(string name)
     {
         this.lobbyName = name;
     }
-
+    //Hosts a lobby, making the user the host
     public async Task StartHost()
     {
-        //Debug.Log(lobbyName);
-        //Debug.Log(lobbyPassword);
-        //Debug.Log(maxConnections);
 
         Allocation allocation;
 
         try
-        {
+        {//sets the lobby size, creates a lobby
             allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
         }
         catch (Exception e)
@@ -80,7 +79,7 @@ public class HostManager : MonoBehaviour
         Debug.Log($"server: {allocation.AllocationId}");
 
         try
-        {
+        {//gets the join code for the lobby
             JoinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
         }
         catch
@@ -100,7 +99,7 @@ public class HostManager : MonoBehaviour
             if (lobbyPassword.Length!=0)
             {
                 createLobbyOptions.Password = lobbyPassword;
-            }
+            }//Sets the lobby options
             createLobbyOptions.Data = new Dictionary<string, DataObject>()
             {
                 {
@@ -110,7 +109,7 @@ public class HostManager : MonoBehaviour
                     )
                 }
             };
-
+            //Creates the lobby, starts a heartbeat to keep the lobby stable
             Lobby lobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxConnections, createLobbyOptions);
             lobbyId = lobby.Id;
             StartCoroutine(HeartbeatLobbyCoroutine(15));
@@ -122,17 +121,13 @@ public class HostManager : MonoBehaviour
             Debug.Log(e);
             throw;
         }
-
         NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
         NetworkManager.Singleton.OnServerStarted += OnNetworkReady;
-
         ClientData = new Dictionary<ulong, ClientData>();
-
-
         NetworkManager.Singleton.StartHost();
         return;
     }
-
+    //Changes the lobby settings
     public async Task ChangeLobbySettings()
     {
      
@@ -153,7 +148,7 @@ public class HostManager : MonoBehaviour
         };
         var updatedLobby = await Lobbies.Instance.UpdateLobbyAsync(lobbyId, updateLobbyOptions);
     }
-
+    //Pings the server every waitTimeSeconds to keep the lobby running
     private IEnumerator HeartbeatLobbyCoroutine(float waitTimeSeconds)
     {
         var delay = new WaitForSeconds(waitTimeSeconds);
@@ -163,7 +158,7 @@ public class HostManager : MonoBehaviour
             yield return delay;
         }
     }
-
+    //Starts the game for all the users
     private void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
     {
         if (ClientData.Count >= 4 || gameHasStarted)

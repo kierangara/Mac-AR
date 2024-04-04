@@ -1,3 +1,5 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using Unity.Netcode;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
@@ -21,13 +23,12 @@ public class PlayerList : NetworkBehaviour
     private NetworkList<PlayerData> players;
 
     private bool readyState = false;
-    private Color notReadyColor = Color.red;
-    private Color readyColor = Color.green;
+    private readonly Color NOT_READY_COLOR = Color.red;
+    private readonly Color READY_COLOR = Color.green;
     private bool isRefreshing;
     private Lobby lobby;
     public static bool muted;
-    //private string playerName = "Spencer Smith";
-
+    //Called when initialized
     private void Awake()
     {
         print("playerlist creation");
@@ -37,7 +38,7 @@ public class PlayerList : NetworkBehaviour
         mainClient.AudioInputDevices.Muted = true;
         muted = true;
     }
-
+    //Toggles voice chat
     void VivoxToggle(Toggle voiceToggle, VivoxUnity.Client client)
     {
         Debug.Log("Voice " + voiceToggle.isOn);
@@ -51,7 +52,7 @@ public class PlayerList : NetworkBehaviour
             muted = false;
         }
     }
-
+    //Added as a function that is called when the network first gets created, sets up the client callbacks
      public override void OnNetworkSpawn()
     {
         if (IsClient)
@@ -89,7 +90,7 @@ public class PlayerList : NetworkBehaviour
             GameObject.Find("NetworkManager").GetComponent<VivoxPlayer>().SignIntoVivox();
         }
     }
-
+    //Called when the network is destroyed
     public override void OnNetworkDespawn()
     {
         if (IsClient)
@@ -125,7 +126,7 @@ public class PlayerList : NetworkBehaviour
     {
         RefreshPlayerList();
     }
-
+    //Called when the ready button is pressed
     public void readyPress()
     {
         for (int i = 0; i < players.Count; i++)
@@ -135,9 +136,9 @@ public class PlayerList : NetworkBehaviour
 
         readyState = readyState ^ true;
         ReadyServerRpc(readyState);
-        changeReadyColor();
+        ChangeReadyColor();
     }
-
+    //Server RPC that changes the ready button color for all the users in the lobby
     [ServerRpc(RequireOwnership = false)]
     private void ReadyServerRpc(bool readyState, ServerRpcParams serverRpcParams = default)
     {
@@ -161,43 +162,18 @@ public class PlayerList : NetworkBehaviour
 private void HandlePlayersStateChanged(NetworkListEvent<PlayerData> changeEvent)
     {
         RefreshPlayerList();
-        /*foreach (var player in players)
-        {
-            if (player.ClientId != NetworkManager.Singleton.LocalClientId) { continue; }
-
-            /*if (player.ReadyState)
-            {
-                lockInButton.interactable = false;
-                break;
-            }
-
-            if (IsCharacterTaken(player.CharacterId, false))
-            {
-                lockInButton.interactable = false;
-                break;
-            }
-
-            lockInButton.interactable = true;
-            
-            break;
-        }*/
     }
-
-
-
-
-
     public void setLobby(Lobby lobby)
     {
         this.lobby = lobby;
     }
-
-    private void changeReadyColor()
+    //Changes the colour of the ready button
+    private void ChangeReadyColor()
     {
-        Color changeColor = notReadyColor;
+        Color changeColor = NOT_READY_COLOR;
         if (readyState)
         {
-            changeColor = readyColor;
+            changeColor = READY_COLOR;
         }
         ColorBlock cb = readyButton.colors;
         cb.normalColor = changeColor;
@@ -209,7 +185,7 @@ private void HandlePlayersStateChanged(NetworkListEvent<PlayerData> changeEvent)
     }
 
 
-
+    //Refreshes the player list that is visible to the user
     public void RefreshPlayerList()
     {
         if (isRefreshing) { return; }
