@@ -61,6 +61,15 @@ January 16 & 1.2 & Module Details\\
 January 17 & 1.3 & Appendix\\
 January 18 & 1.4 & Revision 0\\
 April 2 & 1.5 & Adding new modules and removing old ones\\
+April 4 & 1.6 & Updated envrionment variable format
+\newline Updated modules to match graph
+\newline General syntax updates/ Made naming conventions consistent
+\newline Updated descriptions to make it clear when functions were part of existing frameworks
+\newline Added constructors to abstract modules
+\newline Moved local variables to state variables where applicable
+\newline Cleared up some semantics (CheckEntry, etc.)
+\newline Added note justifying existence of error module
+\newline Cleared up ambiguous statements\\
 \bottomrule
 \end{tabularx}
 
@@ -126,7 +135,7 @@ real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
 string & string & a group of characters\\
 Lobby & Lobby & represents a lobby object\\
 LobbiesList & LobbiesList & represents a collection of lobbies\\
-Array of ... & Array of ... & represents an array containing elements of a particular data type\\
+Array & Array. & represents an array containing elements of a particular data type\\
 ChannelID & ChannelID & represents a voice/text channel object\\
 IParticipant & IParticipant & represents a voice/text chat participant object \\
 TextMessage & TextMessage & represents the text message data type present in Vivox library\\
@@ -167,7 +176,7 @@ The following table is taken directly from the Module Guide document for this pr
 & Isometric Puzzle Module\\
 & Wires Puzzle Module\\
 & Maze Puzzle Module\\
-& Bomb Puzzle Module\\
+& Combination Puzzle Module\\
 \midrule
 
 \multirow{3}{0.3\textwidth}{Software Decision Module} & Database/Network Manager Module\\
@@ -228,16 +237,17 @@ GameRoomModule
 
 \subsection{Uses}
 
-Database/Network Manager Module
+Database/Network Manager Module\\
+Error Manager Module
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
 
-Min Room Capacity = 2\\
-Max Room Capacity = 10\\
-Minimum Password Length = 8\\
-Maximum Password length = 64\\
+MIN\_ROOM\_CAPACITY = 2\\
+MAX\_ROOM\_CAPACITY = 10\\
+MINIMUM\_PASSWORD\_LENGTH = 8\\
+MAXIMUM\_PASSWORD\_LENGT = 64\\
 
 \subsubsection{Exported Access Programs}
 
@@ -246,15 +256,15 @@ Maximum Password length = 64\\
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
+GameRoom & - & GameRoom & - \\
 StartHost & $\mathbb{N}$, string, string & - & - \\
-Initialize  & LobbiesList, Lobby & - & - \\
-readyPress  & - & $\mathbb{B}$ & - \\
+ReadyPress  & - & $\mathbb{B}$ & - \\
 RefreshLobbiesList  & - & LobbiesList & - \\
 JoinAsync  & Lobby, string & $\mathbb{B}$ & - \\
 StartGame & - & - & - \\
-setLobby  & Lobby & - & - \\
-setConnections & $\mathbb{N}$ & - & - \\
-setPassword & string & - & - \\
+SetLobby  & Lobby & - & - \\
+SetConnections & $\mathbb{N}$ & - & - \\
+SetPassword & string & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -270,7 +280,8 @@ lobbies : LobbiesList
 
 \subsubsection{Environment Variables}
 
-This module has external interaction with the phone screen the user is using, there will be buttons to be pressed to call some of these functions.
+Device Screen : 2D Array of Pixels
+GameScene : Unity Scene
 
 \subsubsection{Assumptions}
 
@@ -278,23 +289,35 @@ None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent readyPress():
+\noindent GameRoom():
+\begin{itemize}
+\item output: out := self
+\item exception: None
+\end{itemize}\
+
+\noindent {StartHost}(connections, lobbyName, password):
+\begin{itemize}
+\item transition: GameScene := Lobby, Lobby.MaxConnections := connections, Lobby.LobbyName := lobbyName, Lobby.Password := password
+\item exception: None
+\end{itemize}
+
+\noindent ReadyPress():
 \begin{itemize}
 \item output: out := isReady
 \item exception: None
 \end{itemize}\
 
-\noindent {JoinAsync}(lobby,password):
-\begin{itemize}
-\item transition: $join := (lobby.password=password \land lobby.availableSlots>0)$
-\item output: out := isJoining
-\item exception: None
-\end{itemize}
-
 \noindent {RefreshLobbiesList}():
 \begin{itemize}
 \item transition: $\forall lobby \in lobbies \implies Initialize(lobby)$
 \item output: out:=lobbies
+\item exception: None
+\end{itemize}
+
+\noindent {JoinAsync}(lobby,password):
+\begin{itemize}
+\item transition: $join := (lobby.password=password \land lobby.availableSlots>0)$
+\item output: out := isJoining
 \item exception: None
 \end{itemize}
 
@@ -304,25 +327,19 @@ None
 \item exception: None
 \end{itemize}
 
-\noindent {StartHost}(connections, lobbyName, password):
-\begin{itemize}
-\item transition: GameScene := Lobby, Lobby.MaxConnections := connections, Lobby.LobbyName := lobbyName, Lobby.Password := password
-\item exception: None
-\end{itemize}
-
-\noindent {setLobby}(lobby):
+\noindent {SetLobby}(lobby):
 \begin{itemize}
 \item transition: Lobby := lobby
 \item exception: None
 \end{itemize}
 
-\noindent {setConnections}(connections):
+\noindent {SetConnections}(connections):
 \begin{itemize}
 \item transition: Lobby.MaxConnections := connections
 \item exception: None
 \end{itemize}
 
-\noindent {setPassword}(password):
+\noindent {SetPassword}(password):
 \begin{itemize}
 \item transition: Lobby.Password := password
 \item exception: None 
@@ -344,7 +361,8 @@ textCommunication
 
 \subsection{Uses}
 Vivox (Unity Library)\\
-Database/Network Manager Module
+Database/Network Manager Module\\
+Error Manager Module
 
 \subsection{Syntax}
 
@@ -358,6 +376,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
+TextCommunication & - & TextCommunication & - \\
 ClearMessageObjectPool & - & - & - \\
 ClearOutTextField & - & - & - \\
 SubmitTextToVivox & - & - & - \\
@@ -372,18 +391,26 @@ OnTextMessageLogReceivedEvent & string, IChannelTextMessage & - & - \\
 \subsection{Semantics}
 
 \subsubsection{State Variables}
-None
+\_vivoxVoiceManager : VivoxVoiceManager instance\\
+\_textChannel : ChannelId\\
+\_textChatScrollRect : ScrollRect\\
+
 \subsubsection{Environment Variables}
 
-Device screen\\
-Device keyboard\\
-There are UI components such as a chat box and buttons that will be present on the user screen when some of these access routines are called.\\
+Device Screen : 2D Array of Pixels\\
+Device Keyboard : 2D Array of Characters
 
 \subsubsection{Assumptions}
 
 None\\
 
 \subsubsection{Access Routine Semantics}
+
+\noindent TextCommunication():
+\begin{itemize}
+\item output: out := self
+\item exception: None
+\end{itemize}\
 
 \noindent ClearMessageObjectPool():
 \begin{itemize}
@@ -431,25 +458,24 @@ $channelTextMessage.FromSelf == 0 => sender.color = white \land SendScrollRectTo
 \end{itemize}
 
 \subsubsection{Local Functions}
-
+None
 
 \subsubsection{Local Variables}
-\_vivoxVoiceManager : VivoxVoiceManager instance\\
-\_textChannel : ChannelId\\
-\_textChatScrollRect : ScrollRect\\
+None
 
 
 \newpage
 
 \section{MIS of Voice Communication Module} \label{sec:voice} 
-This module uses the built in Unity library called Vivox to implement voice chat.
+This module uses the built in Unity library called Vivox to implement voice chat. Notably, certain core functions utilize Vivox and Unity frameworks, and us such their names, inputs, and outputs can't be changed. 
 
 \subsection{Module}
-voiceCommunication
+VoiceCommunication
 
 \subsection{Uses}
 Vivox (Unity Library)\\
-Database/Network Manager Module
+Database/Network Manager Module\\
+Error Manager Module
 
 \subsection{Syntax}
 
@@ -463,6 +489,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
+VoiceCommunication & - & VoiceCommunication & - \\
 Start & - & - & - \\
 IsMicPermissionGranted  & - & $\mathds{B}$ & - \\
 AskForPermissions  & - &  & - \\
@@ -482,9 +509,10 @@ VoiceToggleIsOn : $\mathds{B}$\\
 
 \subsubsection{Environment Variables}
 
-Device microphone\\
-Device audio\\
-Device screen
+Device Microphone : Sound Input\\
+Device Audio : Sound Output\\
+Device Screen : 2D Array of Pixels\\
+Permission : OS Permissions Object
 
 \subsubsection{Assumptions}
 
@@ -492,10 +520,15 @@ None\\
 
 \subsubsection{Access Routine Semantics}
 
-\noindent isMicPermissionGranted():
+\noindent VoiceCommunication():
 \begin{itemize}
-\item transition: $isGranted = Permission.HasUserAuthorizedPermission(Permission.Microphone)$
-\item output: $out :=$ isGranted
+\item output: out := self
+\item exception: None
+\end{itemize}\
+
+\noindent IsMicPermissionGranted():
+\begin{itemize}
+\item output: $Permission.HasUserAuthorizedPermission(Permission.Microphone)$
 \item exception: None
 \end{itemize}
 
@@ -545,8 +578,15 @@ Error Manager Module
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-ALLOWED\_SKIPS = 3 \newline
-\noindent ALLOWED\_HINTS = 3
+ISO\_ID = 0\newline
+COMBINATION\_ID = 1\newline
+WIRE\_ID = 2\newline
+SIMON\_ID = 3\newline
+MAZE\_ID = 4\newline
+BATCH1 = \textlangle COMBINATION\_ID, WIRE\_ID, SIMON\_ID\textrangle\newline
+BATCH2 = \textlangle ISO\_ID\textrangle\newline
+BATCH3 = \textlangle MAZE\_ID\textrangle\newline
+PUZZLE\_BATCHES = \textlangle BATCH1, BATCH2, BATCH3\textrangle
 
 \subsubsection{Exported Access Programs}
 
@@ -555,10 +595,13 @@ ALLOWED\_SKIPS = 3 \newline
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-GeneratePuzzle & - & - & - \\
-SkipPuzzle & $\mathds{Z}$ & $\mathds{B}$ & - \\
-GenerateHint & $\mathds{Z}$ & string & - \\
+SpawnPuzzleBatch & - & - & - \\
+SkipPuzzle & - & - & - \\
+GenerateHint & $\mathds{Z}$ & - & - \\
 CompletePuzzle & $\mathds{Z}$ & - & - \\
+CompletePuzzleBatch & - & - & - \\
+InitializePuzzle & - & - & - \\
+SetActive & $\mathds{B}$ & - & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -567,11 +610,18 @@ CompletePuzzle & $\mathds{Z}$ & - & - \\
 
 \subsubsection{State Variables}
 
-PuzzlePlayers : Tuple\textlangle$\mathds{Z}$, Array\textlangle$\mathds{Z}$\textrangle\textrangle
+connectedClients : Array\textlangle$\mathds{N}$\textrangle\newline
+puzzleInstances : Array\textlangle NetworkObject\textrangle\newline
+activePuzzleBatchIndex : $\mathds{Z}$\newline
+activePuzzleIndex : $\mathds{Z}$\newline
+seed : $\mathds{Z}$\newline
+active : $\mathds{B}$\newline
+puzzleId : $\mathds{Z}$ \newline
+hintList : Array\textlangle string\textrangle
 
 \subsubsection{Environment Variables}
 
-PlayerIds : Array\textlangle$\mathds{Z}$\textrangle
+Device Screen : 2D Array of Pixels 
 
 \subsubsection{Assumptions}
 
@@ -579,35 +629,64 @@ None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent {GeneratePuzzle}():
+\noindent {SpawnPuzzleBatch}():
 \begin{itemize}
-\item transition: Assign all available players to a puzzle in the PuzzlePlayers tuple
+\item transition: ($\forall puzzle \in PUZZLE\_BATCHES[activePuzzleBatchIndex] : \\SpawnPuzzle(puzzle)$)
+\item transition: activePuzzleIndex = 0
+\item exception: None
 \end{itemize}
 
-\noindent {SkipPuzzle}(playerId):
+\noindent {SkipPuzzle}():
 \begin{itemize}
-\item transition: $\forall$ player $\in$ PuzzlePlayers[getCurrentPuzzle(playerId)] : \newline PuzzlePlayers[newPuzzle].append(player) $\land$ numSkips++
-\item output: numSkips \textless ALLOWED SKIPS
+\item transition: CompletePuzzle(activePuzzleIndex)
+\item exception: None
 \end{itemize}
 
-\noindent {GenerateHint}(playerId):
+\noindent {GenerateHint}(hintId):
 \begin{itemize}
-\item transition: $\forall$ player $\in$ PuzzlePlayers[getCurrentPuzzle(playerId)] : \newline PuzzlePlayers[newPuzzle].appnd(player) $\land$ numHints++
-\item output: numHints \textless ALLOWED HINTS $\Rightarrow$ hintString
+\item transition: Display hintList[hintId] on device screen
+\item exception: None
 \end{itemize}
 
-\noindent {CompletePuzzle}(playerId):
+\noindent {CompletePuzzle}(puzzleId):
 \begin{itemize}
-\item transition: $\forall$ player $\in$ PuzzlePlayers[getCurrentPuzzle(playerId)] : \newline PuzzlePlayers[newPuzzle].append(player)
+\item transition: (puzzleId == activePuzzleId) $\implies$ \\ puzzleInstances[puzzleId].SetActive(false)
+\item transition: (puzzleId == activePuzzleId $\land$\\activePuzzleId + 1 < PUZZLE\_BATCHES[activePuzzleBatchIndex].length) $\implies$ \\ (puzzleInstances[puzzleId + 1].SetActive(true) $\land$ activePuzzleId += 1)
+\item transition: (puzzleId == activePuzzleId $\land$\\activePuzzleId + 1 $\geq$ PUZZLE\_BATCHES[activePuzzleBatchIndex].length) $\implies$ \\ CompletePuzzleBatch()
+\item exception: None
+\end{itemize}
+
+\noindent {CompletePuzzleBatch}():
+\begin{itemize}
+\item transition: $\forall puzzle \in puzzleInstances : puzzle.Despawn()$
+\item transition: activePuzzleBatchIndex += 1
+\item transition: SpawnPuzzleBatch()
+\item exception: None
+\end{itemize}
+
+\noindent {InitializePuzzle}():
+\begin{itemize}
+\item transition: N/A (This function is overridden by each puzzle instance and the exact implementation varies)
+\item exception: None
+\end{itemize}
+
+\noindent {SetActive}(status):
+\begin{itemize}
+\item transition: active = status
+\item exception: None
 \end{itemize}
 
 \subsubsection{Local Functions}
 
-None
+\noindent {SpawnPuzzle}(puzzleIndex):
+\begin{itemize}
+\item transition: puzzles[puzzleIndex].Instantiate()
+\item exception: None
+\end{itemize}
 
 \subsubsection{Local Variables}
 
-None
+puzzles : Array\textlangle NetworkObject\textrangle
 
 \newpage
 
@@ -633,6 +712,7 @@ None
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
+SimonSaysPuzzle & - & SimonSaysPuzzle & -\\
 GenerateColourSequence & - & Array of $\mathds{N}$ & - \\
 DisableInteractionWithButtons & - & - & - \\
 EnableInteractionWithButtons & - & - & - \\
@@ -657,15 +737,19 @@ buttonsArray := \{0, 1, 2, 3\}\\
 
 \subsubsection{Environment Variables}
 
-Device Screen\\
-This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
-
+Device Screen : 2D Array of Pixels
 
 \subsubsection{Assumptions}
 
 None
 
 \subsubsection{Access Routine Semantics}
+
+\noindent SimonSaysPuzzle():
+\begin{itemize}
+\item output: out := self
+\item exception: None
+\end{itemize}\
 
 \noindent GenerateColourSequence():
 \begin{itemize}
@@ -743,11 +827,11 @@ Multiplayer Puzzle Module
 \subsubsection{Exported Constants}
 SOLUTION = "TWILIGHT"
 
-\noindent $\_cubeWidth=5$
+\noindent CUBE\_WIDTH=5
 
-\noindent $\_cubeLength=5$
+\noindent CUBE\_LENGTH = 5
 
-\noindent $\_cubeHeight=5$
+\noindent CUBE\_HEIGHT = 5
 
 \subsubsection{Exported Access Programs}
 
@@ -756,7 +840,8 @@ SOLUTION = "TWILIGHT"
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-setCubes & string & \{$\mathds{B}$,$\mathds{B}$,$\mathds{B}$\} & - \\
+IsometricPuzzle & - & IsometricPuzzle & - \\
+SetCubes & string & \{$\mathds{B}$,$\mathds{B}$,$\mathds{B}$\} & - \\
 SendPuzzleDataServerRpc & $\mathds{I}$ & $\mathds{I}$ & - \\
 UpdateTextServerRpc & string & string & - \\
 SetIsometricPuzzlesServerRpc & string & string & - \\
@@ -772,8 +857,8 @@ puzzleData.connectedClients : Tuple\textlangle$\mathds{Z}$, Array\textlangle$\ma
 
 \subsubsection{Environment Variables}
 
-Device screen\\
-This module has external interaction with an input field called solutionField, which has a property called "text" which allows characters to be pulled from it, as well as printed to the screen. There are also two buttons that call prevIsometric, and nextIsometric.
+Device screen : 2D Array of Pixels\\
+This module has external interaction with an input field called solutionField, which has a property called "text" which allows characters to be pulled from it, as well as printed to the screen. There are also two buttons that call PrevIsometric, and NextIsometric.
 
 \subsubsection{Assumptions}
 
@@ -781,7 +866,13 @@ None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent setCubes(key):
+\noindent IsometricPuzzle():
+\begin{itemize}
+\item output: out := self
+\item exception: None
+\end{itemize}\
+
+\noindent SetCubes(key):
 \begin{itemize}
 \item output: $\forall x,y,z \in key => activeGrid[x,y,z]=true|activeGrid[x,y,z]=false$
 \item exception: None
@@ -809,17 +900,17 @@ None
 
 \subsubsection{Local Functions}
 
-nextIsometric(): Change the viewable letter-number pair to the next one in the list
+NextIsometric(): Change the viewable letter-number pair to the next one in the list
 \begin{itemize}
     \item output: cubeIndex=cubeIndex+1\\
-    setCubes($\_cubeNames[cubeIndex])$
+    SetCubes($\_cubeNames[cubeIndex])$
     \item exception: None
 \end{itemize}
 
-prevIsometric(): Change the viewable letter-number pair to the previous one in the list
+PrevIsometric(): Change the viewable letter-number pair to the previous one in the list
 \begin{itemize}
     \item output: cubeIndex=cubeIndex-1\\
-    setCubes($\_cubeNames[cubeIndex])$
+    SetCubes($\_cubeNames[cubeIndex])$
     \item exception: None
 \end{itemize}
 
@@ -833,9 +924,9 @@ solutionFieldChanged(): Called when user hits enter on the inputfield on the scr
 
 activeGrid : Array\textlangle $\mathds{B}$\textrangle
 
-\_cubeNames : Array\textlangle string\textrangle
+\noindent \_cubeNames : Array\textlangle string\textrangle
 
-cubeIndex : $\mathds{I}$
+\noindent cubeIndex : $\mathds{I}$
 
 \newpage
 
@@ -845,13 +936,14 @@ Puzzle module to be interacted with by two or more users. The module will genera
  
 \subsection{Module}
 WirePuzzle Module
+
 \subsection{Uses}
 Multiplayer Puzzle Module
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-NUM\_WIRES = 5
+None
 
 \subsubsection{Exported Access Programs}
 
@@ -860,10 +952,10 @@ NUM\_WIRES = 5
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-GenerateWires & - & - & - \\
-GenerateSequence & - & - & - \\
-ConnectWire & $\mathds{Z}$, $\mathds{Z}$ & - & - \\
-DisconnectWire & $\mathds{Z}$ & - & - \\
+WiresPuzzle & - & WiresPuzzle & - \\
+RandomList & $\mathds{Z}$ & Array\textlangle$\mathds{N}$\textrangle & - \\
+SetActive & $\mathds{B}$ & - & - \\
+UpdateSequence & $\mathds{Z}$, $\mathds{Z}$ & $\mathds{B}$ & - \\
 \hline
 \end{tabular}
 \end{center}
@@ -872,13 +964,13 @@ DisconnectWire & $\mathds{Z}$ & - & - \\
 
 \subsubsection{State Variables}
 
-ConnectedWires : Array\textlangle$\mathds{B}$\textrangle \newline
-Sequence : Array\textlangle$\mathds{Z}$\textrangle
+correctSequence : Array\textlangle Array\textlangle$\mathds{Z}$\textrangle \textrangle \newline
+currentSequence : Array\textlangle$\mathds{Z}$\textrangle \newline 
+lights : Array\textlangle GameObject\textrangle
 
 \subsubsection{Environment Variables}
 
-Device Screen\\
-This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
+Device Screen : 2D Array of Pixels
 
 \subsubsection{Assumptions}
 
@@ -886,27 +978,30 @@ None
 
 \subsubsection{Access Routine Semantics}
 
-\noindent {GenerateWires}():
+\noindent WiresPuzzle():
 \begin{itemize}
-\item transition: Create the unity wire objects
+\item output: out := self
+\item exception: None
+\end{itemize}\
+
+\noindent {RandomList}(seed):
+\begin{itemize}
+\item output: List containing the elements {0, 1, 2, 3} in a random order based on the seed
 \item exception: None
 \end{itemize}
 
-\noindent {GenerateSequence}():
+\noindent {SetActive}(status):
 \begin{itemize}
-\item transition: $\forall$ i : 0 \textless i \textless NUM\_WIRES : wire[i].position = rand()
+\item transition: active = status
+\item transition: (status == true $\land$ currentSequence $\neq$ correctSequence) $\implies$\\ ($\forall light \in lights: light.colour = red$)
 \item exception: None
 \end{itemize}
 
-\noindent {ConnectWire}(wireId, connectionId):
+\noindent {UpdateSequence}(wire, anchor):
 \begin{itemize}
-\item transition: wire[wireId].connection = connectionId
-\item exception: None
-\end{itemize}
-
-\noindent {DisconnectWire}(wireId):
-\begin{itemize}
-\item transition: wire[wireId].connection = -1
+\item transition: currentSequence[wire] = anchor
+\item transition: (currentSequence == correctSequence) $\implies$\\ ($\forall light \in lights: light.colour = green$)
+\item output: currentSequence == correctSequence
 \item exception: None
 \end{itemize}
 
@@ -931,9 +1026,9 @@ Multiplayer Puzzle Module
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-\noindent $\_mazeWidth=10$
+\noindent MAZE\_WIDTH = 10
 
-\noindent $\_mazeLength=10$
+\noindent MAZE\_LENGTH = 10
 \subsubsection{Exported Access Programs}
 
 \begin{center}
@@ -941,12 +1036,13 @@ Multiplayer Puzzle Module
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
+MazePuzzle & - & MazePuzzle & - \\
 GenerateMaze & $\mathbb{N}$ & $\mathbb{Z}$ & - \\
 RotateMaze & $\mathbb{R}$, $\mathbb{R}$, $\mathbb{R}$ & - & - \\
 BallHitsGoal & - & - & - \\
 SendPuzzleDataServerRpc & $\mathds{I}$ & $\mathds{I}$ & - \\
 GenerateMazeServerRpc & Array\textlangle$\mathds{I}$\textrangle & Array\textlangle$\mathds{I}$\textrangle & -\\
-resetRotationPress & - & - & -\\
+ResetRotationPress & - & - & -\\
 \hline
 \end{tabular}
 \end{center}
@@ -967,13 +1063,19 @@ BallPosition : {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
 
 \subsubsection{Environment Variables}
 
-The phone's gyroscope rotation triggers the RotateMaze function. 
+Gyroscope : Rotation Detection\\
 
-\noindent A button is on the screen that calls resetRotationPress
+\noindent A button is on the screen that calls ResetRotationPress
 
 \subsubsection{Assumptions}
 
 \subsubsection{Access Routine Semantics}
+
+\noindent MazePuzzle():
+\begin{itemize}
+\item output: out := self
+\item exception: None
+\end{itemize}\
 
 \noindent {GenerateMaze}(NumberOfPlayer):
 \begin{itemize}
@@ -1006,7 +1108,7 @@ The phone's gyroscope rotation triggers the RotateMaze function.
 \item exception: None
 \end{itemize}
 
-\noindent resetRotationPress():
+\noindent ResetRotationPress():
 \begin{itemize}
 \item output: MazeRotation = 0,0,0
 \item exception: None
@@ -1059,12 +1161,12 @@ Goal Location : {$\mathbb{R}$,$\mathbb{R}$,$\mathbb{R}$}
 
 \newpage
 
-\section{MIS of Bomb Puzzle Module} \label{sec:Combination} 
+\section{MIS of Combination Puzzle Module} \label{sec:Combination} 
 
-\noindent The Bomb Puzzle Module implements functionality for the combination discovery puzzle that is present in the application. This puzzle involves two to 4 users. An instruction card is generated for each user that only they can see, giving a subset of the instructions to solve a number combination. All users must communicate to combine their instructions to solve the combination.
+\noindent The Combination Puzzle Module implements functionality for the combination discovery puzzle that is present in the application. This puzzle involves two to 4 users. An instruction card is generated for each user that only they can see, giving a subset of the instructions to solve a number combination. All users must communicate to combine their instructions to solve the combination.
 
 \subsection{Module}
-BombPuzzle
+CombinationPuzzle
 
 \subsection{Uses}
 Multiplayer Puzzle Module
@@ -1081,6 +1183,7 @@ COMBO\_LENGTH=4
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
+CombinationPuzzle & - & CombinationPuzzle & -\\
 GenerateCombo & - & Array of strings & - \\
 ConvertButtonPress & - & char & - \\
 CheckEntry & char, Array of strings & $\mathds{B}$ & - \\
@@ -1098,8 +1201,7 @@ comboSet : Array of strings
 
 \subsubsection{Environment Variables}
 
-Device Screen\\
-This module has external interaction with the phone screen, as there will be buttons in the game environment that the user presses which will be mapped to functions
+Device Screen : 2D Array of Pixels
 
 
 \subsubsection{Assumptions}
@@ -1107,6 +1209,12 @@ This module has external interaction with the phone screen, as there will be but
 None
 
 \subsubsection{Access Routine Semantics}
+
+\noindent CombinationPuzzle():
+\begin{itemize}
+\item output: out := self
+\item exception: None
+\end{itemize}\
 
 \noindent GenerateCombo():
 \begin{itemize}
@@ -1124,8 +1232,8 @@ None
 
 \noindent CheckEntry(userInput, comboSet):
 \begin{itemize}
-\item transition: $userInput == comboSet[0][currentDigit] \land currentDigit<4 => currentDigit+=1$
-\item output: success := $userInput == comboSet[0][currentDigit] \land currentDigit==4 => success=True | else success = False$
+\item transition: $(userInput == comboSet[0][currentDigit] \land currentDigit<4) \implies$\\ $currentDigit+=1$
+\item output: $(userInput == comboSet[0][currentDigit]) \land (currentDigit==4)$
 \item exception: None
 \end{itemize}
 
@@ -1161,7 +1269,7 @@ comboArray := Array of arrays of strings of length 5. The first element of these
 
 \subsection{Module}
 
-DatabaseNetwork Module
+This module manages the bulk of communication between the server and the clients. Notably, its core functions are derived from built in Unity frameworks, and as such names, inputs, and outputs are not able to be modified. 
 
 \subsection{Uses}
 
@@ -1224,7 +1332,7 @@ None
 
 \noindent {HandleClientDisconnected}(clientId):
 \begin{itemize}
-\item transition: if $  \exists i: 0 <= i < length(players) : \newline players[i].clientId == clientId => players.RemoveAt(i) $
+\item transition: if $  \exists i: 0 \leq i < length(players) : \newline (players[i].clientId == clientId) => players.RemoveAt(i) $
 \item exception: None
 \end{itemize}
 
@@ -1239,7 +1347,7 @@ None
 
 \subsection{Module}
 
-This module catches and manages all the error that pop up to give the user a more descriptive and readable version of the error that they encountered.
+This module catches and manages all the error that pop up to give the user a more descriptive and readable version of the error that they encountered. Although the number of errors handled is few, this module is critical to ensure that the networking aspects of the application can continue to work in real time. 
 
 \subsection{Uses}
 
@@ -1272,7 +1380,7 @@ ShowErrorMessage : $\mathds{B}$
 
 \subsubsection{Environment Variables}
 
-There are buttons that the user has access to, that will activate some of these functions directly when pressed
+None
 
 \subsubsection{Assumptions}
 
