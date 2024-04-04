@@ -1,8 +1,11 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using System.Linq;
 using Unity.Netcode;
+//The Maze Puzzle contains all the code responsible for the maze puzzle
 public class MazePuzzle : PuzzleBase
 {
     //Vector3 BallPosition=new Vector3(0,0,0);
@@ -33,7 +36,7 @@ public class MazePuzzle : PuzzleBase
     {
         Debug.Log("MazeSpawned");
     }
-
+    // Initializes the puzzle, Generates the puzzle ONLY for connectedClinets[0] which is the host of the lobby. 
     public override void InitializePuzzle()
     {
         puzzleId = PuzzleConstants.MAZE_ID;
@@ -81,30 +84,29 @@ public class MazePuzzle : PuzzleBase
 
 
     }
+    //requests for the maze to be sent to the non-hosts
     [ServerRpc(RequireOwnership = false)]
     public void RequestMazeServerRpc()
     {
         SendMazeClientRpc();
     }
 
-
+    //If you are the host, converts the maze into a 1D array and sends it to all the clients
    [ClientRpc]
     public void SendMazeClientRpc()
     {
-
-
         if(NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
             GenerateMazeServerRpc ( To1DArray( mazeLayout));
         }
     }
-
+    //Requests the puzzle data from the host
     [ServerRpc(RequireOwnership = false)]
     public void RequestPuzzleDataServerRpc()
     {
         RequestPuzzleDataClientRpc();
     }
-
+    //Host sends the puzzle data to the clients
     [ClientRpc]
     public void RequestPuzzleDataClientRpc()
     {
@@ -113,13 +115,13 @@ public class MazePuzzle : PuzzleBase
             SendPuzzleDataServerRpc(puzzleData.connectedClients.ToArray());
         }
     }
-
+    //Sends puzzle data to all clients
     [ServerRpc(RequireOwnership = false)]
     public void SendPuzzleDataServerRpc(ulong[] p)
     {
         SendPuzzleDataClientRpc(p);
     }
-
+    //changes the puzzle data structure to the client list
     [ClientRpc]
     public void SendPuzzleDataClientRpc(ulong[] p)
     {
@@ -128,29 +130,30 @@ public class MazePuzzle : PuzzleBase
     }
 
 
-
+    //Sends the generated maze to all the clients
     [ServerRpc(RequireOwnership = false)]
     public void GenerateMazeServerRpc(int[] mazeLayouts)
     {
         GenerateMazeClientRpc(mazeLayouts);
     }
-
+    //converts the layout to a visible maze on the screen
     [ClientRpc]
     public void GenerateMazeClientRpc(int[] mazeLayouts)
     {
         if(_mazeGrid==null)
         {
-            convertLayoutToGrid(mazeLayouts);
+            ConvertLayoutToGrid(mazeLayouts);
             //Debug.Log("Maze should get updated");
         }
     }
-
+    //Sends updated ball position and maze rotation to clients
     [ServerRpc(RequireOwnership =false)]
     public void UpdateMazeAndBallTransformServerRpc(Vector3 ballPosition, Vector3 mazeRotation)
     {
         UpdateMazeAndBallTransformClientRpc(ballPosition, mazeRotation);
         //GenerateMazeClientRpc(newColor);
     }
+    //Updates the ball position and maze rotation
     [ClientRpc]
     public void UpdateMazeAndBallTransformClientRpc(Vector3 ballPosition, Vector3 mazeRotation)
     {
@@ -158,14 +161,14 @@ public class MazePuzzle : PuzzleBase
         maze.transform.eulerAngles = mazeRotation;
         //GenerateMazeClientRpc(newColor);
     }
-
+    //Called from a button, resets the maze rotation, host only
     public void resetRotationPress()
     {
         trackingXRot = 0;
         trackingYRot = 0;
         trackingZRot = 0;
     }
-
+    // sets the visual look of the maze for the user
     private void setColumns()
     {
         for (int x = 0; x < _mazeWidth; x++)
@@ -202,7 +205,7 @@ public class MazePuzzle : PuzzleBase
         return puzzleComplete;
     }
 
-
+    //Converts 2D array to 1D array
     private int[] To1DArray(int[,] input)
     {
         // Step 1: get total size of 2D array, and allocate 1D array.
@@ -221,7 +224,7 @@ public class MazePuzzle : PuzzleBase
         // Step 3: return the new array.
         return result;
     }
-
+    //Function for Automated Testing
     private void setMazeDimensions()
     {
         _mazeLength = 10;
@@ -231,8 +234,8 @@ public class MazePuzzle : PuzzleBase
         _mazeCellPrefab = Resources.Load<MazeCell>("MazeCell");
     }
 
-
-    private void convertLayoutToGrid(int[] mazeLayouts)
+    //Converts a 1D array of ints to a maze puzzle on the screen. 
+    private void ConvertLayoutToGrid(int[] mazeLayouts)
     {
         _mazeGrid = new MazeCell[_mazeWidth, _mazeLength];
         for (int x = 0; x < _mazeWidth; x++)
@@ -268,7 +271,7 @@ public class MazePuzzle : PuzzleBase
 
     }
 
-
+    //Converts 1D array to a 2D array
     private int[,] Make2DArray(int[] input, int height, int width)
     {
         int[,] output = new int[height, width];
@@ -282,7 +285,7 @@ public class MazePuzzle : PuzzleBase
         return output;
     }
 
-
+    //Starts the maze generation algorithm
     private void GenerateMaze(MazeCell previousCell,MazeCell currentCell)
     {
         currentCell.IsVisited=true;
@@ -303,14 +306,14 @@ public class MazePuzzle : PuzzleBase
 
         
     }
-
+    //Finds the next unvisited cell for the maze gen algo
     private MazeCell GetNextUnvisitedCell(MazeCell currentcell)
     {
         var unvisitedCells=GetUnvisitedCells(currentcell);
 
         return unvisitedCells.OrderBy(_ => UnityEngine.Random.Range(1, 10)).FirstOrDefault();
     }
-
+    //gets a list of all the unvisited maze cells
     private IEnumerable<MazeCell> GetUnvisitedCells(MazeCell currentCell)
     {
         int x = (int)Mathf.Round((float)(currentCell.transform.position.x-(maze.transform.position.x - 0.45)) *10);
@@ -352,7 +355,7 @@ public class MazePuzzle : PuzzleBase
             }
         }
     }
-
+    //clears two walls between neighbouring cells
     private void ClearWalls(MazeCell previousCell, MazeCell currentCell)
     {
         if(previousCell==null)
@@ -389,7 +392,7 @@ public class MazePuzzle : PuzzleBase
 
 
     }
-
+    //called when puzzle is instantiated, enables the gyroscope on the phone
     private void Awake()
     {
         maze.transform.rotation = Quaternion.identity;
@@ -402,21 +405,12 @@ public class MazePuzzle : PuzzleBase
     {
         maze.transform.rotation = Quaternion.identity;
     }
-
-    private void RotateMaze(Vector3 phoneRotation)
-    {
-        maze.transform.eulerAngles = phoneRotation;
-        //maze.gameObject.transform.rotation = phoneRotation;//Quaternion.Lerp(phoneRotation, maze.transform.rotation,(float)0.5); //Quaternion.LookRotation((phoneRotation + maze.transform.rotation.eulerAngles)/2, Vector3.up);
-        //maze.gameObject.transform.rotation = Quaternion.FromToRotation(Vector3.right, Vector3.down);
-        //maze.transform.eulerAngles=new Vector3(45,45,0);
-        //Debug.Log(maze.transform.rotation.ToString());
-    }
-
+    //changes the checkpoint when the ball passes over it
     public void BallHitsCheckpoint(GameObject checkpoint)
     {
         checkPoint= checkpoint;
     }
-
+    //completes the game when the ball hits the goal
     public void BallHitsGoal()
     {
         puzzleData.completePuzzle.CompletePuzzleServerRpc(0, PuzzleConstants.MAZE_ID);
@@ -424,6 +418,7 @@ public class MazePuzzle : PuzzleBase
 
     }
     // Update is called once per frame
+    // Update updates each user with the up to date ball position and maze rotation. 
     void Update()
     {
 
@@ -458,7 +453,7 @@ public class MazePuzzle : PuzzleBase
                 //ball.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y, maze.transform.position.z - 0.45f);
             }
 
-            if (SystemInfo.supportsGyroscope)
+            if (SystemInfo.supportsGyroscope)//tracks the x,y,z rotation of the phone and updates each user
             {
                 Input.gyro.enabled = true;
                 trackingXRot += -Input.gyro.rotationRateUnbiased.x;
@@ -482,10 +477,5 @@ public class MazePuzzle : PuzzleBase
         //Debug.Log(phoneRotation.ToString());
 
 
-    }
-
-    private static Quaternion GyroToUnity(Quaternion q)
-    {
-        return Quaternion.Euler(90, 0, 0) * new Quaternion(q.x, q.y, -q.z, -q.w);
     }
 }

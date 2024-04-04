@@ -1,9 +1,11 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using System.Linq;
 using System;
-
+//The isometric puzzle manager contains all the code required for creating the isometric puzzle
 public class IsometricPuzzleManager : PuzzleBase
 {
     [SerializeField] private TMP_InputField solutionField;
@@ -201,7 +203,7 @@ public class IsometricPuzzleManager : PuzzleBase
             }
         }
     }
-
+    //Test function used for unit testing
     private void TestingSetup()
     {
         _cubeHeight = 5;
@@ -240,8 +242,7 @@ public class IsometricPuzzleManager : PuzzleBase
     }
 
     //--------------------------------------------------------------------//
-    //This function will update choose the next puzzle to show
-
+    //This function will update the cubes with the next cube arrangement in the list
     public void nextIsometric()
     {
         cubeIndex++;
@@ -251,6 +252,8 @@ public class IsometricPuzzleManager : PuzzleBase
         }
         setCubes(_cubeNames[cubeIndex]);
     }
+    //--------------------------------------------------------------------//
+    //This function will update the cubes with the previous cube arrangement in the list
     public void prevIsometric()
     {
         cubeIndex--;

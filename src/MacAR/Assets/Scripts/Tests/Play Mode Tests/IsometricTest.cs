@@ -1,18 +1,12 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
+//Tests the Isometric puzzle
 using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Unity.Netcode;
-using UnityEditor;
-using NUnit.Framework.Constraints;
-using System.IO;
 
 public class IsometricTest : InputTestFixture
 {

@@ -1,8 +1,10 @@
-﻿using System;
+﻿//Created by Matthew Collard
+//Last Updated: 2024/04/04
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
-
+//Save system for storing player information between sessions"
 public class SaveSystem : MonoBehaviour
 {
     private const string FileType = ".txt";
@@ -10,7 +12,7 @@ public class SaveSystem : MonoBehaviour
     private static string BackUpSavePath => Application.persistentDataPath + "/BackUps/";
     private static int SaveCount;
 
-
+    //Saves the player's data into the application datapath directory. This location is unique for every device, and will be stored safely
     public static void SaveData<T>(T data, string fileName)
     {
         Directory.CreateDirectory(SavePath);
@@ -34,7 +36,7 @@ public class SaveSystem : MonoBehaviour
             }
         }
     }
-
+    //Loads stored data from memory, same file location as the save directory
     public static T LoadData<T>(string fileName)
     {
         Directory.CreateDirectory(SavePath);

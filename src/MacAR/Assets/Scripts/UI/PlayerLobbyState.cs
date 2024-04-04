@@ -1,5 +1,8 @@
-﻿using System;
+﻿//Created by Matthew Collard
+//Last Updated: 2024/04/04
+using System;
 using Unity.Netcode;
+//Holds the lobby state of each user
 public struct PlayerLobbyState : INetworkSerializable, IEquatable<PlayerLobbyState>
 {
     public ulong ClientId;

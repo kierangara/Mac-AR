@@ -1,3 +1,5 @@
+//Created by Kieran Gara
+//Last Updated: 2024/04/04
 using UnityEngine;
 using TMPro;
 using Unity.Netcode;
@@ -6,30 +8,25 @@ using System.Linq;
 
 public class CombinationPuzzle : PuzzleBase
 {
+    //External Variables determined by the unity prefab
     [SerializeField] TextMeshProUGUI codeInputField;
     [SerializeField] GameObject combinationPuzzle;
-
     [SerializeField] TextMeshProUGUI instructionPage;
-
     [SerializeField] Material wrongKeypadMat;
-
     [SerializeField] Material keypadMat;
-
     [SerializeField] GameObject keypad;
+
     public PuzzleData puzzleData;
     private string[] codeCombo;
     private string currentCode;
     private int currentDigit;
-
     private int wrongInputTimer;
     private int numPosibilities = 5;
-    // Start is called before the first frame update
     void Start()
     {
-        //Read initial placeholder code
         Debug.Log("Combo Puzzle Started");
     }
-
+    //Starts the combination puzzle, creating the common combination to set for each user, sets instruction pages for each user
     public override void InitializePuzzle()
     {
         puzzleId = PuzzleConstants.COMBINATION_ID;
@@ -74,7 +71,8 @@ public class CombinationPuzzle : PuzzleBase
         }
     }
 
-    //Button reaction
+    //Called by pressing a keypad button on the screen, updates the code.
+    //If correct, the number appears on the puzzle screen, if incorrect the puzzle flashes red
     public void KeyPadPress(string number){
         string temp;
         //Get digit from code to test input against
@@ -108,7 +106,7 @@ public class CombinationPuzzle : PuzzleBase
         }
     }
 
-
+    //Generates the instructions for the puzzle
     private void GenerateCode(int numPosibilities, int randNum){
         codeCombo = GenerateInstructionSet()[randNum];
     }
@@ -127,7 +125,7 @@ public class CombinationPuzzle : PuzzleBase
             SendPuzzleDataServerRpc(puzzleData.connectedClients.ToArray());
         }
     }
-
+    //Sends puzzledata to all the users in case one or more did not recieve it when loading in
     [ServerRpc(RequireOwnership = false)]
     public void SendPuzzleDataServerRpc(ulong[] p)
     {
@@ -154,7 +152,7 @@ public class CombinationPuzzle : PuzzleBase
     {
         KeyPadPress(number);
     }
-
+    //Generates a code for each user
     [ServerRpc]
     public void GenerateCodeServerRpc(){
         UnityEngine.Random.InitState(System.DateTime.Now.Millisecond);
@@ -165,7 +163,7 @@ public class CombinationPuzzle : PuzzleBase
     public void GenerateCodeClientRpc(int randomNum){
         GenerateCode(numPosibilities,randomNum);
     }
-
+    //The set of obtainable instruction sets. called at the beginning
     private string[][] GenerateInstructionSet(){
         string[][] instructionSet = new string[5][];
         string code = "3159";

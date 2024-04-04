@@ -1,6 +1,8 @@
 using System.Threading.Tasks;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using Unity.Networking.Transport.Relay;
 using Unity.Services.Relay;
 using Unity.Services.Relay.Models;
@@ -22,7 +24,7 @@ public class ClientManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
-
+    //Starts the client connection to the relay service, which allows for communication between two devices.
     public async Task StartClient(string joinCode)
     {
         JoinAllocation allocation;

@@ -1,3 +1,6 @@
+//Created by Kieran Gara
+//Last Updated: 2024/04/04
+
 using UnityEngine;
 using UnityEngine.UI;
 public class DisplayChat : MonoBehaviour
@@ -13,7 +16,7 @@ public class DisplayChat : MonoBehaviour
         canvasGroup = GameObject.Find("ChatWindow").GetComponent<CanvasGroup>();
         notif = GameObject.Find("Notification").GetComponent<CanvasGroup>();
     }
-
+    //Toggles the visibility of the text chat
     public void ToggleChat(){
         if(canvasGroup.alpha == 0){
             ShowChat();
@@ -22,6 +25,7 @@ public class DisplayChat : MonoBehaviour
             HideChat();
         }
     }
+    //Changes the alphas of the chat to show the text chat panels
     void ShowChat(){
         if(canvasGroup.alpha == 0){
             canvasGroup.alpha = 1;
@@ -32,7 +36,7 @@ public class DisplayChat : MonoBehaviour
             notif.alpha = 0;
         }
     }
-
+    //Changes the alphas of the chat to hide the text chat panels
     void HideChat(){
         if(canvasGroup.alpha == 1){
             canvasGroup.alpha = 0;
