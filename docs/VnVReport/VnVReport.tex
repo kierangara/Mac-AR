@@ -163,7 +163,15 @@ The following section goes over tests related to interacting with the puzzle UI 
 \hline
 Test-PI1 & Manual & User Selects Puzzle & Puzzle Enlarges On UI & TBD & \textcolor{Red}{TBD} \\
 \hline
-Test-PI2 & Manual & User performs an action on a puzzle & Puzzle UI responds appropriately to action & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI2 & Manual & User taps a key on the Combination Puzzle & If the digit was correct, the digit appears on the screen, if it was not, the combination puzzle turns red & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-PI2 & Manual & User presses a coloured button on the Simon Says Puzzle & If the colour pressed was the correct one, the system awaits the next button press. If it was not, the level is set to one, and the colour combination gets re-transmitted on the cube. & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-PI2 & Manual & User rotates their phone on the maze puzzle & The maze rotates in accordance with the phone rotation & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-PI2 & Manual & User performs drags a wire on the Wires Puzzle & The wire follows the drag, and locks onto a node if the user lets go of their finger over it & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-PI2 & Manual & User types on the input field of the Isometric Puzzle & The input field updates on all the user's screen. If the code was entered correctly, the puzzle is completed. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 Test-PI3 & Automated & User performs an action on a puzzle & Puzzle back end information is updated appropriately to action & Same as expected & \textcolor{Green}{Pass} \\
 \hline
@@ -214,6 +222,33 @@ Test-MS6 & Manual & Single user performs actions to complete puzzle & All users 
 \label{table:MS1}
 \end{table}
 
+\subsection{Individual Puzzle Testing}
+The following section goes over tests related to individual puzzle interactions. 
+
+\begin{table}[H]
+\caption{\bf Functional Requirements Evaluation Results for Messaging Testing}
+\resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+\hline
+\multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
+\hline
+Test-FRMP1 & Manual & Users start the maze puzzle & A random maze with an end goal and a ball is visible only to the user in control of viewing, and not the user in control of rotating the maze & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRMP2 & Manual & Users start the maze puzzle, user in control of rotating the maze rotates their phone & The maze visibly rotates on the controlling user’s screen as well as the viewer’s screen. The ball is observed to move in the direction of gravity by the viewing user& Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRMP3 & Manual & Phone rotation by the controlling user, guiding the ball to the
+end goal & When the ball reaches the end goal, the puzzle is completed & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRIP1 & Manual & Users start the isometric puzzle & Each user is given randomly assigned letter and number combinations displayed on cubes. & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRIP2 & Manual & Users enter the correct code for the isometric puzzle & Each user observes the puzzle completing & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRIP3 & Manual & Users enter the incorrect code for the isometric puzzle & Each user sees the incorrect code on their input field, the puzzle does not complete & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+\end{tabular}}
+\label{table:MS1}
+\end{table}
+
+
 \section{Nonfunctional Requirements Evaluation}
 
 \subsection{Look and Feel}
@@ -228,7 +263,13 @@ Table \ref{table:LF1} below demonstrate the non-functional requirements evaluati
 \hline
 \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
 \hline
-Test-LF1 & Manual & Main menu is launched with simulated width and height of w and h  & x and y coordinates of menu elements are within the w and h bounds, allowing them to be visible and interacted with & Same as expected & \textcolor{Green}{Pass} \\
+Test-LF1 & Manual & Main menu is launched with simulated width and height of 1080 and 1920  & x and y coordinates of menu elements are within the 1080 and 1920 bounds, allowing them to be visible and interacted with. This simulates the dimensions a Google Pixel would have. & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-LF1 & Manual & Main menu is launched with simulated width and height of 1440 and 2960  & x and y coordinates of menu elements are within the 1440 and 2960 bounds, allowing them to be visible and interacted with. This simulates the dimensions a Samsung Galaxy S9 would have. & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-LF1 & Manual & Main menu is launched with simulated width and height of 1200 and 1920  & x and y coordinates of menu elements are within the 1200 and 1920 bounds, allowing them to be visible and interacted with. This simulates he dimensions a Nexus 7 would have. & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-LF1 & Manual & Main menu is launched with simulated width and height of 1125 and 2436  & x and y coordinates of menu elements are within the 1125 and 2436 bounds, allowing them to be visible and interacted with. This simulates he dimensions a iPhone X would have. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 Test-LF2 & Manual & Program launched on IPhone & All elements are clearly visible and able to be interacted with & App unable to be launched on IPhone due to stricter regulations on development builds and execution for IOS vs Android. IOS environment will be continued to be worked on throughout revision 1 & \textcolor{Red}{Fail} \\
 \hline
