@@ -38,6 +38,9 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 March 6, 2024 & 1.0 & Team worked all together on filling in all sections for revision 0 report\\
+April 4, 2024 & 1.1 & Team added in individual tests for each puzzle, and tested for results\\
+April 4, 2024 & 1.2 & Matthew analyzed the usability testing results and wrote a new column\\
+April 4, 2024 & 1.3 & Matthew added 5 tests for Test-PI2, and 4 tests for Test-LF1\\
 \bottomrule
 \end{tabularx}
 
@@ -162,15 +165,15 @@ The following section goes over tests related to interacting with the puzzle UI 
 \hline
 Test-PI1 & Manual & User Selects Puzzle & Puzzle Enlarges On UI & No Longer a requirement & \textcolor{Red}{Fail} \\
 \hline
-Test-PI2 & Manual & User taps a key on the Combination Puzzle & If the digit was correct, the digit appears on the screen, if it was not, the combination puzzle turns red & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI2-1 & Manual & User taps a key on the Combination Puzzle & If the digit was correct, the digit appears on the screen, if it was not, the combination puzzle turns red & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI2 & Manual & User presses a coloured button on the Simon Says Puzzle & If the colour pressed was the correct one, the system awaits the next button press. If it was not, the level is set to one, and the colour combination gets re-transmitted on the cube. & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI2-2 & Manual & User presses a coloured button on the Simon Says Puzzle & If the colour pressed was the correct one, the system awaits the next button press. If it was not, the level is set to one, and the colour combination gets re-transmitted on the cube. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI2 & Manual & User rotates their phone on the maze puzzle & The maze rotates in accordance with the phone rotation & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI2-3 & Manual & User rotates their phone on the maze puzzle & The maze rotates in accordance with the phone rotation & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI2 & Manual & User performs drags a wire on the Wires Puzzle & The wire follows the drag, and locks onto a node if the user lets go of their finger over it & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI2-4 & Manual & User performs drags a wire on the Wires Puzzle & The wire follows the drag, and locks onto a node if the user lets go of their finger over it & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI2 & Manual & User types on the input field of the Isometric Puzzle & The input field updates on all the user's screen. If the code was entered correctly, the puzzle is completed. & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI2-5 & Manual & User types on the input field of the Isometric Puzzle & The input field updates on all the user's screen. If the code was entered correctly, the puzzle is completed. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 Test-PI3 & Automated & User performs an action on a puzzle & Puzzle back end information is updated appropriately to action & Same as expected & \textcolor{Green}{Pass} \\
 \hline
@@ -337,11 +340,11 @@ Table \ref{table:PR1} below demonstrate the non-functional requirements evaluati
 \hline
 \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
 \hline
-Test-PR1 & Manual & Request made to create lobby from main menu & Response time of system measured to be $\leq$ 5 seconds  & Same as expected & \textcolor{Green}{Pass} \\
+Test-PR1 & Manual & Request made to create lobby from main menu & Average response time of system measured to be $\leq$ 5 seconds  & Average response time was 3.19 seconds, with maximum time 6.9 seconds and minimum time 0.2 seconds & \textcolor{Green}{Pass} \\
 \hline
-Test-PR2 & Manual & App launched between the hours of 6am and 6pm & All functionality is available & Same as expected. Occasional Vivox outages have occurred which have hindered voice chat support, but general reliability is found to be $>$ 95\%, which is within bounds of tolerance  & \textcolor{Green}{Pass} \\
+Test-PR2 & Manual & App launched between the hours of 6am and 6pm & All functionality is available & Same as expected. Occasional Vivox outages have occurred which have hindered voice chat support, but general reliability is found to be $>$ 95\%, which is within bounds of tolerance. Average Response time was 3.58 seconds with max 7 seconds and min 0.21 seconds. performance slightly degraded when compared to 6pm-6am. & \textcolor{Green}{Pass} \\
 \hline
-Test-PR3 & Manual & App launched between the hours of 6pm and 6am & All functionality is available & Same as expected. Occasional Vivox outages have occurred which have hindered voice chat support, but general reliability is found to be $>$ 95\%, which is within bounds of tolerance& \textcolor{Green}{Pass} \\
+Test-PR3 & Manual & App launched between the hours of 6pm and 6am & All functionality is available & Same as expected. Occasional Vivox outages have occurred which have hindered voice chat support, but general reliability is found to be $>$ 95\%, which is within bounds of tolerance. Average Response Time was 3.31 seconds, with max 6.9 seconds, and min 0.44 seconds. Performance slightly improved when compared to 6am-6pm.  & \textcolor{Green}{Pass} \\
 \hline
 Test-PR4 & Manual & A request is made to join a lobby during a simulated server outage & A warning is generated, notifying the user of the server outage and the unavailable functionality & A warning is generated, but it notifies the user to reconnect to the internet instead of informing them the server has outed & \textcolor{Red}{Fail} \\
 \hline
