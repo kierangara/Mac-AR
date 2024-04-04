@@ -58,7 +58,7 @@ All  symbols, abbreviations, and acronyms can be found in section 1.4 of the  \h
 
 \pagenumbering{arabic}
 
-This document outlines the results of implementing the verification and validation plan. Included is a summary of all manual and automated tests performed on the project, along with their outputs. 
+This document outlines the results of implementing the verification and validation plan. Included is a summary of all manual and automated tests performed on the project, along with their outputs. Any tests marked with "TBD"
 
 \section{Functional Requirements Evaluation}
 
@@ -304,9 +304,9 @@ Test-UH5 & Manual & Users between the ages of 20 and 30 will install and use the
 Test-UH6 & Manual & Users over the age of 30 will install and use the app & The user determines that the app is easy to navigate & TBD. No usability tests involving individuals over the age of 30 have been conducted yet. They will be conducted in the future  & \textcolor{Red}{TBD} \\
 \hline
 Test-UH7 & Manual & The user disconnects from the internet then reconnect & The user should be prompted to rejoin the game after their
-connection is restore & TBD  & \textcolor{Red}{TBD} \\
+connection is restore & User is not prompted  & \textcolor{Red}{Fail} \\
 \hline
-Test-UH8 & Manual & Users have completed playing the game & Average rating of usability survey is 3/5 or higher & Same as expected  & \textcolor{Green}{Pass} \\
+Test-UH8 & Manual & Users have completed playing the game & Average rating of usability survey is 3.5/5 or higher & \nameref{table:US1}  & \textcolor{Green}{Pass} \\
 \hline
 \end{tabular}}
 \label{table:UH1}
@@ -331,7 +331,7 @@ Test-PR2 & Manual & App launched between the hours of 6am and 6pm & All function
 \hline
 Test-PR3 & Manual & App launched between the hours of 6pm and 6am & All functionality is available & Same as expected. Occasional Vivox outages have occurred which have hindered voice chat support, but general reliability is found to be $>$ 95\%, which is within bounds of tolerance& \textcolor{Green}{Pass} \\
 \hline
-Test-PR4 & Manual & A request is made to join a lobby during a simulated server outage & A warning is generated, notifying the user of the server outage and the unavailable functionality & TBD & \textcolor{Red}{TBD} \\
+Test-PR4 & Manual & A request is made to join a lobby during a simulated server outage & A warning is generated, notifying the user of the server outage and the unavailable functionality & A warning is generated, but it notifies the user to reconnect to the internet instead of informing them the server has outed & \textcolor{Red}{Fail} \\
 \hline
 \end{tabular}}
 \label{table:PR1}
@@ -959,36 +959,111 @@ Table \ref{table:US1} below showing the results of the Usability survey
 
 \begin{table}[H]
 \caption{\bf Results of Usability Survey}
-\resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+\resizebox{6in}{!}{\begin{tabular}{|l|p{0.3\linewidth}|p{0.4\linewidth}|p{0.4\linewidth}|p{0.1\linewidth}|p{0.1\linewidth}|}
 \hline
-\multicolumn{1}{|l|}{\bfseries Question} & \multicolumn{1}{|l|}{\bfseries Average Rating (out of 5)}\\
+\multicolumn{1}{|l|}{\bfseries Question} & \multicolumn{1}{|l|}{\bfseries Average Rating (out of 5)}& \multicolumn{1}{|l|}{\bfseries Analysis}\\
 \hline
-I find the controls of the game to be straightforward & 3.25 \\
+I find the controls of the game to be straightforward & 3.9 & 10\% of users rated this category a 2, which means we focus on guiding the user when they get stuck on a puzzle, or have more affordance with our overall design. \\
 \hline
-I find the game's interface to be easy to navigate & 3.25 \\
+I find the game's interface to be easy to navigate & 4 & All the user's rating the game 3 or above, which means the actual UI elements are well readable, and we should focus on the puzzle elements for affordance. \\
 \hline
-I feel detached from the outside world while playing the game & 3 \\
+I feel detached from the outside world while playing the game & 4.15 & 16 users rated this 4 or above, it means the users are very immersed in the game. \\
 \hline
-I do not care to check events that are happening in the real world during the game & 3 \\
+I do not care to check events that are happening in the real world during the game & 4.15 & Same results as above, but slightly concerning if they disregard the real world so much\\
 \hline
-I think the game is fun & 4.25 \\
+I think the game is fun & 4.35 & This is our most important metric for a game, and 90\% rated it above a 4, so our game is very successful.\\
 \hline
-I find the game supports social interaction between players & 5 \\
+I find the game supports social interaction between players & 4.368421053 & This metric is very important for Dr. Yuan's research study, the majority of users rated the game at 5, which will prove to be good for gathering research \\
 \hline
-I enjoy playing this game with other users & 4.5 \\
+I enjoy playing this game with other users & 4.3 & Similar to the two questions above, this metric combines the two metrics into one, if the users are having fun and interacting with each other, then they will enjoy the game more. \\
 \hline
-I feel the game allows me to be imaginative & 4 \\
+I feel the game allows me to be imaginative & 3.8 & There is a large variance in the data for this metric, some users might think that they are more constrained than a regular escape room, as there is usually only one active puzzle at a time they can interact with.\\
 \hline
-I feel like the puzzles are challenging & 4 \\
+I feel like the puzzles are challenging & 4.25 & 90\% of users find the puzzles challenging, in the future might consider adding an easy set of puzzles, for now there are hints and skips in case users get stuck \\
 \hline
-I feel like the puzzle interactions are fun & 4.25 \\
+I feel like the puzzle interactions are fun & 4.3 & Similar to the fun question, it's interesting that the average for this question is slightly lower than the fun metric, that implies that users also have fun by interacting with other users while playing the game. \\
 \hline
-I enjoy the game's graphics & 2.75 \\
+I enjoy the game's graphics & 3.75 & Not surprising this is the lowest rated metric, Graphics are not this project's strong suit. In the future, there will be a focus on improving the overall graphics of the project, making every puzzle consistent in theme.  \\
 \hline
-I think the game is visually appealing & 3.25 \\
+I think the game is visually appealing & 4.1 & Higher than the previous metric, 15\% of users rate this 3 or lower, in the future the visuals in the game will be improved.\\
 \hline
 \end{tabular}}
 \label{table:US1}
 \end{table}
+
+\begin{figure}[htbp]
+\caption{Straight Forward Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/StraightForward.png}}
+\label{fig:StraightForward}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Navigation Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Navigation.png}}
+\label{fig:Navigation}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Detached Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Detached.png}}
+\label{fig:Detached}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Real World Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/RealWordl.png}}
+\label{fig:RealWorld}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Fun Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Fun.png}}
+\label{fig:Fun}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Social Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Social.png}}
+\label{fig:Social}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Enjoyment Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Enjoy.png}}
+\label{fig:Enjoy}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Imagination Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Imagination.png}}
+\label{fig:Imagination}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Challenging Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Challenging.png}}
+\label{fig:Challenging}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Puzzle Interactions Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/PuzzleInteractions.png}}
+\label{fig:PuzzleInteractions}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Graphics Interactions Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Graphics.png}}
+\label{fig:Graphics}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{VisuallyAppealing Interactions Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/VisuallyAppealing.png}}
+\label{fig:VisuallyAppealing}
+\end{figure}
+
+
+
 
 \end{document}
