@@ -1,5 +1,8 @@
+//Created by Ethan Kannampuzha
+//Last Updated: 2024/04/04
 using UnityEngine;
 using UnityEngine.UI;
+//ToggleInGame contains all code for muting voice chat while game is in progress
 public class ToggleIngame : MonoBehaviour
 {
     public Toggle VoiceToggle;
@@ -22,6 +25,7 @@ public class ToggleIngame : MonoBehaviour
         }
     }
 
+    //If toggle pressed and is checked, mute user. If not checked, unmute user
     void VivoxToggle(Toggle voiceToggle, VivoxUnity.Client client)
     {
         Debug.Log("Voice " + voiceToggle.isOn);

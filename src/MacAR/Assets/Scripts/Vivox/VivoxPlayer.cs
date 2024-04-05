@@ -1,7 +1,10 @@
+//Created by Ethan Kannampuzha
+//Last Updated: 2024/04/04
 using UnityEngine;
 using VivoxUnity;
 using UnityEngine.Android;
 using Unity.Services.Lobbies.Models;
+//VivoxPlayer contains all code for signing into Vivox as well as connecting to voice chat 
 public class VivoxPlayer : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -27,7 +30,7 @@ public class VivoxPlayer : MonoBehaviour
         _vvm.OnUserLoggedOutEvent += OnUserLoggedOut;
         
     }
-
+    //Necessary code to get Vivox running (boiler plate)
     public void SignIntoVivox()
     {
 #if (UNITY_ANDROID && !UNITY_EDITOR) || __ANDROID__
@@ -133,7 +136,7 @@ public class VivoxPlayer : MonoBehaviour
         OnUserLoggedOut();
     }
 
-
+    //When user joins a lobby, connect to voice channel that with the name of the lobby code
     void OnUserLoggedIn ()
     {
         if (_vvm.LoginState == VivoxUnity.LoginState.LoggedIn)
@@ -150,6 +153,7 @@ public class VivoxPlayer : MonoBehaviour
         }
     }
 
+    //When user exits game room, remove them from voice channel and disconnect them from Vivox
     void OnUserLoggedOut ()
     {
         Debug.Log("Disconnecting from voice channel " + VoiceChannelName);

@@ -1,9 +1,11 @@
+//Created by Ethan Kannampuzha
+//Last Updated: 2024/04/04
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
-
+//The Simon Says Puzzle contains all code responsible for simon says puzzle
 public class SimonSaysPuzzle : PuzzleBase
 {
     [SerializeField] private GameObject cube;
@@ -28,6 +30,10 @@ public class SimonSaysPuzzle : PuzzleBase
     public int level = 1;
     public int counter = 0;
     public NetworkVariable<int> randColour = new NetworkVariable<int>();
+    int red = 0;
+    int blue = 1;
+    int green = 2;
+    int yellow = 3;
 
 
     public PuzzleData puzzleData;
@@ -36,7 +42,7 @@ public class SimonSaysPuzzle : PuzzleBase
 
     public static bool demoInProgress;
 
-
+    //Initializes the puzzle, coloured buttons spawn for host, cube spawns for non-hosts
     public override void InitializePuzzle()
     {
         puzzleId = PuzzleConstants.SIMON_ID;
@@ -60,6 +66,7 @@ public class SimonSaysPuzzle : PuzzleBase
             //StartCoroutine(BeginSimonSays());
         }
     }
+    //Sets puzzle to active
     public override void SetActive(bool status)
     {
         active = status;
@@ -69,13 +76,14 @@ public class SimonSaysPuzzle : PuzzleBase
             StartCoroutine(BeginSimonSays());
         }
     }
-
+    //Requests for cube colour to be updated for non-hosts
     [ServerRpc(RequireOwnership = false)]
     public void UpdateCubeServerRpc(Color colour)
     {
         UpdateCubeClientRpc(colour);
     }
 
+    //Updates cube colour for each client
     [ClientRpc]
     public void UpdateCubeClientRpc(Color colour)
     {
@@ -102,12 +110,14 @@ public class SimonSaysPuzzle : PuzzleBase
 
     }
 
+    //Requests level text to be updated for non-hosts
     [ServerRpc(RequireOwnership = false)]
     public void UpdateTextServerRpc(string text)
     {
         UpdateTextClientRpc(text);
     }
 
+    //Updates level text for each client
     [ClientRpc]
     public void UpdateTextClientRpc(string text)
     {
@@ -115,7 +125,7 @@ public class SimonSaysPuzzle : PuzzleBase
 
     }
 
-
+    //Increments current level of Simon Says
     public int IncrementLevel()
     {
         level += 1;
@@ -123,7 +133,7 @@ public class SimonSaysPuzzle : PuzzleBase
     }
 
 
-
+    //Begins colour sequence of Simon Says
     public IEnumerator BeginSimonSays()
     {
        
@@ -162,21 +172,21 @@ public class SimonSaysPuzzle : PuzzleBase
                 generatedSequence.Add(randColour.Value);
                 Debug.Log("RAND COLOUR" + randColour.Value);
 
-                if (randColour.Value == 0)
+                if (randColour.Value == red)
                 {
 
                     UpdateCubeServerRpc(Color.red);
-                } else if (randColour.Value == 1)
+                } else if (randColour.Value == blue)
                 {
 
                     UpdateCubeServerRpc(Color.blue);
                 }
-                else if (randColour.Value == 2)
+                else if (randColour.Value == green)
                 {
 
                     UpdateCubeServerRpc(Color.green);
                 }
-                else if (randColour.Value == 3)
+                else if (randColour.Value == yellow)
                 {
 
                     UpdateCubeServerRpc(Color.yellow);
@@ -192,7 +202,7 @@ public class SimonSaysPuzzle : PuzzleBase
         demoInProgress = false;
 
     }
-
+    //Function that keeps track of if player input sequence matches colour sequence
     public void TrackUserInput(SimonButton button)
     {
         //Get button pressed by player (0 = red, 1 = blue, 2 = green, 3 = yellow)
