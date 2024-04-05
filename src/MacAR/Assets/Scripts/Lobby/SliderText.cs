@@ -1,10 +1,9 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-
+//Updates the text on sliders to let the user know what value the slider is
 public class SliderText : MonoBehaviour
 {
     [SerializeField] private TMP_Text textComponent;

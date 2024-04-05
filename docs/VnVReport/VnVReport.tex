@@ -1,5 +1,6 @@
 \documentclass[12pt, titlepage]{article}
 
+\usepackage{geometry}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
@@ -37,6 +38,17 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 March 6, 2024 & 1.0 & Team worked all together on filling in all sections for revision 0 report\\
+April 4, 2024 & 1.1 & Team added in individual tests for each puzzle, and tested for results\\
+April 4, 2024 & 1.2 & Matthew removed questions from the usability survey, as the team decided those question were not to be included in the usability survey\\
+April 4, 2024 & 1.3 & Matthew analyzed the usability testing results and wrote a new column\\
+April 4, 2024 & 1.4 & Matthew added 5 tests for Test-PI2, and 4 tests for Test-LF1\\
+April 4, 2024 & 1.5 & Matthew fixed formatting and spelling issues\\
+April 4, 2024 & 1.6 & Matthew changes the tests that said TBD to failed and provided a reason they failed\\
+April 4, 2024 & 1.7 & Matthew added specific performance results for tests PR1-3\\
+April 4, 2024 & 1.8 & Matthew provided a reason for why a target metric was chosen for the usability survey\\
+April 4, 2024 & 1.9 & Matthew added a section on changes made due to usability survey, and extra consideration\\
+April 4, 2024 & 2.0 & Matthew added in bar graphs for the responses gathered from the usability survey\\
+
 \bottomrule
 \end{tabularx}
 
@@ -54,13 +66,11 @@ All  symbols, abbreviations, and acronyms can be found in section 1.4 of the  \h
 
 \listoftables %if appropriate
 
-\listoffigures %if appropriate
-
 \newpage
 
 \pagenumbering{arabic}
 
-This document outlines the results of implementing the verification and validation plan. Included is a summary of all manual and automated tests performed on the project, along with their outputs. 
+This document outlines the results of implementing the verification and validation plan. Included is a summary of all manual and automated tests performed on the project, along with their outputs. Any tests marked with "TBD" are not feasible, and will be implemented in the future. 
 
 \section{Functional Requirements Evaluation}
 
@@ -76,19 +86,19 @@ Table \ref{table:GR1} and \ref{table:GR2} below demonstrates the functional requ
 \hline
 \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
 \hline
-Test-CR1 & Manual & User presses Host button. & User redirected to create game menu which has entries to set game room settings (game room name, game room capacity, game room password). & Same as expected & \textcolor{Green}{Pass} \\
+Test-CG1 & Manual & User presses Host button. & User redirected to create game menu which has entries to set game room settings (game room name, game room capacity, game room password). & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-CR2 & Manual & Game room name inputted. The game room name will be
+Test-CG2 & Manual & Game room name inputted. The game room name will be
 a string consisting of letters, numbers, and ascii characters, and of
 character length greater than 3 and less than 64. & Game room with specified name is created in database. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-CR3 & Manual & User tries to create a new game room without inputting a name for the game room & Game room is not created and error message tells user that game room name is not valid. & Same as expected & \textcolor{Green}{Pass} \\
+Test-CG3 & Manual & User tries to create a new game room without inputting a name for the game room & Game room is not created and error message tells user that game room name is not valid. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-CR4 & Manual &  User slides game room capacity slider to adjust game room capacity (min 2, max 10)  & Game room with specified capacity is created in database. & Same as expected & \textcolor{Green}{Pass} \\
+Test-CG4 & Manual &  User slides game room capacity slider to adjust game room capacity (min 2, max 10)  & Game room with specified capacity is created in database. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-CR5 & Manual & User inputs game room password. The password length will be between 8 and 64 characters, and consists of letters, number, and ASCII characters arranged in a random order.  & Game room requiring password specified by user is created in database. & Same as expected & \textcolor{Green}{Pass} \\
+Test-CG5 & Manual & User inputs game room password. The password length will be between 8 and 64 characters, and consists of letters, number, and ASCII characters arranged in a random order.  & Game room requiring password specified by user is created in database. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-CR6 & Manual & User does not input anything for game room password, and hosts a game room.  & Game room requiring no password is created in database. & Same as expected & \textcolor{Green}{Pass} \\
+Test-CG6 & Manual & User does not input anything for game room password, and hosts a game room.  & Game room requiring no password is created in database. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 \end{tabular}}
 \label{table:GR1}
@@ -104,7 +114,7 @@ Test-JR1 & Manual & User presses Join Game button  & User redirected to join roo
 \hline
 Test-JR2 & Manual & User attempts to enter a game room at maximum capacity. & User is not able to join the game room. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-JR3 & Manual & User enters room name of a created room that has no password set. & User joins game room and available capacity decreases by 1. & Same as expected & \textcolor{Green}{Pass} \\
+Test-JR3 & Manual & User enters room name of a created room that has no password set. & User joins game room. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 Test-JR4 & Manual & User enters room name and password of created game room. & User joins game and available capacity decreases by 1. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
@@ -139,14 +149,11 @@ The following section goes over tests related to starting a game, loading game a
 \hline
 Test-ST1 & Manual & User presses start button & Game is started & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-ST2 & Manual & User starts game & First puzzle GameObject is instantiated and loaded into the scene & Same as expected & \textcolor{Green}{Pass} \\
+Test-ST2 & Manual & User starts game & Puzzle GameObjects are instantiated and loaded into the scene & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 Test-ST3 & Automated & User starts game & Order of puzzles is determined and each user is assigned a part of the puzzle & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-ST4 & Automated &  User starts game & Progress bar displayed on screen to let user know current progress & TBD & \textcolor{Red}{TBD} \\
-\hline
-Test-ST5 & Automated & User starts game  & Puzzle is displayed to each user and game commences & Same as expected & \textcolor{Green}{Pass} \\
-\hline
+Test-ST4 & Automated & User starts game  & Puzzle is displayed to each user and game commences & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 \end{tabular}}
 \label{table:ST1}
@@ -161,39 +168,41 @@ The following section goes over tests related to interacting with the puzzle UI 
 \hline
 \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
 \hline
-Test-PI1 & Manual & User Selects Puzzle & Puzzle Enlarges On UI & TBD & \textcolor{Red}{TBD} \\
+Test-PI1-1 & Manual & User taps a key on the Combination Puzzle & If the digit was correct, the digit appears on the screen, if it was not, the combination puzzle turns red & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI2 & Manual & User performs an action on a puzzle & Puzzle UI responds appropriately to action & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI1-2 & Manual & User presses a coloured button on the Simon Says Puzzle & If the colour pressed was the correct one, the system awaits the next button press. If it was not, the level is set to one, and the colour combination gets re-transmitted on the cube. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI3 & Automated & User performs an action on a puzzle & Puzzle back end information is updated appropriately to action & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI1-3 & Manual & User rotates their phone on the maze puzzle & The maze rotates in accordance with the phone rotation & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI4 & Manual & User performs an action on a puzzle & Puzzle UI updates appropriately for other members in game room  & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI1-4 & Manual & User performs drags a wire on the Wires Puzzle & The wire follows the drag, and locks onto a node if the user lets go of their finger over it & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI5 & Manual & Multiple users perform actions to complete puzzle & All users notified puzzle that has been completed and game room progresses &  Same as expected& \textcolor{Green}{Pass} \\
+Test-PI1-5 & Manual & User types on the input field of the Isometric Puzzle & The input field updates on all the user's screen. If the code was entered correctly, the puzzle is completed. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI6 & Manual & Single user performs actions to complete puzzle & All users notified puzzle that has been completed and game room progresses & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI2 & Automated & User performs an action on a puzzle & Puzzle back end information is updated appropriately to action & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI7 & Manual & User requests a hint & Hint for active puzzle is displayed & TBD & \textcolor{Red}{TBD} \\
+Test-PI3 & Manual & User performs an action on a puzzle & Puzzle UI updates appropriately for other members in game room  & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI8 & Manual & User presses button to close hint & Hint display is removed & TBD & \textcolor{Red}{TBD} \\
+Test-PI4 & Manual & Multiple users perform actions to complete puzzle & All users notified puzzle that has been completed and game room progresses &  Same as expected& \textcolor{Green}{Pass} \\
 \hline
-Test-PI9 & Manual & User presses skip puzzle button & Game room progresses & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI5 & Manual & Single user performs actions to complete puzzle & All users notified that puzzle has been completed and game room progresses & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI10 & Manual & User selects skipped puzzle & Puzzle state is equal to the state it was prior & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI6 & Manual & User requests a hint & Hint for active puzzle is displayed & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI11 & Manual & User different than the one who skipped the puzzle selects the skipped puzzle & Puzzle state is equal to the state it was prior & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI7 & Manual & User presses button to close hint & Hint display is removed & Same as expected & \textcolor{Green}{Pass} \\
 \hline
-Test-PI12 & Manual & User skips puzzle & Other users are notified of skipped puzzle & Same as expected & \textcolor{Green}{Pass} \\
+Test-PI8 & Manual & User presses skip puzzle button & Game room progresses and next puzzle becomes active & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-PI9 & Manual & User skips puzzle & Other users are notified of skipped puzzle & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 \end{tabular}}
 \label{table:PI1}
 \end{table}
 
-\subsection{Messaging Testing}
-The following section goes over tests related to sending and receiving messages. 
+\subsection{Messaging and Voice Communication Testing}
+The following section goes over tests related to sending and receiving messages as well as Voice communication
 
 \begin{table}[H]
-\caption{\bf Functional Requirements Evaluation Results for Messaging Testing}
+\caption{\bf Functional Requirements Evaluation Results for Messaging and Voice Communication Testing}
 \resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
 \hline
 \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
@@ -208,27 +217,101 @@ Test-MS4 & Manual & User sends a message (as in Test-MS3) & The UI of all the ot
 \hline
 Test-MS5 & Manual & User taps on the message button when there is a message received notification & The notification is removed. The received message is displayed in the display port &  Same as expected& \textcolor{Green}{Pass} \\
 \hline
-Test-MS6 & Manual & Single user performs actions to complete puzzle & All users notified puzzle that has been completed and game room progresses & Same as expected & \textcolor{Green}{Pass} \\
+Test-VC1 & Manual & Mute button set to on. Users press mute button and talk & Users can hear each other &  Same as expected& \textcolor{Green}{Pass} \\
+\hline
+Test-VC2 & Manual & Mute button set to off. Users press mute button and talk & Users cannot hear each other &  Same as expected& \textcolor{Green}{Pass} \\
 \hline
 \end{tabular}}
 \label{table:MS1}
 \end{table}
 
+\subsection{Individual Puzzle Testing}
+The following section goes over tests related to individual puzzle interactions. 
+\newgeometry{left=2cm,bottom=0.1cm}
+\begin{table}[H]
+\caption{\bf Functional Requirements Evaluation Results for Individual Puzzle Testing Part 1}
+\resizebox{7in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.4\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+\hline
+\multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
+\hline
+Test-FRMP1 & Manual & Users start the maze puzzle & A random maze with an end goal and a ball is visible only to the user in control of viewing, and not the user in control of rotating the maze & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRMP2 & Manual & Users start the maze puzzle, user in control of rotating the maze rotates their phone & The maze visibly rotates on the controlling user’s screen as well as the viewer’s screen. The ball is observed to move in the direction of gravity by the viewing user& Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRMP3 & Manual & Phone rotation by the controlling user, guiding the ball to the
+end goal & When the ball reaches the end goal, the puzzle is completed & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRIP1 & Manual & Users start the isometric puzzle & Each user is given randomly assigned letter and number combinations displayed on cubes. & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRIP2 & Manual & Users enter the correct code for the isometric puzzle & Each user observes the puzzle completing & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRIP3 & Manual & Users enter the incorrect code for the isometric puzzle & Each user sees the incorrect code on their input field, the puzzle does not complete & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRCP1 & Manual & Users start combination puzzle three times & Users see different sets of instructions at least once, instructions are distributed evenly & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRCP2 & Manual & Users enter the correct digit of the combination & The digit is displayed in the combination entry field of all users & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRCP3 & Manual & Users enter an incorrect digit on the keypad of the combination puzzle after entering a correct digit & Each user sees the keypad flash red and the combination entry field reset & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRCP4 & Manual & Users enter the entire correct combination of the combination puzzle & Each user sees ``Correct" displayed in the combination entry field & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+\end{tabular}}
+\label{table:IP1}
+\end{table}
+
+\newgeometry{left=2cm,bottom=0.1cm}
+\begin{table}[H]
+\caption{\bf Functional Requirements Evaluation Results for Individual Puzzle Testing Part 2}
+\resizebox{7in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.4\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+\hline
+\multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
+Test-FRWP1 & Manual & User drags coloured wire object across screen with finger & The tip of the wire is in the final location of the users finger
+upon release & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRWP2 & Manual & The Wires Puzzle object is spawned in for a non-host user & The user observes four pairs of dots. The top and bottom rows of dots all contain the colours red, yellow, green, and blue exactly once & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRWP3 & Manual & The wires are connected to the coloured nodes in an order that doesn’t match the given code & The lights don’t change colour & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRWP4 & Manual & The wires are connected to the coloured nodes in an order that matches the given code & The lights turn green & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRWP5 & Manual & The puzzle is set to be active & The lights turn red & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRSS1 & Manual & User starts Simon Says puzzle & Coloured buttons appear for host user, black cube appears for non-host users & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRSS2 & Manual & User starts Simon Says puzzle & Simon Says cube begins flashing a sequence of colours (red, blue, green, yellow) & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRSS3 & Manual & Correct colour sequence is inputted using coloured buttons & Simon Says level increases by 1 & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRSS4 & Manual & Incorrect colour sequence is inputted using coloured buttons & Simon Says level is set to 1 & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-FRSS5 & Manual & Level 3 is reached. Correct colour sequence is inputted using coloured buttons & Message saying "Congrats, you completed the puzzle." is displayed & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+\end{tabular}}
+\label{table:IP2}
+\end{table}
+
+\restoregeometry
 \section{Nonfunctional Requirements Evaluation}
 
 \subsection{Look and Feel}
 The following section goes over tests related to the non-functional look and feel requirements.
 
 
-Table \ref{table:LF1} below demonstrate the non-functional requirements evaluation for the look and feel criteria.
-
+Table \ref{table:LF1} below demonstrates the non-functional requirements evaluation for the look and feel criteria.
+\newgeometry{left=2cm,bottom=0.1cm}
 \begin{table}[H]
 \caption{\bf Non-Functional Requirements Evaluation Results for Look and Feel Testing}
-\resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+\resizebox{7in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
 \hline
 \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
 \hline
-Test-LF1 & Manual & Main menu is launched with simulated width and height of w and h  & x and y coordinates of menu elements are within the w and h bounds, allowing them to be visible and interacted with & Same as expected & \textcolor{Green}{Pass} \\
+Test-LF1-1 & Manual & Main menu is launched with simulated width and height of 1080 and 1920  & x and y coordinates of menu elements are within the 1080 and 1920 bounds, allowing them to be visible and interacted with. This simulates the dimensions a Google Pixel would have. & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-LF1-2 & Manual & Main menu is launched with simulated width and height of 1440 and 2960  & x and y coordinates of menu elements are within the 1440 and 2960 bounds, allowing them to be visible and interacted with. This simulates the dimensions a Samsung Galaxy S9 would have. & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-LF1-3 & Manual & Main menu is launched with simulated width and height of 1200 and 1920  & x and y coordinates of menu elements are within the 1200 and 1920 bounds, allowing them to be visible and interacted with. This simulates he dimensions a Nexus 7 would have. & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-LF1-4 & Manual & Main menu is launched with simulated width and height of 1125 and 2436  & x and y coordinates of menu elements are within the 1125 and 2436 bounds, allowing them to be visible and interacted with. This simulates he dimensions a iPhone X would have. & Same as expected & \textcolor{Green}{Pass} \\
 \hline
 Test-LF2 & Manual & Program launched on IPhone & All elements are clearly visible and able to be interacted with & App unable to be launched on IPhone due to stricter regulations on development builds and execution for IOS vs Android. IOS environment will be continued to be worked on throughout revision 1 & \textcolor{Red}{Fail} \\
 \hline
@@ -240,11 +323,13 @@ Test-LF4 & Manual & Program launched in environment with harsh lighting & Most e
 \label{table:LF1}
 \end{table}
 
+\restoregeometry
+
 \subsection{Usability}
 
 Results of usability survey can be found in the following table: Table \ref{table:US1}\\
 
-Table \ref{table:LF1} below demonstrate the non-functional requirements evaluation for the Usability criteria.
+Table \ref{table:UH1} below demonstrate the non-functional requirements evaluation for the Usability criteria.
 
 \begin{table}[H]
 \caption{\bf Non-Functional Requirements Evaluation Results for usability Testing}
@@ -262,12 +347,12 @@ Test-UH4 & Manual & Users below the age of 20 will install and use the app &  Th
 \hline
 Test-UH5 & Manual & Users between the ages of 20 and 30 will install and use the app & The user determines that the app is easy to navigate & Same as expected (as shown through results of the usability survey) & \textcolor{Green}{Pass} \\
 \hline
-Test-UH6 & Manual & Users over the age of 30 will install and use the app & The user determines that the app is easy to navigate & TBD. No usability tests involving individuals over the age of 30 have been conducted yet. They will be conducted in the future  & \textcolor{Red}{TBD} \\
+Test-UH6 & Manual & Users over the age of 30 will install and use the app & The user determines that the app is easy to navigate & No usability tests involving individuals over the age of 30 have been conducted yet. They will be conducted in the future  & \textcolor{Red}{Fail} \\
 \hline
 Test-UH7 & Manual & The user disconnects from the internet then reconnect & The user should be prompted to rejoin the game after their
-connection is restore & TBD  & \textcolor{Red}{TBD} \\
+connection is restore & User is not prompted  & \textcolor{Red}{Fail} \\
 \hline
-Test-UH8 & Manual & Users have completed playing the game & Average rating of usability survey is 3/5 or higher & Same as expected  & \textcolor{Green}{Pass} \\
+Test-UH8 & Manual & Users have completed playing the game & Average rating of usability survey is 3.5/5 or higher & \nameref{table:US1} as shown in this table, every result has an average of above 3.5.  & \textcolor{Green}{Pass} \\
 \hline
 \end{tabular}}
 \label{table:UH1}
@@ -286,13 +371,13 @@ Table \ref{table:PR1} below demonstrate the non-functional requirements evaluati
 \hline
 \multicolumn{1}{|l|}{\bfseries Id} & \multicolumn{1}{|l|}{\bfseries Type} & \multicolumn{1}{l|}{\bfseries Inputs} & \multicolumn{1}{l|}{\bfseries Expected Result} & \multicolumn{1}{l|}{\bfseries Actual Result} & \multicolumn{1}{l|}{\bfseries Result}\\
 \hline
-Test-PR1 & Manual & Request made to create lobby from main menu & Response time of system measured to be $\leq$ 5 seconds  & Same as expected & \textcolor{Green}{Pass} \\
+Test-PR1 & Manual & Request made to create lobby from main menu & Average response time of system measured to be $\leq$ 5 seconds  & Average response time was 3.19 seconds, with maximum time 6.9 seconds and minimum time 0.2 seconds & \textcolor{Green}{Pass} \\
 \hline
-Test-PR2 & Manual & App launched between the hours of 6am and 6pm & All functionality is available & Same as expected. Occasional Vivox outages have occurred which have hindered voice chat support, but general reliability is found to be $>$ 95\%, which is within bounds of tolerance  & \textcolor{Green}{Pass} \\
+Test-PR2 & Manual & App launched between the hours of 6am and 6pm & All functionality is available & Same as expected. Occasional Vivox outages have occurred which have hindered voice chat support, but general reliability is found to be $>$ 95\%, which is within bounds of tolerance. Average Response time was 3.58 seconds with max 7 seconds and min 0.21 seconds. performance slightly degraded when compared to 6pm-6am. & \textcolor{Green}{Pass} \\
 \hline
-Test-PR3 & Manual & App launched between the hours of 6pm and 6am & All functionality is available & Same as expected. Occasional Vivox outages have occurred which have hindered voice chat support, but general reliability is found to be $>$ 95\%, which is within bounds of tolerance& \textcolor{Green}{Pass} \\
+Test-PR3 & Manual & App launched between the hours of 6pm and 6am & All functionality is available & Same as expected. Occasional Vivox outages have occurred which have hindered voice chat support, but general reliability is found to be $>$ 95\%, which is within bounds of tolerance. Average Response Time was 3.31 seconds, with max 6.9 seconds, and min 0.44 seconds. Performance slightly improved when compared to 6am-6pm.  & \textcolor{Green}{Pass} \\
 \hline
-Test-PR4 & Manual & A request is made to join a lobby during a simulated server outage & A warning is generated, notifying the user of the server outage and the unavailable functionality & TBD & \textcolor{Red}{TBD} \\
+Test-PR4 & Manual & A request is made to join a lobby during a simulated server outage & A warning is generated, notifying the user of the server outage and the unavailable functionality & A warning is generated, but it notifies the user to reconnect to the internet instead of informing them the server has outed & \textcolor{Red}{Fail} \\
 \hline
 \end{tabular}}
 \label{table:PR1}
@@ -399,6 +484,8 @@ Table \ref{table:HS1} below demonstrate the non-functional requirements evaluati
 \hline
 Test-HS1 & Manual & Game Started & The system will prompt the user to check their environment
 and make sure its suitable for playing the game & Same as expected & \textcolor{Green}{Pass} \\
+\hline
+Test-HS2 & Manual & Game Started & Usability Question "I do not care to check events that are happening in the real world during the game." has a average score below 4. & \nameref{fig:RealWorld} shows that the average score is 4.15 & \textcolor{Red}{Fail} \\
 \hline
 \end{tabular}}
 \label{table:HS1}
@@ -583,36 +670,30 @@ The Edit Mode tests are more basic unit tests that test individual script functi
 \begin{table}[H]
 \begin{adjustwidth}{-0.1in}{-1in}
 \scalebox{0.60}{
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|} \hline 
-\cline{2-17}
-                                     & \textbf{CG1}& \textbf{CG2}& \textbf{CG3}& \textbf{CG4}& \textbf{CG5}& \textbf{JG1}& \textbf{JG2}& \textbf{JG3}& \textbf{JG4}& \textbf{JG5}& \textbf{RS1}& \textbf{RS2}& \textbf{RS3}& \textbf{RS4}& \textbf{RS5}& \textbf{RS6} & \textbf{ER1}& \textbf{ER2}& \textbf{ER3}& \textbf{ST1}& \textbf{ST2}& \textbf{ST3}&\textbf{ST4} & \textbf{ST5}& \textbf{ST6}\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR1]{Test-CR1}}   &             X&              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR2]{Test-CR2}}   &             X&             X&             &              &    X         &             &             &             &              &              &              &             &             &             &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR3]{Test-CR3}}   &             X&              &             X&             &   X          &             &             &             &              &              &              &             &              &             &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR4]{Test-CR4}}   &             X&             &             X&              &    X         &              &             &             &              &              &             &             &              &             &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR5]{Test-CR5}}   &             X&              &             &             X&     X        &        X      &       X       &             &              &              &             &             &              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CR6]{Test-CR6}}   &              X&              &              &             X&     X         &             &             &             &              &              &              &             &              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-JR1]{Test-JR1}}   &             &             &             &              &             &              X&              &             &              &              X&              &              &              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-JR2]{Test-JR2}}   &             &              &             &             &             &              X&              &             &              &              &             &             &              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-JR3]{Test-JR3}}   &             &             &             &              &             &              X&              &             X&              &              &              &             &              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-JR4]{Test-JR4}}   &             &             &             &              &             &              X&              &             &              X&              &             &             &              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-JR5]{Test-JR5}}   &             &              &             &             &             &              X&              &             &              &              &             &             &              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-RS1]{Test-RS1}}   &             &             &             &              &             &              &              &             &              &              &              X&              X&              &              &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-RS2]{Test-RS2}}   &             &             &             &             &             &             &              &             &              &              &             X&              X&             X&             &              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-RS3]{Test-RS3}}   &             &             &             &              &             &              &             &             &              &              &              X&              X&              &              X&              &                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-RS4]{Test-RS4}}   &             &             &             &             &             &              &             &             &              &              &             X&              X&              &             &              X&                & & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-RS5]{Test-RS5}}   &             &             &             &              &             &              &              &             &              &              &             X&              X&              &             &              &                X& & & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-ER1]{Test-ER1}}   &             &             &             &              &             &              &              &             &              &              &             &              &              &             &              &                & X& & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-ER2]{Test-ER2}}   &             &             &             &              &             &             &             &             &              &              &              &              &              &              &              &               & & X& X& & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-ER3]{Test-ER3}}   &              &             &             &              &              &              &              &             &             &             &              &              &             &             &             &                & & & X& & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-ST1]{Test-ST1}}   &             &             &             &              &              &              &              &             &              &              &              &              &              &              &              &                & & & & X& & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-ST2]{Test-ST2}}   &              &              &              &              &              &              &              &             &             &             &              &              &              &              &              &                & & & & X& X& & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-ST3]{Test-ST3}}   &             &              &             &              &              &              &              &             &              &              &              &              &              &              &              &                & & & & X& & & X& &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-ST4]{Test-ST4}}   &             &             &             &             &             &             &             &             &              &              &             &             &              &             &              &                & & & & X& & & & X&\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-ST5]{Test-ST5}}   &              &              &             &              &             &             &             &             &              &              &             &             &              &              &              &                & & & & X& X& & X& & X\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI5]{Test-PI5}}   &              &              &             &              &             &             &             &             &              &              &             &             &              &              &              &                & & & & & & &X & & \\ \hline
-
-
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+\cline{2-22}
+                                     & \textbf{CG1}& \textbf{CG2}& \textbf{CG3}& \textbf{CG4}& \textbf{CG5}&                            \textbf{JG1}& \textbf{JG2}& \textbf{JG3}& \textbf{JG4}& \textbf{JG5}& \textbf{RS1}& \textbf{RS2}& \textbf{RS3}& \textbf{RS4} & \textbf{ER1}& \textbf{ER2}& \textbf{ER3}& \textbf{ST1}& \textbf{ST2}& \textbf{ST3}&\textbf{ST4}\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CG1]{Test-CG1}}   &       X       &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CG2]{Test-CG2}}   &       X      &      X       &             &              &    X         &             &             &             &              &              &              &             &             &             &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CG3]{Test-CG3}}   &       X      &      X        &             &             &    X         &             &             &             &              &              &              &             &              &             &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CG4]{Test-CG4}}   &       X      &             &       X      &              &     X        &              &             &             &              &              &             &             &              &             &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CG5]{Test-CG5}}   &       X      &              &             &      X       &      X       &       X       &      X        &             &              &              &             &             &              &              &              &                & & & &  &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CG6]{Test-CG6}}   &       X       &              &              &     X        &     X         &             &             &             &              &              &              &             &              &              &              &                & & & &  &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-JR1]{Test-JR1}}   &             &             &             &              &             &       X       &              &             &              &       X       &              &              &              &              &              &                & & & & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-JR2]{Test-JR2}}   &             &              &             &             &             &              &        X      &             &              &              &             &             &              &              &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-JR3]{Test-JR3}}   &             &             &             &              &             &       X       &              &     X        &              &              &              &             &              &              &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-JR4]{Test-JR4}}   &             &             &             &              &             &       X       &              &     X        &              &              &             &             &              &              &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-JR5]{Test-JR5}}   &             &              &             &             &             &       X       &              &             &       X       &              &             &             &              &              &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-RS1]{Test-RS1}}   &             &             &             &              &             &              &              &             &              &              &        X      &       X       &              &              &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-RS2]{Test-RS2}}   &             &             &             &             &             &             &              &             &              &              &        X     &         X     &      X       &             &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-RS3]{Test-RS3}}   &             &             &             &              &             &              &             &             &              &              &        X      &       X       &              &     X         &              &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-ER1]{Test-ER1}}   &             &             &             &              &             &              &              &             &              &              &             &              &              &             &        X      &                & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-ER2]{Test-ER2}}   &             &             &             &              &             &             &             &             &              &              &              &              &              &              &              &               & X& & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-ER3]{Test-ER3}}   &              &             &             &              &              &              &              &             &             &             &              &              &             &             &             &         X       & & & & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-ST1]{Test-ST1}}   &             &             &             &              &              &              &              &             &              &              &              &              &              &              &              &             &        &   X  &   & & \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-ST2]{Test-ST2}}   &              &              &              &              &              &              &              &             &             &             &              &              &              &              &              &             &         &X &X & &\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-ST3]{Test-ST3}}   &             &              &             &              &              &              &              &             &              &              &              &              &              &              &              &             &      & X& & X&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-ST4]{Test-ST4}}   &             &             &             &             &             &             &             &             &              &              &             &             &              &             &              &                 &         &X &X & X&X\\ \hline
 \end{tabular}
 
 }
@@ -623,60 +704,81 @@ The Edit Mode tests are more basic unit tests that test individual script functi
 
 \begin{table}[H]
 \begin{adjustwidth}{-0.1in}{-1in}
-\scalebox{0.5}{
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|} \hline 
-\cline{2-22}
-                                     & \textbf{PI1}& \textbf{PI2}& \textbf{PI3}& \textbf{PI4}& \textbf{PI5}& \textbf{PI6}& \textbf{PI7}& \textbf{HR1}& \textbf{HR2}& \textbf{HR3}& \textbf{SP1}& \textbf{SP2}& \textbf{SP3}& \textbf{SM1} & \textbf{SM2}& \textbf{SM3}& \textbf{SM4}& \textbf{SM5}& \textbf{RM1}& \textbf{RM2}&\textbf{RM3}\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI1]{Test-PI1}}   &X             &X              &             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI2]{Test-PI2}}   &X             &X              &X             &X             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI3]{Test-PI3}}   &X             &              &X             &             &             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI4]{Test-PI4}}   &             &              &             &       X      &X             &             &              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI5]{Test-PI5}}   &X             &X              &X             &X             &X             &X             &X              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI6]{Test-PI6}}  &X             &X              &X             &X             &X             &X             &X              &              &             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI8]{Test-PI7}}   &             &              &             &             &             &             &              &X              &X             &             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI9]{Test-PI8}}   &             &              &             &             &             &             &              &              &             &X             &              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI10]{Test-PI9}}   &X             &              &             &             &             &             &              &              &             &             &X              &             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI11]{Test-PI10}}   &X             &              &             &             &             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI12]{Test-PI11}}   &X             &              &             &             &X             &             &              &              &             &             &X              &X             &              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PI13]{Test-PI12}}   &             &              &             &             &             &             &              &              &             &             &X              &X             &X              &                & & & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-MS1]{Test-MS1}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &X                & &X & & & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-MS2]{Test-MS2}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X & &X & & & &X\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-MS3]{Test-MS3}}   &             &              &             &             &             &             &              &              &             &             &              &             &              &                &X &X & &X & & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-MS4]{Test-MS4}}    &             &              &             &             &             &             &              &              &             &             &              &             &              &                & &X & & &X & &\\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-MS5]{Test-MS5}}  &             &              &             &             &             &             &              &              &             &             &              &             &              &                & &X & & &X &X &\\ \hline
-\multicolumn{1}{|l|}{{Test-PM1}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-PM2}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-PM3}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-PM4}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-PM5}}   &    X         &              &             &            &             &    X         &        X     &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-WI1}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-WI2}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-WI3}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-WI4}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-WI5}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-MP1}} &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-MP2}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-MP3}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-MP4}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-MP5}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-MP6}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-MP7}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-SP1}} &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-SP2}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-SP3}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-SP4}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-SP5}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-SP6}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-IP1}}   &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-IP2}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-IP3}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-IP4}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-CP1}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-CP2}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-CP3}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-CP4}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-CP5}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
-\multicolumn{1}{|l|}{{Test-CP6}}  &             &              &      X       &     X         &   X          &             &             &             &              &              &             &             &              &             &              &                & & & & &\\ \hline
+\scalebox{0.35}{
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-52}
+                                                         & \textbf{PI1}& \textbf{PI2}& \textbf{PI3}& \textbf{PI4}& \textbf{HR1}& \textbf{HR2}& \textbf{HR3}& \textbf{SP1}& \textbf{SP2}& \textbf{SM1} & \textbf{SM2}& \textbf{SM3}& \textbf{SM4}& \textbf{RM1}& \textbf{RM2}&\textbf{RM3}&\textbf{VM1}&\textbf{VM2}&\textbf{MP1} &\textbf{MP2}&\textbf{MP3}&\textbf{MP4} &\textbf{MP5}&\textbf{IP1} &\textbf{IP2}&\textbf{IP3}&\textbf{IP4} &\textbf{IP5}&\textbf{CP1}&\textbf{CP2}&\textbf{CP3}&\textbf{CP4}&\textbf{CP5}&\textbf{CP6}&\textbf{WP1}&\textbf{WP2}&\textbf{WP3}&\textbf{WP4}&\textbf{WP5}&\textbf{WP6}&\textbf{WP7}&\textbf{WP8}&\textbf{WP9}&\textbf{WP10}&\textbf{SS1}&\textbf{SS2}&\textbf{SS3}&\textbf{SS4}&\textbf{SS5}&\textbf{SS6}&\textbf{SS7}\\ \hline 
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI1]{Test-PI1}}   &       X      &      X        &     X        &             &             &             &              &              &             &             &              &             &              &         &             &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI2]{Test-PI2}}   &        X     &              &      X       &             &             &             &              &              &             &             &              &             &              &         &             & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI3]{Test-PI3}}   &             &              &       X      &             &             &             &              &              &             &             &              &             &              &         &             & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI4]{Test-PI4}}   &             &              &             &       X      &             &             &              &              &             &             &              &             &              &         &             & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI5]{Test-PI5}}   &      X       &       X       &     X        &     X        &             &             &              &              &             &             &              &             &              &          &           & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI6]{Test-PI6}}  &             &              &             &             &        X     &      X       &              &              &             &             &              &             &              &            &          & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI8]{Test-PI7}}   &             &              &             &             &             &             &        X      &              &             &             &              &             &              &           &          & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI9]{Test-PI8}}   &       X      &              &             &             &             &             &              &       X       &             &             &              &             &              &           &          & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PI10]{Test-PI9}}   &             &              &             &             &             &             &              &        X      &      X       &             &              &             &              &          &          & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-MS1]{Test-MS1}}   &             &              &             &             &             &             &              &              &             &      X       &              &             &              &           &          & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-MS2]{Test-MS2}}   &             &              &             &             &             &             &              &              &             &       X      &        X      &     X        &              &           &          & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-MS3]{Test-MS3}}   &             &              &             &             &             &             &              &              &             &       X      &       X      &             &         X     &            &         & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-MS4]{Test-MS4}}    &             &              &             &             &             &             &              &              &             &             &        X      &             &              &    X        &        & &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-MS5]{Test-MS5}}  &             &              &             &             &             &             &              &              &             &             &              &             &             &       X       &  X      & X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{{Test-VM1}}   &             &              &             &            &             &             &             &             &              &              &             &             &              &             &              &                &X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{{Test-VM2}}   &             &              &             &            &             &             &             &             &              &              &             &             &              &             &              &                &&X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{{Test-PM1}}   &             &              &             &            &             &             &             &             &              &              &             &             &              &             &              &                &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{{Test-PM2}}   &             &              &             &            &             &             &             &             &              &              &             &             &              &             &              &                &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{{Test-PM3}}   &             &              &             &            &             &             &             &             &              &              &             &             &              &             &              &                &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{{Test-PM4}}   &             &              &             &            &             &             &             &             &              &              &             &             &              &             &              &                &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{{Test-PM5}}   &             &              &             &            &             &             &             &             &              &              &             &             &              &             &              &                &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{{Test-WI1}}   &            &              &             &              &             &             &             &             &              &              &             &             &              &             &              &               &&&&&&&&&&&&&&&&&&&X&X&&X&&&&X&&&&&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-WI2}}   &           &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                &&&&&&&&&&&&&&&&&&&X&X&&X&&&&X&&&&&&&&&    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI3}}   &            &              &            &              &             &             &             &             &              &              &             &             &              &             &              &                &&&&&&&&&&&&&&&&&&&X&X&&&&X&&X&&&&&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-WI4}}   &            &             &             &              &             &             &             &             &              &              &             &             &              &             &              &                &&&&&&&&&&&&&&&&&&&X&X&&&&&&X&&&&&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-WI5}}   &            &              &             &             &             &             &             &             &              &              &             &             &              &             &              &                &&&&&&&&&&&&&&&&&&&X&X&&&&X&&X&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-MP1}} &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &                &&&X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\\ \hline
+\multicolumn{1}{|l|}{{Test-MP2}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &               &&&X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-MP3}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &             &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-MP4}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-MP5}}  &             &              &             &              &            &             &             &             &              &              &             &             &              &             &              &             && &X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-MP6}}  &             &              &             &             &             &             &             &             &              &              &             &             &              &             &              &             &&&X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-MP7}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &           &&&X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&     \\ \hline
+\multicolumn{1}{|l|}{{Test-SP1}} &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &              && &&&&&&&&&&&&&&&&&&&&&&&&&&&X&X&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-SP2}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &             &&&&&&&&&&&&&&&&&&&&&&&&&&&&&X&X&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-SP3}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            && &&&&&&&&&&&&&&&&&&&&&&&&&&&X&X&&&X&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-SP4}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &             && &&&&&&&&&&&&&&&&&&&&&&&&&&&X&X&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-SP5}}  &             &              &             &              &            &             &             &             &              &              &             &             &              &             &              &            && &&&&&&&&&&&&&&&&&&&&&&&&&&&X&X&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-SP6}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            && &&&&&&&&&&&&&&&&&&&&&&&&&&&X&X&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-IP1}}   &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &           && &&&&&&X&&&&&&&&&&&&&&&&&&&&&&&&&&&    \\ \hline
+\multicolumn{1}{|l|}{{Test-IP2}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &           &&  &&&&&&X&&&&&&&&&&&&&&&&&&&&&&&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-IP3}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            &&  &&&&&&X&&&&&&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-IP4}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &             &&  &&&&&&X&X&&&&&&&&&&&&&&&&&&&&&&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-CP1}}  &             &              &             &             &             &             &             &             &              &              &             &             &              &             &              &            &&&&&&&&&&&&&X&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-CP2}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            &&&&&&&&&&&&&X&&&&&&&&&&&&&&&&&&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-CP3}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            &&&&&&&&&&&&&X&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-CP4}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            &&&&&&&&&&&&&X&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-CP5}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            &&&&&&&&&&&&&X&&&&&&&&&&&&&&&&&&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-CP6}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            &&&&&&&&&&&&&X&&&&&&&&&&&&&&&&&&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-FRMP1}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &             &&&X&X&X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRMP2}}  &             &             &             &              &            &             &             &             &              &              &             &             &              &             &              &               &&&X&X&X&X&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRMP3}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &             &&&X&X&X&X&X&&&&&&&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRIP1}}  &             &             &            &              &             &             &             &             &              &              &             &             &              &             &              &             && &&&&&&X&X&X&X&&&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRIP2}}  &            &             &            &              &             &             &             &             &              &              &             &             &              &             &              &              && &&&&&&X&X&X&X&X&&&&&&&&&&&&&&&&&&&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-FRIP3}}  &             &              &            &              &             &             &             &             &              &              &             &             &              &             &              &             && &&&&&&&&&X&X&&&&&&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRCP1}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            && &&&&&&&&&&&X&&&&&&&&&&&&&&&&&&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-FRCP2}}  &             &             &             &              &             &             &             &             &              &              &             &             &              &             &              &            && &&&&&&&&&&&&&X&&&&&&&&&&&&&&&&&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-FRCP3}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            &&  &&&&&&&&&&&&&X&X&X&&&&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRCP4}}  &             &              &            &              &             &             &             &             &              &              &             &             &              &             &              &              && &&&&&&&&&&&X&X&X&&&X&&&&&&&&&&&&&&&&& \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP1}}  &             &             &            &              &             &             &             &             &              &              &             &             &              &             &              &            &&  &&&&&&&&&&&&&&&&&X&&X&X&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP2}}  &             &              &             &              &            &             &             &             &              &              &             &             &              &             &              &             && &&&&&&&&&&&&&&&&&&X&&&&&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP3}}  &             &              &             &             &             &             &             &             &              &              &             &             &              &             &              &             && &&&&&&&&&&&&&&&&&&&&&&X&&&&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP4}}  &             &             &             &             &             &             &             &             &              &              &             &             &              &             &              &            &&  &&&&&&&&&&&&&&&&&&&&&X&&X&&&X&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP5}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &             && &&&&&&&&&&&&&&&&&&&&&&&&X&X&&&&&&&&  \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS1}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            && &&&&&&&&&&&&&&&&&&&&&&&&&&&X&X&X&&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS2}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            && &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&X&&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS3}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            && &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&X&&   \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS4}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            && &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&X&   \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS5}}  &             &              &             &              &             &             &             &             &              &              &             &             &              &             &              &            &&  &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&X  \\ \hline
+
+
 
 \end{tabular}
 }
@@ -689,40 +791,40 @@ The Edit Mode tests are more basic unit tests that test individual script functi
 \centering
 \begin{adjustwidth}{-0.3in}{-0.5in}
 \scalebox{0.6}{
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\cline{2-22}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-21}
                                      & \textbf{LF1} & \textbf{LF2} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & 
                                      \textbf{UH4} &
                                      \textbf{UH5} &
                                      \textbf{UH6} &
                                      \textbf{UH7} &
-                                     \textbf{UH8} &
                                      \textbf{PR1} & \textbf{PR2} & \textbf{OE1} & \textbf{MS1} & \textbf{MS2} & \textbf{SR1} & \textbf{SR2} & \textbf{CR1} & \textbf{CR2} &\textbf{LR1} & \textbf{HS1} \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-LF1]{Test-LF1}}   &    X         &             &             &             &             &             &             &             &              &              &              &             &             &             &             &    &&&&&         \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-LF2]{Test-LF2}}   &   X          &  X           &    X         &              &             &             &             &             &              &              &             &             &  X           &             &             &    & &&&&        \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-LF3]{Test-LF3}}   &    X         & X            &    X         &              &             &             &             &             &              &              &              &             & X            &             &             &        &&&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-LF4]{Test-LF4}}   &             &   X          &             &              &    X          &             &             &             &              &              &              &             &             &             &             &       & &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH1]{Test-UH1}}   &             &             &             &    X         &              &             &             &             &              &              &             &             &             &             &             &         & &&&&    \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH2]{Test-UH2}}   &             &             &            &      X       &              &      X       &             &             &              &              &              &              &             &             &             &          &&&&&    \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH3]{Test-UH3}}   &             &             &             &     X        &              &     X        &             &             &              &              &              &              &             &             &             &       &  &&&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH4]{Test-UH4}}   &              &              &              &              &    X          &              &             &             &             &             &             &             &              &              &            &     &  &&&&       \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH5]{Test-UH5}}   &             &             &             &             &      X       &             &             &             &              &              &              &              &             &             &             &      &   &&&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH6]{Test-UH6}}   &             &             &              &             &      X       &             &             &        X     &              &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH7]{Test-UH7}}   &             &             &              &             &             &           &  X           &             &      X        &              &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-UH8]{Test-UH8}}   &             &             &              &             &             &           &             &             &              &        X      &              &              &             &             &             &      &  &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PR1]{Test-PR1}}   &             &             &              &             &             &             &             &             &              &              &      X        &              &             &             &             &       & &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PR2]{Test-PR2}}   &              &              &              &              &              &             &             &             &             &             &             &    X         &              &              &            &      &   &&&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PR3]{Test-PR3}}   &             &             &              &             &             &             &            &             &              &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-PR4]{Test-PR4}}   &             &             &              &             &             &             &            &             &              &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-MT1]{Test-MT1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &      X       &      X      &         &&&&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-MT2]{Test-MT2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &       X      &       X      &         &&&&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-SR1]{Test-SR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &    X     &&&&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-SR2]{Test-SR2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &X&&&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CU1]{Test-CU1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CU2]{Test-CU2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&X&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-CU3]{Test-CU3}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&X&&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-LR1]{Test-LR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&X&     \\ \hline
-\multicolumn{1}{|l|}{\hyperref[itm:Test-HS1]{Test-HS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&&& X    \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-LF1]{Test-LF1}}   &    X        &             &             &             &             &             &             &             &              &              &              &             &             &             &             &    &&&&         \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-LF2]{Test-LF2}}   &   X         &  X          &    X        &             &             &             &             &             &              &              &             &      X       &             &             &             &    & &&&        \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-LF3]{Test-LF3}}   &    X        & X           &    X        &             &             &             &             &             &              &              &              &          X   &             &             &             &        &&&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-LF4]{Test-LF4}}   &             &   X         &             &             &    X        &             &             &             &              &              &              &             &             &             &             &       & &&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH1]{Test-UH1}}   &             &             &             &    X        &             &             &             &             &              &              &             &             &             &             &             &         & &&&    \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH2]{Test-UH2}}   &             &             &             &      X      &             &      X       &             &             &              &              &              &              &             &             &             &          &&&&    \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH3]{Test-UH3}}   &             &             &             &     X       &             &     X        &             &             &              &              &              &              &             &             &             &       &  &&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH4]{Test-UH4}}   &             &             &             &             &    X        &              &             &             &             &             &             &             &              &              &            &     &  &&&       \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH5]{Test-UH5}}   &             &             &             &             &      X      &             &             &             &              &              &              &              &             &             &             &      &   &&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH6]{Test-UH6}}   &             &             &             &             &      X      &             &             &             &              &              &              &              &             &             &             &      &  &&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH7]{Test-UH7}}   &             &             &             &             &             &           &  X           &    X         &              &              &              &              &             &             &             &      &  &&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-UH8]{Test-UH8}}   &    X         &      X       &      X       &      X       &        X     &     X      &   X          &      X       &      X        &        X      &       X       &              &             &             &             &      & X &&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PR1]{Test-PR1}}   &             &             &             &             &             &             &             &                           &              &      X        &              &             &             &             &       & &&&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PR2]{Test-PR2}}   &             &             &             &             &             &             &             &                          &             &             &    X         &              &              &            &      &   &&&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PR3]{Test-PR3}}   &             &             &             &             &             &             &            &                           &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-PR4]{Test-PR4}}   &             &             &             &             &             &              &            &                           &              &              &      X        &             &             &             &     &   &&&&      \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-MT1]{Test-MT1}}   &             &             &             &             &             &              &             &                           &              &              &             &              &      X       &      X      &         &&&&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-MT2]{Test-MT2}}   &                          &             &             &             &              &             &             &              &              &              &             &              &       X      &       X      &         &&&&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-SR1]{Test-SR1}}   &                          &             &             &             &              &             &             &              &              &              &             &              &             &             &    X     &&&&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-SR2]{Test-SR2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         X&&&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CU1]{Test-CU1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &X&&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CU2]{Test-CU2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &X&X&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-CU3]{Test-CU3}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&X&&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-LR1]{Test-LR1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&X&     \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-HS1]{Test-HS1}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&& X    \\ \hline
+\multicolumn{1}{|l|}{\hyperref[itm:Test-HS2]{Test-HS2}}   &             &             &             &             &             &              &             &             &              &              &              &             &              &             &             &         &&&& X    \\ \hline
 
 
 \end{tabular}
@@ -742,56 +844,73 @@ Module descriptions can be found in section 5 of the MG. Module M10 (Math Puzzle
 \centering
 \begin{adjustwidth}{-0.3in}{-0.5in}
 \scalebox{0.6}{
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\cline{2-15}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-14}
                                      & \textbf{M1} & \textbf{M2} & \textbf{M3} & \textbf{M4} & \textbf{M5} & 
                                      \textbf{M6} &
                                      \textbf{M7} &
                                      \textbf{M8} &
                                      \textbf{M9} &
                                      \textbf{M10} &
-                                     \textbf{M11} & \textbf{M12} & \textbf{M13} & \textbf{M14} \\ \hline
-\multicolumn{1}{|l|}{{Test-CR1}}   &             &         X    &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CR2}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CR3}}   &             &        X     &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CR4}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CR5}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CR6}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-JR1}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-JR2}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-JR3}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-JR4}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-RS1}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-RS2}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-RS3}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-ER1}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-ER2}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-ER3}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-ST1}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-ST2}}   &             &         X    &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-ST3}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-ST4}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-ST5}}   &             &             &             &             &      X       &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI1}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI2}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI3}}   &             &             &             &             &      X       &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI4}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI5}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI6}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI7}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI8}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI9}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI10}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI11}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PI12}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MS1}}   &             &             &   X          &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MS2}}   &             &             &         X    &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MS3}}   &             &             &      X       &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MS4}}   &             &             &      X       &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MS5}}   &             &             &    X         &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MS6}}   &             &             &    X         &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PM1}}   &             &             &             &             &    X         &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PM2}}   &             &             &             &             &      X       &             &             &             &              &              &              &             &  &                    \\ \hline
+                                     \textbf{M11} & \textbf{M12} & \textbf{M13} \\ \hline
+\multicolumn{1}{|l|}{{Test-CG1}}   &             &         X    &             &             &             &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-CG2}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-CG3}}   &             &        X     &             &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CG4}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-CG5}}   &             &       X      &             &             &             &             &                         &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CG6}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-JR1}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-JR2}}   &             &       X      &             &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-JR3}}   &             &       X      &             &             &             &             &                          &              &              &              &             & &                     \\ \hline
+\multicolumn{1}{|l|}{{Test-JR4}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-JR5}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-RS1}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-RS2}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-RS3}}   &             &       X      &             &             &             &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-ER1}}   &             &       X      &             &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ER2}}   &             &       X      &             &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ER3}}   &             &       X      &             &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ST1}}   &             &       X      &             &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ST2}}   &             &         X    &             &             &     X        &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-ST3}}   &             &             &             &             &     X        &             &             &             &              &                            &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-ST4}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-PI1}}   &             &             &             &             &     X        &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI2}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-PI3}}   &             &             &             &             &      X       &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI4}}   &             &             &             &             &     X        &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI5}}   &             &             &             &             &     X        &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI6}}   &             &             &             &             &     X        &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI7}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &                      \\ \hline
+\multicolumn{1}{|l|}{{Test-PI8}}   &             &             &             &             &     X        &             &             &             &              &                            &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PI9}}   &             &             &             &             &     X        &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS1}}   &             &             &   X          &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS2}}   &             &             &         X    &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS3}}   &             &             &      X       &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS4}}   &             &             &      X       &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MS5}}   &             &             &    X         &             &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-VC1}}   &             &             &            &   X          &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-VC2}}   &             &             &             &        X     &             &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRMP1}}   &             &             &             &             &             &             &                          &              &      X        &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRMP2}}   &             &             &             &             &             &             &                          &              &     X         &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRMP3}}   &             &             &             &             &             &             &                          &              &      X        &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRIP1}}   &             &             &             &             &             &             &        X                  &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRIP2}}   &             &             &             &             &             &             &          X                &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRIP3}}   &             &             &            &             &             &             &          X                &              &              &              &             &  &                    \\ \hline\multicolumn{1}{|l|}{{Test-FRCP1}}   &             &             &             &             &             &             &                          &              &              &   X           &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRCP2}}   &             &             &            &             &             &             &                          &              &              &         X     &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRCP3}}   &             &             &             &             &             &             &                          &              &              &     X         &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRCP4}}   &             &             &             &             &             &             &                          &              &              &     X         &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP1}}   &             &             &             &             &             &             &                          &        X      &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP2}}   &             &             &             &             &             &             &                          &      X        &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP3}}   &             &             &            &             &             &             &                          &      X        &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP4}}   &             &             &             &             &             &             &                          &      X        &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRWP5}}   &             &             &             &             &             &             &                          &      X        &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS1}}   &             &             &             &             &             &       X      &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS2}}   &             &             &             &             &             &     X        &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS3}}   &             &             &             &             &             &    X         &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS4}}   &             &             &             &             &             &    X         &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-FRSS5}}   &             &             &             &             &             &      X       &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PM1}}   &             &             &             &             &    X         &             &                          &              &              &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PM2}}   &             &             &             &             &      X       &             &                          &              &              &              &             &  &                    \\ \hline
 \end{tabular}}
 \caption{Module Traceability Matrix}
     \label{tab:matrix4}
@@ -803,71 +922,72 @@ Module descriptions can be found in section 5 of the MG. Module M10 (Math Puzzle
 \centering
 \begin{adjustwidth}{-0.3in}{-0.5in}
 \scalebox{0.6}{
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\cline{2-15}
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{2-14}
                                      & \textbf{M1} & \textbf{M2} & \textbf{M3} & \textbf{M4} & \textbf{M5} & 
                                      \textbf{M6} &
                                      \textbf{M7} &
                                      \textbf{M8} &
                                      \textbf{M9} &
                                      \textbf{M10} &
-                                     \textbf{M11} & \textbf{M12} & \textbf{M13} & \textbf{M14} \\ \hline
-\multicolumn{1}{|l|}{{Test-PM3}}   &             &             &             &             &    X         &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PM4}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PM5}}   &             &             &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MP1}}   &             &             &             &             &             &             &             &             &         X     &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MP2}}   &             &             &            &             &             &             &             &             &         X    &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MP3}}   &             &             &             &             &             &             &             &             &          X    &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MP4}}   &             &             &             &             &             &             &             &             &           X   &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MP5}}   &             &             &             &             &             &             &             &             &          X    &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MP6}}   &             &             &             &             &             &             &             &             &         X    &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MP7}}   &             &             &             &             &             &             &             &             &         X     &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-SP1}}   &             &             &             &             &             &        X     &             &             &              &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-SP2}}   &             &             &             &             &             &       X      &             &             &              &            &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-SP3}}   &             &             &             &             &             &        X     &             &             &              &            &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-SP4}}   &             &             &             &             &             &         X    &             &             &              &            &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-SP5}}   &             &             &             &             &             &       X      &             &             &              &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-SP6}}   &             &             &             &             &             &       X      &            &             &              &             &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-WI1}}   &             &             &             &             &             &             &             &     X        &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-WI2}}   &             &             &             &             &             &             &             &    X         &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-WI3}}   &             &             &             &             &             &             &             &    X         &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-WI4}}   &             &             &             &             &             &             &             &    X         &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-WI5}}   &             &             &             &             &             &             &             &    X         &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-IP1}}   &             &             &             &             &             &             &      X       &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-IP2}}   &             &             &             &             &             &             &       X      &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-IP3}}   &             &             &             &             &             &             &       X      &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-IP4}}   &             &             &             &             &             &             &       X      &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CP1}}   &             &             &             &             &             &             &             &             &              &             &       X       &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CP2}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CP3}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CP4}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CP5}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CP6}}   &             &             &             &             &             &             &            &             &              &             &       X       &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-LF1}}   &             &         X    &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-LF2}}   &             &        X     &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-LF3}}   &             &           X  &             &             &    X         &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-LF4}}   &             &         X    &             &             &     X        &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-UH1}}   &             &        X     &             &             &             &             &             &             &              &              &              &              & X &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-UH2}}   &             &       X      &             &             &             &             &             &             &              &              &              &             & X &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-UH3}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  X &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-UH4}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-UH5}}   &             &      X       &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-UH6}}   &             &        X     &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-UH7}}   &             &        X     &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-UH8}}   &             &        X     &             &             &             &             &             &             &              &              &              &             &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PR1}}   &             &       X      &             &             &             &             &             &             &              &              &              &       X      &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PR2}}   &             &        X     &      X       &   X          &             &             &             &             &              &              &              &      X       &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PR3}}   &             &       X      &      X       &        X     &             &             &             &             &              &              &              &      X       &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-PR4}}   &             &       X      &      X       &        X     &             &             &             &             &              &              &              &      X       &  X &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-MT1}}   &             &             &             &             &             &             &             &             &              &              &              &             &  & X                   \\ \hline
-\multicolumn{1}{|l|}{{Test-MT2}}   &             &             &             &             &             &             &             &             &              &              &              &             &  &    X                \\ \hline
-\multicolumn{1}{|l|}{{Test-SR1}}   &             &             &             &             &             &             &             &             &              &              &              &      X       &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-SR2}}   &             &             &             &             &             &             &             &             &              &              &              &       X      &  &                    \\ \hline
-\multicolumn{1}{|l|}{{Test-CU1}}   &             &             &             &             &             &             &             &             &              &              &              &             &  &    X                \\ \hline
-\multicolumn{1}{|l|}{{Test-CU2}}   &             &             &             &             &             &             &             &             &              &              &              &             &  &  X                  \\ \hline
-\multicolumn{1}{|l|}{{Test-CU3}}   &             &             &             &             &             &             &             &             &              &              &              &             &  &  X                  \\ \hline
-\multicolumn{1}{|l|}{{Test-LR1}}   &             &             &             &             &             &             &             &             &              &              &              &             &  & X                   \\ \hline
-\multicolumn{1}{|l|}{{Test-HS1}}   &             &          X   &             &             &             &             &             &             &              &              &              &             & X &                    \\ \hline
+                                     \textbf{M11} & \textbf{M12} & \textbf{M13} \\ \hline
+\multicolumn{1}{|l|}{{Test-PM3}}   &             &             &             &             &    X         &             &             &             &                            &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PM4}}   &             &             &             &             &     X        &             &             &             &                          &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PM5}}   &             &             &             &             &     X        &             &             &             &                            &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP1}}   &             &             &             &             &             &             &             &             &         X                  &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP2}}   &             &             &            &             &             &             &             &             &         X    &                           &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP3}}   &             &             &             &             &             &             &             &             &          X    &                           &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP4}}   &             &             &             &             &             &             &             &             &           X   &                           &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP5}}   &             &             &             &             &             &             &             &             &          X    &                           &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP6}}   &             &             &             &             &                          &             &             &             &    X         &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MP7}}   &             &             &             &             &             &             &             &             &         X                  &              &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP1}}   &             &             &             &             &             &        X     &             &             &              &                           &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP2}}   &             &             &             &             &             &       X      &             &             &              &                          &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP3}}   &             &             &             &             &             &        X     &             &             &              &                          &             &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP4}}   &             &             &             &             &             &         X    &             &             &              &            &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP5}}   &             &             &             &             &             &       X      &             &             &              &             &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SP6}}   &             &             &             &             &             &       X      &            &             &              &             &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI1}}   &             &             &             &             &             &             &             &     X        &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI2}}   &             &             &             &             &             &             &             &    X         &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI3}}   &             &             &             &             &             &             &             &    X         &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI4}}   &             &             &             &             &             &             &             &    X         &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-WI5}}   &             &             &             &             &             &             &             &    X         &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-IP1}}   &             &             &             &             &             &             &      X       &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-IP2}}   &             &             &             &             &             &             &       X      &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-IP3}}   &             &             &             &             &             &             &       X      &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-IP4}}   &             &             &             &             &             &             &       X      &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP1}}   &             &             &             &             &             &             &             &             &              &   X          &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP2}}   &             &             &             &             &             &             &            &             &              &        X     &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP3}}   &             &             &             &             &             &             &            &             &              &         X    &                          &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP4}}   &             &             &             &             &             &             &            &             &              &      X       &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP5}}   &             &             &             &             &             &             &            &             &              &      X       &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CP6}}   &             &             &             &             &             &             &            &             &              &      X       &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-LF1}}   &             &         X    &             &             &             &             &             &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-LF2}}   &             &        X     &             &             &     X        &             &             &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-LF3}}   &             &           X  &             &             &    X         &             &             &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-LF4}}   &             &         X    &             &             &     X        &             &             &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH1}}   &             &        X     &             &             &             &             &             &             &              &              &                            X&  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH2}}   &             &       X      &             &             &             &             &             &             &              &              &                           X&  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH3}}   &             &      X       &             &             &             &             &             &             &              &              &                           X&   &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH4}}   &             &      X       &             &             &             &             &             &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH5}}   &             &      X       &             &             &             &             &             &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH6}}   &             &        X     &             &             &             &             &             &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH7}}   &             &        X     &             &             &             &             &             &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-UH8}}   &             &        X     &             &             &             &             &             &             &              &              &                           &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PR1}}   &             &       X      &             &             &             &             &             &             &              &              &                     X      &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PR2}}   &             &        X     &      X       &   X          &             &             &             &             &              &              &                    X       &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PR3}}   &             &       X      &      X       &        X     &             &             &             &             &              &              &                    X       &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-PR4}}   &             &       X      &      X       &        X     &             &             &             &             &              &              &                    X       &  X &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-MT1}}   &             &             &             &             &             &             &             &             &              &              &                           &  & X                   \\ \hline
+\multicolumn{1}{|l|}{{Test-MT2}}   &             &             &             &             &             &             &             &             &              &              &                           &  &    X                \\ \hline
+\multicolumn{1}{|l|}{{Test-SR1}}   &             &             &             &             &             &             &             &             &              &              &                    X       &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-SR2}}   &             &             &             &             &             &             &             &             &              &              &                     X      &  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-CU1}}   &             &             &             &             &             &             &             &             &              &              &                           &  &    X                \\ \hline
+\multicolumn{1}{|l|}{{Test-CU2}}   &             &             &             &             &             &             &             &             &              &              &                           &  &  X                  \\ \hline
+\multicolumn{1}{|l|}{{Test-CU3}}   &             &             &             &             &             &             &             &             &              &              &                           &  &  X                  \\ \hline
+\multicolumn{1}{|l|}{{Test-LR1}}   &             &             &             &             &             &             &             &             &              &              &                           &  & X                   \\ \hline
+\multicolumn{1}{|l|}{{Test-HS1}}   &             &          X   &             &             &             &             &             &             &              &              &                           X&  &                    \\ \hline
+\multicolumn{1}{|l|}{{Test-HS2}}   &             &          X   &             &             &             &             &             &             &              &              &                           X&  &                    \\ \hline
 \end{tabular}}
 \caption{Module Traceability Matrix Pt. 2}
     \label{tab:matrix5}
@@ -918,38 +1038,114 @@ The main difference between the original plan and how the validation and verific
 
 Table \ref{table:US1} below showing the results of the Usability survey
 
-\begin{table}[H]
+\newgeometry{left=2cm,bottom=0.1cm}
+\begin{table}[htbp]
 \caption{\bf Results of Usability Survey}
-\resizebox{6in}{!}{\begin{tabular}{|l|p{0.15\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}|p{0.1\linewidth}|}
+\resizebox{6.5in}{!}{\begin{tabular}{|p{0.4\linewidth}|p{0.3\linewidth}|p{0.7\linewidth}|}
 \hline
-\multicolumn{1}{|l|}{\bfseries Question} & \multicolumn{1}{|l|}{\bfseries Average Rating (out of 5)}\\
+{\bfseries Question} & {\bfseries Average Rating (out of 5)}& {\bfseries Analysis}\\
 \hline
-I find the controls of the game to be straightforward & 3.25 \\
+I find the controls of the game to be straightforward & 3.9 & 10\% of users rated this category a 2, which means we focus on guiding the user when they get stuck on a puzzle, or have more affordance with our overall design. \\
 \hline
-I find the game's interface to be easy to navigate & 3.25 \\
+I find the game's interface to be easy to navigate & 4 & All the user's rating the game 3 or above, which means the actual UI elements are well readable, and we should focus on the puzzle elements for affordance. \\
 \hline
-I feel detached from the outside world while playing the game & 3 \\
+I feel detached from the outside world while playing the game & 4.15 & 16 users rated this 4 or above, it means the users are very immersed in the game. \\
 \hline
-I do not care to check events that are happening in the real world during the game & 3 \\
+I do not care to check events that are happening in the real world during the game & 4.15 & Same results as above, but slightly concerning if they disregard the real world so much\\
 \hline
-I think the game is fun & 4.25 \\
+I think the game is fun & 4.35 & This is our most important metric for a game, and 90\% rated it above a 4, so our game is very successful.\\
 \hline
-I find the game supports social interaction between players & 5 \\
+I find the game supports social interaction between players & 4.368421053 & This metric is very important for Dr. Yuan's research study, the majority of users rated the game at 5, which will prove to be good for gathering research \\
 \hline
-I enjoy playing this game with other users & 4.5 \\
+I enjoy playing this game with other users & 4.3 & Similar to the two questions above, this metric combines the two metrics into one, if the users are having fun and interacting with each other, then they will enjoy the game more. \\
 \hline
-I feel the game allows me to be imaginative & 4 \\
+I feel the game allows me to be imaginative & 3.8 & There is a large variance in the data for this metric, some users might think that they are more constrained than a regular escape room, as there is usually only one active puzzle at a time they can interact with.\\
 \hline
-I feel like the puzzles are challenging & 4 \\
+I feel like the puzzles are challenging & 4.25 & 90\% of users find the puzzles challenging, in the future might consider adding an easy set of puzzles, for now there are hints and skips in case users get stuck \\
 \hline
-I feel like the puzzle interactions are fun & 4.25 \\
+I feel like the puzzle interactions are fun & 4.3 & Similar to the fun question, it's interesting that the average for this question is slightly lower than the fun metric, that implies that users also have fun by interacting with other users while playing the game. \\
 \hline
-I enjoy the game's graphics & 2.75 \\
+I enjoy the game's graphics & 3.75 & Not surprising this is the lowest rated metric, Graphics are not this project's strong suit. In the future, there will be a focus on improving the overall graphics of the project, making every puzzle consistent in theme.  \\
 \hline
-I think the game is visually appealing & 3.25 \\
+I think the game is visually appealing & 4.1 & Higher than the previous metric, 15\% of users rate this 3 or lower, in the future the visuals in the game will be improved.\\
 \hline
 \end{tabular}}
 \label{table:US1}
 \end{table}
+
+\begin{figure}[htbp]
+\caption{Straight Forward Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/StraightForward.png}}
+\label{fig:StraightForward}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Navigation Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Navigation.png}}
+\label{fig:Navigation}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Detached Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Detached.png}}
+\label{fig:Detached}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Real World Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/RealWordl.png}}
+\label{fig:RealWorld}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Fun Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Fun.png}}
+\label{fig:Fun}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Social Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Social.png}}
+\label{fig:Social}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Enjoyment Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Enjoy.png}}
+\label{fig:Enjoy}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Imagination Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Imagination.png}}
+\label{fig:Imagination}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Challenging Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Challenging.png}}
+\label{fig:Challenging}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Puzzle Interactions Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/PuzzleInteractions.png}}
+\label{fig:PuzzleInteractions}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{Graphics Interactions Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/Graphics.png}}
+\label{fig:Graphics}
+\end{figure}
+
+\begin{figure}[htbp]
+\caption{VisuallyAppealing Interactions Usability Survey Results}
+\centerline{\includegraphics[scale=0.7]{Capstone/docs/VnVReport/VisuallyAppealing.png}}
+\label{fig:VisuallyAppealing}
+\end{figure}
+
+
+
 
 \end{document}

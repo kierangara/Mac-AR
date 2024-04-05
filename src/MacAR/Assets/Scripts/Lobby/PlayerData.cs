@@ -1,12 +1,13 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using System;
 using Unity.Netcode;
-using Unity.VisualScripting.FullSerializer;
-
+//Stores the player's data in a structure that can be transmitted using the unity net code
+[Serializable]
 public struct PlayerData : INetworkSerializable, IEquatable<PlayerData>
 {
     public ulong ClientId;
     public bool ReadyState;
-
     public PlayerData(ulong clientId, bool readyState = false)
     {
         ClientId = clientId;

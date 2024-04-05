@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
-
 public class TestPuzzleBehaviour : ClickableObjectBase
 {
     [SerializeField] private GameObject cube;
@@ -27,7 +24,7 @@ public class TestPuzzleBehaviour : ClickableObjectBase
         // Check for Completion
         if(newColor == Color.white)
         {
-            puzzleData.completePuzzle.CompletePuzzleServerRpc(0);
+            puzzleData.completePuzzle.CompletePuzzleServerRpc(0, -1);
         }
     }
 

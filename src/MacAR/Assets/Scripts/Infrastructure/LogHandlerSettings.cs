@@ -1,3 +1,5 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using UnityEngine;
     /// <summary>
     /// Acts as a buffer between receiving requests to display error messages to the player and running the pop-up UI to do so.
@@ -11,6 +13,17 @@ public class LogHandlerSettings : MonoBehaviour
     [SerializeField]
     private PopUpUI m_popUp;
 
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+        InvokeRepeating(nameof(CheckNetwork), 5.0f, 5.0f);
+    }
+    public void CheckNetwork() {
+        if(Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            SpawnErrorPopup("Error not connected to the internet");
+        }
+    }
 
     public static LogHandlerSettings Instance
     {

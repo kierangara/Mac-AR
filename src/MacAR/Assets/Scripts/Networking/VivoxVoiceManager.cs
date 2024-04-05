@@ -1,10 +1,8 @@
+//Created by Ethan Kannampuzha (Vivox code from library)
+//Last Updated: 2024/04/04
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Dynamic;
 using System.Linq;
-using System.Runtime;
 using UnityEngine;
 using VivoxUnity;
 using Unity.Services.Core;
@@ -185,19 +183,19 @@ public class VivoxVoiceManager : MonoBehaviour
             _client.Uninitialize();
         }
     }
+    //Sets the account name for the user
     public void SetAccountName(string accountName)
     {
         m_Account = new Account(accountName);
         PlayerName = accountName;
+        PlayerPrefs.SetString("PlayerName", PlayerName);
+        print(PlayerName);
     }
 
 
     public void Login(string displayName = null)
     {
-        if(m_Account == null) 
-        {
-            m_Account = new Account("SpencerSmith");
-        }
+        m_Account = new Account(PlayerPrefs.GetString("PlayerName", "SpencerSmith"));
         // print(displayName);
         LoginSession = _client.GetLoginSession(m_Account);
         LoginSession.PropertyChanged += OnLoginSessionPropertyChanged;
@@ -257,7 +255,7 @@ public class VivoxVoiceManager : MonoBehaviour
             VivoxLogError("Cannot join a channel when not logged in.");
         }
     }
-
+    //Sends a message using vivox to all users in the vivox channel. 
     public void SendTextMessage(string messageToSend, ChannelId channel, string applicationStanzaNamespace = null, string applicationStanzaBody = null)
     {
         if (ChannelId.IsNullOrEmpty(channel))
@@ -299,7 +297,7 @@ public class VivoxVoiceManager : MonoBehaviour
     }
 
 #region Vivox Callbacks
-
+    //When messages are recieved, updates the message log
     private void OnMessageLogRecieved(object sender, QueueItemAddedEventArgs<IChannelTextMessage> textMessage)
     {
         ValidateArgs(new object[] { sender, textMessage });

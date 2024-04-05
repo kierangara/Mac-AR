@@ -15,6 +15,12 @@ This project is our McMaster University Software Engineering Capstone Project. W
 
 The game is developed in Unity and uses the Vivox voice and text chat system to enable remote communication.
 
+**Game trailer:**
+
+https://www.youtube.com/watch?v=DcXwwI4MOdI&t=1s&ab_channel=creepdefeater
+
+**In game images:**
+
 <p float="left" align="center">
     <img src="https://github.com/SammyG7/Mac-AR/assets/93633486/238d9eab-897e-4430-852e-797e2a8d5099" width="200"/>
     <img src="https://github.com/SammyG7/Mac-AR/assets/93633486/395e64d9-1651-4ab2-9315-909af66dec25" width="200"/>
@@ -36,4 +42,8 @@ src - Source code
 test - Test cases  
 
 **Build:**  
-The build information will be made available once a more stable build has been created.
+The Android APK build is available at the link below:
+
+https://drive.google.com/file/d/16HgWEJD8WqmnoKQhvGBEuENQmTJPDA8p/view?usp=sharing
+
+The Apple build is not currently available due to the developer fee.

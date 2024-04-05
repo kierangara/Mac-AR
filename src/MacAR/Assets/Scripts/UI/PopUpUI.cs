@@ -1,3 +1,5 @@
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -16,19 +18,20 @@ public class PopUpUI : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// If the pop-up is not currently visible, display it. If it is, append the incoming text to the existing pop-up.
+    /// If the pop-up is not currently visible, display it. 
     /// </summary>
     public void ShowPopup(string newText)
     {
         Debug.Log(gameObject.activeSelf);
         if (!gameObject.activeSelf)
-        {   m_currentText.Clear();
+        {
             gameObject.SetActive(true);
         }
+        m_currentText.Clear();
         m_currentText.AppendLine(newText);
         m_popupText.SetTextWithoutNotify(m_currentText.ToString());
         DisableButton();

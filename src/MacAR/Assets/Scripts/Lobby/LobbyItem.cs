@@ -1,13 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Mail;
+//Created by Matthew Collard
+//Last Updated: 2024/04/04
 using TMPro;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
-//using Unity.Tutorials.Core.Editor;
-//using UnityEditor.Build.Reporting;
 using UnityEngine;
-using UnityEngine.UIElements;
 using System;
 
 public class LobbyItem : MonoBehaviour
@@ -19,7 +15,8 @@ public class LobbyItem : MonoBehaviour
 
     private LobbiesList lobbiesList;
     private Lobby lobby;
-
+    private bool isJoining = false;
+    //Creates the lobby item on the screen
     public void Initialise(LobbiesList lobbiesList, Lobby lobby)
     {
         this.lobbiesList = lobbiesList;
@@ -29,19 +26,19 @@ public class LobbyItem : MonoBehaviour
         lobbyPlayersText.text = $"{lobby.Players.Count}/{lobby.MaxPlayers}";
         passwordPopUp.SetActive(false);
     }
-
+    //Join button is pressed by the user, attempts to join a lobby, if a password is required, prompts the user to enter a password. 
     public void Join()
     {
-        bool lobbyMade = false;
-        //Debug.Log(passwordEnter.text);
+        if(isJoining)
+        {
+            return;
+        }
+        isJoining = true;
         try
         {
             if (!lobby.HasPassword || (passwordEnter.text.Length!=0))
             {
-                //Debug.Log(lobby.HasPassword);
                 lobbiesList.JoinAsync(lobby,passwordEnter.text);
-                lobbyMade = true;
-                //passwordPopUp.SetActive(false);
             }
             else
             {
@@ -51,14 +48,15 @@ public class LobbyItem : MonoBehaviour
         }
         catch (LobbyServiceException exception)
         {
-            //SetGameState(GameState.JoinMenu);
             LogHandlerSettings.Instance.SpawnErrorPopup($"Error joining lobby : ({exception.ErrorCode}) {exception.Message}");
             passwordPopUp.SetActive(true);
         }
-        catch(Exception e)
+        catch(Exception)
         {
             LogHandlerSettings.Instance.SpawnErrorPopup($"Error joining lobby : Password Mismatch issue");
         }
+
+        isJoining=false;
         
 
         

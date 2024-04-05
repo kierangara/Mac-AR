@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PassiveWires : MonoBehaviour
 {
     public GameObject root1;
@@ -23,6 +21,9 @@ public class PassiveWires : MonoBehaviour
     private List<GameObject> roots;
     private List<GameObject> wires;
 
+    private const int ROOT_INDEX = 0;
+    private const int WIRE_INDEX = 1;
+
     public void Init(List<List<uint>> sequence)
     {
         roots = new List<GameObject>{root1, root2, root3, root4};
@@ -30,12 +31,10 @@ public class PassiveWires : MonoBehaviour
 
         m_sequence = sequence;
 
-        // TODO: Remove magic numbers
-        // Add error checking
         for(int i = 0; i < 4; i++)
         {
-            SetMaterial(roots[i], sequence[i][0]);
-            SetMaterial(wires[i], sequence[i][1]);
+            SetMaterial(roots[i], sequence[i][ROOT_INDEX]);
+            SetMaterial(wires[i], sequence[i][WIRE_INDEX]);
         }
     }
 
@@ -62,15 +61,7 @@ public class PassiveWires : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Debug.Log("Start Passive");
-        // roots = new List<GameObject>{root1, root2, root3, root4};
-        // wires = new List<GameObject>{wire1, wire2, wire3, wire4};
-
-        // List<List<uint>> testList = new List<List<uint>>{new List<uint>{1, 3}, 
-        //                                                  new List<uint>{0, 0}, 
-        //                                                  new List<uint>{3, 2}, 
-        //                                                  new List<uint>{2, 1}};
-        // Init(testList);
+        
     }
 
     // Update is called once per frame
