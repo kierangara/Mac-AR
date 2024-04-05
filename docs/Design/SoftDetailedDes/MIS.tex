@@ -69,7 +69,8 @@ April 4 & 1.6 & Updated envrionment variable format
 \newline Moved local variables to state variables where applicable
 \newline Cleared up some semantics (CheckEntry, etc.)
 \newline Added note justifying existence of error module
-\newline Cleared up ambiguous statements\\
+\newline Cleared up ambiguous statements
+\newline Improved detail of reflection\\
 \bottomrule
 \end{tabularx}
 
@@ -1488,9 +1489,9 @@ graduate attribute of Problem Analysis and Design.  Please answer the following 
 One of the main limitations of the project is the time constraint, as well as balancing the project with other courses members of the team are taking. As a result, certain features such as UI elements may be less aesthetic/nice looking due to having less time to work on them. Given unlimited resources, the following updates to the project could be made.
 
 \begin{itemize}
-    \item Improved UI elements
-    \item Creation of additional puzzle modules/types
-    \item Modification of current puzzle modules to allow them to work with several different amounts of people (ex. 2-player, 3-player, 4-player, etc.)
+    \item Improved UI elements: Given unlimited time and resources we could implement custom assets that better fit our theme and would allow us to further personalize the game. We could also add more advanced rendering and animation effects such as are seen in the main menu screen. This would allow us to make the experience more immersive and really take advantage of the augmented reality space.
+    \item Creation of additional puzzle modules/types: Given more time we could create more technically challenging puzzles that take better advantage of the AR space. One such puzzle that was considered was hiding AR elements in an image of a user's real-world space and showing it to another user. They would then have to communicate to the initial user what was different in the image than in their actual space. However, seamlessly integrating AR elements into an image of real space would take significantly more time to learn the technical skills necessary than what was available.
+    \item Modification of current puzzle modules to allow them to work with several different amounts of people (ex. 2-player, 3-player, 4-player, etc.): Current puzzles are somewhat limited in their design such that all players may not be necessary for each puzzle. Given more time and resources the design of the puzzles could've been altered so that what the puzzle showed to each person was different. Alternatively the overall structure could've been modified so that different people could work on different puzzles simultaneously.
 \end{itemize}
 
 Another limitation of the project is the lack of choice regarding frameworks that can be used to implement AR elements. This project requires an AR game environment and there are only a few frameworks that can be used to implement AR elements, such as Unity. As a result, our team chose to use Unity to implement the application.
@@ -1500,7 +1501,7 @@ Another limitation of the project is the lack of choice regarding frameworks tha
   design?  From all the potential options, why did you select the documented design?
   (LO\_Explores)
 
-As mentioned previously, there are not many frameworks that allow for the implementation of AR elements. At the beginning of the project, our team debated about whether to use Unreal Engine or Unity, however, we decided on Unity due to the fact that several group members had much more experience with Unity. Additionally, there are many benefits of using unity. First of all, there are many AR libraries that work hand in hand with Unity which is extremely useful for our project. Additionally, Unity has an asset store where we can get assets to be used in our game environment which is also extremely useful. Additionally, even though Unity does have many benefits, there are some negatives such as it being extremely difficult to do automated testing with Unity. Moving on, another design decision that we chose was using Vivox framework for the implementation of voice and text communication. The benefits of this is that Unity supports the use of Vivox and so the implementation of voice and text communication was not too difficult. The tradeoff, however, is that there is less freedom for the actual implementation of these communication features, as Vivox has to be set up in a specific way and only has certain functionality.
+As mentioned previously, there are not many frameworks that allow for the implementation of AR elements. At the beginning of the project, our team debated about whether to use Unreal Engine or Unity. The main benefit of Unreal Engine is the use of blueprints, a tool that simplifies scripting for beginners. However, we decided on Unity due to the fact that several group members had much more experience with Unity. Additionally, there are many benefits of using unity. First of all, there are many AR libraries that work hand in hand with Unity which is extremely useful for our project. Additionally, Unity has an asset store where we can get assets to be used in our game environment which is also extremely useful. There are some negatives such as it being extremely difficult to do automated testing with Unity but Unreal Engine does not solve this issue and there are no other viable main-stream 3D engines. Moving on, another design decision that we chose was using Vivox framework for the implementation of voice and text communication. The benefits of this is that Unity supports the use of Vivox and so the implementation of voice and text communication was not too difficult. The tradeoff, however, is that there is less freedom for the actual implementation of these communication features, as Vivox has to be set up in a specific way and only has certain functionality. There are very few publicly available alternatives for implementing voice chat in Unity. Some options are the \hyperlink{https://getstream.io/chat/docs/unity/?language=unity}{Stream Chat} and \hyperlink{https://www.agora.io/en/adding-voice-chat-to-a-multiplayer-cross-platform-unity-game/}{Agora.io} but while these tools may offer slightly different services than Vivox or slightly more flexibility they are not as well documented and Vivox provides all the essential services necessary for our game.
 \end{enumerate}
 
 
