@@ -35,6 +35,7 @@ public class ActiveWires : MonoBehaviour
 
     public bool UpdateSequence(int wire, int anchor)
     {
+        // Set New Sequence
         currentSequence[wire] = anchor;
 
         bool correctSequence = true;
@@ -50,9 +51,9 @@ public class ActiveWires : MonoBehaviour
             }
         }
 
+        // Complete Puzzle if Correct
         if(correctSequence)
         {
-            Debug.Log("Correct Wires");
             for(int i = 0; i < lightFixtures.Count; i++)
             {
                 lightFixtures[i].GetComponent<Renderer>().material.color = Color.green;

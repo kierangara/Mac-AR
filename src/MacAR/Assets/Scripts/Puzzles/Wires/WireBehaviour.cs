@@ -14,13 +14,14 @@ public class WireBehaviour : PuzzleBase
     // Start is called before the first frame update
     void Start()
     {   
-        //InitializePuzzle();
+        
     }
 
     public override void InitializePuzzle()
     {
         puzzleId = PuzzleConstants.WIRE_ID;
 
+        // Create Code
         var rootOrder = RandomList(this.seed);
         var wireOrder = RandomList(this.seed-1);
 
@@ -33,6 +34,7 @@ public class WireBehaviour : PuzzleBase
         passiveWire.Init(initSequence);
         activeWire.Init(initSequence);
 
+        // Determine Which Puzzle to Show
         if (NetworkManager.Singleton.LocalClientId == puzzleData.connectedClients[0])
         {
             passiveObj.transform.localScale = new Vector3(0, 0, 0);
@@ -51,7 +53,6 @@ public class WireBehaviour : PuzzleBase
             seed *= -1;
         }
 
-        //Debug.Log("Seed: " + seed);
         var baseList = new List<uint>{0, 1, 2, 3}; 
         
         // Switch Random Indices
@@ -60,7 +61,6 @@ public class WireBehaviour : PuzzleBase
             (baseList[seed%2], baseList[seed%3]) = (baseList[seed%3], baseList[seed%2]);
             (baseList[0], baseList[seed%4]) = (baseList[seed%4], baseList[0]);
             (baseList[i%4], baseList[seed%2]) = (baseList[seed%2], baseList[i%4]);
-            //Debug.Log("Switch: " + (seed%3) + (seed%2));
         }
 
         // Rotate
