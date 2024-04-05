@@ -1,11 +1,14 @@
+//Created by Ethan Kannampuzha
+//Last Updated: 2024/04/04
 using System.Collections;
 using UnityEngine;
+//Simon Button contains all code responsible for coloured buttons of Simon Says Puzzle
 public class SimonButton : MonoBehaviour
 {
     public int id;
     public static SimonButton instance;
     [SerializeField] private Material blackMaterial;
-
+    //OnMouseDown called when button is pressed. Calls coroutine Wait that makes button blink black
     private void OnMouseDown()
     {
         if (SimonSaysPuzzle.demoInProgress == false)
@@ -22,7 +25,7 @@ public class SimonButton : MonoBehaviour
             SimonSaysPuzzle.instance.TrackUserInput(this);
         }
     }
-
+    //Wait makes button turn black for 0.3s and then go back to its original colour
     private IEnumerator Wait()
     {
         Color buttonColour = gameObject.GetComponent<Renderer>().material.GetColor("_Color");
