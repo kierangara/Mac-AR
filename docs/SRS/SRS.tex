@@ -174,6 +174,7 @@
             April 4, 2024 & Kieran & Defined missing terminology from NFRs and VnV\\
             April 4, 2024 & Kieran & Resolved minor grammar issues and latex quotation marks\\
             April 4, 2024 & Kieran & Fixed off-the-shelf solution and current environment sections based on TA feedback\\
+            April 4, 2024 & Kieran & Removed outdated puzzle dependency formal specification\\
 		\bottomrule
 	\end{tabularx}
 \end{table}
@@ -214,6 +215,9 @@ Dr Irene Yuan is the sole client for the project, requesting that the tool be ma
 
 \subsubsection{Hands-on Users of the Application}
 The users are the ones who will be using the tool and building connections with others. The main user base is intended to be young adults, roughly ages 18-30, who enjoy games and are moderately comfortable using technology.
+
+\subsubsection{Other Stakeholders}
+This application will not have a significant impact on those outside of it as the application does not require significant motion from the user or interaction with others not in the game. Warnings will be used in the application to ensure users are aware of their surroundings at all times so as not to disturb others nearby.
 
 \subsection{Mandated Constraints}
 The project will be developed and released within the following constraints. 
@@ -358,18 +362,12 @@ The project currently has no enterprise constraints.
 \subsection{Relevant Facts and Assumptions}
 The product will be developed under the following assumptions.
 
-\subsubsection{User Assumptions}
-\begin{itemize}
-    \item [A1] The user will provide consent for the app to access the camera on the device which is running the app. 
-    \item [A2] The user will provide the app to access locations services and track where the user is while actively using the app. 
-\end{itemize}
-
 \subsubsection{Device Assumptions}
 \begin{itemize}
-    \item [A3] Devices will only have a maximum of one instance of the app running at any given time. 
-    \item [A4] The device that the app is running on will have a functional camera. 
-    \item [A5] The device that the app is running on will have a functional gyroscope, or equivalent technology to measure device tilt. 
-    \item [A6] The device that the app is running on will have a functional GPS, or equivalent technology to measure device location. 
+    \item [A1] Devices will only have a maximum of one instance of the app running at any given time. 
+    \item [A2] The device that the app is running on will have a functional camera. 
+    \item [A3] The device that the app is running on will have a functional gyroscope, or equivalent technology to measure device tilt. 
+    \item [A4] The device that the app is running on will have a functional GPS, or equivalent technology to measure device location. 
 \end{itemize}
 
 \section{Functional Requirements}
@@ -380,7 +378,7 @@ The following section will go over the necessary functional requirement informat
 The context diagram depicted below illustrates the interactions of the system with adjacent
 external systems and services.
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=1.05\textwidth]{Capstone/docs/SRS/capstoneUseCase.drawio_1.drawio_1.png}}
+\centerline{\includegraphics[width=1.05\textwidth]{Capstone/docs/SRS/capstoneUseCase.drawio2.png}}
 \label{UseCaseDiagram}
 \end{figure}
 
@@ -514,198 +512,325 @@ external systems and services.
 	\item The system shall allow the user to join an existing game room with available capacity \newline 
     \textbf{Rationale:} The user must be able to group up with other users\\
     \textbf{Related Use Cases:} Use Case 2\\
-    \textbf{Related Requirements:} LF1, LF2, PR1, PR2, UH1, UH2, UH3, UH4, OE1, SR1, SR2, CR2
+    \textbf{Related Requirements:} LF1, LF2, PR1, PR2, UH1, UH2, UH3, UH4, OE1, SR1, SR2, CR1, CR2
     
     \item The system shall not allow the user to join an existing game room without available capacity\\
     \textbf{Related Use Cases:} Use Case 2\\
     \textbf{Related Requirements:} LF1, LF2, PR1, PR2, UH1, UH2, UH3, UH4, OE1, SR1, SR2, CR2
     
-    \item The system shall allow the user to enter a password for the room if another user set a password for the room 
-    \item When a user joins the game room the system shall update the game room information to add another member, and decrease the available capacity\newline 
-    \textbf{Rationale:} This provides users with an accurate representation of how much availability rooms have
+    \item The system shall allow the user to enter a password for the room if another user set a password for the room\\
+    \textbf{Related Use Cases:} Use Case 2\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, SR1, SR2, CR2
+    \item When a user joins the game room the system shall update the game room information to add another member, and decrease the available capacity\\
+    \textbf{Rationale:} This provides users with an accurate representation of how much availability rooms have\\
+    \textbf{Related Use Cases:} Use Case 2\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH2, UH3, PR1, PR2, OE1, SR1, SR2, CR2
+    
     \item The system shall redirect the user to a new screen upon successfully connecting to a room where they can see the other users in the room\newline 
-    \textbf{Rationale:} This provides feedback to the user that they've successfully joined the room while they wait for the host to start the game
+    \textbf{Rationale:} This provides feedback to the user that they've successfully joined the room while they wait for the host to start the game\\
+    \textbf{Related Use Cases:} Use Case 2\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH2, UH3, PR1, PR2, OE1, SR1, SR2, CR2
 \end{enumerate}
 
 \subsubsection{Edit Room Settings}
 \begin{enumerate}[label=RS\arabic*., series=EditRoom]
 	\item The system shall allow the user that created the game room to edit the settings of the game room\newline 
-    \textbf{Rationale:} Allows a user to fix mistakes in the initial settings or accommodate unanticipated changes
+    \textbf{Rationale:} Allows a user to fix mistakes in the initial settings or accommodate unanticipated changes\\
+    \textbf{Related Use Cases:} Use Case 3\\
+    \textbf{Related Requirements:} LF1, UH1, UH3, OE1, SR1, SR2, CR1, CR2
     \item The system shall populate all the changeable settings on the user's screen\newline 
-    \textbf{Rationale:} The user must know what they can change
+    \textbf{Rationale:} The user must know what they can change\\
+    \textbf{Related Use Cases:} Use Case 3\\
+    \textbf{Related Requirements:} LF1, LF2 UH1, UH3, OE1, SR1, SR2, CR2
     \item The system shall allow the user to change the password of the room\newline 
-    \textbf{Rationale:} Allows the user to ensure room security if the password is accidentally shared with an unintended source
+    \textbf{Rationale:} Allows the user to ensure room security if the password is accidentally shared with an unintended source\\
+    \textbf{Related Use Cases:} Use Case 3\\
+    \textbf{Related Requirements:} LF1, UH1, UH3, OE1, SR1, SR2, CR2
     \item The system shall display the updated settings to the game members in the game room\newline 
-    \textbf{Rationale:} Other users in the game room should know what changed in case it will affect them
+    \textbf{Rationale:} Other users in the game room should know what changed in case it will affect them\\
+    \textbf{Related Use Cases:} Use Case 3\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH2, UH3, OE1, PR1, PR2, SR1, SR2, CR1, CR2
 \end{enumerate}
 
 \subsubsection{Exit Room}
 \begin{enumerate}[label=ER\arabic*., series=ExitRoom]
     \item The system shall allow the user to leave the existing game room\newline 
-    \textbf{Rationale:} The user might decide they no longer wish to play the game
+    \textbf{Rationale:} The user might decide they no longer wish to play the game\\
+    \textbf{Related Use Cases:} Use Case 4\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, PR1, SR1, SR2, CR2
     \item When a group member leaves the room the system shall update the game room and display the one less user\newline 
-    \textbf{Rationale:} This provides users outside the room with an accurate representation of how much availability the room has
+    \textbf{Rationale:} This provides users outside the room with an accurate representation of how much availability the room has\\
+    \textbf{Related Use Cases:} Use Case 4\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, OE1, PR1, SR1, SR2, CR2
     \item When a group member leaves the room the server shall update the screens of all group members remaining in the room to show the new amount of users and the updated capacity\newline 
-    \textbf{Rationale:} This provides users in the room with an accurate representation of who is in the room
+    \textbf{Rationale:} This provides users in the room with an accurate representation of who is in the room\\
+    \textbf{Related Use Cases:} Use Case 4\\
+    \textbf{Related Requirements:} LF1, LF2, UH1, OE1, PR1, SR1, SR2, CR2
 \end{enumerate}
 
 
 \subsubsection{Start Game}
 \begin{enumerate}[label=ST\arabic*., series=StartGame]
-	\item The system shall allow the user to start the game
+	\item The system shall allow the user to start the game\\
+    \textbf{Related Use Cases:} Use Case 5\\
+    \textbf{Related Requirements:} LF1, UH1, UH3, OE1, PR1, PR2, SR1, SR2, CR2
     \item The system shall load all the assets used to play the game\newline 
-    \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay
+    \textbf{Rationale:} Loading all the assets at the start of the game will stop pauses during gameplay\\
+    \textbf{Related Use Cases:} Use Case 5\\
+    \textbf{Related Requirements:} UH1, OE1, PR1, SR1, SR2
     \item The system shall determine an order of the puzzles, and which group members can see which parts of the puzzles\newline 
     \textbf{Rationale:} This allows variability in puzzle order and user roles in each puzzle
-    \item The system shall reveal the available puzzles to the group members and commence the game 
+    \item The system shall reveal the available puzzles to the group members and commence the game\\
+    \textbf{Related Use Cases:} Use Case 5\\
+    \textbf{Related Requirements:} UH1, OE1, SR1, SR2
 \end{enumerate}
 
 \subsubsection{Puzzle Interaction}
     \begin{enumerate}[label=PI\arabic*., series=PuzzleInteract]
         \item The system shall allow users to perform all necessary actions on the puzzle to complete the puzzle\\
-        \textbf{Rationale}: The user must be able to complete the puzzles in order to progress in the game
+        \textbf{Rationale}: The user must be able to complete the puzzles in order to progress in the game\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1, PR1, PR2, SR1, SR2, CR2
         \item The system shall display the new puzzle state after a user performs an action on a puzzle\\
-        \textbf{Rationale}: The user must be able to see the results of their actions in order to decide how to proceed with the puzzle
+        \textbf{Rationale}: The user must be able to see the results of their actions in order to decide how to proceed with the puzzle\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, PR1, PR2, SR1, SR2, CR2
         \item The system shall update the puzzle state of group members cooperating on an updated puzzle\\
-        \textbf{Rationale}: The results of the actions of one user affect the decisions necessary for other group members
+        \textbf{Rationale}: The results of the actions of one user affect the decisions necessary for other group members\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1, PR1, SR1, SR2, CR2
         \item The system shall notify the user when they have completed a puzzle\\
-        \textbf{Rationale}: Informs users that they can move on from the puzzle. A notification at the end of a puzzle can also make completing it more satisfying for the user
+        \textbf{Rationale}: Informs users that they can move on from the puzzle. A notification at the end of a puzzle can also make completing it more satisfying for the user\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1, PR1
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1, PR1, SR1, SR2, CR2
     \end{enumerate}
 \subsubsection{Hint Request}
     \begin{enumerate}[label=HR\arabic*., series=HintRequest]
         \item The system shall have two hints for each puzzle\\
-        \textbf{Rationale}: If a user gets stuck on a puzzle they should have an alternative to giving up on the puzzle
-        \item The system shall have a means of requesting a hint for the puzzle to be displayed
+        \textbf{Rationale}: If a user gets stuck on a puzzle they should have an alternative to giving up on the puzzle\\
+        \textbf{Related Use Cases:} Use Case 7\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, PR2, OE1
+        \item The system shall have a means of requesting a hint for the puzzle to be displayed\\
+        \textbf{Related Use Cases:} Use Case 7\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, PR2, OE1
         \item The system shall allow the user to close the hint display\\
-        \textbf{Rationale}: Keeping the hint on the screen may obstruct other functions
+        \textbf{Rationale}: Keeping the hint on the screen may obstruct other functions\\
+        \textbf{Related Use Cases:} Use Case 7\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, PR2, OE1
     \end{enumerate}
 \subsubsection{Skip Puzzle}
     \begin{enumerate}[label=SP\arabic*., series=SkipPuzzle]
         \item The system shall allow the user to skip a puzzle, progressing to the next puzzle\\
-        \textbf{Rationale}: As this game is being created primarily for the study, the skip option may be needed for time purposes or if a puzzle cannot be solved
+        \textbf{Rationale}: As this game is being created primarily for the study, the skip option may be needed for time purposes or if a puzzle cannot be solved\\
+        \textbf{Related Use Cases:} Use Case 8\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, PR2, OE1
         \item The system shall notify any group members cooperating on the skipped puzzle that it has been skipped\\
-        \textbf{Rationale}: A group members work on a puzzle will typically depend on another group members work on the puzzle. They must be notified the puzzle has been skipped so they are not waiting on an action from the group member
+        \textbf{Rationale}: A group members work on a puzzle will typically depend on another group members work on the puzzle. They must be notified the puzzle has been skipped so they are not waiting on an action from the group member\\
+        \textbf{Related Use Cases:} Use Case 8\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, PR2, OE1
     \end{enumerate}
 \subsubsection{Send Text Message}
     \begin{enumerate}[label=SM\arabic*., series=SendMessage]
         \item The system shall contain an interface that allows the user to compose text messages\\
-        \textbf{Rationale}: The user must be able to create their own custom messages to allow for optimal communication in puzzles and to create the most realistic social experience
+        \textbf{Rationale}: The user must be able to create their own custom messages to allow for optimal communication in puzzles and to create the most realistic social experience\\
+        \textbf{Related Use Cases:} Use Case 9\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, PR2, OE1
         \item The system shall allow the user to send a message to the users in the game room\\
-        \textbf{Rationale}: The primary goal of the game is to allow users to have social interaction from a remote setting. All users in the game must be able to interact with one another to complete this goal
+        \textbf{Rationale}: The primary goal of the game is to allow users to have social interaction from a remote setting. All users in the game must be able to interact with one another to complete this goal\\
+        \textbf{Related Use Cases:} Use Case 9\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH2, UH3, UH4, PR1, PR2, OE1
         \item The system shall allow the user to cancel a message before sending it\\
-        \textbf{Rationale}: If a user decides they do not want to send a message they must be able to return to the game without having to send something
+        \textbf{Rationale}: If a user decides they do not want to send a message they must be able to return to the game without having to send something\\
+        \textbf{Related Use Cases:} Use Case 9\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, PR2, OE1
         \item The system shall notify the user once the message has been sent\\
-        \textbf{Rationale}: It is important that the user receive feedback that the message has been sent so there is no uncertainty or confusion for the user
+        \textbf{Rationale}: It is important that the user receive feedback that the message has been sent so there is no uncertainty or confusion for the user\\
+        \textbf{Related Use Cases:} Use Case 9\\
+        \textbf{Related Requirements:} LF1, UH1, UH2, UH3, UH4, PR1, PR2, OE1
     \end{enumerate}
 \subsubsection{Read Message}
     \begin{enumerate}[label=RM\arabic*., series=ReadMessage]
         \item The system shall notify the user when a new text message is received\\
-        \textbf{Rationale}: Communication is core to the game. If a user doesn't know when they receive a message good communication will not be maintained
+        \textbf{Rationale}: Communication is core to the game. If a user doesn't know when they receive a message good communication will not be maintained\\
+        \textbf{Related Use Cases:} Use Case 10\\
+        \textbf{Related Requirements:} LF1, UH1, UH2, UH3, UH4, PR1, PR2, OE1
         \item The system shall allow the user to view text messages\\
-        \textbf{Rationale}: Users must be able to see what other users are trying to communicate to them for social purposes and to complete puzzles
+        \textbf{Rationale}: Users must be able to see what other users are trying to communicate to them for social purposes and to complete puzzles\\
+        \textbf{Related Use Cases:} Use Case 10\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH2, UH3, UH4, PR1, PR2, OE1
         \item The system shall allow users to close the message display\\
-        \textbf{Rationale}: The message display can block other functions if left open
+        \textbf{Rationale}: The message display can block other functions if left open\\
+        \textbf{Related Use Cases:} Use Case 10\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, PR2, OE1
     \end{enumerate}
 \subsubsection{Voice Communication}
     \begin{enumerate}[label=VM\arabic*., series=VoiceMessage]
         \item The system shall allow users to communicate with one another through a voice chat\\
-        \textbf{Rationale}: To allow more fluid and more complex communication users should be able to communicate through a voice chat in addition to the text messaging.
+        \textbf{Rationale}: To allow more fluid and more complex communication users should be able to communicate through a voice chat in addition to the text messaging.\\
+        \textbf{Related Use Cases:} Use Case 9\\
+        \textbf{Related Requirements:} UH1, UH2, UH3, UH4, PR1, PR2, OE1
         \item The system shall allow users to mute themselves in the voice chat at any time while they are in the game room\\
-        \textbf{Rationale}: Users should not be forced to utilise the voice communication system as they may be in a location with unwanted background noise or where they cannot speak freely
+        \textbf{Rationale}: Users should not be forced to utilise the voice communication system as they may be in a location with unwanted background noise or where they cannot speak freely\\
+        \textbf{Related Use Cases:} Use Case 9\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, PR2, OE1
     \end{enumerate}
 \subsubsection{Simon Says Puzzle}
     \begin{enumerate}[label=SS\arabic*., series=SimonSays]
         \item The system shall display the coloured buttons to the host user at the start of the game\\
-        \textbf{Rationale}: Users must be able to see puzzle assets that they need to interact with
+        \textbf{Rationale}: Users must be able to see puzzle assets that they need to interact with\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item The system shall display the colour cube to all users other than the host at the start of the game\\
-        \textbf{Rationale}: Users must be able to see puzzle assets that they need to interact with
+        \textbf{Rationale}: Users must be able to see puzzle assets that they need to interact with\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item The system shall display the current Simon Says level to all users while the puzzle is active\\
-        \textbf{Rationale}: The level indicates the current number of correct sequences the group has inputted, and shows progression through the puzzle
+        \textbf{Rationale}: The level indicates the current number of correct sequences the group has inputted, and shows progression through the puzzle\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, OE1
         \item The system shall display a sequence of colours on the colour cube when the puzzle is active\\
-        \textbf{Rationale}: The sequence of colours must be shown in order so that the users can communicate and the individual with the coloured buttons can enter the correct sequence
+        \textbf{Rationale}: The sequence of colours must be shown in order so that the users can communicate and the individual with the coloured buttons can enter the correct sequence\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item The system shall increase the Simon Says level once the user inputs colour sequence using the coloured buttons\\
-        \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle
+        \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, OE1
         \item The system shall put the Simon Says level to one if the user inputs the incorrect colour sequence using the coloured buttons\\
-        \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle
+        \textbf{Rationale}: Once the user enters the correct sequence, a new, longer sequence is generated which must be completed in order to reach the end of the puzzle\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, OE1
         \item The system shall display the puzzle as completed once level 3 is completed\\
-        \textbf{Rationale}: The puzzle should be able to be completed in order for users to be able to progress through the escape room. Additionally, level 3 is the highest level since the puzzle is supposed to take several minutes to solve and the time it takes to reach this level is in accordance to that
+        \textbf{Rationale}: The puzzle should be able to be completed in order for users to be able to progress through the escape room. Additionally, level 3 is the highest level since the puzzle is supposed to take several minutes to solve and the time it takes to reach this level is in accordance to that\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, OE1
     \end{enumerate}
 \subsubsection{Maze Puzzle}
 \begin{enumerate}[label=MP\arabic*., series=MazePuzzle ]
         \item The system shall randomly create a maze with a starting location, an end goal, and a ball that falls with gravity. \\
-        \textbf{Rationale}: The puzzle should be highly re-playable, providing a different experience for users each time, and the maze needs an end goal to reach
+        \textbf{Rationale}: The puzzle should be highly re-playable, providing a different experience for users each time, and the maze needs an end goal to reach\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item The system shall choose a user to be in control of rotating the maze \\
-        \textbf{Rationale}: The goal of the puzzle is to have one person rotate the maze, and the rest of the users to guide the person in charge of rotating
+        \textbf{Rationale}: The goal of the puzzle is to have one person rotate the maze, and the rest of the users to guide the person in charge of rotating\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item The system shall make the inside of the maze only visible to users that can't rotate the maze \\
-        \textbf{Rationale}: If the user in charge of rotating could see inside the maze, it would defeat the whole purpose
+        \textbf{Rationale}: If the user in charge of rotating could see inside the maze, it would defeat the whole purpose\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item When the user in charge of rotating rotates their phone, the maze should rotate proportionally \\
-        \textbf{Rationale}: The user should be able to rotate the maze easily and have a reasonable amount of positive feedback
+        \textbf{Rationale}: The user should be able to rotate the maze easily and have a reasonable amount of positive feedback\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, OE1
         \item The system shall complete the puzzle when the ball reaches the end goal\\
-        \textbf{Rationale}: The users should have a way to finish the maze
+        \textbf{Rationale}: The users should have a way to finish the maze\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, OE1
 \end{enumerate}
 \subsubsection{Isometric Puzzle}
 
 \begin{enumerate}[label=IP\arabic*., series=IsometricPuzzle ]
         \item The system shall randomly assign letter and number combinations to every user in the game, based on a word the system chooses \\
-        \textbf{Rationale}: Each user needs to have their own respective puzzle elements they can interact with, and there needs to be an end goal word. 
+        \textbf{Rationale}: Each user needs to have their own respective puzzle elements they can interact with, and there needs to be an end goal word. \\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} UH1, OE1
         \item The system shall generate arrangements of blocks for each user that resemble letters and numbers based on the angle the user views them, and based on the letter and number combos each user was assigned \\
-        \textbf{Rationale}: The goal of the puzzle is to complete a word based on letters in positions, the position given by the number they see, and the letter given by the letter they see
+        \textbf{Rationale}: The goal of the puzzle is to complete a word based on letters in positions, the position given by the number they see, and the letter given by the letter they see\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item The system shall have left and right buttons to switch between letter and number combinations \\
-        \textbf{Rationale}: For groups of users with a size less than the amount of letters in the word, they need a way to switch between the available letters and numbers they have
+        \textbf{Rationale}: For groups of users with a size less than the amount of letters in the word, they need a way to switch between the available letters and numbers they have\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item The system shall have an input field for users to enter their final guess into \\
-        \textbf{Rationale}: The users need to way to guess what the word is to complete the puzzle
+        \textbf{Rationale}: The users need to way to guess what the word is to complete the puzzle\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, OE1
         \item When the word entered into the input field is the same as the word the system drew letter and number combinations from, the puzzle completes\\
-        \textbf{Rationale}: There needs to be a puzzle completion condition
+        \textbf{Rationale}: There needs to be a puzzle completion condition\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, OE1
 \end{enumerate}
 \subsubsection{Combination Puzzle}
     \begin{enumerate}[label=CP\arabic*., series=CombinationPuzzle]
-        \item The system shall randomly select a select a set of instructions and associated four-digit combination from the available set of instruction-combination pairings\\
-        \textbf{Rationale}: The puzzle should be highly re-playable, providing a different experience for users each time
+        \item The system shall randomly select a set of instructions and associated four-digit combination from the available set of instruction-combination pairings and distribute the instructions as evenly as possible between the users displaying said instructions\\
+        \textbf{Rationale}: The puzzle should be highly re-playable, providing a different experience for users each time\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} UH1, OE1
         \item The combination associated with each instruction set shall be the only possible four-digit combination given the associated instructions\\
-        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle for users to be able to solve it using the instructions.
+        \textbf{Rationale}: There must be exactly one solution for each version of the puzzle for users to be able to solve it using the instructions.\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} UH1, OE1
         \item The system shall update the current combination display field for all users in the room with the correct digit when a user presses a button corresponding to the correct digit of the combination\\
-        \textbf{Rationale}: When a user enters a correct digit of the combination, all users should see this reflected on the keypad interface so that they know that number was correct and can progress in the puzzle
+        \textbf{Rationale}: When a user enters a correct digit of the combination, all users should see this reflected on the keypad interface so that they know that number was correct and can progress in the puzzle\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, OE1
         \item The system shall indicate to all users when a user has pressed a keypad button associated with an incorrect digit of the combination\\
-        \textbf{Rationale}: Users must be able to tell when they've entered an incorrect digit so that they do not continue trying this digit 
+        \textbf{Rationale}: Users must be able to tell when they've entered an incorrect digit so that they do not continue trying this digit \\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, OE1
         \item The system shall reset the combination display field for all users when a user has pressed a keypad button associated with an incorrect digit of the combination\\
-        \textbf{Rationale}: Resetting the combination entry on each incorrect input encourages more communication as there is a greater penalty for incorrect inputs. It also helps prevent spam guessing all possible combinations
+        \textbf{Rationale}: Resetting the combination entry on each incorrect input encourages more communication as there is a greater penalty for incorrect inputs. It also helps prevent spam guessing all possible combinations\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, OE1
         \item The system shall complete the puzzle once all four digits of the combination have been entered correctly, displaying a ``Correct" message on the keypad interface\\
-        \textbf{Rationale}: When the puzzle has been successfully completed users must be able to move on to the next puzzle. The puzzle should have a visual indicator of this so users know to start looking for the next task.
+        \textbf{Rationale}: When the puzzle has been successfully completed users must be able to move on to the next puzzle. The puzzle should have a visual indicator of this so users know to start looking for the next task.\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, LF2, UH1, UH3, PR1, OE1
     \end{enumerate}
 
 \subsubsection{Wires Puzzle}
 
 \begin{enumerate}[label=WP\arabic*., series=WiresPuzzle ]
         \item The puzzle shall display a box of four coloured wires to the user designated as the active user \\
-        \textbf{Rationale}: A single user must be able to see the puzzle asset that they can interact with
+        \textbf{Rationale}: A single user must be able to see the puzzle asset that they can interact with\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item A set of four pairs of coloured dots shall be displayed for all users not designated as the active user \\
-        \textbf{Rationale}: The remaining users must be able to see the puzzle asset containing the solution to the puzzle
+        \textbf{Rationale}: The remaining users must be able to see the puzzle asset containing the solution to the puzzle\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item The four coloured wires must be able to be manipulated by the user such that their tip follows the movement of the users finger while they are dragged across the screen \\
-        \textbf{Rationale}: To complete the puzzle, the wires must be able to be dragged into their designated positions
+        \textbf{Rationale}: To complete the puzzle, the wires must be able to be dragged into their designated positions\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, OE1
         \item When a wire tip is dragged by a user, the position of the wire must remain in place when the wire is released \\
-        \textbf{Rationale}: When the user stops dragging, the wires must not reset to their original positions to allow the puzzle to be completed
+        \textbf{Rationale}: When the user stops dragging, the wires must not reset to their original positions to allow the puzzle to be completed\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, OE1
         \item  The four pairs of coloured dots shall match up with the proper solution to the wires puzzle. Each pair of dots shall indicate a correct connection, with the colour of the node as the dot on top and the colour of the wire as the dot on the bottom\\
-        \textbf{Rationale}: The active part of the puzzle must align with the hint given to the other users for the puzzle to be able to be completed 
+        \textbf{Rationale}: The active part of the puzzle must align with the hint given to the other users for the puzzle to be able to be completed \\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item  When the wires are connected to the nodes in an improper sequence, no change occurs \\
-        \textbf{Rationale}: The puzzle must only be able to be completed with a single correct sequence
+        \textbf{Rationale}: The puzzle must only be able to be completed with a single correct sequence\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item  When the wires are connected to the nodes in the correct sequence, the puzzle completes \\
-        \textbf{Rationale}: The correct sequence must complete the puzzle
+        \textbf{Rationale}: The correct sequence must complete the puzzle\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, OE1
         \item When the puzzle is spawned and inactive, its lights will be off \\
-        \textbf{Rationale}: The initial state of the puzzle will have its lights off to indicate to the user not to interact with it yet
+        \textbf{Rationale}: The initial state of the puzzle will have its lights off to indicate to the user not to interact with it yet\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, OE1
         \item When the puzzle is set to become active, its lights will turn red \\
-        \textbf{Rationale}: The lights will turn red to indicate that the puzzle is active but not yet completed
+        \textbf{Rationale}: The lights will turn red to indicate that the puzzle is active but not yet completed\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, OE1
         \item When the puzzle is completed, its lights will turn green \\
-        \textbf{Rationale}: The lights will turn green to indicate to the user that the puzzle has been completed
+        \textbf{Rationale}: The lights will turn green to indicate to the user that the puzzle has been completed\\
+        \textbf{Related Use Cases:} Use Case 6\\
+        \textbf{Related Requirements:} LF1, UH1, UH3, PR1, OE1
 \end{enumerate}
 
 \subsection{Formal Specification}
 $(\forall r \in rooms  | (\sum\limits_{user \in r} 1)  \leq r.roomCapacity)$\\
 
 The users that exist in a room shall be within the capacity of the room
-
-$ (\forall a,b \in puzzles  |  (a \subset b) \implies (a \implies b))$
- 
-For all the puzzles in the room, if puzzle b depends on a, b will come after a
 
 \subsection{Functional Requirements That Are Likely/Unlikely to Change}
 \begin{table}[h]
@@ -834,36 +959,48 @@ The following section will describe the non-functional requirements of the appli
 \section{Traceability Matrix}
 
 \begin{table}[H]
-\begin{adjustwidth}{-0.1in}{-1in}
+\begin{adjustwidth}{-0.8in}{-1.2in}
 \scalebox{0.7}{
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\cline{2-17}
-                                     & \textbf{LF1} & \textbf{LF2} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{PR1} & \textbf{PR2} & \textbf{OE1} & \textbf{MR1} & \textbf{MR2} & \textbf{SR1} & \textbf{SR2} & \textbf{CR1} & \textbf{CR2} & \textbf{LR1} & \textbf{HS1}  \\ \hline
-\multicolumn{1}{|l|}{\textbf{CG1}}   &      X       &              &       X      &              &       X      &       X      &       X      &       X      &              &              &      X       &      X       &              &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{CG2}}   &      X       &      X       &       X      &              &       X      &       X      &       X      &       X      &              &              &              &      X       &      X       &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{CG3}}   &      X       &              &       X      &      X       &       X      &       X      &       X      &       X      &              &              &              &      X       &              &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{CG4}}   &      X       &      X       &       X      &              &       X      &              &       X      &       X      &              &              &      X       &      X       &              &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{CG5}}   &      X       &              &       X      &      X       &       X      &              &              &       X      &              &              &      X       &      X       &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{JG1}}   &              &              &              &      X       &              &       X      &       X      &       X      &              &              &              &      X       &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{JG2}}   &      X       &      X       &       X      &              &       X      &              &       X      &       X      &              &              &      X       &      X       &              &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{JG3}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &              &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{JG4}}   &      X       &              &       X      &      X       &       X      &              &              &       X      &              &              &      X       &      X       &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{RS1}}   &      X       &      X       &              &              &       x      &              &              &       X      &              &              &              &              &              &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{RS2}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &              &      X       &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{RS3}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &      X       &      X       &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{RS4}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &              &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{RS5}}   &      X       &      X       &       X      &      X       &       X      &      X       &              &       X      &              &              &      X       &              &      X       &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{RS6}}   &      X       &      X       &       X      &              &       X      &              &       X      &       X      &              &              &              &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{ER1}}   &      X       &      X       &       X      &      X       &       X      &              &       X      &       X      &              &              &      X       &              &              &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{ER2}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &      X       &              &              &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{ER3}}   &      X       &      X       &       X      &              &       X      &              &              &       X      &              &              &      X       &              &              &      X       &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{ST1}}   &      X       &      X       &       X      &              &       X      &      X       &       X      &       X      &              &              &              &              &              &              &              &       X       \\ \hline
-\multicolumn{1}{|l|}{\textbf{ST2}}   &              &      X       &       X      &              &              &              &              &       X      &       X      &       X      &              &              &      X       &      X       &      X       &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{ST3}}   &      X       &      X       &       X      &              &              &              &              &       X      &              &              &              &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{ST4}}   &              &              &              &              &              &              &              &       X      &       X      &       X      &              &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{ST5}}   &      X       &              &       X      &              &              &              &       X      &       X      &              &              &              &              &              &              &              &               \\ \hline
-\multicolumn{1}{|l|}{\textbf{ST6}}   &      X       &              &       X      &              &              &              &              &       X      &              &              &              &              &              &              &              &               \\ \hline
-
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+\cline{2-21}
+                                     & \textbf{LF1} & \textbf{LF2} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{UH5} & \textbf{UH6} & \textbf{UH7} & \textbf{PR1} & \textbf{PR2} & \textbf{OE1} & \textbf{MS1} & \textbf{MS2} & \textbf{SR1} & \textbf{SR2} & \textbf{CR1} & \textbf{CR2} & \textbf{LR1} & \textbf{HS1}  \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG1}}   &      X       &              &       X      &     X        &       X      &       X      &              &              &              &       X      &      X       &      X       &              &              &      X       &      X      &             &        X    &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG2}}   &      X       &      X       &       X      &              &       X      &              &              &              &              &              &              &      X       &              &              &      X      &      X       &      X      &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG3}}   &      X       &      X       &       X      &              &       X      &              &              &              &              &              &              &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG4}}   &      X       &      X       &       X      &              &       X      &              &              &              &              &              &              &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CG5}}   &      X       &      X       &       X      &              &       X      &              &              &              &              &      X       &      X       &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{JG1}}   &      X       &      X       &       X      &      X       &       X      &       X      &              &              &              &      X       &      X       &      X       &              &              &      X      &      X       &      X      &        X    &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{JG2}}   &      X       &      X       &       X      &      X       &       X      &       X      &              &              &              &      X       &      X       &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{JG3}}   &      X       &      X       &       X      &              &       X      &              &              &              &              &              &              &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{JG4}}   &      X       &      X       &       X      &      X       &       X      &              &              &              &              &      X       &      X       &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{JG5}}   &      X       &      X       &       X      &      X       &       X      &              &              &              &              &      X       &      X       &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS1}}   &      X       &              &       X      &              &       x      &              &              &              &              &              &              &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS2}}   &      X       &      X       &       X      &              &       X      &              &              &              &              &              &              &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS3}}   &      X       &              &       X      &              &       X      &              &              &              &              &              &              &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{RS4}}   &      X       &      X       &       X      &      X       &       X      &              &              &              &              &       X      &      X       &      X       &              &              &      X      &      X       &      X      &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{ER1}}   &      X       &      X       &       X      &              &       X      &              &              &              &              &      X       &              &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{ER2}}   &      X       &      X       &       X      &              &              &              &              &              &              &       X      &              &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{ER3}}   &      X       &      X       &       X      &              &              &              &              &              &              &       X      &              &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST1}}   &      X       &              &       X      &              &       X      &              &              &              &              &       X      &       X      &      X       &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST2}}   &              &              &       X      &              &              &              &              &              &              &       X      &              &      X       &              &              &      X      &      X       &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST3}}   &      X       &              &       X      &              &       X      &              &              &              &              &       X      &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{ST4}}   &              &              &       X      &              &              &              &              &              &              &              &              &      X       &              &              &      X      &      X       &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI1}}   &      X       &              &       X      &              &       X      &              &              &              &              &       X      &       X      &       X      &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI2}}   &      X       &       X      &       X      &              &       X      &              &              &              &              &        X     &       X      &       X      &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI3}}   &      X       &              &       X      &              &       X      &              &              &              &              &        X     &              &       X      &              &              &      X      &      X       &             &        X    &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{PI4}}   &      X       &       X      &       X      &              &       X      &              &              &              &              &       X      &              &       X      &              &              &      X      &      X       &             &       X     &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{HR1}}   &      X       &       X      &       X      &              &       X      &              &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{HR2}}   &      X       &       X      &       X      &              &       X      &              &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{HR3}}   &      X       &              &       X      &              &       X      &              &              &              &              &     X        &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SP1}}   &      X       &              &       X      &              &       X      &              &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SP2}}   &      X       &              &       X      &              &       X      &              &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SM1}}   &      X       &       X      &       X      &              &       X      &              &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SM2}}   &      X       &       X      &       X      &       X      &       X      &       X      &              &              &              &       X      &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SM3}}   &      X       &       X      &       X      &              &       X      &              &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SM4}}   &      X       &              &       X      &       X      &       X      &       X      &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{RM1}}   &      X       &              &       X      &       X      &       X      &       X      &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{RM2}}   &      X       &       X      &       X      &       X      &       X      &       X      &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{RM3}}   &      X       &              &       X      &              &       X      &              &              &              &              &      X       &       X      &       X      &              &              &             &              &             &             &             &             \\ \hline
 \end{tabular}
 
 }
@@ -874,51 +1011,46 @@ The following section will describe the non-functional requirements of the appli
 
 
 \begin{table}[H]
-\begin{adjustwidth}{-0.1in}{-1in}
+\begin{adjustwidth}{-0.8in}{-1.2in}
 \scalebox{0.7}{
-\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-\cline{2-17}
-                                     & \textbf{LF1} & \textbf{LF2} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{PR1} & \textbf{PR2} & \textbf{OE1} & \textbf{MR1} & \textbf{MR2} & \textbf{SR1} & \textbf{SR2} & \textbf{CR1} & \textbf{CR2} &\textbf{LR1} & \textbf{HS1} \\ \hline
-\multicolumn{1}{|l|}{\textbf{PI1}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &              &       X      &       X      &       X      &             &      X       \\ \hline
-\multicolumn{1}{|l|}{\textbf{PI2}}   &      X       &       X      &       X      &              &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &      X       \\ \hline
-\multicolumn{1}{|l|}{\textbf{PI3}}   &      X       &       X      &       X      &              &       X      &       X      &       X      &       X      &              &              &              &       X      &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{PI4}}   &      X       &       X      &       X      &              &              &       X      &       X      &       X      &              &              &              &       X      &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{PI5}}   &      X       &       X      &       X      &       X      &              &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{PI6}}   &      X       &       X      &       X      &       X      &              &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{PI7}}   &      X       &       X      &       X      &       X      &              &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{HR1}}   &              &              &              &              &              &              &       X      &       X      &      X       &      X       &       X      &       X      &              &              &      X      &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{HR2}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{HR3}}   &      X       &       X      &              &       X      &       X      &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SP1}}   &      X       &       X      &              &       X      &       X      &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SP2}}   &              &              &              &              &              &       X      &       X      &       X      &      X       &      X       &       X      &       X      &              &              &      X      &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SP3}}   &      X       &       X      &              &       X      &       X      &       X      &       X      &       X      &              &              &              &              &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SM1}}   &      X       &       X      &       X      &       X      &       X      &              &       X      &       X      &              &              &              &       X      &              &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SM2}}   &      X       &       X      &       X      &       X      &       X      &              &       X      &       X      &              &              &              &       X      &              &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SM3}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &              &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SM4}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &              &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SM5}}   &      X       &       X      &       X      &       X      &              &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{RM1}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{RM2}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{RM3}}   &      X       &       X      &       X      &       X      &       X      &       X      &       X      &       X      &              &              &       X      &       X      &       X      &       X      &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SS1}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SS2}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SS3}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SS4}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SS5}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{SS6}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{MP1}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{MP2}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{MP3}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{MP4}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{MP5}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{IP1}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{IP2}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{IP3}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{IP4}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{IP5}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{CP1}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{CP2}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
-\multicolumn{1}{|l|}{\textbf{CP3}}   &              &              &              &              &              &              &              &              &              &              &              &              &              &              &             &              \\ \hline
+\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+\cline{2-21}
+                                     & \textbf{LF1} & \textbf{LF2} & \textbf{UH1} & \textbf{UH2} & \textbf{UH3} & \textbf{UH4} & \textbf{UH5} & \textbf{UH6} & \textbf{UH7} & \textbf{PR1} & \textbf{PR2} & \textbf{OE1} & \textbf{MS1} & \textbf{MS2} & \textbf{SR1} & \textbf{SR2} & \textbf{CR1} & \textbf{CR2} &\textbf{LR1} & \textbf{HS1} \\ \hline
+\multicolumn{1}{|l|}{\textbf{VM1}}   &              &              &      X       &       X      &      X       &      X       &              &              &              &      X       &      X       &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{VM2}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS1}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS2}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS3}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS4}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS5}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS6}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{SS7}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP1}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP2}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP3}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP4}}   &      X       &              &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{MP5}}   &      X       &              &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP1}}   &              &              &      X       &              &              &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP2}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP3}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP4}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{IP5}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CP1}}   &              &              &      X       &              &              &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CP2}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CP3}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CP4}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CP5}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{CP6}}   &      X       &       X      &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP1}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP2}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP3}}   &      X       &              &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP4}}   &      X       &              &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP5}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP7}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP7}}   &      X       &              &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP8}}   &      X       &              &      X       &              &      X       &              &              &              &              &              &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP9}}   &      X       &              &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
+\multicolumn{1}{|l|}{\textbf{WP10}}  &      X       &              &      X       &              &      X       &              &              &              &              &      X       &              &      X       &              &              &             &              &             &             &             &             \\ \hline
 \end{tabular}
 
 }
@@ -953,7 +1085,7 @@ Currently, the only known product that is similar to this project and can be cop
 The following section will describe potential problems of the application's creation. It will go over the effects on the current environment and installed system, as well as user problems and other follow-up problems.
 
 \subsubsection{Effects on the Current Environment}
-The application will affect the way people who are isolated/remote are able to connect with others.
+The application will affect the way people who are isolated/remote are able to connect with others. It will provide them with a way to interact in a more physical way than traditional video games. The study for which the application is being used will also provide valuable insight into how people interact remotely using AR tools, helping to find good principles for future games. As mentioned previously, there will not be a significant impact on those not using the application due to the minimal space requirements of the game and the warnings to be aware of ones surroundings.
 
 \subsubsection{Effects on the Installed Systems}
 The application will not have any effect on the mobile devices it is installed on. It will act as a standalone application on the device and should not affect any other parts of the device.
@@ -1239,7 +1371,7 @@ A new and unique set of skills will be required for the completion of this proje
     \begin{itemize}
         \item \textbf{Main Team Members}: Ethan, Sam
     \end{itemize}
-    \item [RS5]\textbf{Game Design}: Getting a large and diverse user base is essential for the collaborative aspect of the tool. Researching what makes a game fun to play and striking a balance between the difficulty and complexity of the puzzles is what will drive this engagement. 
+    \item [RS5]\textbf{Game Design}: Getting a large and diverse user base is essential for the collaborative aspect of the tool. Researching what makes a game fun to play and striking a balance between the difficulty and complexity of the puzzles is what will drive this engagement. We will acquire these skills via the unity forums and various unity tutorials found on YouTube. 
     \begin{itemize}
         \item \textbf{Main Team Members}: Kieran, Ethan
     \end{itemize}
