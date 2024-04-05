@@ -15,17 +15,13 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
     //Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Multiplayer Puzzle Manager called");
-
         SpawnPuzzleBatch();
     }
 
     private void SpawnPuzzleBatch()
     {
-        Debug.Log("Puzzle Batch Size: " + PuzzleConstants.puzzleBatches[activePuzzleBatchIndex].Count);
         foreach(var puzzle in PuzzleConstants.puzzleBatches[activePuzzleBatchIndex])
         {
-            Debug.Log("Currently Spawning: " + puzzle.Item3);
             SpawnPuzzleServerRpc(puzzle.Item1, puzzle.Item2, puzzle.Item3);
         }
     }
@@ -43,10 +39,8 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             return;
         }
         
-        Debug.Log("SpawnPuzzleServerRpcCalled");
 
         // Get Users
-        /// TODO: Exists here in case of changes to list, check if can be moved to start and updated asyncronously 
         List<ulong> clients = new List<ulong>();
         foreach(NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
         {
@@ -57,7 +51,6 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
         byte[] bytes = ULongListToBytes(clients);
 
         // Instantiate 
-        Debug.Log("Spawn: " + puzzleIndex);
         var puzzleInstance = Instantiate(puzzles[puzzleIndex], puzzlePosition, puzzleRotation); 
 
         // Spawn
@@ -80,11 +73,10 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             // Deserialize
             List<ulong> clients = BytesToULongList(clientBytes);
 
+            // Update Puzzle Data
             puzzle.GetComponentInChildren<PuzzleData>().cam = cam;
             puzzle.GetComponentInChildren<PuzzleData>().completePuzzle = this;
 
-            // TODO: Check if there are any ref issues with passing in entire list at once, faster than 
-            // one at a time
             foreach (ulong client in clients)
             {
                 puzzle.GetComponentInChildren<PuzzleData>().connectedClients.Add(client);
@@ -113,6 +105,7 @@ public class MultiplayerPuzzleManager : NetworkBehaviour
             return;
         }
 
+        // Change Next Puzzle to be Active
         puzzleInstances[activePuzzleIndex].GetComponentInChildren<PuzzleBase>().SetActive(false);
         activePuzzleIndex += 1;
 
